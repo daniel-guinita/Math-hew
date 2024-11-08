@@ -10,45 +10,44 @@ import {
 
 const ContactUs = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 via-gray-200 to-red-100 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 flex flex-col items-center px-4 py-10">
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 via-gray-200 to-orange-100 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 flex flex-col items-center px-4 py-10">
       <div className="w-full max-w-5xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-10 text-center dark:text-white">
-        <h1 className="text-4xl sm:text-5xl font-bold text-red-600 dark:text-red-300 mb-8">
+        <h1 className="text-4xl sm:text-5xl font-bold text-orange-600 dark:text-orange-300 mb-8">
           Contact Us
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 mb-10">
-          Have any questions or need to get in touch? Here are the ways you can
-          contact our team.
+          We’re here to support you on every step of your learning journey—reach out to us anytime!
         </p>
 
         {/* Contact Information with Icons */}
         <div className="text-left space-y-8">
           <div>
-            <h2 className="text-2xl font-bold text-red-500 dark:text-red-300 mb-3">
-              Direct Contact
+            <h2 className="text-2xl font-bold text-orange-500 dark:text-orange-300 mb-3">
+              Contact Information
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 flex items-center justify-center sm:justify-start">
-              <FaEnvelope className="text-red-500 dark:text-red-300 mr-2" />
+              <FaEnvelope className="text-orange-500 dark:text-orange-300 mr-2" />
               <a
-                href="mailto:matthew.citu@gmail.com"
+                href="mailto:mathhew.citu@gmail.com"
                 className="hover:underline"
               >
                 Lorem ipsum
               </a>
             </p>
             <p className="text-lg text-gray-600 dark:text-gray-300 flex items-center justify-center sm:justify-start">
-              <FaPhone className="text-red-500 dark:text-red-300 mr-2" />
+              <FaPhone className="text-orange-500 dark:text-orange-300 mr-2" />
               <a href="tel:+1234567890" className="hover:underline">
-                0909090909
+                09090909090
               </a>
             </p>
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-red-500 dark:text-red-300 mb-3">
-              Follow Us
+            <h2 className="text-2xl font-bold text-orange-500 dark:text-orange-300 mb-3">
+              Get In Touch
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
-              Stay updated by following us on our social platforms.
+              View our official social media platforms!
             </p>
             <div className="flex justify-center space-x-4">
               <a
@@ -90,19 +89,20 @@ const ContactUs = () => {
 
       {/* FAQ Section */}
       <div className="w-full max-w-5xl mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-10 dark:text-white">
-        <h2 className="text-3xl font-bold text-red-500 dark:text-red-300 mb-6">
+        <h2 className="text-3xl font-bold text-orange-500 dark:text-orange-300 mb-6">
           Frequently Asked Questions
         </h2>
         <div className="space-y-6 text-left">
-          <p className="text-xl font-semibold">How do I report a problem?</p>
-          <p className="text-lg text-gray-600">
-            You can report problems directly through our email or phone number
-            listed above.
+          <p className="text-xl font-semibold">How does Math-hew help students improve their math skills?</p>
+          <p className="text-lg text-gray-300">
+          By using challenges and guided tutorials, Math-hew reinforces key concepts in a fun way, 
+          allowing students to learn at their own pace and gain confidence in their abilities.
           </p>
-          <p className="text-xl font-semibold">What hours are you available?</p>
-          <p className="text-lg text-gray-600">
-            Our customer service team is available from 9 AM to 5 PM, Monday to
-            Friday.
+          <p className="text-xl font-semibold">Can parents track student progress in Math-hew?</p>
+          <p className="text-lg text-gray-300">
+          Yes! Math-hew includes a progress tracking feature that provides visual reports on a student’s
+          performance over time. Parents can monitor milestones, identify areas where students may need
+          extra help, and celebrate achievements along the learning journey.
           </p>
         </div>
       </div>

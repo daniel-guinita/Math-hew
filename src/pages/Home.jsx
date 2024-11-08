@@ -12,8 +12,8 @@ const Home = () => {
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
             Your fun guide in 4th grade Mathematics!
           </p>
-          <Link to="/report-form" className="inline-block">
-            <button className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-700 transition duration-300">
+          <Link to="/sign-in" className="inline-block">
+            <button className="bg-orange-500 text-white font-bold py-2 px-4 rounded hover:bg-orange-700 transition duration-300">
               Learn Now
             </button>
           </Link>

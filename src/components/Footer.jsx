@@ -10,7 +10,7 @@ import {
 
 export default function FooterCom() {
   return (
-    <Footer container className="border border-t-8 border-red-500">
+    <Footer container className="border border-t-8 border-orange-500">
       <div className="mx-auto w-full max-w-screen-xl">
         <div className="grid w-full justify-between sm:flex md:grid-cols-1">
           <div className="mt-5">
@@ -37,7 +37,7 @@ export default function FooterCom() {
                   Capstone 1 Project
                 </Footer.Link>
                 <Footer.Link
-                  href="https://youtu.be/76KsgvKrqnI"
+                  href="https://github.com/daniel-guinita/Math-hew"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -49,7 +49,7 @@ export default function FooterCom() {
               <Footer.Title title="Follow us" />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href="https://github.com/hanako0311/FindNest"
+                  href="https://github.com/daniel-guinita/Math-hew"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -27,7 +27,7 @@ export default function SignIn() {
     setTimeout(() => {
       setLoading(false);
       setErrorMessage("");
-      navigate("/dashboard?tab=analytics"); // Redirect to the desired page after login
+      navigate("/aboutus"); // Redirect to the desired page after login
     }, 1000);
   };
 

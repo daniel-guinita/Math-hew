@@ -1,36 +1,14 @@
 import React from "react";
-import {
-  FaRocket,
-  FaTools,
-  FaUsers,
-  FaSearch,
-  FaChartLine,
-  FaShieldAlt,
-} from "react-icons/fa";
 
 const styles = {
-  icon: {
-    color: "#F87171",
-    marginBottom: "0.5rem",
-    height: "3rem",
-    width: "3rem",
-    borderRadius: "50%",
-    backgroundColor: "#FEE2E2",
-    padding: "0.5rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    transition: "transform 0.3s",
-  },
   title: {
-    color: "#1F2937",
+    color: "#ff5733",
     marginBottom: "0.5rem",
     fontSize: "1.5rem",
     fontWeight: "bold",
   },
   description: {
-    color: "#6B7280",
+    color: "black",
     marginBottom: "1rem",
     fontSize: "1.125rem",
   },
@@ -69,16 +47,13 @@ const styles = {
   },
 };
 
-const FeatureCard = ({ Icon, title, description }) => {
+const FeatureCard = ({ title, description }) => {
   return (
     <div
       className="hover:transform hover:-translate-y-2 hover:shadow-2xl transition-transform duration-300 relative"
       style={styles.card}
     >
       <div style={styles.cardBefore}></div>
-      <div style={styles.icon}>
-        <Icon size="1.5rem" />
-      </div>
       <div style={styles.content}>
         <h5 style={styles.title}>{title}</h5>
         <p style={styles.description}>{description}</p>
@@ -90,39 +65,33 @@ const FeatureCard = ({ Icon, title, description }) => {
 export default function Features() {
   const features = [
     {
-      Icon: FaRocket,
-      title: "Lorem ipsum",
+      title: "Lesson Viewing",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Students can see math problems, topics, sources, etc. where the 4th graders can learn from trusted sources.",
     },
     {
-      Icon: FaTools,
-      title: "Lorem ipsum",
+      title: "Chatbot",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Use a chatbot system that can answer students' questions about math topics, offer hints when they're stuck, and provide explanations for specific problems.",
     },
     {
-      Icon: FaUsers,
-      title: "Lorem ipsum",
+      title: "Video Tutorials",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Create short segments/videos with the help of visuals to explain math concepts. This keeps students interested and helps them visualise abstract ideas.",
     },
     {
-      Icon: FaSearch,
-      title: "Lorem ipsum",
+      title: "Quiz Games",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Integrate games where students earn points to keep the engagement high. Games such as ‘Math Memory Match’ where students have to flip over cards and match related pairs.",
     },
     {
-      Icon: FaChartLine,
-      title: "Lorem ipsum",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      title: "Learning Buddy",
+      description: "Developed a Learning Buddy feature that offers hints when students struggle with a problem.",
     },
     {
-      Icon: FaShieldAlt,
-      title: "Lorem ipsum",
+      title: "Progress Tracking",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Implement a dashboard where students can track their performance over time. Provide visual representations (graphs, charts) of their progress in different areas.",
     },
   ];
 
@@ -130,11 +99,12 @@ export default function Features() {
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-red-50 dark:from-gray-700 dark:to-gray-900 flex flex-col items-center px-4 py-8">
       <div className="w-full max-w-6xl text-center">
         <h2 className="mt-6 text-3xl sm:text-5xl font-bold text-gray-800 dark:text-white">
-          Explore Our Features
+          Features Tailored for Young Learners
         </h2>
         <p className="mt-4 text-gray-600 dark:text-gray-300 text-lg sm:text-xl">
-          Discover how our tools and technologies enhance your operational
-          efficiency.
+        Math-hew’s features are crafted to turn learning into an adventure. Explore
+        our interactive lessons, games, and tools that make understanding math easy,
+        fun, and rewarding for every student.
         </p>
         <div className="mt-20 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
