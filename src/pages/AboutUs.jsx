@@ -29,7 +29,7 @@ const AboutUs = () => {
       role: "Full Stack Developer",
       image: "/path/to/image4.jpg",
       description:
-        "Michael works behind the scenes, developing and maintaining the server and database to keep the platform secure and efficient.",
+        "Roy supports the project by integrating technical solutions and enhancing functionality, ensuring that the project meets quality standards and runs efficiently for all users.",
     },
     {
       name: "Jon Miguel Gutierrez",
