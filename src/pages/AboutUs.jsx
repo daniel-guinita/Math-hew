@@ -27,7 +27,7 @@ const AboutUs = () => {
     {
       name: "Roy Niño Patigayon",
       role: "Full Stack Developer",
-      image: "/path/to/image4.jpg",
+      image: "/images/roy.jpg",
       description:
         "Michael works behind the scenes, developing and maintaining the server and database to keep the platform secure and efficient.",
     },
