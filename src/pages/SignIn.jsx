@@ -27,7 +27,7 @@ export default function SignIn() {
     setTimeout(() => {
       setLoading(false);
       setErrorMessage("");
-      navigate("/aboutus"); // Redirect to the desired page after login
+      navigate("/main-page"); // Redirect to the desired page after login
     }, 1000);
   };
 

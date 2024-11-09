@@ -6,9 +6,9 @@ const AboutUs = () => {
     {
       name: "Raven Luke Bengil",
       role: "Project Leader",
-      image: "/path/to/image1.jpg", // Replace with actual image paths or URLs
+      image: "/images/raven.jpg",
       description:
-        "Raven oversees the project timeline and ensures every milestone is met on time. His leadership keeps the team aligned and focused on our goals.",
+        "Raven oversees the project timeline and ensures every milestone is met on time. His leadership keeps the team aligned and focused on the team's goals.",
     },
     {
       name: "Daniel Guinita",

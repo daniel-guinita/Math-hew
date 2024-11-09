@@ -31,7 +31,7 @@ const ContactUs = () => {
                 href="mailto:mathhew.citu@gmail.com"
                 className="hover:underline"
               >
-                Lorem ipsum
+                mathhew.citu@gmail.com
               </a>
             </p>
             <p className="text-lg text-gray-600 dark:text-gray-300 flex items-center justify-center sm:justify-start">
