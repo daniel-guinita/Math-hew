@@ -22,7 +22,7 @@ const AboutUs = () => {
       role: "Full Stack Developer",
       image: "/images/Oca.jpg",
       description:
-        "Alice is responsible for the platform’s visual design and user experience, ensuring that our Math-hew platform is engaging and easy to navigate.",
+        "Jasmin is responsible for the platform’s visual design and user experience, ensuring that our Math-hew platform is engaging and easy to navigate.",
     },
     {
       name: "Roy Niño Patigayon",
