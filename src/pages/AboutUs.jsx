@@ -34,9 +34,9 @@ const AboutUs = () => {
     {
       name: "Jon Miguel Gutierrez",
       role: "Full Stack Developer",
-      image: "/path/to/image5.jpg",
+      image: "/images/jon.png",
       description:
-        "Sarah brings designs to life on screen, creating responsive and interactive features to make learning math an enjoyable experience.",
+        "Jon contributes to the project by managing essential technical tasks, ensuring that all systems and software function smoothly. His attention to detail keep the team’s work efficient and on track toward achieving our objectives.",
     },
   ];
 
