@@ -13,7 +13,7 @@ const AboutUs = () => {
     {
       name: "Daniel Guinita",
       role: "Full Stack Developer",
-      image: "/images/daniel.jpg",
+      image: "/images/daniel.png",
       description:
         "Jane leads the development team, building robust code structures and tackling complex technical challenges to keep our project on track.",
     },
