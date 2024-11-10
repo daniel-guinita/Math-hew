@@ -15,7 +15,7 @@ const AboutUs = () => {
       role: "Full Stack Developer",
       image: "/images/daniel.png",
       description:
-        "Jane leads the development team, building robust code structures and tackling complex technical challenges to keep our project on track.",
+        "Daniel leads the development team, building robust code structures and tackling complex technical challenges to keep our project on track.",
     },
     {
       name: "Jasmin Oca",
