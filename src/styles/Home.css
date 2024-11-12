@@ -1,0 +1,33 @@
+.home-container {
+  @apply min-h-screen flex items-center justify-center px-4 py-8 dark:bg-gray-900;
+}
+
+.home-content {
+  @apply flex flex-col md:flex-row items-center justify-between w-full max-w-6xl;
+}
+
+.home-text {
+  @apply md:w-1/2;
+}
+
+.home-title {
+  @apply text-5xl font-bold text-gray-800 dark:text-white mb-6;
+}
+
+.home-description {
+  @apply text-xl text-gray-600 dark:text-gray-300 mb-8;
+}
+
+
+.learn-button {
+  @apply bg-orange-500 text-white font-bold py-4 px-8 rounded hover:bg-orange-700 transition duration-300 ml-5;
+  font-size: 1.5rem;
+}
+
+.home-image {
+  @apply md:w-1/2;
+}
+
+.home-image img {
+  @apply w-full max-w-lg h-auto mx-auto transform transition-transform duration-300 hover:scale-105;
+}
