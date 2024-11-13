@@ -1,0 +1,77 @@
+.header {
+    /* Navbar styles */
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem; /* Adjust padding as needed */
+    max-width: 7xl;
+    margin: 0 auto;
+  }
+  
+  
+  
+  .header-logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto; /* Push logo to the left */
+  }
+  
+  .header-logo img {
+    height: 2.25rem; /* Adjust image size as needed */
+    margin-right: 0.5rem;
+  }
+  
+  .header-logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white; /* Adjust color as needed */
+  }
+  
+  
+  
+  .header-nav-links {
+    display: flex;
+    gap: 2rem; /* Adjust gap between links as needed */
+    margin-left: auto;
+    margin-right: auto; /* Center the links */
+  }
+  
+  .header-nav-links a {
+    text-decoration: none;
+    font-size: 1rem; /* Adjust font size */
+    color: #737373; /* Default link color */
+    transition: color 0.3s ease; /* Smooth color transition */
+  }
+  
+  .header-nav-links a.active-link,
+  .header-nav-links a:hover {
+    color: #007bff;
+    font-weight: 600; /* Active/hovered link color */
+  }
+  
+  
+  
+  
+  .header-user-actions {
+    margin-left: auto;
+  }
+  
+  
+  .header-login-button {
+    border: 1px solid white;
+    color: white;
+  }
+  
+  .header-login-button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slight background on hover */
+  }
+  
+  
+  .header-username,
+  .header-email {
+      font-size: 0.875rem;
+  }
