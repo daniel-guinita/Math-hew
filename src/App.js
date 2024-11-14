@@ -13,6 +13,7 @@ import MathMemoryGame from "./pages/MathMemoryGame";
 import MathSpeedyQuiz from "./pages/MathSpeedyQuiz";
 import LearningBuddy from "./pages/LearningBuddy";
 import Leaderboard from "./pages/Leaderboard";
+import Registration from "./pages/Registration";
 import ProgressTracking from "./pages/ProgressTracking";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/features" element={<Features />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/register" element={<Registration />} />
         <Route path="/main-page" element={<MainPage />} />
         <Route path="/math-memory-game" element={<MathMemoryGame />} />
         <Route path="/math-speedy-quiz" element={<MathSpeedyQuiz />} />
