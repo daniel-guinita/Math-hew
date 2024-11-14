@@ -37,13 +37,13 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
-    background: 'url("/path-to-your-pattern-image.png")', // Update this path if you have a pattern image
+    background: 'url("/path-to-your-pattern-image.png")', 
     opacity: 0.1,
     zIndex: 0,
   },
   content: {
     marginLeft: "1rem",
-    zIndex: 1, // Ensure content is above background pattern
+    zIndex: 1, 
   },
 };
 
@@ -70,14 +70,14 @@ export default function Features() {
         "Students can see math problems, topics, sources, etc. where the 4th graders can learn from trusted sources.",
     },
     {
-      title: "Chatbot",
-      description:
-        "Use a chatbot system that can answer students' questions about math topics, offer hints when they're stuck, and provide explanations for specific problems.",
-    },
-    {
       title: "Video Tutorials",
       description:
         "Create short segments/videos with the help of visuals to explain math concepts. This keeps students interested and helps them visualise abstract ideas.",
+    },
+    {
+      title: "Leaderboard",
+      description:
+        "Students can view how they are doing against their peers and compete for high ranking spots for competitive incentives.",
     },
     {
       title: "Quiz Games",

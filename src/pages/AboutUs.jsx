@@ -21,23 +21,23 @@ const AboutUs = () => {
     {
       name: "Jasmin Oca",
       role: "Full Stack Developer",
-      image: "/path/to/image3.jpg",
+      image: "/images/Oca.jpg",
       description:
-        "Alice is responsible for the platform’s visual design and user experience, ensuring that our Math-hew platform is engaging and easy to navigate.",
+        "Jasmin is responsible for the platform’s visual design and user experience, ensuring that our Math-hew platform is engaging and easy to navigate.",
     },
     {
       name: "Roy Niño Patigayon",
       role: "Full Stack Developer",
       image: "/images/roy.jpg",
       description:
-        "Michael works behind the scenes, developing and maintaining the server and database to keep the platform secure and efficient.",
+        "Roy supports the project by integrating technical solutions and enhancing functionality, ensuring that the project meets quality standards and runs efficiently for all users.",
     },
     {
       name: "Jon Miguel Gutierrez",
       role: "Full Stack Developer",
-      image: "/path/to/image5.jpg",
+      image: "/images/jon.png",
       description:
-        "Sarah brings designs to life on screen, creating responsive and interactive features to make learning math an enjoyable experience.",
+        "Jon contributes to the project by managing essential technical tasks, ensuring that all systems and software function smoothly. His attention to detail keep the team’s work efficient and on track toward achieving our objectives.",
     },
   ];
 
