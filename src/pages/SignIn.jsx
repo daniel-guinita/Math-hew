@@ -2,6 +2,7 @@ import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import '../styles/SignIn.css';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -36,19 +37,17 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen mt-20">
-      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
-        {/* left */}
-        <div className="flex-1">
+    <div className="signin-container">
+      <div className="signin-card signin-card-row">
+        <div className="signin-header">
           <Link to="/" className="font-bold dark:text-white text-4xl">
             Math-hew
           </Link>
-          <p className="text-sm mt-5">
+          <p className="signin-subtext mt-5">
             Sign in with your account credentials!
           </p>
         </div>
-        {/* right */}
-        <div className="flex-1">
+        <div className="signin-form">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div>
               <Label htmlFor="email" value="Your email" />
@@ -68,22 +67,16 @@ export default function SignIn() {
                   placeholder="**********"
                   onChange={handleChange}
                 />
-                <div className="flex items-end absolute right-3 bottom-3">
-                  <button
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className="text-gray-500"
-                  >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="password-toggle"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
               </div>
             </div>
-            <Button
-              gradientDuoTone="purpleToPink"
-              type="submit"
-              disabled={loading}
-            >
+            <Button className="signin-button" type="submit" disabled={loading}>
               {loading ? (
                 <>
                   <Spinner size="sm" />
@@ -95,7 +88,7 @@ export default function SignIn() {
             </Button>
           </form>
           {errorMessage && (
-            <Alert className="mt-5" color="failure">
+            <Alert className="signin-alert" color="failure">
               {errorMessage}
             </Alert>
           )}
@@ -104,5 +97,3 @@ export default function SignIn() {
     </div>
   );
 }
-
-// jsxedit test commit
