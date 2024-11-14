@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { signoutSuccess } from "../redux/user/userSlice";
+import '../styles/Header.css';
 
 export default function Header() {
   const path = useLocation().pathname;
@@ -16,58 +17,50 @@ export default function Header() {
   };
 
   return (
-    <Navbar className="border-b-2">
-      <div className="flex justify-between items-center w-full px-4 max-w-7xl mx-auto">
+    <Navbar className="navbar">
+      <div className="header-container">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="logo-link">
           <img
             src="/images/icon.png"
-            className="mr-2 h-6 sm:h-9"
+            className="logo-img"
             alt="Math-hew Logo"
           />
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          <span className="logo-text">
             Math-hew
           </span>
         </Link>
 
         {/* Centered Navigation Links */}
-        <div className="flex space-x-8">
+        <div className="nav-links">
           <Link
             to="/"
-            className={`text-lg font-medium ${
-              path === "/" ? "text-white" : "text-gray-400"
-            } hover:text-white`}
+            className={`nav-link ${path === "/" ? "nav-link-active" : "nav-link-inactive"} nav-link-hover`}
           >
             Home
           </Link>
           <Link
             to="/about-us"
-            className={`text-lg font-medium ${
-              path === "/about-us" ? "text-white" : "text-gray-400"
-            } hover:text-white`}
+            className={`nav-link ${path === "/about-us" ? "nav-link-active" : "nav-link-inactive"} nav-link-hover`}
           >
             About Us
           </Link>
           <Link
             to="/features"
-            className={`text-lg font-medium ${
-              path === "/features" ? "text-white" : "text-gray-400"
-            } hover:text-white`}
+            className={`nav-link ${path === "/features" ? "nav-link-active" : "nav-link-inactive"} nav-link-hover`}
           >
             Features
           </Link>
           <Link
             to="/contact-us"
-            className={`text-lg font-medium ${
-              path === "/contact-us" ? "text-white" : "text-gray-400"
-            } hover:text-white`}
+            className={`nav-link ${path === "/contact-us" ? "nav-link-active" : "nav-link-inactive"} nav-link-hover`}
           >
             Contact Us
           </Link>
         </div>
 
         {/* User Account Dropdown */}
-        <div className="flex items-center gap-2">
+        <div className="user-actions">
           {currentUser ? (
             <Dropdown
               arrowIcon={false}
@@ -94,11 +87,18 @@ export default function Header() {
               </Dropdown.Item>
             </Dropdown>
           ) : (
-            <Link to="/sign-in">
-               <Button className="border border-white text-white hover:bg-white hover:bg-opacity-10">
-                Sign In
-              </Button>
-            </Link>
+            <>
+              <Link to="/register">
+                <Button className="register-button">
+                  Register
+                </Button>
+              </Link>
+              <Link to="/sign-in">
+                <Button className="signin-button">
+                  Sign In
+                </Button>
+              </Link>
+            </>
           )}
         </div>
       </div>
