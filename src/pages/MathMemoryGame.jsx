@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import '../styles/MathMemoryGame.css';
 
 const MathMemoryGame = () => {
   const [tiles, setTiles] = useState(Array(16).fill(null));
@@ -33,16 +34,23 @@ const MathMemoryGame = () => {
         <div className="grid grid-cols-4 gap-4">
           {tiles.map((tile, index) => (
             <div
-              key={index}
-              onClick={() => handleFlip(index)}
-              className={`h-36 w-36 flex items-center justify-center rounded-lg shadow-lg bg-white dark:bg-gray-700 cursor-pointer ${
-                flippedTiles.includes(index) ? "bg-orange-300" : "bg-gray-300"
+            key={index}
+            onClick={() => handleFlip(index)}
+            className={`h-36 w-36 flex items-center justify-center rounded-lg shadow-lg bg-white dark:bg-gray-700 cursor-pointer transition-transform duration-500 transform ${
+              flippedTiles.includes(index) ? "rotate-y-180 bg-orange-300" : "bg-gray-300"
+            }`}
+          >
+            <div
+              className={`absolute inset-0 flex items-center justify-center backface-hidden ${
+                flippedTiles.includes(index) ? "visible" : "invisible"
               }`}
             >
               {flippedTiles.includes(index) && (
-                <span className="text-2xl font-bold">{tile}</span>
+                <span className="text-2xl font-bold rotate-y-180">{tile}</span>
               )}
             </div>
+          </div>
+                      
           ))}
         </div>
         {/* Math-hew image positioned outside the grid */}

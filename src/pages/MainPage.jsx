@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 const MainPage = () => {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-gray-100 to-orange-50 dark:from-gray-700 dark:to-gray-900 flex flex-col items-center px-4 py-8">
+
+      {/* Classroom Image Banner */}
+      <img
+        src="/images/classroom.jpg"
+        alt="Classroom"
+        className="w-full h-64 object-cover mb-8"
+      />
+
       <h1 className="text-3xl sm:text-5xl font-bold text-gray-800 dark:text-white mb-8">
         Welcome to Math-hew!
       </h1>
@@ -51,13 +59,13 @@ const MainPage = () => {
         </p>
       </Link>
 
-      {/* Chatbot Section */}
+      {/* Learning Buddy */}
       <Link
         to="/learning-buddy"
         className="w-full max-w-5xl bg-white dark:bg-gray-700 shadow-lg rounded-lg p-8 text-center mb-8 hover:bg-gray-100 dark:hover:bg-gray-600 transition"
       >
         <h2 className="text-xl font-bold text-orange-500 dark:text-orange-300 mb-4">
-          Learning Buddy (Chatbot)
+          Learning Buddy
         </h2>
         <p className="text-gray-600 dark:text-gray-300">
           Get help and ask questions about your lessons with our friendly chatbot.
