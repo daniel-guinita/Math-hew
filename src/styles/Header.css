@@ -1,0 +1,88 @@
+.navbar {
+  background: linear-gradient(135deg, #1f2937, #4b5563); /* Dark gradient */
+  padding: 0.5rem 2rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  border-bottom: 3px solid #af0911; /* Accent line */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 5000px;
+  margin: 0 auto;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 15rem; /* Add space between the logo and nav-links */
+}
+
+.logo-img {
+  margin-right: 0.5rem; /* Space between the logo image and text */
+  height: 2.5rem;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #e9ff25;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem; /* Uniform spacing between nav-links */
+  flex-grow: 1; /* Allow links to take up available space */
+  margin-right: 10rem;
+}
+
+.nav-link {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #f3f4f6; /* Light text */
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 10px;
+}
+
+.nav-link-active {
+  background-color: #fc1a1a; /* Highlight active link */
+  color: #ffffff;
+  border-radius: 20px;
+}
+
+.nav-link:hover {
+  background-color: #ff9100; /* Brighter hover effect */
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Spacing between buttons */
+}
+
+.signin-button,
+.register-button {
+  background: linear-gradient(135deg, #6b7280, #9ca3af); /* Subtle gray gradient */
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px; /* Rounded corners */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.signin-button:hover,
+.register-button:hover {
+  background: #fc1a1a; /* Matches hover effect */
+  color: #ffffff;
+  transform: scale(1.1);
+}
