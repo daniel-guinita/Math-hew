@@ -134,11 +134,47 @@
 /* Bouncing Math-hew Logo */
 .bouncing-logo {
   position: absolute;
-  top: 200px;
-  right: -30px;
-  width: 180px;
+  right: -40px;
+  top: 210px;
+  width: 200px;
   height: auto;
-  animation: bounce 1s infinite;
+  animation: bounce 2s infinite;
+  transition: width 0.3s ease;
+}
+
+/* Responsive Adjustments for Logo */
+@media (max-width: 1024px) {
+  .bouncing-logo {
+    width: 100px; /* Slightly smaller for medium screens */
+    right: -40px;
+    top: 210px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bouncing-logo {
+    width: 80px; /* Smaller for small screens */
+    right: -40px;
+    top: 210px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bouncing-logo {
+    width: 60px; /* Smallest size for very small screens */
+    right: -40px;
+    top: 210px;
+  }
+}
+
+/* Keyframe Animation for Bouncing Effect */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 /* Keyframe Animation for Floating Elements */
