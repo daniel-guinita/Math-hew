@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import '../styles/MathMemoryGame.css';
 
 const MathMemoryGame = () => {
-  const [tiles, setTiles] = useState(Array(16).fill(null));
+  const [tiles, setTiles] = useState([]);
   const [flippedTiles, setFlippedTiles] = useState([]);
+  const [matchedTiles, setMatchedTiles] = useState([]);
+  const [disableAllTiles, setDisableAllTiles] = useState(false);
 
   const initializeTiles = () => {
     const numbers = [...Array(8).keys(), ...Array(8).keys()]; // 8 pairs
@@ -15,51 +17,68 @@ const MathMemoryGame = () => {
   }, []);
 
   const handleFlip = (index) => {
-    if (flippedTiles.length === 2) return;
-    setFlippedTiles([...flippedTiles, index]);
+    if (disableAllTiles || flippedTiles.includes(index) || matchedTiles.includes(index)) return;
 
-    if (flippedTiles.length === 1 && tiles[flippedTiles[0]] === tiles[index]) {
-      setTimeout(() => setFlippedTiles([]), 500);
-    } else if (flippedTiles.length === 1) {
-      setTimeout(() => setFlippedTiles([]), 1000);
+    const newFlippedTiles = [...flippedTiles, index];
+    setFlippedTiles(newFlippedTiles);
+
+    if (newFlippedTiles.length === 2) {
+      const [firstIndex, secondIndex] = newFlippedTiles;
+      if (tiles[firstIndex] === tiles[secondIndex]) {
+        // Match found
+        setMatchedTiles([...matchedTiles, firstIndex, secondIndex]);
+        setTimeout(() => {
+          setFlippedTiles([]);
+        }, 1000);
+      } else {
+        // No match
+        setDisableAllTiles(true);
+        setTimeout(() => {
+          setFlippedTiles([]);
+          setDisableAllTiles(false);
+        }, 1000);
+      }
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-orange-50 dark:from-gray-700 dark:to-gray-900 flex flex-col items-center py-10 px-4">
-      <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">
-        Math Memory Game
-      </h1>
-      <div className="relative">
-        <div className="grid grid-cols-4 gap-4">
-          {tiles.map((tile, index) => (
-            <div
+    <div className="memory-game-container">
+      <h1 className="memory-game-title">Math Memory Game 🧠</h1>
+      <p className="memory-game-instructions">
+        Flip the cards to find matching pairs!
+      </p>
+      <div className="memory-game-grid">
+        {tiles.map((tile, index) => (
+          <div
             key={index}
+            className={`memory-game-tile ${
+              flippedTiles.includes(index) || matchedTiles.includes(index)
+                ? "flipped"
+                : ""
+            } ${matchedTiles.includes(index) ? "matched" : ""}`}
             onClick={() => handleFlip(index)}
-            className={`h-36 w-36 flex items-center justify-center rounded-lg shadow-lg bg-white dark:bg-gray-700 cursor-pointer transition-transform duration-500 transform ${
-              flippedTiles.includes(index) ? "rotate-y-180 bg-orange-300" : "bg-gray-300"
-            }`}
           >
-            <div
-              className={`absolute inset-0 flex items-center justify-center backface-hidden ${
-                flippedTiles.includes(index) ? "visible" : "invisible"
-              }`}
-            >
-              {flippedTiles.includes(index) && (
-                <span className="text-2xl font-bold rotate-y-180">{tile}</span>
-              )}
+            <div className="memory-game-tile-inner">
+              <div className="memory-game-tile-front">
+                <img
+                  src="/images/mathhew.png"
+                  alt="Tile Front"
+                  className="tile-image"
+                />
+              </div>
+              <div className="memory-game-tile-back">
+                <span className="tile-number">{tile}</span>
+              </div>
             </div>
           </div>
-                      
-          ))}
-        </div>
-        {/* Math-hew image positioned outside the grid */}
-        <img
-          src="/images/mathhew.png"
-          alt="Math-hew"
-          className="absolute -right-48 bottom-0 h-48 w-auto"
-        />
+        ))}
       </div>
+      {/* Math-hew mascot */}
+      <img
+        src="/images/mathhew.png"
+        alt="Math-hew Mascot"
+        className="memory-game-mascot"
+      />
     </div>
   );
 };
