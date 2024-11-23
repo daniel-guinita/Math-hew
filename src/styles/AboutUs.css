@@ -1,0 +1,168 @@
+/* AboutUs Container and Background */
+.aboutus-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #1e3a8a, #4b5563);
+  position: relative;
+  color: #f8fafc; /* Light text for contrast */
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align content at the top */
+}
+
+/* Floating Decorative Elements */
+.aboutus-container::before,
+.aboutus-container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: float 6s ease-in-out infinite;
+}
+
+.aboutus-container::before {
+  width: 200px;
+  height: 200px;
+  background: rgba(172, 17, 17, 0.5); 
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.aboutus-container::after {
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 99, 71, 0.5);
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+/* Title and Subtext */
+.aboutus-title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #ffdd57; /* Bright yellow */
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.aboutus-subtext {
+  font-size: 1.5rem;
+  color: #e5e7eb; /* Soft white */
+  line-height: 1.8;
+  text-align: center;
+  max-width: 60rem;
+  margin: 0 auto 3rem auto;
+  background: rgba(255, 255, 255, 0.1); /* Transparent background */
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+}
+
+/* Team Section */
+.team-section {
+  width: 100%;
+}
+
+.team-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffdd57;
+  text-align: center;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  margin-top: -50px;
+}
+
+/* Member Cards Grid */
+.team-section .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Member Card */
+.member-card {
+  background-color: #334155; /* Dark blue-gray for cards */
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.member-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Member Image */
+.member-card img {
+  width: 100%;
+  height: 260px; /* Slightly taller images */
+  object-fit: cover;
+}
+
+/* Member Info */
+.member-card-info {
+  padding: 1.5rem;
+}
+
+.member-card-name {
+  font-size: 1.75rem; /* Larger font for names */
+  font-weight: bold;
+  color: #ffdd57; /* Bright yellow */
+  margin-bottom: 0.5rem;
+}
+
+.member-card-role {
+  font-size: 1.25rem; /* Larger font for roles */
+  color: #fdba74; /* Light orange */
+  margin-bottom: 1rem;
+}
+
+.member-card-description {
+  font-size: 1rem; /* Larger font for descriptions */
+  line-height: 1.6;
+  color: #e5e7eb; /* Light gray */
+}
+
+/* Bouncing Math-hew Logo */
+.bouncing-logo {
+  position: absolute;
+  top: 200px;
+  right: -30px;
+  width: 180px;
+  height: auto;
+  animation: bounce 1s infinite;
+}
+
+/* Keyframe Animation for Floating Elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .aboutus-title {
+    font-size: 3rem; /* Adjust for smaller screens */
+  }
+
+  .aboutus-subtext {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .team-title {
+    font-size: 2.5rem;
+  }
+}
