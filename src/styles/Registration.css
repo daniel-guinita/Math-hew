@@ -89,12 +89,16 @@
   position: absolute;
   top: 50%;
   right: 1rem;
-  transform: translateY(-50%);
+  transform: translateY(-50%); /* Center vertically */
   background: none;
   border: none;
   cursor: pointer;
   color: var(--icon-color);
+  display: flex;
+  align-items: center; /* Ensures proper centering of the icon */
+  justify-content: center;
 }
+
 
 .register-button {
   width: 100%;

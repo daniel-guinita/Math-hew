@@ -1,88 +1,207 @@
-.navbar {
-  background: linear-gradient(135deg, #1f2937, #4b5563); /* Dark gradient */
-  padding: 0.5rem 2rem;
+/* General Header Styling */
+.header {
+  background: linear-gradient(135deg, #ffcc33, #ff6f61);
+  color: #fff;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-  border-bottom: 3px solid #af0911; /* Accent line */
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 5000px;
+  max-width: 1200px;
   margin: 0 auto;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
-.logo-link {
+/* Logo Section */
+.header-logo {
   display: flex;
   align-items: center;
   text-decoration: none;
-  margin-right: 15rem; /* Add space between the logo and nav-links */
 }
 
-.logo-img {
-  margin-right: 0.5rem; /* Space between the logo image and text */
-  height: 2.5rem;
-  width: auto;
+.header-logo-img {
+  width: 50px;
+  height: auto;
+  margin-right: 0.5rem;
+  animation: bounce 2s infinite;
 }
 
-.logo-text {
+.header-logo-text {
   font-size: 1.8rem;
-  font-weight: 900;
-  color: #e9ff25;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
 }
 
-.nav-links {
+/* Navigation Menu */
+.header-menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.header-nav {
   display: flex;
-  gap: 2rem; /* Uniform spacing between nav-links */
-  flex-grow: 1; /* Allow links to take up available space */
-  margin-right: 10rem;
+  gap: 1.5rem;
+  align-items: center;
 }
 
-.nav-link {
-  font-size: 1.25rem;
-  font-weight: 600;
+.header-nav-link {
   text-decoration: none;
-  color: #f3f4f6; /* Light text */
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
   padding: 0.5rem 1rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  border-radius: 10px;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.nav-link-active {
-  background-color: #fc1a1a; /* Highlight active link */
-  color: #ffffff;
-  border-radius: 20px;
-}
-
-.nav-link:hover {
-  background-color: #ff9100; /* Brighter hover effect */
-  color: #ffffff;
+.header-nav-link:hover {
+  background-color: #ff9f43;
   transform: scale(1.1);
 }
 
-.user-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem; /* Spacing between buttons */
+.active {
+  color: #fff;
+  background-color: #ff9f43;
 }
 
-.signin-button,
-.register-button {
-  background: linear-gradient(135deg, #6b7280, #9ca3af); /* Subtle gray gradient */
-  color: #ffffff;
+/* User Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Dropdown Styling */
+.header-dropdown {
+  position: relative; /* Keep the dropdown button positioned relative */
+}
+
+.header-dropdown-button {
+  background: #44c767;
+  color: #fff;
   font-size: 1rem;
   font-weight: bold;
-  padding: 0.5rem 1.5rem;
-  border-radius: 20px; /* Rounded corners */
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.signin-button:hover,
-.register-button:hover {
-  background: #fc1a1a; /* Matches hover effect */
-  color: #ffffff;
-  transform: scale(1.1);
+.header-dropdown-button:hover {
+  background: #2e9e4a;
+  transform: scale(1.05);
+}
+
+.header-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 100;
+  background: #000;
+  color: #fff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+  min-width: 150px;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.header-dropdown-menu.dropdown-open {
+  display: block;
+}
+
+/* Dropdown Menu Item */
+.header-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none; /* Remove underline for links */
+}
+
+/* Hover and Focus States */
+.header-dropdown-item:hover,
+.header-dropdown-item:focus {
+  background-color: #b71c1c; /* Red color for hover state */
+  color: #fff; /* Ensure text stays white */
+  transform: scale(1.05); /* Slight zoom effect for interactivity */
+}
+
+/* Active State */
+.header-dropdown-item:active {
+  background-color: #8b0000; /* Darker red for active state */
+}
+
+/* Full Width in Dropdown Menu */
+.header-dropdown-menu .header-dropdown-item {
+  display: block;
+  width: 100%;
+  margin: 0; /* Remove margin for better alignment */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+/* Rounded Bottom Corners for Last Item */
+.header-dropdown-item:last-child {
+  border-radius: 0 0 8px 8px; /* Rounded corners for the bottom of the dropdown */
+}
+
+/* Logo Animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-menu-toggle {
+    display: block;
+  }
+
+  .header-nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-radius: 8px;
+    gap: 1rem;
+  }
+
+  .header-nav-open {
+    display: flex;
+  }
+
+  .header-nav-link {
+    font-size: 1.25rem;
+    text-align: center;
+  }
 }

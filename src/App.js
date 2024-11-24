@@ -15,6 +15,8 @@ import LearningBuddy from "./pages/LearningBuddy";
 import Leaderboard from "./pages/Leaderboard";
 import Registration from "./pages/Registration";
 import ProgressTracking from "./pages/ProgressTracking";
+import EditProfile from "./pages/EditProfile";
+
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
         <Route path="/learning-buddy" element={<LearningBuddy />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/progress-tracking" element={<ProgressTracking />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
       </Routes>
       <Footer />
     </Router>
