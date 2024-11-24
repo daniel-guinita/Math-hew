@@ -1,15 +1,16 @@
 /* AboutUs Container and Background */
 .aboutus-container {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #1e3a8a, #4b5563);
+  background: linear-gradient(to bottom, #441717, #4b5563);
   position: relative;
-  color: #f8fafc; /* Light text for contrast */
-  padding: 2rem 1rem;
+  color: #f8fafc;
+  padding: 3rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Align content at the top */
-  margin-top: 2%; 
+  justify-content: flex-start;
+  margin-top: 2%;
+  overflow: hidden;
 }
 
 /* Floating Decorative Elements */
@@ -25,7 +26,7 @@
 .aboutus-container::before {
   width: 200px;
   height: 200px;
-  background: rgba(104, 42, 42, 0.5); /* Yellow */
+  background: rgba(0, 12, 0, 0.5);
   top: 10%;
   left: 5%;
   animation-delay: 0s;
@@ -34,7 +35,7 @@
 .aboutus-container::after {
   width: 150px;
   height: 150px;
-  background: rgba(255, 99, 71, 0.5); 
+  background: rgba(255, 99, 71, 0.5);
   bottom: 15%;
   right: 10%;
   animation-delay: 2s;
@@ -44,23 +45,25 @@
 .aboutus-title {
   font-size: 4rem;
   font-weight: bold;
-  color: #ffdd57; /* Bright yellow */
+  color: #701313;
   margin-bottom: 2rem;
   margin-top: 2rem;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
+  animation: glow 2s infinite;
 }
 
 .aboutus-subtext {
   font-size: 1.5rem;
-  color: #e5e7eb; /* Soft white */
+  color: #e5e7eb;
   line-height: 1.8;
   text-align: center;
   max-width: 60rem;
   margin: 0 auto 3rem auto;
-  background: rgba(255, 255, 255, 0.1); /* Transparent background */
-  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 2rem;
   border-radius: 0.75rem;
+  animation: fadeInUp 1.5s ease-out;
 }
 
 /* Team Section */
@@ -71,10 +74,11 @@
 .team-title {
   font-size: 3rem;
   font-weight: bold;
-  color: #ffdd57;
+  color: #701313;
   text-align: center;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   margin-top: -50px;
+  animation: glow 2s infinite alternate;
 }
 
 /* Member Cards Grid */
@@ -87,7 +91,7 @@
 
 /* Member Card */
 .member-card {
-  background-color: #334155; /* Dark blue-gray for cards */
+  background-color: #334155;
   border-radius: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -95,6 +99,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
   max-width: 300px;
+  animation: fadeIn 1.5s ease;
 }
 
 .member-card:hover {
@@ -105,8 +110,13 @@
 /* Member Image */
 .member-card img {
   width: 100%;
-  height: 260px; /* Slightly taller images */
+  height: 260px;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.member-card img:hover {
+  transform: scale(1.05);
 }
 
 /* Member Info */
@@ -115,22 +125,22 @@
 }
 
 .member-card-name {
-  font-size: 1.75rem; /* Larger font for names */
+  font-size: 1.75rem;
   font-weight: bold;
-  color: #ffdd57; /* Bright yellow */
+  color: #07050c;
   margin-bottom: 0.5rem;
 }
 
 .member-card-role {
-  font-size: 1.25rem; /* Larger font for roles */
-  color: #fdba74; /* Light orange */
+  font-size: 1.25rem;
+  color: #ece92b;
   margin-bottom: 1rem;
 }
 
 .member-card-description {
-  font-size: 1rem; /* Larger font for descriptions */
+  font-size: 1rem;
   line-height: 1.6;
-  color: #e5e7eb; /* Light gray */
+  color: #e5e7eb;
 }
 
 /* Bouncing Math-hew Logo */
@@ -147,7 +157,7 @@
 /* Responsive Adjustments for Logo */
 @media (max-width: 1024px) {
   .bouncing-logo {
-    width: 100px; /* Slightly smaller for medium screens */
+    width: 100px;
     right: -40px;
     top: 210px;
   }
@@ -155,7 +165,7 @@
 
 @media (max-width: 768px) {
   .bouncing-logo {
-    width: 80px; /* Smaller for small screens */
+    width: 80px;
     right: -40px;
     top: 210px;
   }
@@ -163,13 +173,13 @@
 
 @media (max-width: 480px) {
   .bouncing-logo {
-    width: 60px; /* Smallest size for very small screens */
+    width: 60px;
     right: -40px;
     top: 210px;
   }
 }
 
-/* Keyframe Animation for Bouncing Effect */
+/* Animations */
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
@@ -179,7 +189,6 @@
   }
 }
 
-/* Keyframe Animation for Floating Elements */
 @keyframes float {
   0%, 100% {
     transform: translateY(0);
@@ -189,10 +198,33 @@
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #0caad1, 0 0 15px #ce0000, 0 0 20px #0caad1;
+  }
+  50% {
+    text-shadow: 0 0 10px #a32727, 0 0 20px #851414, 0 0 30px #5a0606;
+  }
+  100% {
+    text-shadow: 0 0 5px #e20707, 0 0 15px #a33838, 0 0 20px #ca0e0e;
+  }
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .aboutus-title {
-    font-size: 3rem; /* Adjust for smaller screens */
+    font-size: 3rem;
   }
 
   .aboutus-subtext {

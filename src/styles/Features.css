@@ -1,113 +1,194 @@
-/* Container and Background */
+/* Features Container and Background */
 .features-container {
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #1e40af, #60a5fa);
-    padding: 4rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2193b0, #6dd5ed);
+  padding: 4rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative Floating Elements */
+.features-container::before,
+.features-container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+.features-container::before {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 223, 77, 0.3);
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.features-container::after {
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 99, 71, 0.3);
+  bottom: 10%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+/* Features Content */
+.features-content {
+  width: 150%;
+  max-width: 1200px;
+  text-align: center;
+  color: #ffffff;
+  z-index: 1;
+}
+
+/* Title and Subtitle */
+.features-title {
+  width: 150%;
+  max-width: 1300px;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #b90b0b;
+  margin-bottom: 1rem;
+  margin-left: -4%;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+  animation: glow 2s infinite alternate;
+}
+
+.features-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  color: #e0f2fe;
+  line-height: 1.8;
+  animation: fadeInUp 1.5s ease-out;
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Feature Card */
+.feature-card {
+  background: linear-gradient(to bottom, #ffffff, #f3f4f6);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  animation: bounceHover 1s ease;
+}
+
+/* Decorative Circle Inside Card */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 223, 77, 0.3);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Feature Card Content */
+.feature-card-content {
+  position: relative;
+  z-index: 1;
+  color: #1e293b;
+  text-align: left;
+}
+
+/* Feature Card Title */
+.feature-card-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #ff4500;
+  margin-bottom: 0.5rem;
+  animation: fadeIn 1.5s ease;
+}
+
+/* Feature Card Description */
+.feature-card-description {
+  font-size: 1.125rem;
+  color: #4b5563;
+  line-height: 1.6;
+  animation: fadeInUp 1.5s ease;
+}
+
+/* Keyframe Animations */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #ffd700, 0 0 15px #ffb700, 0 0 20px #ffa500;
   }
-  
-  .features-content {
-    width: 100%;
-    max-width: 1200px;
-    text-align: center;
-    color: #ffffff;
+  50% {
+    text-shadow: 0 0 20px #ffa500, 0 0 30px #ffd700, 0 0 40px #ffb700;
   }
-  
-  /* Title and Subtitle */
+  100% {
+    text-shadow: 0 0 5px #ffd700, 0 0 15px #ffb700, 0 0 20px #ffa500;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes bounceHover {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .features-title {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #ffdd57;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    font-size: 2.5rem;
   }
-  
+
   .features-subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 3rem;
-    color: #e0f2fe;
-    line-height: 1.8;
+    font-size: 1.25rem;
   }
-  
-  /* Grid Layout */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    justify-content: center;
-  }
-  
-  /* Feature Card */
-  .feature-card {
-    background: linear-gradient(to bottom, #ffffff, #f3f4f6);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 1rem;
-    padding: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  
-  /* Hover Effect */
-  .feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Decorative Background Inside Card */
-  .feature-card::before {
-    content: "";
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 150px;
-    height: 150px;
-    background: rgba(255, 223, 77, 0.3);
-    border-radius: 50%;
-    z-index: 0;
-  }
-  
-  /* Feature Card Content */
-  .feature-card-content {
-    position: relative;
-    z-index: 1;
-    color: #1e293b;
-    text-align: left;
-  }
-  
-  /* Title and Description */
+
   .feature-card-title {
-    font-size: 1.75rem;
-    font-weight: bold;
-    color: #ff5733;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
   }
-  
+
   .feature-card-description {
-    font-size: 1.125rem;
-    color: #4b5563;
-    line-height: 1.6;
+    font-size: 1rem;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .features-title {
-      font-size: 2.5rem;
-    }
-  
-    .features-subtitle {
-      font-size: 1.25rem;
-    }
-  
-    .feature-card-title {
-      font-size: 1.5rem;
-    }
-  
-    .feature-card-description {
-      font-size: 1rem;
-    }
-  }
-  
+}

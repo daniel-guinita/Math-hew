@@ -1,31 +1,62 @@
-/* Background and Layout */
+/* Contact Us Page Layout */
 .contact-us-container {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #1e40af, #60a5fa);
+  background: linear-gradient(135deg, #4b79a1, #283e51);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem 1rem;
+  padding: 9rem 1rem;
+  overflow: hidden;
+}
+
+/* Floating Decorations */
+.contact-us-container::before,
+.contact-us-container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+.contact-us-container::before {
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 223, 77, 0.5);
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.contact-us-container::after {
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 99, 71, 0.5);
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 2s;
 }
 
 /* Contact Us Card */
 .contact-us-card {
   width: 100%;
-  max-width: 800px;
-  background: white;
-  border-radius: 1rem;
-  padding: 2rem;
+  max-width: 900px;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2rem 3rem;
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   margin-bottom: 3rem;
+  animation: fadeInUp 1.5s ease;
 }
 
 /* Titles and Subtitles */
 .contact-us-title {
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: bold;
-  color: #ffdd57;
-  margin-bottom: 1rem;
+  color: #ffcc00;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .contact-us-subtitle {
@@ -37,10 +68,13 @@
 
 /* Contact Information */
 .contact-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.contact-info-title {
+  font-size: 1.8rem;
+  color: #1e293b;
+  margin-bottom: 1rem;
 }
 
 .contact-info-item {
@@ -54,21 +88,20 @@
 }
 
 .contact-icon {
-  font-size: 1.5rem; /* Makes the icon larger */
-  color: #ff5733; /* Matches the theme color */
+  font-size: 1.8rem;
+  color: #ff4500;
 }
 
 .contact-text {
-  font-size: 1.125rem; /* Ensures text size matches icon size */
-  color: #1e293b; /* Text color */
-  text-decoration: none; /* Removes underline */
+  font-size: 1.125rem;
+  color: #1e293b;
+  text-decoration: none;
 }
 
 .contact-text:hover {
-  text-decoration: underline; /* Adds underline on hover */
-  color: #ff5733; /* Hover color */
+  text-decoration: underline;
+  color: #ff4500;
 }
-
 
 /* Social Media */
 .social-media {
@@ -83,7 +116,7 @@
 }
 
 .social-icon {
-  font-size: 2rem;
+  font-size: 2.5rem;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -110,19 +143,20 @@
 /* FAQ Section */
 .faq-card {
   width: 100%;
-  max-width: 800px;
-  background: white;
-  border-radius: 1rem;
-  padding: 2rem;
+  max-width: 900px;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2rem 3rem;
   text-align: left;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  animation: fadeInUp 1.5s ease 0.5s;
 }
 
 .faq-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  color: #ffdd57;
-  margin-bottom: 1.5rem;
+  color: #ffcc00;
+  margin-bottom: 2rem;
 }
 
 .faq-item {
@@ -140,4 +174,36 @@
   font-size: 1rem;
   color: #4b5563;
   line-height: 1.6;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .contact-us-title {
+    font-size: 2.2rem;
+  }
+
+  .faq-title {
+    font-size: 2rem;
+  }
 }

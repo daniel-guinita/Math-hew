@@ -27,7 +27,6 @@ const Header = () => {
     setDropdownOpen(false); // Close dropdown
     navigate("/sign-in"); // Redirect to the login page
   };
-  
 
   return (
     <header className="header">
@@ -49,16 +48,33 @@ const Header = () => {
 
         {/* Navigation Menu */}
         <nav className={`header-nav ${menuOpen ? "header-nav-open" : ""}`}>
-          <Link to="/" className="header-nav-link" onClick={() => setMenuOpen(false)}>
+          {/* Conditionally render the Home link */}
+          <Link
+            to={currentUser ? "/main-page" : "/"}
+            className="header-nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
             🏠 Home
           </Link>
-          <Link to="/about-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
+          <Link
+            to="/about-us"
+            className="header-nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
             🧑‍🏫 About Us
           </Link>
-          <Link to="/features" className="header-nav-link" onClick={() => setMenuOpen(false)}>
+          <Link
+            to="/features"
+            className="header-nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
             ✨ Features
           </Link>
-          <Link to="/contact-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
+          <Link
+            to="/contact-us"
+            className="header-nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
             📩 Contact Us
           </Link>
         </nav>
@@ -75,16 +91,28 @@ const Header = () => {
           <div className={`header-dropdown-menu ${dropdownOpen ? "dropdown-open" : ""}`}>
             {!currentUser ? (
               <>
-                <Link to="/sign-in" className="header-dropdown-item" onClick={() => setDropdownOpen(false)}>
+                <Link
+                  to="/sign-in"
+                  className="header-dropdown-item"
+                  onClick={() => setDropdownOpen(false)}
+                >
                   Log In
                 </Link>
-                <Link to="/register" className="header-dropdown-item" onClick={() => setDropdownOpen(false)}>
+                <Link
+                  to="/register"
+                  className="header-dropdown-item"
+                  onClick={() => setDropdownOpen(false)}
+                >
                   Sign Up
                 </Link>
               </>
             ) : (
               <>
-                <Link to="/profile" className="header-dropdown-item" onClick={() => setDropdownOpen(false)}>
+                <Link
+                  to="/profile"
+                  className="header-dropdown-item"
+                  onClick={() => setDropdownOpen(false)}
+                >
                   Profile
                 </Link>
                 <button className="header-dropdown-item" onClick={handleLogout}>

@@ -43,7 +43,7 @@ const AboutUs = () => {
   return (
     <div className="aboutus-container">
       <div className="w-full max-w-6xl text-center relative">
-        <h1 className="aboutus-title">About Math-hew</h1>
+      <h1 className="aboutus-title animated-title">🌟 About Math-hew 🌟</h1>
         <p className="aboutus-subtext">
           Welcome to Math-hew, an engaging e-learning platform designed
           specifically for 4th-grade students to make learning math fun and
@@ -61,7 +61,7 @@ const AboutUs = () => {
       </div>
 
       <div id="team" className="team-section mt-20">
-        <h2 className="team-title">Meet the Team</h2>
+      <h2 className="team-title animated-title">🎉 Meet the Team 🎉</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-10">
           {teamMembers.map((member) => (
             <div key={member.name} className="member-card">

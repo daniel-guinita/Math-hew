@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Features.css"; // Import custom CSS
+import "../styles/Features.css";
 
 const FeatureCard = ({ title, description }) => {
   return (
@@ -49,7 +49,7 @@ export default function Features() {
   return (
     <div className="features-container">
       <div className="features-content">
-        <h2 className="features-title">Discover Math-hew's Amazing Features!</h2>
+        <h2 className="features-title">🌟Discover Math-hew's Amazing Features!🌟</h2>
         <p className="features-subtitle">
           Designed to make learning math a fun-filled adventure for every 4th grader.
         </p>
