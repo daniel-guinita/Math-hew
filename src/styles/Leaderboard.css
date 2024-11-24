@@ -1,32 +1,113 @@
-.home-container {
-  @apply min-h-screen flex items-center justify-center px-4 py-8 dark:bg-gray-900;
+/* Main Container */
+.leaderboard-container {
+  margin-top: 3%;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(to bottom, #100955, #067a71);
+  padding: 30px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.home-content {
-  @apply flex flex-col md:flex-row items-center justify-between w-full max-w-6xl;
+/* Title */
+.leaderboard-title {
+  font-size: 3rem;
+  color: #e71d0b;
+  text-shadow: 2px 2px #f58904;
+  margin-top: 2%;
+  margin-bottom: 1ch;
+  animation: fadeInDown 1s ease-in-out;
 }
 
-.home-text {
-  @apply md:w-1/2;
+/* Section */
+.leaderboard-section {
+  width: 90%;
+  max-width: 800px;
+  margin-bottom: 30px;
+  animation: slideInUp 1s ease-in-out;
 }
 
-.home-title {
-  @apply text-5xl font-bold text-gray-800 dark:text-white mb-6;
+/* Section Title */
+.section-title {
+  font-size: 2rem;
+  color: #ff6f61;
+  text-shadow: 1px 1px #ffe4c4;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.home-description {
-  @apply text-xl text-gray-600 dark:text-gray-300 mb-8;
+/* Table Container */
+.table-container {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
-.learn-button {
-  @apply bg-orange-500 text-white font-bold py-4 px-8 rounded hover:bg-orange-700 transition duration-300 ml-5;
-  font-size: 1.5rem;
+/* Table */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.home-image {
-  @apply md:w-1/2;
+.leaderboard-table thead {
+  background: #04be9f;
+  color: #fff;
+  font-size: 1.2rem;
 }
 
-.home-image img {
-  @apply w-full max-w-lg h-auto mx-auto transform transition-transform duration-300 hover:scale-105;
+.leaderboard-table th,
+.leaderboard-table td {
+  text-align: center;
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.leaderboard-table .row.even {
+  background: #8a0b07;
+}
+
+.leaderboard-table .row.odd {
+  background: #064988;
+}
+
+.leaderboard-table tbody .row:hover {
+  background: #ffee58;
+  transform: scale(1.02);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .leaderboard-title {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
 }
