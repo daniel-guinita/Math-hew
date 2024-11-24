@@ -1,18 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { signoutSuccess } from "../redux/user/userSlice"; // Import the Redux action
+import { signoutSuccess } from "../redux/user/userSlice";
 import "../styles/Header.css";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const { currentUser } = useSelector((state) => state.user); // Check logged-in user
+  const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -23,11 +22,12 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Handle Sign Out
   const handleLogout = () => {
-    dispatch(signoutSuccess()); // Clear the logged-in user state
+    dispatch(signoutSuccess()); // Dispatch the correct logout action
+    setDropdownOpen(false); // Close dropdown
     navigate("/sign-in"); // Redirect to the login page
   };
+  
 
   return (
     <header className="header">
@@ -84,12 +84,8 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link
-                  to="/edit-profile"
-                  className="header-dropdown-item"
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  Edit Profile
+                <Link to="/profile" className="header-dropdown-item" onClick={() => setDropdownOpen(false)}>
+                  Profile
                 </Link>
                 <button className="header-dropdown-item" onClick={handleLogout}>
                   Sign Out

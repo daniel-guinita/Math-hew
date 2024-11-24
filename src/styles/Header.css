@@ -1,6 +1,6 @@
 /* General Header Styling */
 .header {
-  background: linear-gradient(135deg, #ffcc33, #ff6f61);
+  background: linear-gradient(135deg, #dd2424, #000000);
   color: #fff;
   padding: 1rem;
   position: fixed;
@@ -85,16 +85,12 @@
 }
 
 /* Dropdown Styling */
-.header-dropdown {
-  position: relative; /* Keep the dropdown button positioned relative */
-}
-
 .header-dropdown-button {
-  background: #44c767;
+  background: linear-gradient(135deg, #1ccce4, #000000);
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  padding: 0.5rem 1.2rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 20px;
   border: none;
   cursor: pointer;
@@ -102,29 +98,45 @@
 }
 
 .header-dropdown-button:hover {
-  background: #2e9e4a;
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #fcfaff, #ff3b2e);
+  transform: scale(1.1);
 }
 
 .header-dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 0.5rem);
-  left: 100;
-  background: #000;
+  top: 100%; /* Aligns below the Account button */
+  right: 90; /* Aligns to the right of the button */
+  background: linear-gradient(135deg, #af1111, #4caf50);
   color: #fff;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   overflow: hidden;
   z-index: 10;
   min-width: 150px;
-  margin-top: 0.5rem;
+  padding: 0.5rem 0;
   text-align: center;
 }
 
 .header-dropdown-menu.dropdown-open {
-  display: block;
+  display: block; /* Ensures it displays when open */
 }
+
+.header-dropdown-item {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.header-dropdown-item:hover {
+  background-color: #ff9f43;
+  transform: scale(1.05);
+}
+
 
 /* Dropdown Menu Item */
 .header-dropdown-item {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateSuccess } from "../redux/user/userSlice";
+import { useNavigate } from "react-router-dom"; // Import the navigate function
 import "../styles/EditProfile.css";
 
 const EditProfile = () => {
@@ -13,6 +14,7 @@ const EditProfile = () => {
     profileImage: currentUser?.profileImage || "",
   });
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,8 +37,9 @@ const EditProfile = () => {
       alert("Please fill in all fields!");
       return;
     }
-    dispatch(updateSuccess(formData));
+    dispatch(updateSuccess(formData)); // Dispatch the updated user details
     alert("Profile updated successfully!");
+    navigate("/profile"); // Redirect to the Profile page
   };
 
   return (
