@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./pages/Home"; 
+import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Features from "./pages/Features";
 import ContactUs from "./pages/ContactUs";
@@ -18,8 +18,10 @@ import ProgressTracking from "./pages/ProgressTracking";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 
-
 function App() {
+  // Simulate user role (fetch from login/authentication system)
+  const [userRole, setUserRole] = useState("student"); // Can be "student", "teacher", or "admin"
+
   return (
     <Router>
       <Header />
@@ -33,7 +35,10 @@ function App() {
         <Route path="/main-page" element={<MainPage />} />
         <Route path="/math-memory-game" element={<MathMemoryGame />} />
         <Route path="/math-speedy-quiz" element={<MathSpeedyQuiz />} />
-        <Route path="/lessons-page" element={<LessonsPage />} />
+
+        {/* Pass userRole prop to LessonsPage */}
+        <Route path="/lessons-page" element={<LessonsPage userRole={userRole} />} />
+
         <Route path="/learning-buddy" element={<LearningBuddy />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/progress-tracking" element={<ProgressTracking />} />
