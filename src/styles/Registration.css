@@ -8,7 +8,7 @@
 }
 
 .register-card {
-  background: #b87979;
+  background: #6584c9;
   border-radius: 1rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   max-width: 500px;
@@ -24,7 +24,7 @@
 .register-logo {
   font-size: 2rem;
   font-weight: bold;
-  color: #f79f1f;
+  color: #e02626;
 }
 
 .register-subtext {
@@ -60,7 +60,7 @@
   background-color: #ffe6e6; /* Light red background for readability */
   padding: 0.5rem 1rem;
   border-radius: 8px; /* Rounded corners */
-  border: 1px solid #ff9999; /* Add a slight border for visibility */
+  border: 1px solid #b80808; /* Add a slight border for visibility */
 }
 
 /* Centering the button container */
@@ -71,7 +71,7 @@
 }
 
 .register-button {
-  background: linear-gradient(to right, #ff7eb9, #ff758c);
+  background: linear-gradient(to right, #dd1526, #c705b7);
   color: #ffffff;
   font-size: 1rem;
   font-weight: bold;

@@ -10,7 +10,7 @@
 
 /* Card Styling */
 .signin-card {
-  background: #b87979;
+  background: #6584c9;
   border-radius: 1rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   max-width: 500px;
@@ -27,7 +27,7 @@
 .signin-logo {
   font-size: 2rem;
   font-weight: bold;
-  color: #f79f1f;
+  color: #e02626;
 }
 
 .signin-subtext {
@@ -75,7 +75,7 @@
 }
 
 .signin-button {
-  background: linear-gradient(to right, #ff758c, #ff7eb9);
+  background: linear-gradient(to right, #dd1526, #c705b7);
   color: #ffffff;
   font-size: 1rem;
   font-weight: bold;

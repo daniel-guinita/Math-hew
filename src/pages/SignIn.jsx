@@ -21,21 +21,34 @@ export default function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/; // Only emails ending with @cit.edu
+    const schoolIdRegex = /^\d{2}-\d{4}-\d{3}$/; // Format: 00-0000-000
+  
     if (!formData.identifier || !formData.password) {
       setErrorMessage("Please fill all the fields!");
       return;
     }
-
+  
+    if (
+      !emailRegex.test(formData.identifier) &&
+      !schoolIdRegex.test(formData.identifier)
+    ) {
+      setErrorMessage(
+        "Identifier must be a valid email (example@cit.edu) or School ID (00-0000-000)"
+      );
+      return;
+    }
+  
     setLoading(true);
     setErrorMessage("");
-
+  
     const user = users.find(
       (u) =>
         (u.email === formData.identifier || u.schoolId === formData.identifier) &&
         u.password === formData.password
     );
-
+  
     setTimeout(() => {
       setLoading(false);
       if (user) {
@@ -46,8 +59,8 @@ export default function SignIn() {
         setErrorMessage("Oops! Check your details again.");
       }
     }, 1000);
-  };
-
+  };  
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
