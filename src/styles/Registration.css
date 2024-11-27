@@ -1,116 +1,85 @@
-:root {
-  /* Light mode variables */
-  --bg-color: #f3f4f6;
-  --card-bg-color: white;
-  --header-bg-color: #6366f1;
-  --text-color: #1a202c;
-  --subtext-color: #4a5568;
-  --icon-color: #9ca3af;
-  --button-bg-gradient: linear-gradient(45deg, #9f7aea, #ed64a6);
-  --button-bg-hover-gradient: linear-gradient(45deg, #7f5bb3, #d14783);
-}
-
-/* Dark mode variables */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #1a202c;
-    --card-bg-color: #2d3748;
-    --header-bg-color: #4a5568;
-    --text-color: #ffffff;
-    --subtext-color: #a0aec0;
-    --icon-color: #a0aec0;
-    --button-bg-gradient: linear-gradient(45deg, #7f5bb3, #d14783);
-    --button-bg-hover-gradient: linear-gradient(45deg, #6c4e99, #b4356b);
-  }
-}
-
-/* Main container */
 .register-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--bg-color);
+  background: linear-gradient(to right, #ffcf56, #fb9e9e);
+  padding: 2rem;
 }
 
 .register-card {
-  display: flex;
-  background-color: var(--card-bg-color);
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-              0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  overflow: hidden;
+  background: #b87979;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
 }
 
-/* Horizontal layout for larger screens */
-.register-card-row {
-  flex-direction: row;
-}
-
-@media (max-width: 768px) {
-  .register-card-row {
-    flex-direction: column;
-  }
-}
-
-/* Left Section */
 .register-header {
-  padding: 2rem;
-  background-color: var(--header-bg-color);
-  color: var(--text-color);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
-.register-header-dark a {
-  color: var(--text-color);
+.register-logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #f79f1f;
 }
 
-/* Subtext */
 .register-subtext {
-  font-size: 0.875rem;
-  color: var(--subtext-color);
-  line-height: 1.25rem;
+  font-size: 1.2rem;
+  color: #333;
   margin-top: 0.5rem;
-  opacity: 0.8;
 }
 
-/* Right Section (Form) */
-.register-form {
-  padding: 2rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.form div {
+  margin-bottom: 1rem;
 }
 
 .password-toggle {
   position: absolute;
   top: 50%;
   right: 1rem;
-  transform: translateY(-50%); /* Center vertically */
+  transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--icon-color);
-  display: flex;
-  align-items: center; /* Ensures proper centering of the icon */
-  justify-content: center;
 }
 
+/* Centering the error message */
+.error-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.error-container .alert {
+  font-size: 0.875rem; /* Slightly smaller font for error messages */
+  color: #ff4d4d; /* Bright red for emphasis */
+  background-color: #ffe6e6; /* Light red background for readability */
+  padding: 0.5rem 1rem;
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #ff9999; /* Add a slight border for visibility */
+}
+
+/* Centering the button container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem; /* Add space between the button and the other elements */
+}
 
 .register-button {
-  width: 100%;
-  background: var(--button-bg-gradient);
-  color: white;
-  transition: background 0.3s ease;
+  background: linear-gradient(to right, #ff7eb9, #ff758c);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .register-button:hover {
-  background: var(--button-bg-hover-gradient);
-}
-
-.register-alert {
-  margin-top: 1rem;
+  transform: scale(1.05);
 }

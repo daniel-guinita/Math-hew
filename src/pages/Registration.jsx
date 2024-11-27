@@ -1,4 +1,4 @@
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
+import { Alert, Button, Label, Spinner, TextInput, Select } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -19,11 +19,21 @@ export default function Register() {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
+  const handleRoleChange = (e) => {
+    setFormData({ ...formData, role: e.target.value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!formData.email || !formData.password || !formData.confirmPassword) {
-      setErrorMessage("Please fill all the fields");
+    if (
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword ||
+      !formData.role ||
+      !formData.schoolId
+    ) {
+      setErrorMessage("Please fill all the fields, including School ID and role.");
       return;
     }
 
@@ -35,15 +45,19 @@ export default function Register() {
     setLoading(true);
     setErrorMessage("");
 
+    const { email, password, role, schoolId } = formData;
+
     const newUser = {
-      email: formData.email,
-      password: formData.password,
+      email,
+      password,
+      schoolId,
       name: formData.name || "User",
+      role,
     };
 
     setTimeout(() => {
-      setLoading(false);
       dispatch(addUserSuccess(newUser));
+      alert("Registration successful! 🎉");
       navigate("/sign-in");
     }, 1000);
   };
@@ -54,20 +68,25 @@ export default function Register() {
     setShowConfirmPassword(!showConfirmPassword);
 
   return (
-    <div className="register-container" style={{ backgroundImage: 'url(/images/bg-clouds.png)' }}>
-      <div className="register-card register-card-row">
-        <div className="register-header register-header-dark">
-          <Link to="/" className="dark:text-white" style={{ color: '#4CAF50' }}>
-            🌈 Math-hew
-          </Link>
-          <p className="register-subtext" style={{ fontSize: '1.2rem', color: '#32CD32' }}>
-            Join the fun and start your math adventure!
-          </p>
+    <div className="register-container">
+      <div className="register-card">
+        <div className="register-header">
+          <Link to="/" className="register-logo">🐉 Math-hew</Link>
+          <p className="register-subtext">Join the math adventure!</p>
         </div>
         <div className="register-form">
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+          <form className="form" onSubmit={handleSubmit}>
             <div>
-              <Label htmlFor="email" value="Your email address:" />
+              <Label htmlFor="schoolId" value="Your School ID:" />
+              <TextInput
+                type="text"
+                placeholder="Enter your School ID"
+                id="schoolId"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="email" value="Your Email Address:" />
               <TextInput
                 type="email"
                 placeholder="superkid@mathworld.com"
@@ -76,7 +95,7 @@ export default function Register() {
               />
             </div>
             <div className="relative">
-              <Label htmlFor="password" value="Create your password:" />
+              <Label htmlFor="password" value="Create Your Password:" />
               <TextInput
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -87,13 +106,12 @@ export default function Register() {
                 type="button"
                 onClick={togglePasswordVisibility}
                 className="password-toggle"
-                style={{ color: '#4CAF50' }}
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
             <div className="relative">
-              <Label htmlFor="confirmPassword" value="Confirm your password:" />
+              <Label htmlFor="confirmPassword" value="Confirm Your Password:" />
               <TextInput
                 id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
@@ -104,31 +122,38 @@ export default function Register() {
                 type="button"
                 onClick={toggleConfirmPasswordVisibility}
                 className="password-toggle"
-                style={{ color: '#4CAF50' }}
               >
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
-
-            <Button
-              type="submit"
-              disabled={loading}
-              style={{ background: 'linear-gradient(to right, #32CD32, #4CAF50)', color: '#fff' }}
-            >
-              {loading ? (
-                <>
-                  <Spinner size="sm" />
+            <div>
+              <Label htmlFor="role" value="Select Your Role:" />
+              <Select id="role" onChange={handleRoleChange}>
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+              </Select>
+            </div>
+        <div className="button-container">
+            <Button type="submit" disabled={loading} className="register-button">
+                {loading ? (
+              <>
+                <Spinner size="sm" />
                   <span className="pl-3">Registering...</span>
-                </>
+              </>
               ) : (
-                "Let's Go! 🌟"
+                  "Register Now 🎓"
               )}
             </Button>
+        </div>
           </form>
           {errorMessage && (
-            <Alert className="register-alert" color="failure">
-              {errorMessage}
-            </Alert>
+           <div className="error-container">
+                <Alert color="failure">
+          {errorMessage}
+                </Alert>
+            </div>
           )}
         </div>
       </div>

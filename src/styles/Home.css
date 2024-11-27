@@ -29,7 +29,7 @@
   font-size: 3.5rem;
   font-weight: 900;
   color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px rgba(14, 185, 228, 0.3);
   margin-bottom: 1rem;
   animation: glow 2s infinite; /* Glow animation for the title */
 }
@@ -43,7 +43,7 @@
 }
 
 .learn-button {
-  background: #15772d;
+  background: #0e5a5f;
   color: #ffffff;
   font-size: 1.5rem;
   font-weight: bold;
@@ -55,7 +55,7 @@
 }
 
 .learn-button:hover {
-  background: #ff9100;
+  background: #744d1b;
   transform: scale(1.1);
 }
 
@@ -142,13 +142,13 @@
 
 @keyframes glow {
   0% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #ff9f43, 0 0 20px #ffa726;
+    text-shadow: 0 0 5px #fff, 0 0 10px #550303, 0 0 20px #0da0f5;
   }
   50% {
-    text-shadow: 0 0 10px #ffcc33, 0 0 20px #ff9f43, 0 0 30px #ffa726;
+    text-shadow: 0 0 10px #550303, 0 0 20px #550303, 0 0 30px #0da0f5;
   }
   100% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #ff9f43, 0 0 20px #ffa726;
+    text-shadow: 0 0 5px #fff, 0 0 10px #550303, 0 0 20px #0da0f5;
   }
 }
 

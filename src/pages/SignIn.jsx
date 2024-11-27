@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { signInSuccess, signInFailure } from "../redux/user/userSlice";
-import '../styles/SignIn.css';
+import "../styles/SignIn.css";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -21,15 +21,19 @@ export default function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password) {
+
+    if (!formData.identifier || !formData.password) {
       setErrorMessage("Please fill all the fields!");
       return;
     }
+
     setLoading(true);
     setErrorMessage("");
 
     const user = users.find(
-      (u) => u.email === formData.email && u.password === formData.password
+      (u) =>
+        (u.email === formData.identifier || u.schoolId === formData.identifier) &&
+        u.password === formData.password
     );
 
     setTimeout(() => {
@@ -38,7 +42,7 @@ export default function SignIn() {
         dispatch(signInSuccess(user));
         navigate("/main-page");
       } else {
-        dispatch(signInFailure("Invalid email or password"));
+        dispatch(signInFailure("Invalid email/School ID or password"));
         setErrorMessage("Oops! Check your details again.");
       }
     }, 1000);
@@ -49,66 +53,58 @@ export default function SignIn() {
   };
 
   return (
-    <div className="signin-container" style={{ backgroundImage: 'url(/images/bg-stars.png)' }}>
-      <div className="signin-card signin-card-row">
+    <div className="signin-container">
+      <div className="signin-card">
         <div className="signin-header">
-          <Link to="/" className="font-bold dark:text-white text-4xl" style={{ color: '#FFA500' }}>
-            🚀 Math-hew
-          </Link>
-          <p className="signin-subtext mt-5" style={{ fontSize: '1.2rem', color: '#ff6347' }}>
-            Welcome back, future math genius!
-          </p>
+          <Link to="/" className="signin-logo">🚀 Math-hew</Link>
+          <p className="signin-subtext">Welcome back, future math genius!</p>
         </div>
         <div className="signin-form">
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+          <form className="form" onSubmit={handleSubmit}>
             <div>
-              <Label htmlFor="email" value="Enter your email:" />
+              <Label htmlFor="identifier" value="Enter your email or School ID:" />
               <TextInput
-                type="email"
-                placeholder="name@mathworld.com"
-                id="email"
+                type="text"
+                placeholder="Email or School ID"
+                id="identifier"
                 onChange={handleChange}
               />
             </div>
-            <div className="flex-1">
-              <div className="relative">
-                <Label htmlFor="password" value="Your secret password:" />
-                <TextInput
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="••••••••"
-                  onChange={handleChange}
-                />
-                <button
-                  type="button"
-                  onClick={togglePasswordVisibility}
-                  className="password-toggle"
-                  style={{ color: '#FFA500' }}
-                >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </button>
-              </div>
+            <div className="relative">
+              <Label htmlFor="password" value="Your secret password:" />
+              <TextInput
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                onChange={handleChange}
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="password-toggle"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
             </div>
-            <Button
-              className="signin-button"
-              type="submit"
-              disabled={loading}
-              style={{ background: 'linear-gradient(to right, #ff7f50, #ff6347)', color: '#fff' }}
-            >
+        <div className="button-container">
+            <Button type="submit" disabled={loading} className="signin-button">
               {loading ? (
-                <>
-                  <Spinner size="sm" />
-                  <span className="pl-3">Logging in...</span>
-                </>
-              ) : (
-                "Start Learning 🚀"
-              )}
+            <>
+              <Spinner size="sm" />
+                <span className="pl-3">Logging in...</span>
+            </>
+            ): (
+                  "Start Learning 🚀"
+                )}
             </Button>
+        </div>
           </form>
           {errorMessage && (
-            <Alert className="signin-alert" color="failure">
-              {errorMessage}
-            </Alert>
+            <div className="error-container">
+              <Alert color="failure">
+          {errorMessage}
+              </Alert>
+            </div>
           )}
         </div>
       </div>
