@@ -1,0 +1,91 @@
+/* Background and layout */
+.contact-us-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f7fafc, #edf2f7, #fed7aa);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1rem;
+}
+
+.contact-us-dark {
+  background: linear-gradient(to bottom, #374151, #1f2937, #111827);
+}
+
+/* Main card */
+.contact-us-card {
+  width: 100%;
+  max-width: 80rem;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  text-align: center;
+  color: #1a202c;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-us-card-dark {
+  background-color: #1f2937;
+  color: white;
+}
+
+/* Titles */
+.contact-us-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #dd6b20;
+  margin-bottom: 2rem;
+}
+
+.contact-us-title-dark {
+  color: #f6ad55;
+}
+
+/* Subtitles and icons */
+.contact-info-title,
+.faq-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ed8936;
+  margin-bottom: 1rem;
+}
+
+.contact-info-title-dark,
+.faq-title-dark {
+  color: #f6ad55;
+}
+
+.contact-info-text {
+  font-size: 1.125rem;
+  color: #718096;
+}
+
+.contact-info-text-dark {
+  color: #a0aec0;
+}
+
+.social-icon {
+  color: #63b3ed;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: #3182ce;
+}
+
+/* FAQ */
+.faq-item {
+  font-size: 1.125rem;
+  color: #a0aec0;
+}
+
+.faq-question {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #2d3748;
+}
+
+/* Links */
+.link:hover {
+  text-decoration: underline;
+}

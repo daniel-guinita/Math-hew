@@ -1,0 +1,113 @@
+/* SignIn.css */
+:root {
+  /* Light mode variables */
+  --bg-color: #f3f4f6;
+  --card-bg-color: white;
+  --header-bg-color: #6366f1;
+  --text-color: #1a202c;
+  --subtext-color: #4a5568;
+  --icon-color: #9ca3af;
+  --button-bg-gradient: linear-gradient(45deg, #9f7aea, #ed64a6);
+  --button-bg-hover-gradient: linear-gradient(45deg, #7f5bb3, #d14783);
+}
+
+/* Dark mode variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a202c;
+    --card-bg-color: #2d3748;
+    --header-bg-color: #4a5568;
+    --text-color: #ffffff;
+    --subtext-color: #a0aec0;
+    --icon-color: #a0aec0;
+    --button-bg-gradient: linear-gradient(45deg, #7f5bb3, #d14783);
+    --button-bg-hover-gradient: linear-gradient(45deg, #6c4e99, #b4356b);
+  }
+}
+
+/* Main container */
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+.signin-card {
+  display: flex;
+  background-color: var(--card-bg-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+/* Horizontal layout for larger screens */
+.signin-card-row {
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .signin-card-row {
+    flex-direction: column;
+  }
+}
+
+/* Left Section */
+.signin-header {
+  padding: 2rem;
+  background-color: var(--header-bg-color);
+  color: var(--text-color);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signin-header-dark a {
+  color: var(--text-color);
+}
+
+/* Subtext */
+.signin-subtext {
+  font-size: 0.875rem;
+  color: var(--subtext-color);
+  line-height: 1.25rem;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+/* Right Section (Form) */
+.signin-form {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--icon-color);
+}
+
+.signin-button {
+  width: 100%;
+  background: var(--button-bg-gradient);
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.signin-button:hover {
+  background: var(--button-bg-hover-gradient);
+}
+
+.signin-alert {
+  margin-top: 1rem;
+}
