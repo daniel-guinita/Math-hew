@@ -2,8 +2,9 @@ import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signInSuccess, signInFailure } from "../redux/user/userSlice";
+import axios from "axios";
 import "../styles/SignIn.css";
 
 export default function SignIn() {
@@ -11,15 +12,16 @@ export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const users = useSelector((state) => state.user.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
   
     const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/; // Only emails ending with @cit.edu
@@ -43,24 +45,36 @@ export default function SignIn() {
     setLoading(true);
     setErrorMessage("");
   
-    const user = users.find(
-      (u) =>
-        (u.email === formData.identifier || u.schoolId === formData.identifier) &&
-        u.password === formData.password
-    );
+    try {
+      // Log the payload before making the request
+      const payload = {
+        email: formData.identifier, // Map `identifier` to `email`
+        password: formData.password,
+      };
+      console.log("Sign-in Payload:", payload);
   
-    setTimeout(() => {
+      // Make the Axios request
+      const response = await axios.post(`${API_URL}/users/signin`, payload);
+  
+      const { token, ...user } = response.data;
+  
+      // Save token to localStorage and dispatch Redux action
+      localStorage.setItem("authToken", token);
+      dispatch(signInSuccess(user));
+  
+      // Navigate to the main page
+      navigate("/main-page");
+    } catch (error) {
+      console.error("Sign-in error:", error.response?.data || error.message);
+      setErrorMessage(
+        error.response?.data?.message || "Invalid email/School ID or password"
+      );
+      dispatch(signInFailure("Invalid email/School ID or password"));
+    } finally {
       setLoading(false);
-      if (user) {
-        dispatch(signInSuccess(user));
-        navigate("/main-page");
-      } else {
-        dispatch(signInFailure("Invalid email/School ID or password"));
-        setErrorMessage("Oops! Check your details again.");
-      }
-    }, 1000);
-  };  
-  
+    }
+  };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -91,31 +105,25 @@ export default function SignIn() {
                 placeholder="••••••••"
                 onChange={handleChange}
               />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                className="password-toggle"
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
+            
             </div>
-        <div className="button-container">
-            <Button type="submit" disabled={loading} className="signin-button">
-              {loading ? (
-            <>
-              <Spinner size="sm" />
-                <span className="pl-3">Logging in...</span>
-            </>
-            ): (
+            <div className="button-container">
+              <Button type="submit" disabled={loading} className="signin-button">
+                {loading ? (
+                  <>  
+                    <Spinner size="sm" />
+                    <span className="pl-3">Logging in...</span>
+                  </>
+                ) : (
                   "Start Learning 🚀"
                 )}
-            </Button>
-        </div>
+              </Button>
+            </div>
           </form>
           {errorMessage && (
             <div className="error-container">
               <Alert color="failure">
-          {errorMessage}
+                {errorMessage}
               </Alert>
             </div>
           )}
