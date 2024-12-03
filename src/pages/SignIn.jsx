@@ -2,46 +2,77 @@ import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signInSuccess, signInFailure } from "../redux/user/userSlice";
-import '../styles/SignIn.css';
+import axios from "axios";
+import "../styles/SignIn.css";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const users = useSelector((state) => state.user.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password) {
+  
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/; // Only emails ending with @cit.edu
+    const schoolIdRegex = /^\d{2}-\d{4}-\d{3}$/; // Format: 00-0000-000
+  
+    if (!formData.identifier || !formData.password) {
       setErrorMessage("Please fill all the fields!");
       return;
     }
+  
+    if (
+      !emailRegex.test(formData.identifier) &&
+      !schoolIdRegex.test(formData.identifier)
+    ) {
+      setErrorMessage(
+        "Identifier must be a valid email (example@cit.edu) or School ID (00-0000-000)"
+      );
+      return;
+    }
+  
     setLoading(true);
     setErrorMessage("");
-
-    const user = users.find(
-      (u) => u.email === formData.email && u.password === formData.password
-    );
-
-    setTimeout(() => {
+  
+    try {
+      // Log the payload before making the request
+      const payload = {
+        email: formData.identifier, // Map `identifier` to `email`
+        password: formData.password,
+      };
+      console.log("Sign-in Payload:", payload);
+  
+      // Make the Axios request
+      const response = await axios.post(`${API_URL}/users/signin`, payload);
+  
+      const { token, ...user } = response.data;
+  
+      // Save token to localStorage and dispatch Redux action
+      localStorage.setItem("authToken", token);
+      dispatch(signInSuccess(user));
+  
+      // Navigate to the main page
+      navigate("/main-page");
+    } catch (error) {
+      console.error("Sign-in error:", error.response?.data || error.message);
+      setErrorMessage(
+        error.response?.data?.message || "Invalid email/School ID or password"
+      );
+      dispatch(signInFailure("Invalid email/School ID or password"));
+    } finally {
       setLoading(false);
-      if (user) {
-        dispatch(signInSuccess(user));
-        navigate("/main-page");
-      } else {
-        dispatch(signInFailure("Invalid email or password"));
-        setErrorMessage("Oops! Check your details again.");
-      }
-    }, 1000);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -49,66 +80,52 @@ export default function SignIn() {
   };
 
   return (
-    <div className="signin-container" style={{ backgroundImage: 'url(/images/bg-stars.png)' }}>
-      <div className="signin-card signin-card-row">
+    <div className="signin-container">
+      <div className="signin-card">
         <div className="signin-header">
-          <Link to="/" className="font-bold dark:text-white text-4xl" style={{ color: '#FFA500' }}>
-            🚀 Math-hew
-          </Link>
-          <p className="signin-subtext mt-5" style={{ fontSize: '1.2rem', color: '#ff6347' }}>
-            Welcome back, future math genius!
-          </p>
+          <Link to="/" className="signin-logo">🚀 Math-hew</Link>
+          <p className="signin-subtext">Welcome back, future math genius!</p>
         </div>
         <div className="signin-form">
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+          <form className="form" onSubmit={handleSubmit}>
             <div>
-              <Label htmlFor="email" value="Enter your email:" />
+              <Label htmlFor="identifier" value="Enter your email or School ID:" />
               <TextInput
-                type="email"
-                placeholder="name@mathworld.com"
-                id="email"
+                type="text"
+                placeholder="Email or School ID"
+                id="identifier"
                 onChange={handleChange}
               />
             </div>
-            <div className="flex-1">
-              <div className="relative">
-                <Label htmlFor="password" value="Your secret password:" />
-                <TextInput
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="••••••••"
-                  onChange={handleChange}
-                />
-                <button
-                  type="button"
-                  onClick={togglePasswordVisibility}
-                  className="password-toggle"
-                  style={{ color: '#FFA500' }}
-                >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </button>
-              </div>
+            <div className="relative">
+              <Label htmlFor="password" value="Your secret password:" />
+              <TextInput
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                onChange={handleChange}
+              />
+            
             </div>
-            <Button
-              className="signin-button"
-              type="submit"
-              disabled={loading}
-              style={{ background: 'linear-gradient(to right, #ff7f50, #ff6347)', color: '#fff' }}
-            >
-              {loading ? (
-                <>
-                  <Spinner size="sm" />
-                  <span className="pl-3">Logging in...</span>
-                </>
-              ) : (
-                "Start Learning 🚀"
-              )}
-            </Button>
+            <div className="button-container">
+              <Button type="submit" disabled={loading} className="signin-button">
+                {loading ? (
+                  <>  
+                    <Spinner size="sm" />
+                    <span className="pl-3">Logging in...</span>
+                  </>
+                ) : (
+                  "Start Learning 🚀"
+                )}
+              </Button>
+            </div>
           </form>
           {errorMessage && (
-            <Alert className="signin-alert" color="failure">
-              {errorMessage}
-            </Alert>
+            <div className="error-container">
+              <Alert color="failure">
+                {errorMessage}
+              </Alert>
+            </div>
           )}
         </div>
       </div>

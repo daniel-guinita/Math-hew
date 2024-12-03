@@ -33,14 +33,26 @@ const EditProfile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password) {
-      alert("Please fill in all fields!");
+  
+    // Only include fields that are not empty in the updated data
+    const updatedData = {};
+    if (formData.firstName) updatedData.firstName = formData.firstName;
+    if (formData.lastName) updatedData.lastName = formData.lastName;
+    if (formData.email) updatedData.email = formData.email;
+    if (formData.password) updatedData.password = formData.password;
+    if (formData.profileImage) updatedData.profileImage = formData.profileImage;
+  
+    // Check if at least one field has been updated
+    if (Object.keys(updatedData).length === 0) {
+      alert("Please update at least one field!");
       return;
     }
-    dispatch(updateSuccess(formData)); // Dispatch the updated user details
+  
+    dispatch(updateSuccess({ ...currentUser, ...updatedData })); // Merge the current user data with the updated data
     alert("Profile updated successfully!");
     navigate("/profile"); // Redirect to the Profile page
   };
+  
 
   return (
     <div className="edit-profile-container">

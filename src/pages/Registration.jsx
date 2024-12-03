@@ -1,9 +1,8 @@
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
+import { Alert, Button, Label, Spinner, TextInput, Select } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { addUserSuccess } from "../redux/user/userSlice";
+import axios from 'axios';
 import "../styles/Registration.css";
 
 export default function Register() {
@@ -12,18 +11,40 @@ export default function Register() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
-  const handleSubmit = (e) => {
+  const handleRoleChange = (e) => {
+    setFormData({ ...formData, role: e.target.value });
+  };
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.email || !formData.password || !formData.confirmPassword) {
-      setErrorMessage("Please fill all the fields");
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/; // Only emails ending with @cit.edu
+    const schoolIdRegex = /^\d{2}-\d{4}-\d{3}$/; // Format: XX-XXXX-XXX
+
+    if (
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword ||
+      !formData.role ||
+      !formData.schoolId
+    ) {
+      setErrorMessage("Please fill all the fields, including School ID and role.");
+      return;
+    }
+
+    if (!emailRegex.test(formData.email)) {
+      setErrorMessage("Email must be in the format: example@cit.edu");
+      return;
+    }
+
+    if (!schoolIdRegex.test(formData.schoolId)) {
+      setErrorMessage("School ID must be in the format: XX-XXXX-XXX");
       return;
     }
 
@@ -35,17 +56,27 @@ export default function Register() {
     setLoading(true);
     setErrorMessage("");
 
-    const newUser = {
-      email: formData.email,
+    const userData = {
+      username: formData.username,
       password: formData.password,
-      name: formData.name || "User",
+      email: formData.email,
+      user_type: "student",
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      school_id: formData.schoolId,
+      role: "student",
     };
 
-    setTimeout(() => {
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, userData);
+      alert("Registration successful!");
+      navigate('/sign-in');
+    } catch (error) {
+      setErrorMessage("Registration failed. Please try again.");
+      console.error(error);
+    } finally {
       setLoading(false);
-      dispatch(addUserSuccess(newUser));
-      navigate("/sign-in");
-    }, 1000);
+    }
   };
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
@@ -54,84 +85,134 @@ export default function Register() {
     setShowConfirmPassword(!showConfirmPassword);
 
   return (
-    <div className="register-container" style={{ backgroundImage: 'url(/images/bg-clouds.png)' }}>
-      <div className="register-card register-card-row">
-        <div className="register-header register-header-dark">
-          <Link to="/" className="dark:text-white" style={{ color: '#4CAF50' }}>
-            🌈 Math-hew
-          </Link>
-          <p className="register-subtext" style={{ fontSize: '1.2rem', color: '#32CD32' }}>
-            Join the fun and start your math adventure!
-          </p>
-        </div>
-        <div className="register-form">
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+    <div className="register-container">
+    <div className="register-card">
+      <div className="register-header">
+        <Link to="/" className="register-logo">🐉 Math-hew</Link>
+        <p className="register-subtext">Join the math adventure! 🚀</p>
+      </div>
+      <div className="register-form">
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form-row">
             <div>
-              <Label htmlFor="email" value="Your email address:" />
+              <Label htmlFor="schoolId" value="School ID 📘:" />
               <TextInput
-                type="email"
-                placeholder="superkid@mathworld.com"
-                id="email"
+                type="text"
+                placeholder="00-1234-567"
+                id="schoolId"
+                value={formData.schoolId || ""}
                 onChange={handleChange}
               />
             </div>
-            <div className="relative">
-              <Label htmlFor="password" value="Create your password:" />
+            <div>
+              <Label htmlFor="firstName" value="First Name 🧒:" />
+              <TextInput
+                type="text"
+                placeholder="Your first name"
+                id="firstName"
+                value={formData.firstName || ""}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="lastName" value="Last Name 👧:" />
+              <TextInput
+                type="text"
+                placeholder="Your last name"
+                id="lastName"
+                value={formData.lastName || ""}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+  
+          <div className="form-row">
+            <div>
+              <Label htmlFor="username" value="Username 🎮:" />
+              <TextInput
+                type="text"
+                placeholder="Pick a fun username!"
+                id="username"
+                value={formData.username || ""}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="email" value="Institutional Email ✉️:" />
+              <TextInput
+                type="email"
+                placeholder="example@cit.edu"
+                id="email"
+                value={formData.email || ""}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="role" value="Role 📋:" />
+              <Select id="role" onChange={handleRoleChange}>
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+              </Select>
+            </div>
+          </div>
+  
+          <div className="form-row">
+            <div>
+              <Label htmlFor="password" value="Password 🔒:" />
               <TextInput
                 id="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="••••••••"
+                placeholder="Create a secret password"
                 onChange={handleChange}
               />
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
                 className="password-toggle"
-                style={{ color: '#4CAF50' }}
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
-            <div className="relative">
-              <Label htmlFor="confirmPassword" value="Confirm your password:" />
+            <div>
+              <Label htmlFor="confirmPassword" value="Confirm Password 🔑:" />
               <TextInput
                 id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
-                placeholder="••••••••"
+                placeholder="Retype your password"
                 onChange={handleChange}
               />
               <button
                 type="button"
                 onClick={toggleConfirmPasswordVisibility}
                 className="password-toggle"
-                style={{ color: '#4CAF50' }}
               >
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
-
-            <Button
-              type="submit"
-              disabled={loading}
-              style={{ background: 'linear-gradient(to right, #32CD32, #4CAF50)', color: '#fff' }}
-            >
+          </div>
+  
+          <div className="button-container">
+            <Button type="submit" disabled={loading} className="register-button">
               {loading ? (
                 <>
                   <Spinner size="sm" />
                   <span className="pl-3">Registering...</span>
                 </>
               ) : (
-                "Let's Go! 🌟"
+                "Join Now! 🌟"
               )}
             </Button>
-          </form>
-          {errorMessage && (
-            <Alert className="register-alert" color="failure">
-              {errorMessage}
-            </Alert>
-          )}
-        </div>
+          </div>
+        </form>
+        {errorMessage && (
+          <div className="error-container">
+            <Alert color="failure">{errorMessage}</Alert>
+          </div>
+        )}
       </div>
     </div>
+  </div>
+  
   );
 }
