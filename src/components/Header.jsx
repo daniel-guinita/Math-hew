@@ -50,12 +50,15 @@ const Header = () => {
         <nav className={`header-nav ${menuOpen ? "header-nav-open" : ""}`}>
           {/* Conditionally render the Home link */}
           <Link
-            to={currentUser ? "/main-page" : "/"}
-            className="header-nav-link"
-            onClick={() => setMenuOpen(false)}
-          >
-            🏠 Home
-          </Link>
+          to={currentUser ? "/main-page" : "/"}
+          className="header-nav-link"
+          onClick={() => {
+            setMenuOpen(false); // Close menu on click
+            navigate(currentUser ? "/main-page" : "/"); // Navigate explicitly
+          }}
+        >
+          🏠 Home
+        </Link>
           <Link
             to="/about-us"
             className="header-nav-link"

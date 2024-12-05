@@ -23,60 +23,57 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/; // Only emails ending with @cit.edu
-    const schoolIdRegex = /^\d{2}-\d{4}-\d{3}$/; // Format: 00-0000-000
-  
+    const schoolIdRegex = /^\d{2}-\d{4}-\d{3}$/; // Format: XX-XXXX-XXX
+
     if (!formData.identifier || !formData.password) {
-      setErrorMessage("Please fill all the fields!");
-      return;
+        setErrorMessage("Please fill all the fields!");
+        return;
     }
-  
+
     if (
-      !emailRegex.test(formData.identifier) &&
-      !schoolIdRegex.test(formData.identifier)
+        !emailRegex.test(formData.identifier) &&
+        !schoolIdRegex.test(formData.identifier)
     ) {
-      setErrorMessage(
-        "Identifier must be a valid email (example@cit.edu) or School ID (00-0000-000)"
-      );
-      return;
+        setErrorMessage(
+            "Identifier must be a valid email (example@cit.edu) or School ID (XX-XXXX-XXX)"
+        );
+        return;
     }
-  
+
     setLoading(true);
     setErrorMessage("");
-  
-    try {
-      // Log the payload before making the request
-      const payload = {
-        email: formData.identifier, // Map `identifier` to `email`
-        password: formData.password,
-      };
-      console.log("Sign-in Payload:", payload);
-  
-      // Make the Axios request
-      const response = await axios.post(`${API_URL}/users/signin`, payload);
-  
-      const { token, ...user } = response.data;
-  
-      // Save token to localStorage and dispatch Redux action
-      localStorage.setItem("authToken", token);
-      dispatch(signInSuccess(user));
-  
-      // Navigate to the main page
-      navigate("/main-page");
-    } catch (error) {
-      console.error("Sign-in error:", error.response?.data || error.message);
-      setErrorMessage(
-        error.response?.data?.message || "Invalid email/School ID or password"
-      );
-      dispatch(signInFailure("Invalid email/School ID or password"));
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+    const loginData = {
+        email: formData.identifier,
+        password: formData.password,
+    };
+
+    try {
+        // Ensure the URL is wrapped in backticks
+        const response = await axios.post(`${API_URL}/users/signin`, loginData);
+        const { token, ...user } = response.data;
+
+        localStorage.setItem("authToken", token);
+        dispatch(signInSuccess(user));
+
+        alert("Login successful! Welcome back!");
+
+        navigate("/main-page");
+    } catch (error) {
+        console.error("Sign-in error:", error.response?.data || error.message);
+        setErrorMessage(
+            error.response?.data?.message || "Invalid email/School ID or password"
+        );
+        dispatch(signInFailure("Invalid email/School ID or password"));
+    } finally {
+        setLoading(false);
+    }
+};
+
+const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
