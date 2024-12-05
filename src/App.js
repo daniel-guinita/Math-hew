@@ -14,6 +14,15 @@ import MathSpeedyQuiz from "./pages/MathSpeedyQuiz";
 import LearningBuddy from "./pages/LearningBuddy";
 import Leaderboard from "./pages/Leaderboard";
 import ProgressTracking from "./pages/ProgressTracking";
+<<<<<<< Updated upstream
+=======
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
+import TeacherAdminPage from "./pages/TeacherAdminPage";
+import TeacherQuiz from './pages/TeacherQuiz';
+import TeacherLessons from './pages/TeacherLessons';
+
+>>>>>>> Stashed changes
 
 function App() {
   return (
@@ -32,6 +41,14 @@ function App() {
         <Route path="/learning-buddy" element={<LearningBuddy />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/progress-tracking" element={<ProgressTracking />} />
+<<<<<<< Updated upstream
+=======
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/TeacherAdminPage" element={<TeacherAdminPage />} />
+        <Route path="/teacher-quiz" element={<TeacherQuiz />} />
+        <Route path="/teacher-lessons" element={<TeacherLessons />} />
+>>>>>>> Stashed changes
       </Routes>
       <Footer />
     </Router>
