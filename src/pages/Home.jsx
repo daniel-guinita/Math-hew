@@ -1,8 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import '../styles/Home.css';
 
 const Home = () => {
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
+
+  const handleStartLearningClick = () => {
+    if (currentUser) {
+      navigate("/main-page"); // Navigate to the main page for logged-in users
+    } else {
+      alert("Please log in to start learning!");
+    }
+  };
+
   return (
     <div className="home-container">
       <div className="home-content">
@@ -12,9 +24,12 @@ const Home = () => {
           <p className="home-description">
             Ready to explore the amazing world of 4th Grade Mathematics? 🚀
           </p>
-          <Link to="/main-page">
-            <button className="learn-button">🌟 Start Learning Now!</button>
-          </Link>
+          <button
+            className={`learn-button ${!currentUser ? "disabled" : ""}`}
+            onClick={handleStartLearningClick}
+          >
+            🌟 Start Learning Now!
+          </button>
         </div>
 
         {/* Image Section */}

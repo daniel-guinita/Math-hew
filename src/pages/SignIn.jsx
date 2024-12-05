@@ -24,55 +24,54 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/; // Only emails ending with @cit.edu
-    const schoolIdRegex = /^\d{2}-\d{4}-\d{3}$/; // Format: XX-XXXX-XXX
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/;
+    const schoolIdRegex = /^\d{2}-\d{4}-\d{3}$/;
 
     if (!formData.identifier || !formData.password) {
-        setErrorMessage("Please fill all the fields!");
-        return;
+      setErrorMessage("Please fill all the fields!");
+      return;
     }
 
     if (
-        !emailRegex.test(formData.identifier) &&
-        !schoolIdRegex.test(formData.identifier)
+      !emailRegex.test(formData.identifier) &&
+      !schoolIdRegex.test(formData.identifier)
     ) {
-        setErrorMessage(
-            "Identifier must be a valid email (example@cit.edu) or School ID (XX-XXXX-XXX)"
-        );
-        return;
+      setErrorMessage(
+        "Identifier must be a valid email (example@cit.edu) or School ID (XX-XXXX-XXX)"
+      );
+      return;
     }
 
     setLoading(true);
     setErrorMessage("");
 
     const loginData = {
-        email: formData.identifier,
-        password: formData.password,
+      email: formData.identifier,
+      password: formData.password,
     };
 
     try {
-        // Ensure the URL is wrapped in backticks
-        const response = await axios.post(`${API_URL}/users/signin`, loginData);
-        const { token, ...user } = response.data;
+      const response = await axios.post(`${API_URL}/users/signin`, loginData);
+      const { token, ...user } = response.data;
 
-        localStorage.setItem("authToken", token);
-        dispatch(signInSuccess(user));
+      localStorage.setItem("authToken", token);
+      dispatch(signInSuccess(user));
 
-        alert("Login successful! Welcome back!");
+      alert("Login successful! Welcome back!");
 
-        navigate("/main-page");
+      navigate("/main-page");
     } catch (error) {
-        console.error("Sign-in error:", error.response?.data || error.message);
-        setErrorMessage(
-            error.response?.data?.message || "Invalid email/School ID or password"
-        );
-        dispatch(signInFailure("Invalid email/School ID or password"));
+      console.error("Sign-in error:", error.response?.data || error.message);
+      setErrorMessage(
+        error.response?.data?.message || "Invalid email/School ID or password"
+      );
+      dispatch(signInFailure("Invalid email/School ID or password"));
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
 
-const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
 
@@ -102,7 +101,6 @@ const togglePasswordVisibility = () => {
                 placeholder="••••••••"
                 onChange={handleChange}
               />
-            
             </div>
             <div className="button-container">
               <Button type="submit" disabled={loading} className="signin-button">
@@ -124,6 +122,15 @@ const togglePasswordVisibility = () => {
               </Alert>
             </div>
           )}
+          {/* Add a "Register" prompt below the button */}
+          <div className="register-prompt">
+            <p>
+              Not registered yet?{" "}
+              <Link to="/register" className="register-link">
+                Click here to sign up!
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

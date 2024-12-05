@@ -23,9 +23,9 @@ const Header = () => {
   }, []);
 
   const handleLogout = () => {
-    dispatch(signoutSuccess()); // Dispatch the correct logout action
-    setDropdownOpen(false); // Close dropdown
-    navigate("/sign-in"); // Redirect to the login page
+    dispatch(signoutSuccess());
+    setDropdownOpen(false);
+    navigate("/sign-in");
   };
 
   return (
@@ -48,69 +48,50 @@ const Header = () => {
 
         {/* Navigation Menu */}
         <nav className={`header-nav ${menuOpen ? "header-nav-open" : ""}`}>
-          {/* Conditionally render the Home link */}
           <Link
-          to={currentUser ? "/main-page" : "/"}
-          className="header-nav-link"
-          onClick={() => {
-            setMenuOpen(false); // Close menu on click
-            navigate(currentUser ? "/main-page" : "/"); // Navigate explicitly
-          }}
-        >
-          🏠 Home
-        </Link>
-          <Link
-            to="/about-us"
+            to={currentUser ? "/main-page" : "/"}
             className="header-nav-link"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              setMenuOpen(false);
+              navigate(currentUser ? "/main-page" : "/");
+            }}
           >
+            🏠 Home
+          </Link>
+          <Link to="/about-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
             🧑‍🏫 About Us
           </Link>
-          <Link
-            to="/features"
-            className="header-nav-link"
-            onClick={() => setMenuOpen(false)}
-          >
+          <Link to="/features" className="header-nav-link" onClick={() => setMenuOpen(false)}>
             ✨ Features
           </Link>
-          <Link
-            to="/contact-us"
-            className="header-nav-link"
-            onClick={() => setMenuOpen(false)}
-          >
+          <Link to="/contact-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
             📩 Contact Us
           </Link>
         </nav>
 
-        {/* User Actions */}
-        <div className="header-actions" ref={dropdownRef}>
-          <button
-            className="header-dropdown-button"
-            onClick={() => setDropdownOpen(!dropdownOpen)}
-            aria-label="Toggle Account Menu"
-          >
-            👤 Account
-          </button>
-          <div className={`header-dropdown-menu ${dropdownOpen ? "dropdown-open" : ""}`}>
-            {!currentUser ? (
-              <>
-                <Link
-                  to="/sign-in"
-                  className="header-dropdown-item"
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  Log In
-                </Link>
-                <Link
-                  to="/register"
-                  className="header-dropdown-item"
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  Sign Up
-                </Link>
-              </>
-            ) : (
-              <>
+        {/* Account Section */}
+        <div className="header-account">
+          {!currentUser ? (
+            <button
+              className="header-signin-button"
+              onClick={() => navigate("/sign-in")}
+            >
+              👤 Sign In
+            </button>
+          ) : (
+            <div className="header-actions" ref={dropdownRef}>
+              <button
+                className="header-dropdown-button"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                aria-label="Toggle Account Menu"
+              >
+                👤 {currentUser.name}
+              </button>
+              <div
+                className={`header-dropdown-menu ${
+                  dropdownOpen ? "dropdown-open" : ""
+                }`}
+              >
                 <Link
                   to="/profile"
                   className="header-dropdown-item"
@@ -121,9 +102,9 @@ const Header = () => {
                 <button className="header-dropdown-item" onClick={handleLogout}>
                   Sign Out
                 </button>
-              </>
-            )}
-          </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </header>
