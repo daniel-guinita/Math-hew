@@ -22,8 +22,7 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminQuiz from "./pages/AdminQuiz";
 import AdminLessons from "./pages/AdminLessons";
 import AdminLeaderboard from "./pages/AdminLeaderboard";
-import Profile from "./pages/Profile";
-import EditProfile from "./pages/EditProfile";
+
 
 function App() {
   // Simulate user role (fetch from login/authentication system)
@@ -56,8 +55,6 @@ function App() {
         <Route path="/admin/admin-quiz" element={<AdminQuiz />} />
         <Route path="/admin/admin-lessons" element={<AdminLessons />} />
         <Route path="/admin/admin-leaderboard" element={<AdminLeaderboard />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
       </Routes>
       <Footer />
     </Router>

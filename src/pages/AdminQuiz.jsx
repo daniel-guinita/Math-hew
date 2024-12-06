@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../styles/AdminQuiz.css";
 
 const AdminQuiz = () => {
-  // Sample questions from MathSpeedyQuiz
   const [questions, setQuestions] = useState([
     {
       id: 1,
@@ -36,9 +35,40 @@ const AdminQuiz = () => {
     },
   ]);
 
-  // Function to handle question deletion
+  const [newQuestion, setNewQuestion] = useState("");
+  const [newOptions, setNewOptions] = useState(["", "", "", ""]);
+  const [newCorrectAnswer, setNewCorrectAnswer] = useState("");
+
   const handleDelete = (id) => {
     setQuestions(questions.filter((q) => q.id !== id));
+  };
+
+  const handleEdit = (id) => {
+    const questionToEdit = questions.find((q) => q.id === id);
+    if (questionToEdit) {
+      alert(`Editing Question: ${questionToEdit.question}`);
+      // Example: You can implement a modal or form for editing here.
+      console.log("Edit Question:", questionToEdit);
+    }
+  };
+
+  const handleAddQuestion = () => {
+    if (!newQuestion || newOptions.includes("") || !newCorrectAnswer) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    const newQuestionObj = {
+      id: questions.length + 1,
+      question: newQuestion,
+      options: newOptions,
+      correctAnswer: newCorrectAnswer,
+    };
+
+    setQuestions([...questions, newQuestionObj]);
+    setNewQuestion("");
+    setNewOptions(["", "", "", ""]);
+    setNewCorrectAnswer("");
   };
 
   return (
@@ -64,6 +94,12 @@ const AdminQuiz = () => {
                 </td>
                 <td className="actions-cell">
                   <button
+                    onClick={() => handleEdit(q.id)}
+                    className="edit-button"
+                  >
+                    Edit
+                  </button>
+                  <button
                     onClick={() => handleDelete(q.id)}
                     className="delete-button"
                   >
@@ -74,6 +110,44 @@ const AdminQuiz = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Add Question Section */}
+      <div className="add-question-form">
+        <h2>Add New Question</h2>
+        <input
+          type="text"
+          placeholder="Enter question"
+          value={newQuestion}
+          onChange={(e) => setNewQuestion(e.target.value)}
+          className="question-input"
+        />
+        <div className="options-inputs">
+          {newOptions.map((option, index) => (
+            <input
+              key={index}
+              type="text"
+              placeholder={`Option ${index + 1}`}
+              value={option}
+              onChange={(e) => {
+                const updatedOptions = [...newOptions];
+                updatedOptions[index] = e.target.value;
+                setNewOptions(updatedOptions);
+              }}
+              className="option-input"
+            />
+          ))}
+        </div>
+        <input
+          type="text"
+          placeholder="Enter correct answer"
+          value={newCorrectAnswer}
+          onChange={(e) => setNewCorrectAnswer(e.target.value)}
+          className="correct-answer-input"
+        />
+        <button onClick={handleAddQuestion} className="add-question-button">
+          Add Question
+        </button>
       </div>
     </div>
   );
