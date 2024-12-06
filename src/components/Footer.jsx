@@ -1,112 +1,92 @@
 import { Footer as FlowbiteFooter } from "flowbite-react";
-import { Link } from "react-router-dom";
-import {
-  BsFacebook,
-  BsInstagram,
-  BsTwitter,
-  BsGithub,
-  BsDribbble,
-} from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "../styles/Footer.css";
 
 export default function FooterComponent() {
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
+
+  const handleProtectedLinkClick = (path) => {
+    if (currentUser) {
+      navigate(path); // Navigate if logged in
+    } else {
+      alert("Please log in to access this feature!");
+    }
+  };
+
+  const randomFact = "Did you know? A honeybee’s hive is built using hexagons because they’re the most efficient shape!";
+  const randomJoke = "Why was the math book sad? It had too many problems!";
+
   return (
     <FlowbiteFooter container className="footer-container">
-      <div className="footer-wrapper">
+      <div className="footer-content">
         {/* Logo and Slogan */}
-        <div className="footer-top">
-          <div className="footer-logo-container">
-            <Link to="/" className="flex items-center">
-              <img
-                src="/images/icon.png"
-                className="footer-logo-img"
-                alt="Math-hew Logo"
-              />
-              <span className="footer-logo-text">Math-hew</span>
-            </Link>
-            <p className="footer-slogan">
-              🎉 Empowering Young Minds with Fun Math Adventures! 🚀
-            </p>
-          </div>
+        <div className="footer-logo-section">
+          <Link to="/" className="footer-logo-link">
+            <img
+              src="/images/icon.png"
+              className="footer-logo-img"
+              alt="Math-hew Logo"
+            />
+            <span className="footer-logo-text">Math-hew</span>
+          </Link>
+          <p className="footer-slogan">🎉 Learning Math is Fun with Math-hew! 🚀</p>
         </div>
 
-        {/* Quick Links */}
-        <div className="footer-grid">
-          <div className="footer-link-column">
-            <FlowbiteFooter.Title
-              title="Resources"
-              className="footer-link-title"
-            />
-            <FlowbiteFooter.LinkGroup col>
-              <Link to="/faq" className="footer-link">
-                FAQ
-              </Link>
-              <Link to="/tutorials" className="footer-link">
-                Tutorials
-              </Link>
-              <Link to="/leaderboard" className="footer-link">
-                Leaderboard
-              </Link>
-              <Link to="/games" className="footer-link">
+        {/* Links */}
+        <div className="footer-links-section">
+          <h3 className="footer-title">Quick Links</h3>
+          <ul className="footer-links">
+            <li>
+              <button
+                className="footer-link-button"
+                onClick={() => handleProtectedLinkClick("/games")}
+              >
                 Math Games
-              </Link>
-            </FlowbiteFooter.LinkGroup>
-          </div>
-          <div className="footer-link-column">
-            <FlowbiteFooter.Title
-              title="Support"
-              className="footer-link-title"
-            />
-            <FlowbiteFooter.LinkGroup col>
-              <Link to="/help" className="footer-link">
-                Help Center
-              </Link>
-              <Link to="/privacy-policy" className="footer-link">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="footer-link">
-                Terms & Conditions
-              </Link>
-            </FlowbiteFooter.LinkGroup>
-          </div>
+              </button>
+            </li>
+            <li>
+              <button
+                className="footer-link-button"
+                onClick={() => handleProtectedLinkClick("/leaderboard")}
+              >
+                Leaderboard
+              </button>
+            </li>
+            <li>
+              <button
+                className="footer-link-button"
+                onClick={() => handleProtectedLinkClick("/quizzes")}
+              >
+                Quizzes
+              </button>
+            </li>
+          </ul>
         </div>
 
-        {/* Social Icons */}
-        <div className="footer-social-icons">
-          <a href="#" className="social-icon">
-            <BsFacebook />
-          </a>
-          <a href="#" className="social-icon">
-            <BsInstagram />
-          </a>
-          <a href="#" className="social-icon">
-            <BsTwitter />
-          </a>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
+        {/* Fun Section */}
+        <div className="footer-fun-section">
+          <h3 className="footer-title">Fun with Math</h3>
+          <p className="footer-fact">{randomFact}</p>
+          <p className="footer-joke">{randomJoke}</p>
+        </div>
+      </div>
+
+      {/* Bottom Section */}
+      <div className="footer-bottom">
+        <p className="footer-cta">
+          🎯 Ready to explore more?{" "}
+          <span
+            className="footer-link-highlight"
+            onClick={() => handleProtectedLinkClick("/games")}
           >
-            <BsGithub />
-          </a>
-          <a href="#" className="social-icon">
-            <BsDribbble />
-          </a>
-        </div>
-
-        {/* Divider */}
-        <FlowbiteFooter.Divider className="footer-divider" />
-
-        {/* Bottom Section */}
-        <div className="footer-bottom">
-          <FlowbiteFooter.Copyright
-            href="#"
-            by="Math-hew"
-            year={new Date().getFullYear()}
-          />
-          <p className="footer-credits">✨ Designed with Love for 4th Graders! ✨</p>
-        </div>
+            Play a Game Now!
+          </span>
+        </p>
+        <p className="footer-copyright">
+          © {new Date().getFullYear()} Math-hew. All rights reserved.
+        </p>
       </div>
     </FlowbiteFooter>
   );

@@ -102,3 +102,25 @@
 .signin-link:hover {
   color: #ff4d6d;
 }
+
+.register-prompt {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000000;
+  
+}
+
+.register-link {
+  color: #e40808;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.register-link:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+

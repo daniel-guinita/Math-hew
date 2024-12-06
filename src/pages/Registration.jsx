@@ -23,10 +23,10 @@ export default function Register() {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/; // Only emails ending with @cit.edu
     const schoolIdRegex = /^\d{2}-\d{4}-\d{3}$/; // Format: XX-XXXX-XXX
-
+  
     if (
       !formData.email ||
       !formData.password ||
@@ -37,25 +37,25 @@ export default function Register() {
       setErrorMessage("Please fill all the fields, including School ID and role.");
       return;
     }
-
+  
     if (!emailRegex.test(formData.email)) {
       setErrorMessage("Email must be in the format: example@cit.edu");
       return;
     }
-
+  
     if (!schoolIdRegex.test(formData.schoolId)) {
       setErrorMessage("School ID must be in the format: XX-XXXX-XXX");
       return;
     }
-
+  
     if (formData.password !== formData.confirmPassword) {
       setErrorMessage("Passwords do not match");
       return;
     }
-
+  
     setLoading(true);
     setErrorMessage("");
-
+  
     const userData = {
       username: formData.username,
       password: formData.password,
@@ -64,9 +64,9 @@ export default function Register() {
       first_name: formData.firstName,
       last_name: formData.lastName,
       school_id: formData.schoolId,
-      role: "student",
+      role: formData.role,
     };
-
+  
     try {
       await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, userData);
       alert("Registration successful!");
@@ -78,7 +78,7 @@ export default function Register() {
       setLoading(false);
     }
   };
-
+  
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   const toggleConfirmPasswordVisibility = () =>
@@ -153,6 +153,7 @@ export default function Register() {
                 <option value="">Select Role</option>
                 <option value="student">Student</option>
                 <option value="teacher">Teacher</option>
+                <option value="teacher">Admin</option>
               </Select>
             </div>
           </div>
@@ -166,13 +167,6 @@ export default function Register() {
                 placeholder="Create a secret password"
                 onChange={handleChange}
               />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                className="password-toggle"
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
             </div>
             <div>
               <Label htmlFor="confirmPassword" value="Confirm Password 🔑:" />
@@ -182,13 +176,6 @@ export default function Register() {
                 placeholder="Retype your password"
                 onChange={handleChange}
               />
-              <button
-                type="button"
-                onClick={toggleConfirmPasswordVisibility}
-                className="password-toggle"
-              >
-                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
             </div>
           </div>
   

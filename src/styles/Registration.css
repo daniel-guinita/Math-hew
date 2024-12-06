@@ -54,16 +54,6 @@ select {
   position: relative;
 }
 
-.password-toggle {
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
 .register-button {
   background: linear-gradient(to right, #ff6f61, #ff9a76);
   color: #fff;
