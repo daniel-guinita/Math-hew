@@ -1,0 +1,73 @@
+/* Container styling */
+.admin-quiz-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #2a5175, #b94444);
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Title styling */
+  .admin-quiz-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Table wrapper to ensure responsiveness */
+  .admin-quiz-table-wrapper {
+    width: 90%;
+    max-width: 800px;
+    overflow-x: auto;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Table styling */
+  .admin-quiz-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  
+  .admin-quiz-table th,
+  .admin-quiz-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .admin-quiz-table th {
+    background-color: #2a5175;
+    font-weight: bold;
+  }
+  
+  .correct-answer {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  /* Button styling */
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .delete-button:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Actions cell alignment */
+  .actions-cell {
+    text-align: center;
+  }
+  
