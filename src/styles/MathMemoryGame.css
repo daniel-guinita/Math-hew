@@ -1,12 +1,17 @@
 /* Container Styles */
 .memory-game-container {
+
   margin-top: 80px;
   min-height: 100vh;
   background: linear-gradient(135deg, #4b6cb7, #182848);
   display: flex;
   flex-direction: column;
   align-items: center;
+
   padding: 2rem;
+
+  padding: 8rem;
+
   position: relative;
   color: #ffffff;
 }

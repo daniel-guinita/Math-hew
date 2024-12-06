@@ -1,107 +1,114 @@
-import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
 import { signoutSuccess } from "../redux/user/userSlice";
+import "../styles/Header.css";
 
-export default function Header() {
-  const path = useLocation().pathname;
-  const dispatch = useDispatch();
+const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const { currentUser } = useSelector((state) => state.user);
-  const [showSignoutModal, setShowSignoutModal] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSignout = () => {
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleLogout = () => {
     dispatch(signoutSuccess());
-    setShowSignoutModal(false); // Close the modal after simulated sign out
+    setDropdownOpen(false);
+    navigate("/sign-in");
   };
 
   return (
-    <Navbar className="border-b-2">
-      <div className="flex justify-between items-center w-full px-4 max-w-7xl mx-auto">
-        {/* Logo */}
-        <Link to="/" className="flex items-center">
-          <img
-            src="/images/icon.png"
-            className="mr-2 h-6 sm:h-9"
-            alt="Math-hew Logo"
-          />
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Math-hew
-          </span>
+    <header className="header">
+      <div className="header-container">
+        {/* Logo Section */}
+        <Link to="/" className="header-logo">
+          <img src="/images/icon.png" alt="Math-hew Logo" className="header-logo-img" />
+          <span className="header-logo-text">Math-hew</span>
         </Link>
 
-        {/* Centered Navigation Links */}
-        <div className="flex space-x-8">
-          <Link
-            to="/"
-            className={`text-lg font-medium ${
-              path === "/" ? "text-white" : "text-gray-400"
-            } hover:text-white`}
-          >
-            Home
-          </Link>
-          <Link
-            to="/about-us"
-            className={`text-lg font-medium ${
-              path === "/about-us" ? "text-white" : "text-gray-400"
-            } hover:text-white`}
-          >
-            About Us
-          </Link>
-          <Link
-            to="/features"
-            className={`text-lg font-medium ${
-              path === "/features" ? "text-white" : "text-gray-400"
-            } hover:text-white`}
-          >
-            Features
-          </Link>
-          <Link
-            to="/contact-us"
-            className={`text-lg font-medium ${
-              path === "/contact-us" ? "text-white" : "text-gray-400"
-            } hover:text-white`}
-          >
-            Contact Us
-          </Link>
-        </div>
+        {/* Hamburger Menu */}
+        <button
+          className="header-menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle Navigation Menu"
+        >
+          ☰
+        </button>
 
-        {/* User Account Dropdown */}
-        <div className="flex items-center gap-2">
-          {currentUser ? (
-            <Dropdown
-              arrowIcon={false}
-              inline
-              label={
-                <Avatar alt="user" img={currentUser.profilePicture} rounded />
-              }
+        {/* Navigation Menu */}
+        <nav className={`header-nav ${menuOpen ? "header-nav-open" : ""}`}>
+          <Link
+            to={currentUser ? "/main-page" : "/"}
+            className="header-nav-link"
+            onClick={() => {
+              setMenuOpen(false);
+              navigate(currentUser ? "/main-page" : "/");
+            }}
+          >
+            🏠 Home
+          </Link>
+          <Link to="/about-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
+            🧑‍🏫 About Us
+          </Link>
+          <Link to="/features" className="header-nav-link" onClick={() => setMenuOpen(false)}>
+            ✨ Features
+          </Link>
+          <Link to="/contact-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
+            📩 Contact Us
+          </Link>
+        </nav>
+
+        {/* Account Section */}
+        <div className="header-account">
+          {!currentUser ? (
+            <button
+              className="header-signin-button"
+              onClick={() => navigate("/sign-in")}
             >
-              <Dropdown.Header>
-                <span className="block text-sm">@{currentUser.username}</span>
-                <span className="block text-sm font-medium truncate">
-                  {currentUser.email}
-                </span>
-              </Dropdown.Header>
-              <Link to={"/dashboard?tab=analytics"}>
-                <Dropdown.Item>Dashboard</Dropdown.Item>
-              </Link>
-              <Link to={"/dashboard?tab=profile"}>
-                <Dropdown.Item>Profile</Dropdown.Item>
-              </Link>
-              <Dropdown.Divider />
-              <Dropdown.Item onClick={() => setShowSignoutModal(true)}>
-                Sign out
-              </Dropdown.Item>
-            </Dropdown>
+              👤 Sign In
+            </button>
           ) : (
-            <Link to="/sign-in">
-              <Button gradientMonochrome="failure" outline>
-                Sign In
-              </Button>
-            </Link>
+            <div className="header-actions" ref={dropdownRef}>
+              <button
+                className="header-dropdown-button"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                aria-label="Toggle Account Menu"
+              >
+                👤 {currentUser.name}
+              </button>
+              <div
+                className={`header-dropdown-menu ${
+                  dropdownOpen ? "dropdown-open" : ""
+                }`}
+              >
+                <Link
+                  to="/profile"
+                  className="header-dropdown-item"
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  Profile
+                </Link>
+                <button className="header-dropdown-item" onClick={handleLogout}>
+                  Sign Out
+                </button>
+              </div>
+            </div>
           )}
         </div>
       </div>
-    </Navbar>
+    </header>
   );
-}
+};
+
+export default Header;

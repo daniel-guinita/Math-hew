@@ -1,91 +1,93 @@
-import { Footer } from "flowbite-react";
-import { Link } from "react-router-dom";
-import {
-  BsFacebook,
-  BsInstagram,
-  BsTwitter,
-  BsGithub,
-  BsDribbble,
-} from "react-icons/bs";
+import { Footer as FlowbiteFooter } from "flowbite-react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import "../styles/Footer.css";
 
-export default function FooterCom() {
+export default function FooterComponent() {
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const navigate = useNavigate();
+
+  const handleProtectedLinkClick = (path) => {
+    if (currentUser) {
+      navigate(path); // Navigate if logged in
+    } else {
+      alert("Please log in to access this feature!");
+    }
+  };
+
+  const randomFact = "Did you know? A honeybee’s hive is built using hexagons because they’re the most efficient shape!";
+  const randomJoke = "Why was the math book sad? It had too many problems!";
+
   return (
-    <Footer container className="border border-t-8 border-orange-500">
-      <div className="mx-auto w-full max-w-screen-xl">
-        <div className="grid w-full justify-between sm:flex md:grid-cols-1">
-          <div className="mt-5">
-            <Link to="/" className="flex items-center">
-              <img
-                src="/images/icon.png"
-                className="mr-2 h-6 sm:h-9"
-                alt="Math-hew Logo"
-              />
-              <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                Math-hew
-              </span>
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6">
-            <div>
-              <Footer.Title title="About" />
-              <Footer.LinkGroup col>
-                <Footer.Link
-                  href="/about-us"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Capstone 1 Project
-                </Footer.Link>
-                <Footer.Link
-                  href="https://github.com/daniel-guinita/Math-hew"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Group 06
-                </Footer.Link>
-              </Footer.LinkGroup>
-            </div>
-            <div>
-              <Footer.Title title="Follow us" />
-              <Footer.LinkGroup col>
-                <Footer.Link
-                  href="https://github.com/daniel-guinita/Math-hew"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Github
-                </Footer.Link>
-                <Footer.Link href="#">Discord</Footer.Link>
-              </Footer.LinkGroup>
-            </div>
-            <div>
-              <Footer.Title title="Legal" />
-              <Footer.LinkGroup col>
-                <Footer.Link href="#">Privacy Policy</Footer.Link>
-                <Footer.Link href="#">Terms &amp; Conditions</Footer.Link>
-              </Footer.LinkGroup>
-            </div>
-          </div>
-        </div>
-        <Footer.Divider />
-        <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <Footer.Copyright
-            href="#"
-            by=" Math-hew"
-            year={new Date().getFullYear()}
-          />
-          <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">
-            <Footer.Icon href="#" icon={BsFacebook} />
-            <Footer.Icon href="#" icon={BsInstagram} />
-            <Footer.Icon href="#" icon={BsTwitter} />
-            <Footer.Icon
-              href="https://github.com"
-              icon={BsGithub}
+    <FlowbiteFooter container className="footer-container">
+      <div className="footer-content">
+        {/* Logo and Slogan */}
+        <div className="footer-logo-section">
+          <Link to="/" className="footer-logo-link">
+            <img
+              src="/images/icon.png"
+              className="footer-logo-img"
+              alt="Math-hew Logo"
             />
-            <Footer.Icon href="#" icon={BsDribbble} />
-          </div>
+            <span className="footer-logo-text">Math-hew</span>
+          </Link>
+          <p className="footer-slogan">🎉 Learning Math is Fun with Math-hew! 🚀</p>
+        </div>
+
+        {/* Links */}
+        <div className="footer-links-section">
+          <h3 className="footer-title">Quick Links</h3>
+          <ul className="footer-links">
+            <li>
+              <button
+                className="footer-link-button"
+                onClick={() => handleProtectedLinkClick("/games")}
+              >
+                Math Games
+              </button>
+            </li>
+            <li>
+              <button
+                className="footer-link-button"
+                onClick={() => handleProtectedLinkClick("/leaderboard")}
+              >
+                Leaderboard
+              </button>
+            </li>
+            <li>
+              <button
+                className="footer-link-button"
+                onClick={() => handleProtectedLinkClick("/quizzes")}
+              >
+                Quizzes
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        {/* Fun Section */}
+        <div className="footer-fun-section">
+          <h3 className="footer-title">Fun with Math</h3>
+          <p className="footer-fact">{randomFact}</p>
+          <p className="footer-joke">{randomJoke}</p>
         </div>
       </div>
-    </Footer>
+
+      {/* Bottom Section */}
+      <div className="footer-bottom">
+        <p className="footer-cta">
+          🎯 Ready to explore more?{" "}
+          <span
+            className="footer-link-highlight"
+            onClick={() => handleProtectedLinkClick("/games")}
+          >
+            Play a Game Now!
+          </span>
+        </p>
+        <p className="footer-copyright">
+          © {new Date().getFullYear()} Math-hew. All rights reserved.
+        </p>
+      </div>
+    </FlowbiteFooter>
   );
 }
