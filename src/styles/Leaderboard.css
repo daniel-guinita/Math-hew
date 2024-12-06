@@ -1,0 +1,113 @@
+/* Main Container */
+.leaderboard-container {
+  margin-top: 3%;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(to bottom, #100955, #067a71);
+  padding: 30px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title */
+.leaderboard-title {
+  font-size: 3rem;
+  color: #e71d0b;
+  text-shadow: 2px 2px #f58904;
+  margin-top: 2%;
+  margin-bottom: 1ch;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+/* Section */
+.leaderboard-section {
+  width: 90%;
+  max-width: 800px;
+  margin-bottom: 30px;
+  animation: slideInUp 1s ease-in-out;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 2rem;
+  color: #ff6f61;
+  text-shadow: 1px 1px #ffe4c4;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Table Container */
+.table-container {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Table */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard-table thead {
+  background: #04be9f;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  text-align: center;
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.leaderboard-table .row.even {
+  background: #8a0b07;
+}
+
+.leaderboard-table .row.odd {
+  background: #064988;
+}
+
+.leaderboard-table tbody .row:hover {
+  background: #ffee58;
+  transform: scale(1.02);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .leaderboard-title {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+}

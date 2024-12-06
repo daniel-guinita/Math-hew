@@ -1,0 +1,171 @@
+/* Main Container */
+.lessons-page-container {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(to bottom, #ffd89b, #19547b);
+  padding: 50px;
+  min-height: 100vh;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Page Title */
+.page-title {
+  margin-top: 3%;
+  text-align: center;
+  font-size: 3rem;
+  color: #dd3d2e;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px #ffe4c4;
+  animation: fadeInDown 1s ease-in-out;
+
+}
+
+/* Section Title */
+.section-title {
+  font-size: 2rem;
+  color: #ffd700;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px #000;
+  animation: fadeInLeft 1s ease-in-out;
+
+}
+
+/* Content Card */
+.content-card {
+  background: #bbb3b3;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: slideInUp 0.5s ease-in-out;
+
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+.content-title {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.content-description {
+  font-size: 1.2rem;
+  color: #413838;
+}
+
+/* Admin Section */
+.admin-section {
+  background: #ffe4e1;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease-in-out;
+
+}
+
+.input-field {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  transition: border-color 0.3s;
+}
+
+.add-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #ff6f61;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.add-button:hover {
+  background: #ff3d3d;
+  transform: scale(1.1);
+}
+
+/* Lessons & Videos Sections */
+.lessons-section,
+.videos-section {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(175, 70, 70, 0.8);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .content-card {
+    padding: 15px;
+  }
+
+  .input-field {
+    font-size: 1rem;
+  }
+}

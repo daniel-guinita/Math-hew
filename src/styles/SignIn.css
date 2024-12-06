@@ -1,0 +1,126 @@
+/* Main Container */
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #87ceeb, #f79f1f);
+  padding: 2rem;
+}
+
+/* Card Styling */
+.signin-card {
+  background: #6584c9;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Header Section */
+.signin-header {
+  margin-bottom: 1.5rem;
+}
+
+.signin-logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #e02626;
+}
+
+.signin-subtext {
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 0.5rem;
+}
+
+/* Form Styling */
+.form div {
+  margin-bottom: 1rem;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Centering the error message */
+.error-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.error-container .alert {
+  font-size: 0.875rem; /* Slightly smaller font for error messages */
+  color: #ff4d4d; /* Bright red for emphasis */
+  background-color: #ffe6e6; /* Light red background for readability */
+  padding: 0.5rem 1rem;
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #ff9999; /* Add a slight border for visibility */
+}
+
+/* Centering the button container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem; /* Add space between the button and the other elements */
+}
+
+.signin-button {
+  background: linear-gradient(to right, #dd1526, #c705b7);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.signin-button:hover {
+  transform: scale(1.05);
+}
+
+.signin-footer {
+  margin-top: 1.5rem;
+}
+
+.signin-link {
+  color: #06aed8;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signin-link:hover {
+  color: #ff4d6d;
+}
+
+.register-prompt {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000000;
+  
+}
+
+.register-link {
+  color: #e40808;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.register-link:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+

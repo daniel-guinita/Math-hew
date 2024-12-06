@@ -2,103 +2,135 @@ import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { signInSuccess, signInFailure } from "../redux/user/userSlice";
+import axios from "axios";
+import "../styles/SignIn.css";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password) {
-      setErrorMessage("Please fill all the fields");
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/;
+    const schoolIdRegex = /^\d{2}-\d{4}-\d{3}$/;
+
+    if (!formData.identifier || !formData.password) {
+      setErrorMessage("Please fill all the fields!");
       return;
     }
+
+    if (
+      !emailRegex.test(formData.identifier) &&
+      !schoolIdRegex.test(formData.identifier)
+    ) {
+      setErrorMessage(
+        "Identifier must be a valid email (example@cit.edu) or School ID (XX-XXXX-XXX)"
+      );
+      return;
+    }
+
     setLoading(true);
     setErrorMessage("");
 
-    // Simulate successful login without backend
-    setTimeout(() => {
+    const loginData = {
+      email: formData.identifier,
+      password: formData.password,
+    };
+
+    try {
+      const response = await axios.post(`${API_URL}/users/signin`, loginData);
+      const { token, ...user } = response.data;
+
+      localStorage.setItem("authToken", token);
+      dispatch(signInSuccess(user));
+
+      alert("Login successful! Welcome back!");
+
+      navigate("/main-page");
+    } catch (error) {
+      console.error("Sign-in error:", error.response?.data || error.message);
+      setErrorMessage(
+        error.response?.data?.message || "Invalid email/School ID or password"
+      );
+      dispatch(signInFailure("Invalid email/School ID or password"));
+    } finally {
       setLoading(false);
-      setErrorMessage("");
-      navigate("/main-page"); // Redirect to the desired page after login
-    }, 1000);
+    }
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+    setShowPassword((prev) => !prev);
   };
 
   return (
-    <div className="min-h-screen mt-20">
-      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
-        {/* left */}
-        <div className="flex-1">
-          <Link to="/" className="font-bold dark:text-white text-4xl">
-            Math-hew
-          </Link>
-          <p className="text-sm mt-5">
-            Sign in with your account credentials!
-          </p>
+    <div className="signin-container">
+      <div className="signin-card">
+        <div className="signin-header">
+          <Link to="/" className="signin-logo">🚀 Math-hew</Link>
+          <p className="signin-subtext">Welcome back, future math genius!</p>
         </div>
-        {/* right */}
-        <div className="flex-1">
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <div className="signin-form">
+          <form className="form" onSubmit={handleSubmit}>
             <div>
-              <Label htmlFor="email" value="Your email" />
+              <Label htmlFor="identifier" value="Enter your email or School ID:" />
               <TextInput
-                type="email"
-                placeholder="name@company.com"
-                id="email"
+                type="text"
+                placeholder="Email or School ID"
+                id="identifier"
                 onChange={handleChange}
               />
             </div>
-            <div className="flex-1">
-              <div className="relative">
-                <Label htmlFor="password" value="Your password" />
-                <TextInput
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="**********"
-                  onChange={handleChange}
-                />
-                <div className="flex items-end absolute right-3 bottom-3">
-                  <button
-                    type="button"
-                    onClick={togglePasswordVisibility}
-                    className="text-gray-500"
-                  >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
-                  </button>
-                </div>
-              </div>
+            <div className="relative">
+              <Label htmlFor="password" value="Your secret password:" />
+              <TextInput
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                onChange={handleChange}
+              />
             </div>
-            <Button
-              gradientDuoTone="purpleToPink"
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? (
-                <>
-                  <Spinner size="sm" />
-                  <span className="pl-3">Loading...</span>
-                </>
-              ) : (
-                "Sign In"
-              )}
-            </Button>
+            <div className="button-container">
+              <Button type="submit" disabled={loading} className="signin-button">
+                {loading ? (
+                  <>  
+                    <Spinner size="sm" />
+                    <span className="pl-3">Logging in...</span>
+                  </>
+                ) : (
+                  "Start Learning 🚀"
+                )}
+              </Button>
+            </div>
           </form>
           {errorMessage && (
-            <Alert className="mt-5" color="failure">
-              {errorMessage}
-            </Alert>
+            <div className="error-container">
+              <Alert color="failure">
+                {errorMessage}
+              </Alert>
+            </div>
           )}
+          {/* Add a "Register" prompt below the button */}
+          <div className="register-prompt">
+            <p>
+              Not registered yet?{" "}
+              <Link to="/register" className="register-link">
+                Click here to sign up!
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,99 @@
+/* Main Container */
+.progress-tracker-container {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(to bottom, #ffe0b2, #ffcc80);
+    padding: 50px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Title */
+  .progress-title {
+    font-size: 2.5rem;
+    color: #ff6f61;
+    text-shadow: 2px 2px #ffccbc;
+    margin-top: 5%;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease-in-out;
+  }
+  
+  /* Grid Layout */
+  .progress-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+    width: 95%;
+    max-width: 1200px;
+  }
+  
+  /* Card */
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Section Title */
+  .section-title {
+    font-size: 1.6rem;
+    color: #4caf50;
+    margin-bottom: 10px;
+    text-align: center;
+    text-shadow: 1px 1px #c8e6c9;
+  }
+  
+  /* List */
+  .list {
+    list-style: disc;
+    padding-left: 20px;
+    color: #333;
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .list li {
+    margin-bottom: 5px;
+  }
+  
+  /* Animations */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .progress-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .progress-title {
+      font-size: 2rem;
+    }
+  
+    .section-title {
+      font-size: 1.4rem;
+    }
+  }
+  
