@@ -56,14 +56,22 @@ export default function LessonsPage() {
             placeholder="Lesson Title"
             value={newLesson.title}
             onChange={(e) => setNewLesson({ ...newLesson, title: e.target.value })}
+<<<<<<< Updated upstream
             className="p-2 border rounded mr-2"
+=======
+            className="p-2 border rounded mr-2 text-black"
+>>>>>>> Stashed changes
           />
           <input
             type="text"
             placeholder="Lesson Description"
             value={newLesson.description}
             onChange={(e) => setNewLesson({ ...newLesson, description: e.target.value })}
+<<<<<<< Updated upstream
             className="p-2 border rounded mr-2"
+=======
+            className="p-2 border rounded mr-2 text-black"
+>>>>>>> Stashed changes
           />
           <button onClick={handleAddLesson} className="p-2 bg-blue-500 text-white rounded">
             Add Lesson
@@ -103,21 +111,33 @@ export default function LessonsPage() {
             placeholder="Video Title"
             value={newVideo.title}
             onChange={(e) => setNewVideo({ ...newVideo, title: e.target.value })}
+<<<<<<< Updated upstream
             className="p-2 border rounded mr-2"
+=======
+            className="p-2 border rounded mr-2 text-black"
+>>>>>>> Stashed changes
           />
           <input
             type="text"
             placeholder="Video Description"
             value={newVideo.description}
             onChange={(e) => setNewVideo({ ...newVideo, description: e.target.value })}
+<<<<<<< Updated upstream
             className="p-2 border rounded mr-2"
+=======
+            className="p-2 border rounded mr-2 text-black"
+>>>>>>> Stashed changes
           />
           <input
             type="text"
             placeholder="Video URL"
             value={newVideo.url}
             onChange={(e) => setNewVideo({ ...newVideo, url: e.target.value })}
+<<<<<<< Updated upstream
             className="p-2 border rounded mr-2"
+=======
+            className="p-2 border rounded mr-2 text-black"
+>>>>>>> Stashed changes
           />
           <button onClick={handleAddVideo} className="p-2 bg-blue-500 text-white rounded">
             Add Video

@@ -1,8 +1,15 @@
 import React, { useState } from "react";
+<<<<<<< Updated upstream
 import "../styles/TeacherAdminPage.css";
 import Header from "../components/HeaderTeacher";
 
 const TeacherDashboard = () => {
+=======
+import Header from "../components/HeaderTeacher";
+import "../styles/TeacherAdminPage.css";
+
+const TeacherAdminPage = () => {
+>>>>>>> Stashed changes
   const [students, setStudents] = useState([
     { id: 1, name: "John Doe", grade: "A" },
     { id: 2, name: "Jane Smith", grade: "B" },
@@ -40,7 +47,11 @@ const TeacherDashboard = () => {
 
       {/* Student List Section */}
       <div className="student-list">
+<<<<<<< Updated upstream
         <h2 className="section-title">Student List</h2>
+=======
+        <h2 className="text-4xl font-bold text-yellow-300 mb-4">Student List</h2>
+>>>>>>> Stashed changes
         <table className="student-table">
           <thead>
             <tr>
@@ -110,4 +121,8 @@ const TeacherDashboard = () => {
   );
 };
 
+<<<<<<< Updated upstream
 export default TeacherDashboard;
+=======
+export default TeacherAdminPage;
+>>>>>>> Stashed changes
