@@ -39,11 +39,12 @@ export default function AdminLessons() {
                 <p className="text-gray-700 dark:text-gray-300">{lesson.description}</p>
               </div>
               <button
-                onClick={() => handleDeleteLesson(lesson.id)}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                onClick={() => handleDeleteLesson(lessons.id)}
+                className="bg-red-500 text-white px-2 py-1 text-sm rounded hover:bg-red-600 w-20"
               >
                 Delete
               </button>
+
             </div>
           ))}
         </div>
@@ -63,8 +64,8 @@ export default function AdminLessons() {
                 <p className="text-gray-700 dark:text-gray-300">{video.description}</p>
               </div>
               <button
-                onClick={() => handleDeleteVideo(video.id)}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                onClick={() => handleDeleteLesson(lessons.id)}
+                className="bg-red-500 text-white px-2 py-1 text-sm rounded hover:bg-red-600 w-20"
               >
                 Delete
               </button>

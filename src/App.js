@@ -27,8 +27,7 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminQuiz from "./pages/AdminQuiz";
 import AdminLessons from "./pages/AdminLessons";
 import AdminLeaderboard from "./pages/AdminLeaderboard";
-import Profile from "./pages/Profile";
-import EditProfile from "./pages/EditProfile";
+
 
 
 function App() {
@@ -69,6 +68,7 @@ function App() {
         <Route path="/admin/admin-leaderboard" element={<AdminLeaderboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+
 
       </Routes>
       <Footer />
