@@ -28,8 +28,6 @@ import AdminQuiz from "./pages/AdminQuiz";
 import AdminLessons from "./pages/AdminLessons";
 import AdminLeaderboard from "./pages/AdminLeaderboard";
 
-
-
 function App() {
   // Simulate user role (fetch from login/authentication system)
   const [userRole, setUserRole] = useState("student"); // Can be "student", "teacher", or "admin"
