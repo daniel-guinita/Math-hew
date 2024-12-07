@@ -17,6 +17,11 @@ import Registration from "./pages/Registration";
 import ProgressTracking from "./pages/ProgressTracking";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
+import TeacherAdminPage from "./pages/TeacherAdminPage";
+import TeacherQuiz from './pages/TeacherQuiz';
+import TeacherLessons from './pages/TeacherLessons';
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
 import AdminQuiz from "./pages/AdminQuiz";
@@ -49,6 +54,11 @@ function App() {
         <Route path="/progress-tracking" element={<ProgressTracking />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/TeacherAdminPage" element={<TeacherAdminPage />} />
+        <Route path="/teacher-quiz" element={<TeacherQuiz />} />
+        <Route path="/teacher-lessons" element={<TeacherLessons />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/admin-users" element={<AdminUsers />} />
         <Route path="/admin/admin-quiz" element={<AdminQuiz />} />
@@ -56,6 +66,8 @@ function App() {
         <Route path="/admin/admin-leaderboard" element={<AdminLeaderboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+
+
       </Routes>
       <Footer />
     </Router>
