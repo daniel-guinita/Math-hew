@@ -22,8 +22,6 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminQuiz from "./pages/AdminQuiz";
 import AdminLessons from "./pages/AdminLessons";
 import AdminLeaderboard from "./pages/AdminLeaderboard";
-import Profile from "./pages/Profile";
-import EditProfile from "./pages/EditProfile";
 
 function App() {
   // Simulate user role (fetch from login/authentication system)
