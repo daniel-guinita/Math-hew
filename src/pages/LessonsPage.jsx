@@ -12,7 +12,7 @@ export default function LessonsPage() {
     { id: 2, title: "Video 2: Multiplication Tips", description: "Tips for quick multiplication." },
   ];
 
-  import React, { useState } from "react";
+import React, { useState } from "react";
 import "../styles/LessonsPage.css";
 
 const LessonsPage = ({ userRole }) => {
