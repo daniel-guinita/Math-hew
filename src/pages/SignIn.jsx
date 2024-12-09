@@ -80,15 +80,15 @@ export default function SignIn() {
     <div className="signin-container">
       <div className="signin-card">
         <div className="signin-header">
-          <Link to="/" className="signin-logo">🐉 Math-hew</Link>
+          <Link to="/" className="signin-logo">Math-hew</Link>
           <p className="signin-subtext">
-            Welcome back, future math genius! 🎉
+            Welcome back, future math genius!
           </p>
         </div>
         <div className="signin-form">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <Label htmlFor="identifier" value="📝 Enter your email or School ID:" />
+              <Label htmlFor="identifier" value="Enter your email or School ID:" />
               <TextInput
                 type="text"
                 id="identifier"
@@ -98,7 +98,7 @@ export default function SignIn() {
               />
             </div>
             <div className="form-group relative">
-              <Label htmlFor="password" value="🔒 Your secret password:" />
+              <Label htmlFor="password" value="Password:" />
               <TextInput
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -114,7 +114,7 @@ export default function SignIn() {
             </div>
             <div className="button-container">
               <Button type="submit" disabled={loading} className="signin-button">
-                {loading ? <Spinner size="sm" /> : "🚀 Start Learning"}
+                {loading ? <Spinner size="sm" /> : "Start Learning"}
               </Button>
             </div>
           </form>

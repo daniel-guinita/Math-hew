@@ -21,8 +21,6 @@ import EditProfile from "./pages/EditProfile";
 import TeacherAdminPage from "./pages/TeacherAdminPage";
 import TeacherQuiz from './pages/TeacherQuiz';
 import TeacherLessons from './pages/TeacherLessons';
-import Profile from "./pages/Profile";
-import EditProfile from "./pages/EditProfile";
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
 import AdminQuiz from "./pages/AdminQuiz";

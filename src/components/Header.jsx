@@ -59,16 +59,16 @@ const Header = () => {
               navigate(currentUser ? "/main-page" : "/");
             }}
           >
-            🏠 Home
+          Home
           </Link>
           <Link to="/about-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
-            🧑‍🏫 About Us
+          About Us
           </Link>
           <Link to="/features" className="header-nav-link" onClick={() => setMenuOpen(false)}>
-            ✨ Features
+          Features
           </Link>
           <Link to="/contact-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
-            📩 Contact Us
+          Contact Us
           </Link>
         </nav>
 
@@ -79,7 +79,7 @@ const Header = () => {
               className="header-signin-button"
               onClick={() => navigate("/sign-in")}
             >
-              👤 Sign In
+            Sign In
             </button>
           ) : (
             <div className="header-actions" ref={dropdownRef}>

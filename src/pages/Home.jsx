@@ -22,13 +22,13 @@ const Home = () => {
         <div className="home-text">
           <h1 className="home-title">🎉 Welcome to Math-hew! 🎉</h1>
           <p className="home-description">
-            Ready to explore the amazing world of 4th Grade Mathematics? 🚀
+            Ready to explore the amazing world of 4th Grade Mathematics?
           </p>
           <button
             className={`learn-button ${!currentUser ? "disabled" : ""}`}
             onClick={handleStartLearningClick}
           >
-            🌟 Start Learning Now!
+          Start Learning Now!
           </button>
         </div>
 

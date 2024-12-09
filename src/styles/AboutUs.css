@@ -23,23 +23,23 @@
   animation: float 6s ease-in-out infinite;
 }
 
-.aboutus-container::before {
+/* .aboutus-container::before {
   width: 200px;
   height: 200px;
   background: rgba(0, 12, 0, 0.5);
   top: 10%;
   left: 5%;
   animation-delay: 0s;
-}
+} */
 
-.aboutus-container::after {
+/* .aboutus-container::after {
   width: 150px;
   height: 150px;
   background: rgba(255, 99, 71, 0.5);
   bottom: 15%;
   right: 10%;
   animation-delay: 2s;
-}
+} */
 
 /* Title and Subtext */
 .aboutus-title {
@@ -127,7 +127,7 @@
 .member-card-name {
   font-size: 1.75rem;
   font-weight: bold;
-  color: #07050c;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 

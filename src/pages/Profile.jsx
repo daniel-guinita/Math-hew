@@ -12,7 +12,7 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <h1 className="profile-title">👩‍🎓 Welcome, {currentUser.firstName || "Student"}! 👨‍🎓</h1>
+      <h1 className="profile-title">Welcome, {currentUser.firstName || "Student"}! 👨‍🎓</h1>
       <div className="profile-card">
         {/* Profile Image */}
         <div className="profile-image-section">
@@ -25,14 +25,14 @@ const Profile = () => {
 
         {/* Profile Info */}
         <div className="profile-info">
-          <p><strong>📛 First Name:</strong> {currentUser.firstName}</p>
-          <p><strong>📛 Last Name:</strong> {currentUser.lastName}</p>
-          <p><strong>📧 Email:</strong> {currentUser.email}</p>
+          <p><strong>First Name:</strong> {currentUser.firstName}</p>
+          <p><strong>Last Name:</strong> {currentUser.lastName}</p>
+          <p><strong>Email:</strong> {currentUser.email}</p>
         </div>
 
         {/* Edit Button */}
         <Link to="/edit-profile" className="edit-profile-button">
-          ✏️ Edit Your Profile
+        Edit Your Profile
         </Link>
       </div>
     </div>

@@ -19,7 +19,7 @@
   opacity: 0.3;
 }
 
-.contact-us-container::before {
+/* .contact-us-container::before {
   width: 250px;
   height: 250px;
   background: rgba(255, 223, 77, 0.5);
@@ -35,7 +35,7 @@
   bottom: 15%;
   right: 10%;
   animation-delay: 2s;
-}
+} */
 
 /* Contact Us Card */
 .contact-us-card {

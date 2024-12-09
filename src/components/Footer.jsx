@@ -31,7 +31,7 @@ export default function FooterComponent() {
             />
             <span className="footer-logo-text">Math-hew</span>
           </Link>
-          <p className="footer-slogan">🎉 Learning Math is Fun with Math-hew! 🚀</p>
+          <p className="footer-slogan">Learning Math is Fun with Math-hew!</p>
         </div>
 
         {/* Links */}
@@ -76,7 +76,7 @@ export default function FooterComponent() {
       {/* Bottom Section */}
       <div className="footer-bottom">
         <p className="footer-cta">
-          🎯 Ready to explore more?{" "}
+          Ready to explore more?{" "}
           <span
             className="footer-link-highlight"
             onClick={() => handleProtectedLinkClick("/games")}

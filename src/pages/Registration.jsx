@@ -79,15 +79,15 @@ export default function Register() {
       <div className="register-card">
         <div className="register-header">
           <Link to="/" className="register-logo">
-            🐉 Math-hew
+          Math-hew
           </Link>
-          <p className="register-subtext">Join the math adventure! 🚀</p>
+          <p className="register-subtext">Join the math adventure!</p>
         </div>
         <div className="register-form">
           <form className="form" onSubmit={handleSubmit}>
             <div className="form-row">
               <div>
-                <Label htmlFor="schoolId" value="School ID 📘:" />
+                <Label htmlFor="schoolId" value="School ID" />
                 <TextInput
                   type="text"
                   placeholder="00-1234-567"
@@ -97,7 +97,7 @@ export default function Register() {
                 />
               </div>
               <div>
-                <Label htmlFor="firstName" value="First Name 🧒:" />
+                <Label htmlFor="firstName" value="First Name" />
                 <TextInput
                   type="text"
                   placeholder="Your first name"
@@ -107,7 +107,7 @@ export default function Register() {
                 />
               </div>
               <div>
-                <Label htmlFor="lastName" value="Last Name 👧:" />
+                <Label htmlFor="lastName" value="Last Name" />
                 <TextInput
                   type="text"
                   placeholder="Your last name"
@@ -120,7 +120,7 @@ export default function Register() {
 
             <div className="form-row">
               <div>
-                <Label htmlFor="username" value="Username 🎮:" />
+                <Label htmlFor="username" value="Username" />
                 <TextInput
                   type="text"
                   placeholder="Pick a fun username!"
@@ -130,7 +130,7 @@ export default function Register() {
                 />
               </div>
               <div>
-                <Label htmlFor="email" value="Institutional Email ✉️:" />
+                <Label htmlFor="email" value="Institutional Email" />
                 <TextInput
                   type="email"
                   placeholder="example@cit.edu"
@@ -140,7 +140,7 @@ export default function Register() {
                 />
               </div>
               <div>
-                <Label htmlFor="role" value="Role 📋:" />
+                <Label htmlFor="role" value="Role" />
                 <TextInput
                   type="text"
                   id="role"
@@ -153,7 +153,7 @@ export default function Register() {
 
             <div className="form-row">
               <div className="password-container">
-                <Label htmlFor="password" value="Password 🔒:" />
+                <Label htmlFor="password" value="Password" />
                 <TextInput
                   id="password"
                   type={showPassword ? "text" : "password"}
@@ -175,7 +175,7 @@ export default function Register() {
                     <span className="pl-3">Registering...</span>
                   </>
                 ) : (
-                  "Join Now! 🌟"
+                  "Join Now!"
                 )}
               </Button>
             </div>
