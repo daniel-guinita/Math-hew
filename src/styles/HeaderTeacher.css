@@ -1,0 +1,204 @@
+/* General Header Styling */
+.header-teacher {
+    background: linear-gradient(135deg, #dd2424, #000000);
+    color: #fff;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    width: 200%;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .header-container-t {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1500px;
+    margin: 0 auto;
+    font-family: "Comic Sans MS", "Comic Sans", cursive; /* Keep consistent font */
+  }
+  
+  /* Logo Section */
+  .header-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .header-logo-img {
+    width: 50px;
+    height: auto;
+    margin-right: 0.5rem;
+    animation: bounce 2s infinite;
+  }
+  
+  .header-logo-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Navigation Menu */
+  .header-menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .header-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .header-nav-link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .header-nav-link:hover {
+    background-color: #1a75ff; /* Unique hover color for teachers */
+    transform: scale(1.1);
+  }
+  
+  .active {
+    color: #fff;
+    background-color: #1a75ff;
+  }
+  
+  /* Account Section */
+  .header-account {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Dropdown Styling */
+  .header-dropdown-button {
+    background: linear-gradient(135deg, #1a8cff, #0059b3); /* Teacher-specific gradient */
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .header-dropdown-button:hover {
+    background: linear-gradient(135deg, #4db8ff, #1a75ff); /* Brighter hover state */
+    transform: scale(1.1);
+  }
+  
+  .header-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Aligns below the Account button */
+    right: auto;
+    background: linear-gradient(135deg, #0059b3, #003366); /* Teacher-specific dropdown background */
+    color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+    min-width: 150px;
+    padding: 0.5rem 0;
+    text-align: center;
+  }
+  
+  .header-dropdown-menu.dropdown-open {
+    display: block;
+  }
+  
+  .header-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+  }
+  
+  .header-dropdown-item:hover,
+  .header-dropdown-item:focus {
+    background-color: #004080; /* Dark blue hover state */
+    transform: scale(1.05);
+  }
+  
+  .header-dropdown-item:active {
+    background-color: #001f33; /* Even darker active state */
+  }
+  
+  .header-dropdown-item:last-child {
+    border-radius: 0 0 8px 8px;
+  }
+  
+  /* Logo Animation */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .header-menu-toggle {
+      display: block;
+    }
+  
+    .header-nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 1rem;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 1rem;
+      border-radius: 8px;
+      gap: 1rem;
+    }
+  
+    .header-nav-open {
+      display: flex;
+    }
+  
+    .header-nav-link {
+      font-size: 1.25rem;
+      text-align: center;
+    }
+  }
+  
+  .error-message {
+    margin-top: 1rem;
+    text-align: center;
+    color: #ff4d4f;
+    font-weight: bold;
+  }
+  
+  .success-message {
+    margin-top: 1rem;
+    text-align: center;
+    color: #28a745;
+    font-weight: bold;
+  }
+  

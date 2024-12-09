@@ -25,7 +25,6 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    // Check for empty fields
     if (!formData.identifier || !formData.password) {
       setErrorMessage("Please fill in both email/School ID and password.");
       return;
@@ -47,10 +46,10 @@ export default function SignIn() {
       localStorage.setItem("authToken", access_token);
       localStorage.setItem("role", user.role);
       localStorage.setItem("user", JSON.stringify(user));
-      
+  
       // Dispatch user info to Redux
       dispatch(signInSuccess(user));
-      
+  
       // Show a success alert
       alert(`Welcome back, ${user.username}!`);
   
@@ -58,9 +57,9 @@ export default function SignIn() {
       if (user.role === "student") {
         navigate("/main-page");
       } else if (user.role === "teacher") {
-        navigate("/teacher-home");
+        navigate("/TeacherAdminPage");
       } else if (user.role === "admin") {
-        navigate("/admin-home");
+        navigate("/admin");
       }
     } catch (error) {
       setErrorMessage(
@@ -70,6 +69,7 @@ export default function SignIn() {
       setLoading(false);
     }
   };
+  
 
 
   const togglePasswordVisibility = () => {

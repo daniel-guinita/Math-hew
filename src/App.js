@@ -26,6 +26,7 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminQuiz from "./pages/AdminQuiz";
 import AdminLessons from "./pages/AdminLessons";
 import AdminLeaderboard from "./pages/AdminLeaderboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   // Simulate user role (fetch from login/authentication system)
@@ -53,12 +54,12 @@ function App() {
         <Route path="/progress-tracking" element={<ProgressTracking />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/TeacherAdminPage" element={<TeacherAdminPage />} />
+        <Route path="/TeacherAdminPage" element={<ProtectedRoute allowedRoles={["teacher", "admin"]}><TeacherAdminPage /></ProtectedRoute>}/>
         <Route path="/teacher-quiz" element={<TeacherQuiz />} />
         <Route path="/teacher-lessons" element={<TeacherLessons />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<ProtectedRoute allowedRoles={["admin"]}><Admin /></ProtectedRoute>} />
         <Route path="/admin/admin-users" element={<AdminUsers />} />
         <Route path="/admin/admin-quiz" element={<AdminQuiz />} />
         <Route path="/admin/admin-lessons" element={<AdminLessons />} />

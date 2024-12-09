@@ -8,22 +8,31 @@
     overflow: hidden;
     margin-top: 50px;
   }
+
+  .admin-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 5rem;
+  }
   
   .admin-content {
     max-width: 800px;
-    margin: 2rem auto 0; /* Add top margin to push content below the navbar */
+    margin: 2rem auto 0; 
     text-align: center;
   }
   
   .admin-title {
-    font-size: 2.5rem;
-    color: #ffffff; /* Adjust to match the theme */
-    margin-bottom: 10px;
+    text-align: center;
+
+    font-size: 3rem;
+    color: #ffffff; 
   }
   
   .admin-description {
+    text-align: center;
+    font-size: 1.2rem;
     margin: 10px 0 20px;
-    color: #eee; /* Lighter color for better contrast */
+    color: #eee; 
   }
   
   .admin-actions {
