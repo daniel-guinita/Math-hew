@@ -3,12 +3,23 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to right, #052c38, #fb9e9e);
+  background: linear-gradient(to right, #88767c, #74b9ff);
   padding: 2rem;
+  animation: background-slide 10s infinite alternate;
 }
 
+@keyframes background-slide {
+  0% {
+    background: linear-gradient(to right, #88767c, #74b9ff);
+  }
+  100% {
+    background: linear-gradient(to right, #74b9ff, #88767c);
+  }
+}
+
+
 .register-card {
-  background: #62929b;
+  background: #bb7a7a;
   border-radius: 15px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
   max-width: 900px;
@@ -17,15 +28,20 @@
   text-align: center;
 }
 
+.register-header {
+  margin-bottom: 2rem;
+}
+
 .register-logo {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #e74c3c;
+  color: #e60325;
   margin-bottom: 1rem;
 }
 
-.register-header {
-  margin-bottom: 2rem;
+.register-subtext {
+  font-size: 1.2rem;
+  color: #333;
 }
 
 .form-row {
@@ -40,8 +56,7 @@
 }
 
 button,
-input,
-select {
+input {
   font-size: 1rem;
   padding: 0.8rem;
   border-radius: 8px;
@@ -54,24 +69,45 @@ select {
   position: relative;
 }
 
+.password-toggle {
+  position: absolute;
+  top: 60%;
+  right: 1rem;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: #636e72;
+  cursor: pointer;
+}
+
+.password-toggle:hover {
+  color: #0984e3;
+}
+
+
 .register-button {
-  background: linear-gradient(to right, #ff6f61, #ff9a76);
+  background: linear-gradient(to right, #ff512f, #dd2476);
   color: #fff;
   font-size: 1.2rem;
   padding: 0.8rem 2rem;
   border-radius: 12px;
-  margin-top: 1rem;
   cursor: pointer;
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .register-button:hover {
-  background: linear-gradient(to right, #ff9a76, #ff6f61);
+  background: linear-gradient(to right, #dd2476, #ff512f);
   transform: scale(1.05);
 }
 
 .error-container {
   margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center; /* Ensures text is centered */
 }
 
 @media (max-width: 768px) {
@@ -80,3 +116,24 @@ select {
     gap: 0.5rem;
   }
 }
+
+/* SignIn Prompt */
+.signin-prompt {
+  font-weight: bold;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.signin-link {
+  color: #0b7002;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signin-link:hover {
+  color: #e41616;
+}
+
+

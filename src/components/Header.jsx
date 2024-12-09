@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { signoutSuccess } from "../redux/user/userSlice";
+import { signoutSuccess,signInSuccess  } from "../redux/user/userSlice";
 import "../styles/Header.css";
 
 const Header = () => {
@@ -13,20 +13,23 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      dispatch(signInSuccess(JSON.parse(userData))); // Update Redux store
+    }
+  }, [dispatch]);
+  
   const handleLogout = () => {
+    // Clear localStorage
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("role");
+    localStorage.removeItem("user");
+  
     dispatch(signoutSuccess());
     setDropdownOpen(false);
     navigate("/sign-in");
   };
+  
 
   return (
     <header className="header">
@@ -85,7 +88,7 @@ const Header = () => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 aria-label="Toggle Account Menu"
               >
-                👤 {currentUser.name}
+                👤 {currentUser.username || currentUser.email}
               </button>
               <div
                 className={`header-dropdown-menu ${
