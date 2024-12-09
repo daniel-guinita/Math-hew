@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { signoutSuccess,signInSuccess  } from "../redux/user/userSlice";
+import { signoutSuccess, signInSuccess } from "../redux/user/userSlice";
 import "../styles/Header.css";
 
 const Header = () => {
@@ -18,18 +18,30 @@ const Header = () => {
       dispatch(signInSuccess(JSON.parse(userData))); // Update Redux store
     }
   }, [dispatch]);
-  
+
   const handleLogout = () => {
     // Clear localStorage
     localStorage.removeItem("authToken");
     localStorage.removeItem("role");
     localStorage.removeItem("user");
-  
+
     dispatch(signoutSuccess());
     setDropdownOpen(false);
     navigate("/sign-in");
   };
-  
+
+  // Determine the "Home" page link based on the user's role
+  const getHomePageLink = () => {
+    if (!currentUser) {
+      return "/";
+    }
+
+    const userRole = localStorage.getItem("role"); // Fetch role from localStorage
+    if (userRole === "admin") {
+      return "/admin"; // Admin-specific page
+    }
+    return "/main-page"; // Default for students
+  };
 
   return (
     <header className="header">
@@ -52,23 +64,20 @@ const Header = () => {
         {/* Navigation Menu */}
         <nav className={`header-nav ${menuOpen ? "header-nav-open" : ""}`}>
           <Link
-            to={currentUser ? "/main-page" : "/"}
+            to={getHomePageLink()}
             className="header-nav-link"
-            onClick={() => {
-              setMenuOpen(false);
-              navigate(currentUser ? "/main-page" : "/");
-            }}
+            onClick={() => setMenuOpen(false)}
           >
-          Home
+            Home
           </Link>
           <Link to="/about-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
-          About Us
+            About Us
           </Link>
           <Link to="/features" className="header-nav-link" onClick={() => setMenuOpen(false)}>
-          Features
+            Features
           </Link>
           <Link to="/contact-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
-          Contact Us
+            Contact Us
           </Link>
         </nav>
 
@@ -79,7 +88,7 @@ const Header = () => {
               className="header-signin-button"
               onClick={() => navigate("/sign-in")}
             >
-            Sign In
+              Sign In
             </button>
           ) : (
             <div className="header-actions" ref={dropdownRef}>

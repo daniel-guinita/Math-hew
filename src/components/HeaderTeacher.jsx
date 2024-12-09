@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signoutSuccess } from "../redux/user/userSlice";
-import "../styles/Header.css";
+import "../styles/HeaderTeacher.css";
 
-const Header = () => {
+const HeaderTeacher = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -29,12 +29,12 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
-      <div className="header-container">
+    <header className="header-teacher">
+      <div className="header-container-t">
         {/* Logo Section */}
         <Link to="/" className="header-logo">
           <img src="/images/icon.png" alt="Math-hew Logo" className="header-logo-img" />
-          <span className="header-logo-text">Math-hew</span>
+          <span className="header-logo-text">Math-hew Teacher</span>
         </Link>
 
         {/* Hamburger Menu */}
@@ -53,28 +53,28 @@ const Header = () => {
             className="header-nav-link"
             onClick={() => setMenuOpen(false)}
           >
-            🎮 Quiz Game
+            Manage Quizzes
           </Link>
           <Link
             to="/TeacherAdminPage"
             className="header-nav-link"
             onClick={() => setMenuOpen(false)}
           >
-            👤 User Dashboard
+            Teacher Dashboard
           </Link>
           <Link
             to="/teacher-lessons"
             className="header-nav-link"
             onClick={() => setMenuOpen(false)}
           >
-            📚 Lessons and Videos
+            Lessons & Resources
           </Link>
           <Link
             to="/leaderboards"
             className="header-nav-link"
             onClick={() => setMenuOpen(false)}
           >
-            🏆 Leaderboards
+             View Leaderboards
           </Link>
         </nav>
 
@@ -126,4 +126,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderTeacher;

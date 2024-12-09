@@ -6,7 +6,8 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
   if (!role || !allowedRoles.includes(role)) {
     // Redirect to login if the role is not authorized
-    return <Navigate to="/sign-in" />;
+    alert("You do not have permission to access this page."); // Optional alert
+    return <Navigate to="/" />;
   }
 
   return children;
