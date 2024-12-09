@@ -1,9 +1,10 @@
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { signInSuccess, signInFailure } from "../redux/user/userSlice";
+import { signInSuccess } from "../redux/user/userSlice";
 import axios from "axios";
 import "../styles/SignIn.css";
 
@@ -23,53 +24,53 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/;
-    const schoolIdRegex = /^\d{2}-\d{4}-\d{3}$/;
-
+  
+    // Check for empty fields
     if (!formData.identifier || !formData.password) {
-      setErrorMessage("Please fill all the fields!");
+      setErrorMessage("Please fill in both email/School ID and password.");
       return;
     }
-
-    if (
-      !emailRegex.test(formData.identifier) &&
-      !schoolIdRegex.test(formData.identifier)
-    ) {
-      setErrorMessage(
-        "Identifier must be a valid email (example@cit.edu) or School ID (XX-XXXX-XXX)"
-      );
-      return;
-    }
-
+  
     setLoading(true);
     setErrorMessage("");
-
+  
     const loginData = {
       email: formData.identifier,
       password: formData.password,
     };
-
+  
     try {
-      const response = await axios.post(`${API_URL}/users/signin`, loginData);
-      const { token, ...user } = response.data;
-
-      localStorage.setItem("authToken", token);
+      const response = await axios.post(`${API_URL}/auth/login`, loginData);
+      const { access_token, user } = response.data;
+  
+      // Store token and user details in local storage
+      localStorage.setItem("authToken", access_token);
+      localStorage.setItem("role", user.role);
+      localStorage.setItem("user", JSON.stringify(user));
+      
+      // Dispatch user info to Redux
       dispatch(signInSuccess(user));
-
-      alert("Login successful! Welcome back!");
-
-      navigate("/main-page");
+      
+      // Show a success alert
+      alert(`Welcome back, ${user.username}!`);
+  
+      // Redirect based on role
+      if (user.role === "student") {
+        navigate("/main-page");
+      } else if (user.role === "teacher") {
+        navigate("/teacher-home");
+      } else if (user.role === "admin") {
+        navigate("/admin-home");
+      }
     } catch (error) {
-      console.error("Sign-in error:", error.response?.data || error.message);
       setErrorMessage(
         error.response?.data?.message || "Invalid email/School ID or password"
       );
-      dispatch(signInFailure("Invalid email/School ID or password"));
     } finally {
       setLoading(false);
     }
   };
+
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -79,58 +80,55 @@ export default function SignIn() {
     <div className="signin-container">
       <div className="signin-card">
         <div className="signin-header">
-          <Link to="/" className="signin-logo">🚀 Math-hew</Link>
-          <p className="signin-subtext">Welcome back, future math genius!</p>
+          <Link to="/" className="signin-logo">🐉 Math-hew</Link>
+          <p className="signin-subtext">
+            Welcome back, future math genius! 🎉
+          </p>
         </div>
         <div className="signin-form">
-          <form className="form" onSubmit={handleSubmit}>
-            <div>
-              <Label htmlFor="identifier" value="Enter your email or School ID:" />
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <Label htmlFor="identifier" value="📝 Enter your email or School ID:" />
               <TextInput
                 type="text"
-                placeholder="Email or School ID"
                 id="identifier"
+                placeholder="Email or School ID"
                 onChange={handleChange}
+                className="input-field"
               />
             </div>
-            <div className="relative">
-              <Label htmlFor="password" value="Your secret password:" />
+            <div className="form-group relative">
+              <Label htmlFor="password" value="🔒 Your secret password:" />
               <TextInput
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 onChange={handleChange}
+                className="input-field"
+              />
+              <FontAwesomeIcon
+                icon={showPassword ? faEyeSlash : faEye}
+                className="password-toggles"
+                onClick={togglePasswordVisibility}
               />
             </div>
             <div className="button-container">
               <Button type="submit" disabled={loading} className="signin-button">
-                {loading ? (
-                  <>  
-                    <Spinner size="sm" />
-                    <span className="pl-3">Logging in...</span>
-                  </>
-                ) : (
-                  "Start Learning 🚀"
-                )}
+                {loading ? <Spinner size="sm" /> : "🚀 Start Learning"}
               </Button>
             </div>
           </form>
           {errorMessage && (
-            <div className="error-container">
-              <Alert color="failure">
-                {errorMessage}
-              </Alert>
-            </div>
+            <Alert color="failure" className="error-message">
+              {errorMessage}
+            </Alert>
           )}
-          {/* Add a "Register" prompt below the button */}
-          <div className="register-prompt">
-            <p>
-              Not registered yet?{" "}
-              <Link to="/register" className="register-link">
-                Click here to sign up!
-              </Link>
-            </p>
-          </div>
+          <p className="register-prompt">
+            Not registered yet?{" "}
+            <Link to="/register" className="register-link">
+              Click here to sign up!
+            </Link>
+          </p>
         </div>
       </div>
     </div>

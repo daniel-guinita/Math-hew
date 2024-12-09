@@ -209,3 +209,17 @@
     text-align: center;
   }
 }
+
+.error-message {
+  margin-top: 1rem;
+  text-align: center;
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.success-message {
+  margin-top: 1rem;
+  text-align: center;
+  color: #28a745;
+  font-weight: bold;
+}

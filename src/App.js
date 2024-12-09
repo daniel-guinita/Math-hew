@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { getUserRole } from "./utils/auth";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -20,7 +21,7 @@ import EditProfile from "./pages/EditProfile";
 
 function App() {
   // Simulate user role (fetch from login/authentication system)
-  const [userRole, setUserRole] = useState("student"); // Can be "student", "teacher", or "admin"
+  const userRole = getUserRole(); // Get the user's role
 
   return (
     <Router>

@@ -4,15 +4,25 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to right, #87ceeb, #f79f1f);
+  background: linear-gradient(to right, #f78fb3, #74b9ff);
   padding: 2rem;
+  animation: background-slide 10s infinite alternate;
+}
+
+@keyframes background-slide {
+  0% {
+    background: linear-gradient(to right, #f78fb3, #74b9ff);
+  }
+  100% {
+    background: linear-gradient(to right, #74b9ff, #f78fb3);
+  }
 }
 
 /* Card Styling */
 .signin-card {
-  background: #6584c9;
+  background: #d6be7c;
   border-radius: 1rem;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   max-width: 500px;
   width: 100%;
   padding: 2rem;
@@ -25,102 +35,95 @@
 }
 
 .signin-logo {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  color: #e02626;
+  color: #e60325;
 }
 
 .signin-subtext {
   font-size: 1.2rem;
-  color: #333;
+  color: #000000;
   margin-top: 0.5rem;
+  animation: fadeIn 2s ease-in-out;
 }
 
 /* Form Styling */
-.form div {
+.form-group {
   margin-bottom: 1rem;
 }
 
-.password-toggle {
+.input-field {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid #dcdde1;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.input-field:focus {
+  border: 2px solid #74b9ff;
+}
+
+/* Password Toggle Icon */
+.password-toggles {
   position: absolute;
-  top: 50%;
-  right: 1rem;
+  top: 55%;
+  right: 1.5rem;
   transform: translateY(-50%);
-  background: none;
-  border: none;
+  font-size: 1rem;
+  color: #636e72;
   cursor: pointer;
 }
 
-/* Centering the error message */
-.error-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
+.password-toggles:hover {
+  color: #0984e3;
 }
 
-.error-container .alert {
-  font-size: 0.875rem; /* Slightly smaller font for error messages */
-  color: #ff4d4d; /* Bright red for emphasis */
-  background-color: #ffe6e6; /* Light red background for readability */
-  padding: 0.5rem 1rem;
-  border-radius: 8px; /* Rounded corners */
-  border: 1px solid #ff9999; /* Add a slight border for visibility */
-}
-
-/* Centering the button container */
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem; /* Add space between the button and the other elements */
-}
-
+/* Button Styling */
 .signin-button {
-  background: linear-gradient(to right, #dd1526, #c705b7);
+  background: linear-gradient(to right, #ff6b81, #fd79a8);
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  padding: 0.8rem 2rem;
-  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .signin-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
-.signin-footer {
-  margin-top: 1.5rem;
+/* Error Message Styling */
+/* Centering the error message */
+.error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center; /* Ensures text is centered */
 }
 
-.signin-link {
-  color: #06aed8;
+
+/* Register Prompt */
+.register-prompt {
+  font-weight: bold;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.register-link {
+  color: #0984e3;
   font-weight: bold;
   text-decoration: underline;
   cursor: pointer;
 }
 
-.signin-link:hover {
-  color: #ff4d6d;
-}
-
-.register-prompt {
-  margin-top: 1rem;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #000000;
-  
-}
-
-.register-link {
-  color: #e40808;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
 .register-link:hover {
-  color: #000000;
-  text-decoration: underline;
+  color: #e41616;
 }
-
