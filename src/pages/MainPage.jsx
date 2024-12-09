@@ -55,7 +55,7 @@ const MainPage = () => {
         <Link to="/learning-buddy" className="activity-card">
           <h2 className="activity-title">Chat Buddy 🤖</h2>
           <p className="activity-description">
-            Ask questions and learn interactively with our chatbot!
+            Ask questions and learn interactively with our learning buddy!
           </p>
         </Link>
 

@@ -1,0 +1,63 @@
+.admin-users-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures full viewport height */
+    padding: 20px;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #2a5175, #b94444);
+  }
+  
+  .admin-users-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .admin-users-table {
+    width: 80%; /* Adjust width as needed */
+    border-collapse: collapse;
+    margin-bottom: 50px; /* Space between table and footer */
+  }
+  
+  .admin-users-table th,
+  .admin-users-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .admin-users-table th {
+    background-color: #2a5175;
+    font-weight: bold;
+  }
+  
+  .edit-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 3px 8px; /* Reduced padding */
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 4px;
+    width: auto; /* You can also specify a fixed width, e.g., width: 50px; */
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 3px 8px; /* Reduced padding */
+    cursor: pointer;
+    border-radius: 4px;
+    width: auto; /* Or use a fixed width, e.g., width: 50px; */
+}
+
+  
+  .edit-button:hover {
+    background-color: #45a049;
+  }
+  
+  .delete-button:hover {
+    background-color: #d32f2f;
+  }

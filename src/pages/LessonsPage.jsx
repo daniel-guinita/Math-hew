@@ -1,4 +1,19 @@
 import React, { useState, useEffect } from "react";
+import React from "react";
+import '../styles/video.css';
+
+export default function LessonsPage() {
+  const lessons = [
+    { id: 1, title: "Lesson 1: Introduction to Fractions", description: "Learn the basics of fractions." },
+    { id: 2, title: "Lesson 2: Multiplication", description: "Understand the fundamentals of multiplication." },
+  ];
+
+  const videos = [
+    { id: 1, title: "Video 1: Fractions Overview", description: "A video introduction to fractions.",  url:"https://www.youtube.com/embed/N3__8MmaiLE" },
+    { id: 2, title: "Video 2: Multiplication Tips", description: "Tips for quick multiplication." },
+  ];
+
+import React, { useState } from "react";
 import "../styles/LessonsPage.css";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
@@ -286,6 +301,42 @@ const LessonsPage = ({ userRole }) => {
   return (
     <div className="lessons-page-container">
       {selectedLesson ? renderLessonDetail() : renderLessonList()}
+      {/* Video Tutorials Placeholder */}
+      <div className="w-full max-w-4xl mx-auto p-10 bg-orange-500 rounded-lg text-white text-2xl font-semibold text-center">
+        Video Tutorials Placeholder
+
+      {/* Video Tutorials Section */}
+      <div className="w-full max-w-6xl mx-auto">
+        <h2 className="text-3xl font-semibold text-orange-600 dark:text-orange-400 mb-4">Video Tutorials</h2>
+        <div className="space-y-4">
+          {videos.map((video) => (
+            <div key={video.id} className="p-8 bg-orange-50 dark:bg-orange-700 rounded-lg shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">{video.title}</h3>
+              <p className="text-gray-700 dark:text-gray-300">{video.description}</p>
+              <div className="video-responsive">
+          <iframe 
+            width="100%" 
+            height="515" 
+            src={video.url} 
+            title={video.title} 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowFullScreen
+          ></iframe>
+        </div>
+            </div>
+          ))}
+        </div>
+      <div className="videos-section">
+        <h2 className="section-title">🎬 Video Tutorials</h2>
+        {videos.map((video) => (
+          <div key={video.id} className="content-card">
+            <h3 className="content-title">{video.title}</h3>
+            <p className="content-description">{video.description}</p>
+          </div>
+        ))}
+
+      </div>
     </div>
   );
 };
