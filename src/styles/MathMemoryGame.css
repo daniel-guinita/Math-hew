@@ -1,19 +1,14 @@
 /* Container Styles */
 .memory-game-container {
-
   margin-top: 80px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #4b6cb7, #182848);
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: 2rem;
-
-  padding: 8rem;
-
-  position: relative;
   color: #ffffff;
+  font-family: 'Arial', sans-serif;
 }
 
 .memory-game-title {
@@ -29,12 +24,70 @@
   text-align: center;
 }
 
+.difficulty-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.difficulty-buttons button {
+  background: #ffeaa7;
+  color: #6c567b;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.difficulty-buttons button:hover {
+  transform: scale(1.1);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.reset-button {
+  background: #6dd5ed;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: background 0.3s ease;
+}
+
+.reset-button:hover {
+  background: #2193b0;
+}
+
 /* Grid Styles */
 .memory-game-grid {
   display: grid;
-  grid-template-columns: repeat(4, 100px);
-  grid-gap: 1rem;
+  gap: 1rem;
   justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Dynamic grid size based on number of tiles */
+.memory-game-grid[data-grid-size="3"] {
+  grid-template-columns: repeat(3, 100px);
+}
+
+.memory-game-grid[data-grid-size="4"] {
+  grid-template-columns: repeat(4, 100px);
+}
+
+.memory-game-grid[data-grid-size="5"] {
+  grid-template-columns: repeat(5, 100px);
+}
+
+.memory-game-grid[data-grid-size="6"] {
+  grid-template-columns: repeat(6, 100px);
 }
 
 .memory-game-tile {
@@ -59,6 +112,8 @@
   height: 100%;
   transition: transform 0.6s;
   transform-style: preserve-3d;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .memory-game-tile-front,
@@ -68,23 +123,25 @@
   height: 100%;
   backface-visibility: hidden;
   border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(197, 0, 0, 0.3);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .memory-game-tile-front {
-  background-color: #e4d2d2;
+  background-color: #ffeaa7;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .memory-game-tile-back {
-  background-color: #070606;
+  background-color: #74b9ff;
   color: #ffffff;
   transform: rotateY(180deg);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .tile-image {
@@ -92,17 +149,11 @@
   height: auto;
 }
 
-.tile-number {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-/* Mascot Styles */
 .memory-game-mascot {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  width: 150px;
+  width: 120px;
   animation: float 4s ease-in-out infinite;
 }
 
@@ -119,10 +170,39 @@
 /* Media Queries for Responsiveness */
 @media (max-width: 600px) {
   .memory-game-grid {
-    grid-template-columns: repeat(2, 80px);
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   }
   .memory-game-tile {
     width: 80px;
     height: 120px;
   }
+  .memory-game-title {
+    font-size: 2.5rem;
+  }
+  .memory-game-instructions {
+    font-size: 1.2rem;
+  }
+}
+
+.grid-preview-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.grid-preview-container button {
+  background: #ff6f61;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.grid-preview-container button:hover {
+  background: #ff8b74;
+  transform: scale(1.1);
 }
