@@ -3,11 +3,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #2a5175, #b94444);
   position: relative;
   padding: 2rem;
   overflow: hidden;
+  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF); /* Gradient from top to bottom */
 }
+
 
 .home-content {
   display: flex;
@@ -28,10 +29,9 @@
 .home-title {
   font-size: 3.5rem;
   font-weight: 900;
-  color: #ffffff;
+  color: #ffdf16;
   text-shadow: 2px 2px 4px rgba(14, 185, 228, 0.3);
   margin-bottom: 1rem;
-  animation: glow 2s infinite; /* Glow animation for the title */
 }
 
 .home-description {
@@ -43,9 +43,9 @@
 }
 
 .learn-button {
-  background: #0e5a5f;
-  color: #ffffff;
-  font-size: 1.5rem;
+  background: #FFFFFF;
+  color: #781b1b;
+  font-size: 1.75rem;
   font-weight: bold;
   padding: 0.75rem 2rem;
   border-radius: 50px;
@@ -55,7 +55,6 @@
 }
 
 .learn-button:hover {
-  background: #744d1b;
   transform: scale(1.1);
 }
 

@@ -1,6 +1,6 @@
 /* General Header Styling */
 .header {
-  background: linear-gradient(135deg, #dd2424, #000000);
+  background-color: #781b1b;
   color: #fff;
   padding: 1rem;
   position: fixed;
@@ -8,6 +8,7 @@
   width: 100%;
   z-index: 1000;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  border-bottom: #EBEBEB 5px solid;
 }
 
 .header-container {
