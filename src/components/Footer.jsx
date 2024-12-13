@@ -1,7 +1,6 @@
-import { Footer as FlowbiteFooter } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "../styles/Footer.css";
+import "../styles/Footer.css"; // Ensure this import stays so the custom styles are applied.
 
 export default function FooterComponent() {
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -19,7 +18,7 @@ export default function FooterComponent() {
   const randomJoke = "Why was the math book sad? It had too many problems!";
 
   return (
-    <FlowbiteFooter container className="footer-container">
+    <footer className="footer-container">
       <div className="footer-content">
         {/* Logo and Slogan */}
         <div className="footer-logo-section">
@@ -76,7 +75,7 @@ export default function FooterComponent() {
       {/* Bottom Section */}
       <div className="footer-bottom">
         <p className="footer-cta">
-          Ready to explore more?{" "}
+          Ready to explore more?{' '}
           <span
             className="footer-link-highlight"
             onClick={() => handleProtectedLinkClick("/games")}
@@ -84,10 +83,8 @@ export default function FooterComponent() {
             Play a Game Now!
           </span>
         </p>
-        <p className="footer-copyright">
-          © {new Date().getFullYear()} Math-hew. All rights reserved.
-        </p>
+        <p className="footer-copyright">© {new Date().getFullYear()} Math-hew. All rights reserved.</p>
       </div>
-    </FlowbiteFooter>
+    </footer>
   );
 }

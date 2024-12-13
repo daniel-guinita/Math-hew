@@ -4,7 +4,11 @@ module.exports = {
     "./node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        comic: ['"Comic Sans MS"', 'cursive', 'sans-serif'],
+      },
+    },
   },
   plugins: [require('flowbite/plugin')],
-}
+};
