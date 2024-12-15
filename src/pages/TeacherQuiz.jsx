@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/TeacherQuiz.css";
-import Header from "../components/HeaderTeacher";
+import Header from "../components/Header";
 
 const TeacherQuiz = () => {
   // State to manage questions

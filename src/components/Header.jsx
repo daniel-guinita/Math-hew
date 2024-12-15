@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -20,28 +21,63 @@ const Header = () => {
   }, [dispatch]);
 
   const handleLogout = () => {
-    // Clear localStorage
     localStorage.removeItem("authToken");
     localStorage.removeItem("role");
     localStorage.removeItem("user");
-
     dispatch(signoutSuccess());
     setDropdownOpen(false);
     navigate("/sign-in");
   };
 
-  // Determine the "Home" page link based on the user's role
-  const getHomePageLink = () => {
+  // Determine the menu items based on the user's role
+  const getMenuItems = () => {
+    const role = localStorage.getItem("role"); // Fetch the role from localStorage
+
     if (!currentUser) {
-      return "/";
+      return [
+        { label: "Home", path: "/" },
+        { label: "About Us", path: "/about-us" },
+        { label: "Features", path: "/features" },
+        { label: "Contact Us", path: "/contact-us" },
+      ];
     }
 
-    const userRole = localStorage.getItem("role"); // Fetch role from localStorage
-    if (userRole === "admin") {
-      return "/admin"; // Admin-specific page
+    if (role === "admin") {
+      return [
+        { label: "Manage Users", path: "/admin/admin-users" },
+        { label: "Quiz Management", path: "/admin/admin-quiz" },
+        { label: "Lessons Management", path: "/lessons-page" },
+        { label: "Leaderboard", path: "/admin/admin-leaderboard" },
+      ];
     }
-    return "/main-page"; // Default for students
+
+    if (role === "teacher") {
+      return [
+        { label: "Manage Quizzes", path: "/teacher-quiz" },
+        { label: "Teacher Dashboard", path: "/TeacherAdminPage" },
+        { label: "Lessons & Resources", path: "/lessons-page" },
+        { label: "View Leaderboards", path: "/leaderboard" },
+      ];
+    }
+
+    // Default for students
+    return [
+      { label: "Home", path: "main-page" },
+      { label: "About Us", path: "/about-us" },
+      { label: "Features", path: "/features" },
+      { label: "Contact Us", path: "/contact-us" },
+    ];
   };
+
+  const menuItems = getMenuItems();
+
+  // Redirect unauthenticated users from /main-page to /
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (!currentUser && window.location.pathname === "/main-page") {
+      navigate("/");
+    }
+  }, [currentUser, navigate]);
 
   return (
     <header className="header">
@@ -63,22 +99,16 @@ const Header = () => {
 
         {/* Navigation Menu */}
         <nav className={`header-nav ${menuOpen ? "header-nav-open" : ""}`}>
-          <Link
-            to={getHomePageLink()}
-            className="header-nav-link"
-            onClick={() => setMenuOpen(false)}
-          >
-            Home
-          </Link>
-          <Link to="/about-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
-            About Us
-          </Link>
-          <Link to="/features" className="header-nav-link" onClick={() => setMenuOpen(false)}>
-            Features
-          </Link>
-          <Link to="/contact-us" className="header-nav-link" onClick={() => setMenuOpen(false)}>
-            Contact Us
-          </Link>
+          {menuItems.map((item, index) => (
+            <Link
+              key={index}
+              to={item.path}
+              className="header-nav-link"
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
         {/* Account Section */}

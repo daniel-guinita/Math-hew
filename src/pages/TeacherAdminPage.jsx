@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/TeacherAdminPage.css";
-import HeaderTeacher from "../components/HeaderTeacher";
+import HeaderTeacher from "../components/Header";
 
 const TeacherAdminPage = () => {
   const [students, setStudents] = useState([
