@@ -1,64 +1,97 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateSuccess } from "../redux/user/userSlice";
-import { useNavigate } from "react-router-dom"; // Import the navigate function
+import { updateStart, updateSuccess, updateFailure } from "../redux/user/userSlice";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/EditProfile.css";
 
 const EditProfile = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({
-    firstName: currentUser?.firstName || "",
-    lastName: currentUser?.lastName || "",
+    firstName: currentUser?.first_name || "",
+    lastName: currentUser?.last_name || "",
     email: currentUser?.email || "",
     password: "",
     profileImage: currentUser?.profileImage || "",
   });
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
 
+  // Handle text input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle image upload
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFormData({ ...formData, profileImage: reader.result });
+        setFormData({ ...formData, profileImage: reader.result }); // Store Base64 image in formData
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(updateStart());
   
-    // Only include fields that are not empty in the updated data
-    const updatedData = {};
-    if (formData.firstName) updatedData.firstName = formData.firstName;
-    if (formData.lastName) updatedData.lastName = formData.lastName;
-    if (formData.email) updatedData.email = formData.email;
-    if (formData.password) updatedData.password = formData.password;
-    if (formData.profileImage) updatedData.profileImage = formData.profileImage;
+    try {
+      // Map formData to backend field names
+      const updatedData = {};
+      if (formData.firstName && formData.firstName !== currentUser.first_name) {
+        updatedData.first_name = formData.firstName;
+      }
+      if (formData.lastName && formData.lastName !== currentUser.last_name) {
+        updatedData.last_name = formData.lastName;
+      }
+      if (formData.email && formData.email !== currentUser.email) {
+        updatedData.email = formData.email;
+      }
+      if (formData.password) {
+        updatedData.password = formData.password; // Update password if provided
+      }
+      if (formData.profileImage && formData.profileImage !== currentUser.profileImage) {
+        updatedData.profileImage = formData.profileImage;
+      }
   
-    // Check if at least one field has been updated
-    if (Object.keys(updatedData).length === 0) {
-      alert("Please update at least one field!");
-      return;
+      // Check if there are any updates
+      if (Object.keys(updatedData).length === 0) {
+        alert("No changes were made.");
+        return;
+      }
+  
+      // Send PATCH request to the backend
+      const response = await axios.patch(
+        `${process.env.REACT_APP_API_URL}/users/${currentUser.id}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken") || currentUser.token}`,
+          },
+        }
+      );
+  
+      // Update Redux state and LocalStorage
+      dispatch(updateSuccess(response.data));
+      localStorage.setItem("userProfile", JSON.stringify(response.data));
+      alert("Profile updated successfully!");
+      navigate("/profile");
+    } catch (error) {
+      dispatch(updateFailure(error.response?.data?.message || "Failed to update profile"));
+      console.error("Error updating profile:", error);
+      alert("Failed to update profile. Please try again later.");
     }
-  
-    dispatch(updateSuccess({ ...currentUser, ...updatedData })); // Merge the current user data with the updated data
-    alert("Profile updated successfully!");
-    navigate("/profile"); // Redirect to the Profile page
   };
   
-
+  
   return (
     <div className="edit-profile-container">
-      <h1 className="edit-profile-title">🎨 Personalize Your Profile! 🎉</h1>
+      <h1 className="edit-profile-title">🎨 Edit Your Profile 🎉</h1>
       <div className="edit-profile-card">
-        {/* Profile Image Section */}
         <div className="profile-image-container">
           <img
             src={formData.profileImage || "/images/default-avatar.png"}
@@ -66,7 +99,7 @@ const EditProfile = () => {
             className="profile-image"
           />
           <label htmlFor="profileImage" className="profile-image-label">
-            📸 Change Profile Pic
+            📸 Change Profile Picture
           </label>
           <input
             type="file"
@@ -76,8 +109,6 @@ const EditProfile = () => {
             className="profile-image-input"
           />
         </div>
-
-        {/* Form Section */}
         <form onSubmit={handleSubmit} className="edit-profile-form">
           <div className="form-group">
             <label htmlFor="firstName">First Name *</label>
@@ -110,18 +141,16 @@ const EditProfile = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password *</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
               name="password"
-              placeholder="Enter new password"
+              placeholder="Leave blank to keep current password"
               value={formData.password}
               onChange={handleChange}
             />
           </div>
-
-          {/* Submit Button */}
           <button type="submit" className="edit-profile-button">
             Save Changes
           </button>

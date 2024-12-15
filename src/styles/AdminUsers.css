@@ -1,63 +1,129 @@
+/* Container for the Users Table */
 .admin-users-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Ensures full viewport height */
-    padding: 20px;
-    box-sizing: border-box;
-    background: linear-gradient(135deg, #2a5175, #b94444);
-  }
-  
-  .admin-users-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .admin-users-table {
-    width: 80%; /* Adjust width as needed */
-    border-collapse: collapse;
-    margin-bottom: 50px; /* Space between table and footer */
-  }
-  
-  .admin-users-table th,
-  .admin-users-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .admin-users-table th {
-    background-color: #2a5175;
-    font-weight: bold;
-  }
-  
-  .edit-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 3px 8px; /* Reduced padding */
-    cursor: pointer;
-    margin-right: 5px;
-    border-radius: 4px;
-    width: auto; /* You can also specify a fixed width, e.g., width: 50px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 120px;
+  background-color: #1e1e2e; /* Dark background for contrast */
+  color: #ffffff; /* White text */
+  min-height: 100vh; /* Full height */
 }
 
+/* Page Title */
+.admin-users-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffb86c; /* Soft orange color */
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Users Table */
+.admin-users-table {
+  width: 90%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background-color: #282a36; /* Dark table background */
+  color: #f8f8f2; /* Light text */
+  border-radius: 8px;
+  overflow: hidden; /* Rounded corners */
+}
+
+/* Table Header */
+.admin-users-table th {
+  background-color: #44475a;
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+  color: #50fa7b; /* Green color for header text */
+}
+
+/* Table Rows */
+.admin-users-table td {
+  padding: 12px;
+  border-bottom: 1px solid #44475a; /* Subtle border */
+}
+
+.admin-users-table tr:nth-child(even) {
+  background-color: #3b3f51; /* Alternating row background */
+}
+
+.admin-users-table tr:nth-child(odd) {
+  background-color: #282a36;
+}
+
+/* Button Styling */
+.view-button,
 .delete-button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 3px 8px; /* Reduced padding */
-    cursor: pointer;
-    border-radius: 4px;
-    width: auto; /* Or use a fixed width, e.g., width: 50px; */
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
 }
 
-  
-  .edit-button:hover {
-    background-color: #45a049;
-  }
-  
-  .delete-button:hover {
-    background-color: #d32f2f;
-  }
+/* View Button */
+.view-button {
+  background-color: #6272a4; /* Soft blue */
+  color: white;
+  margin-right: 5px;
+}
+
+.view-button:hover {
+  background-color: #50fa7b; /* Green on hover */
+  color: #282a36;
+}
+
+/* Delete Button */
+.delete-button {
+  background-color: #ff5555; /* Red color */
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #ff6e6e; /* Lighter red on hover */
+}
+
+/* Modal Styling for User Details */
+.user-details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #282a36;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  color: #f8f8f2;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.modal-content h2 {
+  color: #ffb86c;
+}
+
+.close-button {
+  margin-top: 15px;
+  background-color: #ff5555;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.close-button:hover {
+  background-color: #ff6e6e;
+}

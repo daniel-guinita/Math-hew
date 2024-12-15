@@ -12,9 +12,8 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <h1 className="profile-title">Welcome, {currentUser.firstName || "Student"}! 👨‍🎓</h1>
+      <h1 className="profile-title">Welcome, {currentUser.first_Name || "User"}! 👨‍🎓</h1>
       <div className="profile-card">
-        {/* Profile Image */}
         <div className="profile-image-section">
           <img
             src={currentUser.profileImage || "/images/default-avatar.png"}
@@ -23,14 +22,14 @@ const Profile = () => {
           />
         </div>
 
-        {/* Profile Info */}
         <div className="profile-info">
-          <p><strong>First Name:</strong> {currentUser.firstName}</p>
-          <p><strong>Last Name:</strong> {currentUser.lastName}</p>
+          <p><strong>First Name:</strong> {currentUser.first_name}</p>
+          <p><strong>Last Name:</strong> {currentUser.last_name}</p>
           <p><strong>Email:</strong> {currentUser.email}</p>
+          <p><strong>Role:</strong> {currentUser.role}</p>
+          <p><strong>School ID:</strong> {currentUser.school_id}</p>
         </div>
 
-        {/* Edit Button */}
         <Link to="/edit-profile" className="edit-profile-button">
         Edit Your Profile
         </Link>

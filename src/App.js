@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { getUserRole } from "./utils/auth";
+import { useDispatch } from "react-redux";
+import { signInSuccess } from "./redux/user/userSlice";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -31,6 +33,15 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   // Simulate user role (fetch from login/authentication system)
   const userRole = getUserRole(); // Get the user's role
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Load user profile from localStorage
+    const savedUser = localStorage.getItem("userProfile");
+    if (savedUser) {
+      dispatch(signInSuccess(JSON.parse(savedUser)));
+    }
+  }, [dispatch]);
 
   return (
     <Router>
