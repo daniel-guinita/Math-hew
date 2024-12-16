@@ -1,4 +1,3 @@
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -19,11 +18,11 @@ export default function Register() {
     if (id === "schoolId") {
       let role = "";
       if (/^\d{2}-\d{4}-\d{3}$/.test(value)) {
-        role = "student";
+        role = "Student";
       } else if (/^\d{4}$/.test(value)) {
-        role = "teacher";
+        role = "Teacher";
       } else if (/^\d{5}$/.test(value)) {
-        role = "admin";
+        role = "Admin";
       }
 
       setFormData({ ...formData, [id]: value.trim(), role });
@@ -79,7 +78,7 @@ export default function Register() {
       <div className="register-card">
         <div className="register-header">
           <Link to="/" className="register-logo">
-          Math-hew
+            Math-hew
           </Link>
           <p className="register-subtext">Join the math adventure!</p>
         </div>
@@ -87,8 +86,8 @@ export default function Register() {
           <form className="form" onSubmit={handleSubmit}>
             <div className="form-row">
               <div>
-                <Label htmlFor="schoolId" value="School ID" />
-                <TextInput
+                <label htmlFor="schoolId">School ID</label>
+                <input
                   type="text"
                   placeholder="00-1234-567"
                   id="schoolId"
@@ -97,20 +96,20 @@ export default function Register() {
                 />
               </div>
               <div>
-                <Label htmlFor="firstName" value="First Name" />
-                <TextInput
+                <label htmlFor="firstName">First Name</label>
+                <input
                   type="text"
-                  placeholder="Your first name"
+                  placeholder="First name"
                   id="firstName"
                   value={formData.firstName || ""}
                   onChange={handleChange}
                 />
               </div>
               <div>
-                <Label htmlFor="lastName" value="Last Name" />
-                <TextInput
+                <label htmlFor="lastName">Last Name</label>
+                <input
                   type="text"
-                  placeholder="Your last name"
+                  placeholder="Last name"
                   id="lastName"
                   value={formData.lastName || ""}
                   onChange={handleChange}
@@ -120,18 +119,18 @@ export default function Register() {
 
             <div className="form-row">
               <div>
-                <Label htmlFor="username" value="Username" />
-                <TextInput
+                <label htmlFor="username">Username</label>
+                <input
                   type="text"
-                  placeholder="Pick a fun username!"
+                  placeholder="Username!"
                   id="username"
                   value={formData.username || ""}
                   onChange={handleChange}
                 />
               </div>
               <div>
-                <Label htmlFor="email" value="Institutional Email" />
-                <TextInput
+                <label htmlFor="email">Institutional Email</label>
+                <input
                   type="email"
                   placeholder="example@cit.edu"
                   id="email"
@@ -140,8 +139,8 @@ export default function Register() {
                 />
               </div>
               <div>
-                <Label htmlFor="role" value="Role" />
-                <TextInput
+                <label htmlFor="role">Role</label>
+                <input
                   type="text"
                   id="role"
                   value={formData.role || "Automatically determined by School ID"}
@@ -153,11 +152,11 @@ export default function Register() {
 
             <div className="form-row">
               <div className="password-container">
-                <Label htmlFor="password" value="Password" />
-                <TextInput
+                <label htmlFor="password">Password</label>
+                <input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Create a secret password"
+                  placeholder="Password"
                   value={formData.password || ""}
                   onChange={handleChange}
                 />
@@ -168,28 +167,14 @@ export default function Register() {
             </div>
 
             <div className="button-container">
-              <Button type="submit" disabled={loading} className="register-button">
-                {loading ? (
-                  <>
-                    <Spinner size="sm" />
-                    <span className="pl-3">Registering...</span>
-                  </>
-                ) : (
-                  "Join Now!"
-                )}
-              </Button>
+              <button type="submit" disabled={loading} className="register-button">
+                {loading ? "Registering..." : "Join Now!"}
+              </button>
             </div>
           </form>
-          {errorMessage && (
-            <div className="error-container">
-              <Alert color="failure">{errorMessage}</Alert>
-            </div>
-          )}
+          {errorMessage && <div className="error-container">{errorMessage}</div>}
           <p className="signin-prompt">
-            Already have account?{" "}
-            <Link to="/sign-in" className="signin-link">
-              Click here to Sign In!
-            </Link>
+            Already have an account? <Link to="/sign-in" className="signin-link">Click here to Sign In!</Link>
           </p>
         </div>
       </div>

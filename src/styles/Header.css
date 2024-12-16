@@ -61,21 +61,22 @@
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.2);
+  color: #8c383e;
+  background: #FFFFFF;
   padding: 0.5rem 1rem;
   border-radius: 12px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .header-nav-link:hover {
-  background-color: #ff9f43;
-  transform: scale(1.1);
+  transform: background-color 0.3s ease;
+  color:#781b1b; 
+  opacity: 0.90;
+  
 }
 
 .active {
   color: #fff;
-  background-color: #ff9f43;
 }
 
 /* Account Section */
@@ -86,25 +87,20 @@
 
 /* Sign In Button */
 .header-signin-button {
-  background-color: #ff9f43;
-  color: #fff;
+  background-color: #FFFFFF;
+  color: #8c383e;
   border: none;
   padding: 0.5rem 1rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  border-radius: 20px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.header-signin-button:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
+  transition: background-color 0.1s ease;
 }
 
 /* Dropdown Styling */
 .header-dropdown-button {
-  background: linear-gradient(135deg, #1ccce4, #cfb311);
+  background: #8c383e;
   color: #fff;
   font-size: 1.2rem;
   font-weight: bold;
@@ -112,7 +108,7 @@
   border-radius: 20px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .header-dropdown-button:hover {

@@ -21,16 +21,17 @@
 
 /* AboutUs Container and Background */
 .aboutus-container {
-  @apply min-h-screen bg-gradient-to-b from-[#441717] to-[#4b5563] relative text-gray-100 p-12 flex flex-col items-center justify-start mt-8 overflow-hidden;
+  @apply min-h-screen bg-gradient-to-b from-[#781b1b] to-[#8c383e] to-[#FFFFFF] relative text-gray-100 p-12 flex flex-col items-center justify-start mt-8 overflow-hidden;
+  
 }
 
 /* Title and Subtext */
 .aboutus-title {
-  @apply text-4xl font-bold text-[#701313] mb-8 mt-8 text-center shadow-md animate-pulse;
+  @apply text-4xl font-bold text-[#FFFFFF] mb-8 mt-8 text-center;
 }
 
 .aboutus-subtext {
-  @apply text-xl text-gray-300 leading-8 text-center max-w-4xl mx-auto mb-12 bg-white/10 p-6 rounded-lg animate-fade-in-up;
+  @apply text-xl text-white leading-8 text-center max-w-4xl mx-auto mb-12 bg-white/10 p-6 rounded-lg animate-fade-in-up;
 }
 
 /* Team Section */
@@ -39,7 +40,7 @@
 }
 
 .team-title {
-  @apply text-3xl font-bold text-[#701313] text-center shadow-md animate-pulse;
+  @apply text-3xl font-bold text-[#FFFFFF] text-center;
 }
 
 /* Grid Layout for Team Members */
@@ -49,7 +50,7 @@
 
 /* Member Card */
 .member-card {
-  @apply bg-[#334155] rounded-xl shadow-lg overflow-hidden text-center transition-transform duration-300 ease-in-out;
+  @apply bg-[#8c383e] rounded-xl shadow-lg overflow-hidden text-center transition-transform duration-300 ease-in-out;
   width: 100%; /* Ensure full width in grid */
   height: auto;
 }
@@ -77,11 +78,11 @@
 }
 
 .member-card-role {
-  @apply text-lg text-yellow-400 mb-4; /* Adjusted font size */
+  @apply text-lg text-white font-bold mb-4; /* Adjusted font size */
 }
 
 .member-card-description {
-  @apply text-base leading-relaxed text-gray-300;
+  @apply text-base leading-relaxed text-white;
 }
 
 /* Bouncing Math-hew Logo */

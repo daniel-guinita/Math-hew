@@ -3,29 +3,18 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to right, #88767c, #74b9ff);
+  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
   padding: 2rem;
-  animation: background-slide 10s infinite alternate;
 }
-
-@keyframes background-slide {
-  0% {
-    background: linear-gradient(to right, #88767c, #74b9ff);
-  }
-  100% {
-    background: linear-gradient(to right, #74b9ff, #88767c);
-  }
-}
-
 
 .register-card {
-  background: #bb7a7a;
+  background: #FFFFFF;
   border-radius: 15px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
   max-width: 900px;
   width: 100%;
   padding: 2rem;
-  text-align: center;
+  text-align: left;
 }
 
 .register-header {
@@ -35,7 +24,7 @@
 .register-logo {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #e60325;
+  color: #8c383e;
   margin-bottom: 1rem;
 }
 
@@ -49,6 +38,8 @@
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
+  font-size: 1.02rem;
+  color: #781b1b;
 }
 
 .form-row > div {
@@ -71,39 +62,38 @@ input {
 
 .password-toggle {
   position: absolute;
-  top: 60%;
+  top: 68%;
   right: 1rem;
   transform: translateY(-50%);
   font-size: 1.5rem;
-  color: #636e72;
+  color: #8c383e;
   cursor: pointer;
 }
 
 .password-toggle:hover {
-  color: #0984e3;
+  color: #781b1b;
 }
 
 
 .register-button {
-  background: linear-gradient(to right, #ff512f, #dd2476);
+  background: #781b1b;
   color: #fff;
   font-size: 1.2rem;
   padding: 0.8rem 2rem;
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .register-button:hover {
-  background: linear-gradient(to right, #dd2476, #ff512f);
-  transform: scale(1.05);
+  transform: scale(1.025);
 }
 
 .error-container {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: left;
   margin-top: 1rem;
   font-size: 1rem;
   font-weight: bold;
@@ -126,14 +116,14 @@ input {
 }
 
 .signin-link {
-  color: #0b7002;
+  color: #0984e3;
   font-weight: bold;
   text-decoration: underline;
   cursor: pointer;
 }
 
 .signin-link:hover {
-  color: #e41616;
+  color: #781b1b;
 }
 
 

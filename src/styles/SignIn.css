@@ -4,32 +4,52 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to right, #f78fb3, #74b9ff);
+  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
   padding: 2rem;
-  animation: background-slide 10s infinite alternate;
-}
-
-@keyframes background-slide {
-  0% {
-    background: linear-gradient(to right, #f78fb3, #74b9ff);
-  }
-  100% {
-    background: linear-gradient(to right, #74b9ff, #f78fb3);
-  }
 }
 
 /* Card Styling */
 .signin-card {
-  background: #d6be7c;
+  display: flex;
+  flex-direction: row;
+  background: #FFFFFF;
   border-radius: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  max-width: 500px;
-  width: 100%;
-  padding: 2rem;
-  text-align: center;
+  width: 800px;
+  max-width: 100%;
+  overflow: hidden;
 }
 
-/* Header Section */
+/* Sign-in Content */
+.signin-content {
+  display: flex;
+  width: 100%;
+}
+
+/* Left Side - Image */
+.signin-image {
+  flex: 1;
+  background: #FFFFFF;
+  align-items: center;
+}
+
+.signin-image img {
+  position: relative;
+  width: auto;
+  height: auto;
+  align-items: center;
+  top: 10%;
+  margin: 0 auto;
+  display: flex;
+  object-fit: cover;
+}
+
+/* Right Side - Form */
+.signin-form-container {
+  flex: 1;
+  padding: 2rem;
+}
+
 .signin-header {
   margin-bottom: 1.5rem;
 }
@@ -37,17 +57,14 @@
 .signin-logo {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #e60325;
+  text-align: center;
+  color: #8c383e;
 }
 
-.signin-subtext {
-  font-size: 1.2rem;
-  color: #000000;
-  margin-top: 0.5rem;
-  animation: fadeIn 2s ease-in-out;
+.signin-form {
+  width: 100%;
 }
 
-/* Form Styling */
 .form-group {
   margin-bottom: 1rem;
 }
@@ -55,75 +72,59 @@
 .input-field {
   width: 100%;
   padding: 0.75rem;
-  font-size: 1rem;
-  border: 2px solid #dcdde1;
+  border: 2px solid #FFFFFF;
   border-radius: 0.5rem;
   outline: none;
   transition: border 0.3s ease;
 }
 
 .input-field:focus {
-  border: 2px solid #74b9ff;
+  border-color: #8c383e;
 }
 
-/* Password Toggle Icon */
 .password-toggles {
   position: absolute;
   top: 55%;
   right: 1.5rem;
   transform: translateY(-50%);
   font-size: 1rem;
-  color: #636e72;
+  color: #8c383e;
   cursor: pointer;
 }
 
-.password-toggles:hover {
-  color: #0984e3;
-}
-
-/* Button Styling */
 .signin-button {
-  background: linear-gradient(to right, #ff6b81, #fd79a8);
+  background: #781b1b;
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
-  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .signin-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.045);
 }
 
-/* Error Message Styling */
-/* Centering the error message */
 .error-message {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 1rem;
   font-size: 1rem;
   font-weight: bold;
-  text-align: center; /* Ensures text is centered */
+  text-align: center;
 }
 
-
-/* Register Prompt */
 .register-prompt {
-  font-weight: bold;
   margin-top: 1rem;
+  font-weight: bold;
+  color: #781b1b;
   font-size: 1rem;
-  color: #000000;
 }
 
 .register-link {
   color: #0984e3;
-  font-weight: bold;
   text-decoration: underline;
   cursor: pointer;
 }
 
 .register-link:hover {
-  color: #e41616;
+  color: #781b1b;
 }

@@ -3,10 +3,10 @@ import {
   FaPhone,
   FaEnvelope,
   FaFacebook,
-  FaTwitter,
   FaLinkedin,
   FaInstagram,
-} from "react-icons/fa";
+  FaXTwitter
+} from "react-icons/fa6";
 import "../styles/ContactUs.css";
 
 const ContactUs = () => {
@@ -14,7 +14,7 @@ const ContactUs = () => {
     <div className="contact-us-container">
       {/* Contact Us Card */}
       <div className="contact-us-card">
-        <h1 className="contact-us-title">📬 Get in Touch with Math-hew! 🌟</h1>
+        <h1 className="contact-us-title">Get in Touch with Math-hew!</h1>
         <p className="contact-us-subtitle">
           We’re here to support you every step of the way. Reach out or connect
           with us on social media!
@@ -22,7 +22,7 @@ const ContactUs = () => {
 
         {/* Contact Information */}
         <div className="contact-info">
-          <h2 className="contact-info-title">📞 Contact Information</h2>
+          <h2 className="contact-info-title">Contact Information</h2>
           <div className="contact-info-item">
             <FaEnvelope className="contact-icon" />
             <a href="mailto:mathhew.citu@gmail.com" className="contact-text">
@@ -39,7 +39,7 @@ const ContactUs = () => {
 
         {/* Social Media Links */}
         <div className="social-media">
-          <h2 className="contact-info-title">🌐 Follow Us on Social Media</h2>
+          <h2 className="contact-info-title">Follow Us on Social Media</h2>
           <div className="social-icons">
             <a
               href="https://facebook.com"
@@ -50,12 +50,12 @@ const ContactUs = () => {
               <FaFacebook />
             </a>
             <a
-              href="https://twitter.com"
+              href="https://x.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon twitter"
+              className="social-icon twitter "
             >
-              <FaTwitter />
+              <FaXTwitter  />
             </a>
             <a
               href="https://linkedin.com"
@@ -79,10 +79,10 @@ const ContactUs = () => {
 
       {/* FAQ Section */}
       <div className="faq-card">
-        <h2 className="faq-title">❓ Frequently Asked Questions</h2>
+        <h2 className="faq-title">Frequently Asked Questions</h2>
         <div className="faq-item">
           <h3 className="faq-question">
-            📘 How does Math-hew help students improve their math skills?
+          How does Math-hew help students improve their math skills?
           </h3>
           <p className="faq-answer">
             By using challenges and guided tutorials, Math-hew makes learning
@@ -90,7 +90,7 @@ const ContactUs = () => {
           </p>
         </div>
         <div className="faq-item">
-          <h3 className="faq-question">📊 Can parents track student progress?</h3>
+          <h3 className="faq-question">Can parents track student progress?</h3>
           <p className="faq-answer">
             Yes! Math-hew includes a progress tracking feature with visual
             reports to monitor milestones and celebrate achievements.
