@@ -7,25 +7,24 @@
     align-items: center;
     padding: 20px;
     color: #fff;
-    background: linear-gradient(to right, #f78fb3, #74b9ff);
+    background: linear-gradient(to right, #aa8f0b, #610a0c);
     padding: 2rem;
     animation: background-slide 10s infinite alternate;
   }
   
   @keyframes background-slide {
     0% {
-      background: linear-gradient(to right, #f78fb3, #74b9ff);
+      background: linear-gradient(to right, #aa8f0b, #610a0c);
     }
     100% {
-      background: linear-gradient(to right, #74b9ff, #f78fb3);
+      background: linear-gradient(to right, #aa8f0b, #610a0c);
     }
   }
-  
   
   /* Title */
   .quiz-title {
     font-size: 3rem;
-    color: #ffdd57;
+    color: #fffffe;
     margin-bottom: 20px;
     margin-top: 15%;
     text-shadow: 2px 2px #000;

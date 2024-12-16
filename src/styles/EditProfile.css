@@ -4,8 +4,8 @@
     margin: 8rem auto;
     text-align: center;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
-    color: #fff;
-    background: linear-gradient(135deg, #4caf50, #81c784);
+    color: #ffffff;
+    background: linear-gradient(135deg, #aa8f0b, #610a0c);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
@@ -15,7 +15,7 @@
   .edit-profile-title {
     font-size: 2.8rem;
     margin-bottom: 2rem;
-    color: #ffeb3b;
+    color: #fffef9;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
     font-weight: bold;
     animation: glow 1.5s infinite;
@@ -24,19 +24,19 @@
   /* Title Glow Effect */
   @keyframes glow {
     0% {
-      text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffeb3b, 0 0 30px #ffc107;
+      text-shadow: 0 0 10px #610a0c, 0 0 20px #610a0c, 0 0 30px #610a0c;
     }
     50% {
-      text-shadow: 0 0 20px #ffc107, 0 0 30px #ffeb3b, 0 0 40px #ffc107;
+      text-shadow: 0 0 20px #610a0c, 0 0 30px #610a0c, 0 0 40px #610a0c;
     }
     100% {
-      text-shadow: 0 0 10px #ffc107, 0 0 20px #ffeb3b, 0 0 30px #ffc107;
+      text-shadow: 0 0 10px #610a0c, 0 0 20px #610a0c, 0 0 30px #610a0c;
     }
   }
   
   /* Card */
   .edit-profile-card {
-    background: linear-gradient(135deg, #ff9800, #f57c00);
+    background: linear-gradient(135deg, #610a0c, #aa8f0b);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);

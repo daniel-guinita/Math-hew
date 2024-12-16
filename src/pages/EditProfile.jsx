@@ -40,31 +40,15 @@ const EditProfile = () => {
     dispatch(updateStart());
   
     try {
-      // Map formData to backend field names
-      const updatedData = {};
-      if (formData.firstName && formData.firstName !== currentUser.first_name) {
-        updatedData.first_name = formData.firstName;
-      }
-      if (formData.lastName && formData.lastName !== currentUser.last_name) {
-        updatedData.last_name = formData.lastName;
-      }
-      if (formData.email && formData.email !== currentUser.email) {
-        updatedData.email = formData.email;
-      }
-      if (formData.password) {
-        updatedData.password = formData.password; // Update password if provided
-      }
-      if (formData.profileImage && formData.profileImage !== currentUser.profileImage) {
-        updatedData.profileImage = formData.profileImage;
-      }
+      const updatedData = {
+        first_name: formData.firstName || currentUser.first_name,
+        last_name: formData.lastName || currentUser.last_name,
+        email: formData.email || currentUser.email,
+        profileImage: formData.profileImage || currentUser.profileImage,
+        ...(formData.password && { password: formData.password }),
+      };
   
-      // Check if there are any updates
-      if (Object.keys(updatedData).length === 0) {
-        alert("No changes were made.");
-        return;
-      }
-  
-      // Send PATCH request to the backend
+      // Send update to backend
       const response = await axios.patch(
         `${process.env.REACT_APP_API_URL}/users/${currentUser.id}`,
         updatedData,
@@ -75,14 +59,15 @@ const EditProfile = () => {
         }
       );
   
-      // Update Redux state and LocalStorage
-      dispatch(updateSuccess(response.data));
-      localStorage.setItem("userProfile", JSON.stringify(response.data));
+      // Update Redux and localStorage
+      const updatedUser = response.data;
+      dispatch(updateSuccess(updatedUser));
+      localStorage.setItem("userProfile", JSON.stringify(updatedUser));
       alert("Profile updated successfully!");
       navigate("/profile");
     } catch (error) {
-      dispatch(updateFailure(error.response?.data?.message || "Failed to update profile"));
       console.error("Error updating profile:", error);
+      dispatch(updateFailure(error.response?.data?.message || "Failed to update profile"));
       alert("Failed to update profile. Please try again later.");
     }
   };
@@ -90,7 +75,7 @@ const EditProfile = () => {
   
   return (
     <div className="edit-profile-container">
-      <h1 className="edit-profile-title">🎨 Edit Your Profile 🎉</h1>
+      <h1 className="edit-profile-title">🎨 Edit Your Profile</h1>
       <div className="edit-profile-card">
         <div className="profile-image-container">
           <img

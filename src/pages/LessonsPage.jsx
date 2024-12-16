@@ -119,7 +119,6 @@ const LessonsPage = ({ userRole }) => {
     }
   };
   
-
   // Add Video
   const handleAddVideo = async (lessonId) => {
     const formattedURL = formatYouTubeURL(newVideo.url);
