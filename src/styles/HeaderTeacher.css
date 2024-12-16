@@ -1,4 +1,4 @@
-/* General Header Styling */
+/* General Header Styling
 .header-teacher {
     background: linear-gradient(135deg, #dd2424, #000000);
     color: #fff;
@@ -16,10 +16,9 @@
     align-items: center;
     max-width: 1500px;
     margin: 0 auto;
-    font-family: "Comic Sans MS", "Comic Sans", cursive; /* Keep consistent font */
-  }
-  
-  /* Logo Section */
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
   .header-logo {
     display: flex;
     align-items: center;
@@ -40,7 +39,7 @@
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
   }
   
-  /* Navigation Menu */
+
   .header-menu-toggle {
     display: none;
     font-size: 1.8rem;
@@ -68,7 +67,7 @@
   }
   
   .header-nav-link:hover {
-    background-color: #1a75ff; /* Unique hover color for teachers */
+    background-color: #1a75ff; 
     transform: scale(1.1);
   }
   
@@ -77,15 +76,15 @@
     background-color: #1a75ff;
   }
   
-  /* Account Section */
+
   .header-account {
     display: flex;
     align-items: center;
   }
   
-  /* Dropdown Styling */
+  
   .header-dropdown-button {
-    background: linear-gradient(135deg, #1a8cff, #0059b3); /* Teacher-specific gradient */
+    background: linear-gradient(135deg, #1a8cff, #0059b3); 
     color: #fff;
     font-size: 1.2rem;
     font-weight: bold;
@@ -97,16 +96,16 @@
   }
   
   .header-dropdown-button:hover {
-    background: linear-gradient(135deg, #4db8ff, #1a75ff); /* Brighter hover state */
+    background: linear-gradient(135deg, #4db8ff, #1a75ff); 
     transform: scale(1.1);
   }
   
   .header-dropdown-menu {
     display: none;
     position: absolute;
-    top: 100%; /* Aligns below the Account button */
+    top: 100%; 
     right: auto;
-    background: linear-gradient(135deg, #0059b3, #003366); /* Teacher-specific dropdown background */
+    background: linear-gradient(135deg, #0059b3, #003366); 
     color: #fff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
@@ -138,19 +137,18 @@
   
   .header-dropdown-item:hover,
   .header-dropdown-item:focus {
-    background-color: #004080; /* Dark blue hover state */
+    background-color: #004080; 
     transform: scale(1.05);
   }
   
   .header-dropdown-item:active {
-    background-color: #001f33; /* Even darker active state */
+    background-color: #001f33; 
   }
   
   .header-dropdown-item:last-child {
     border-radius: 0 0 8px 8px;
   }
   
-  /* Logo Animation */
   @keyframes bounce {
     0%, 100% {
       transform: translateY(0);
@@ -160,7 +158,6 @@
     }
   }
   
-  /* Responsive Design */
   @media (max-width: 768px) {
     .header-menu-toggle {
       display: block;
@@ -201,4 +198,4 @@
     color: #28a745;
     font-weight: bold;
   }
-  
+   */

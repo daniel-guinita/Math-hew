@@ -1,14 +1,26 @@
 /* Main Container */
 .quiz-container {
     font-family: 'Fredoka One', cursive;
-    background: linear-gradient(to bottom, #4facfe, #00f2fe);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     color: #fff;
+    background: linear-gradient(to right, #f78fb3, #74b9ff);
+    padding: 2rem;
+    animation: background-slide 10s infinite alternate;
   }
+  
+  @keyframes background-slide {
+    0% {
+      background: linear-gradient(to right, #f78fb3, #74b9ff);
+    }
+    100% {
+      background: linear-gradient(to right, #74b9ff, #f78fb3);
+    }
+  }
+  
   
   /* Title */
   .quiz-title {

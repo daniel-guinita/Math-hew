@@ -1,108 +1,90 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/TeacherAdminPage.css";
-import HeaderTeacher from "../components/HeaderTeacher";
+import HeaderTeacher from "../components/Header";
 
 const TeacherAdminPage = () => {
-  const [students, setStudents] = useState([
-    { id: 1, name: "John Doe", grade: "A" },
-    { id: 2, name: "Jane Smith", grade: "B" },
-    { id: 3, name: "Michael Brown", grade: "A" },
-  ]);
-  const [editingStudent, setEditingStudent] = useState(null);
-  const [editedName, setEditedName] = useState("");
-  const [editedGrade, setEditedGrade] = useState("");
+  const [students, setStudents] = useState([]);
+  const [roleFilter, setRoleFilter] = useState("student"); // Default role filter
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleDelete = (id) => {
-    setStudents(students.filter((student) => student.id !== id));
+  // Fetch students based on role filter
+  const fetchStudents = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const response = await fetch(
+        `http://localhost:3000/users/filter?role=${roleFilter}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch students");
+      }
+      const data = await response.json();
+      setStudents(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleEdit = (student) => {
-    setEditingStudent(student.id);
-    setEditedName(student.name);
-    setEditedGrade(student.grade);
-  };
-
-  const handleSave = () => {
-    setStudents((prev) =>
-      prev.map((student) =>
-        student.id === editingStudent
-          ? { ...student, name: editedName, grade: editedGrade }
-          : student
-      )
-    );
-    setEditingStudent(null);
-  };
+  useEffect(() => {
+    fetchStudents();
+  }, [roleFilter]);
 
   return (
     <div className="admin-page-container">
       <HeaderTeacher />
-      <h1 className="text-4xl font-bold text-yellow-300 mb-4">Teacher/Admin Dashboard</h1>
+      <h1 className="page-title">Teacher/Admin Dashboard</h1>
 
-      {/* Student List Section */}
+      {/* Filter Section */}
+      <div className="filter-section">
+        <label htmlFor="role" className="filter-label">
+          Filter by Role:
+        </label>
+        <select
+          id="role"
+          value={roleFilter}
+          onChange={(e) => setRoleFilter(e.target.value)}
+          className="filter-select"
+        >
+          <option value="student">Student</option>
+          <option value="admin">Admin</option>
+          <option value="teacher">Teacher</option>
+        </select>
+      </div>
+
+      {/* Loading & Error State */}
+      {loading && <p className="loading-text">Loading...</p>}
+      {error && <p className="error-text">Error: {error}</p>}
+
+      {/* Student List Table */}
       <div className="student-list">
-        <h2 className="section-title text-2xl font-bold mb-4">Student List</h2>
+        <h2 className="section-title">Student List</h2>
         <table className="student-table">
           <thead>
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Grade</th>
-              <th>Actions</th>
+              <th>Role</th>
             </tr>
           </thead>
           <tbody>
-            {students.map((student) => (
-              <tr key={student.id}>
-                <td>{student.id}</td>
-                <td>
-                  {editingStudent === student.id ? (
-                    <input
-                      type="text"
-                      value={editedName}
-                      onChange={(e) => setEditedName(e.target.value)}
-                      className="edit-input"
-                    />
-                  ) : (
-                    student.name
-                  )}
-                </td>
-                <td>
-                  {editingStudent === student.id ? (
-                    <input
-                      type="text"
-                      value={editedGrade}
-                      onChange={(e) => setEditedGrade(e.target.value)}
-                      className="edit-input"
-                    />
-                  ) : (
-                    student.grade
-                  )}
-                </td>
-                <td>
-                  {editingStudent === student.id ? (
-                    <button
-                      onClick={handleSave}
-                      className="action-button save-button"
-                    >
-                      Save
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => handleEdit(student)}
-                      className="action-button edit-button"
-                    >
-                      Edit
-                    </button>
-                  )}
-                  <button
-                    onClick={() => handleDelete(student.id)}
-                    className="action-button delete-button"
-                  >
-                    Delete
-                  </button>
+            {students.length > 0 ? (
+              students.map((student) => (
+                <tr key={student.id}>
+                  <td>{student.school_id}</td>
+                  <td>{student.username}</td>
+                  <td>{student.role}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="3" className="no-data-text">
+                  No students found
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
