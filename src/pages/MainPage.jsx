@@ -52,12 +52,12 @@ const MainPage = () => {
           </p>
         </Link>
 
-        <Link to="/learning-buddy" className="activity-card">
+        {/* <Link to="/learning-buddy" className="activity-card">
           <h2 className="activity-title">Chat Buddy 🤖</h2>
           <p className="activity-description">
             Ask questions and learn interactively with our learning buddy!
           </p>
-        </Link>
+        </Link> */}
 
         <Link to="/leaderboard" className="activity-card">
           <h2 className="activity-title">Leaderboard 🏆</h2>

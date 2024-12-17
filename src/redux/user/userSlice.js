@@ -40,8 +40,8 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
-
-      // Save updated user profile to localStorage
+    
+      console.log("Saving updated profile to localStorage:", action.payload);
       localStorage.setItem("userProfile", JSON.stringify(action.payload));
     },
     updateFailure: (state, action) => {

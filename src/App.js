@@ -14,7 +14,7 @@ import MainPage from "./pages/MainPage";
 import LessonsPage from "./pages/LessonsPage";
 import MathMemoryGame from "./pages/MathMemoryGame";
 import MathSpeedyQuiz from "./pages/MathSpeedyQuiz";
-import LearningBuddy from "./pages/LearningBuddy";
+// import LearningBuddy from "./pages/LearningBuddy";
 import Leaderboard from "./pages/Leaderboard";
 import Registration from "./pages/Registration";
 import ProgressTracking from "./pages/ProgressTracking";
@@ -29,14 +29,13 @@ import AdminQuiz from "./pages/AdminQuiz";
 import AdminLessons from "./pages/AdminLessons";
 import AdminLeaderboard from "./pages/AdminLeaderboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ChatBuddy from "./components/ChatBuddy"; 
 
 function App() {
-  // Simulate user role (fetch from login/authentication system)
-  const userRole = getUserRole(); // Get the user's role
+  const userRole = getUserRole();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Load user profile from localStorage
     const savedUser = localStorage.getItem("userProfile");
     if (savedUser) {
       dispatch(signInSuccess(JSON.parse(savedUser)));
@@ -54,33 +53,39 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/main-page" element={<MainPage />} />
-        <Route path="/math-memory-game" element={<MathMemoryGame />} />
-        <Route path="/math-speedy-quiz" element={<MathSpeedyQuiz />} />
-
-        {/* Pass userRole prop to LessonsPage */}
+        <Route path="/games/memory-game" element={<MathMemoryGame />} />
+        <Route path="/games/speedy-quiz" element={<MathSpeedyQuiz />} />
         <Route path="/lessons-page" element={<LessonsPage userRole={userRole} />} />
-
-        <Route path="/learning-buddy" element={<LearningBuddy />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/progress-tracking" element={<ProgressTracking />} />
+        {/* <Route path="/learning-buddy" element={<LearningBuddy />} /> */}
+        <Route path="/dashboard/leaderboard" element={<Leaderboard />} />
+        <Route path="/dashboard/progress-tracking" element={<ProgressTracking />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/TeacherAdminPage" element={<ProtectedRoute allowedRoles={["teacher", "admin"]}><TeacherAdminPage /></ProtectedRoute>}/>
+        <Route
+          path="/TeacherAdminPage"
+          element={
+            <ProtectedRoute allowedRoles={["teacher", "admin"]}>
+              <TeacherAdminPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/teacher-quiz" element={<TeacherQuiz />} />
         <Route path="/teacher-lessons" element={<TeacherLessons />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/admin" element={<ProtectedRoute allowedRoles={["admin"]}><Admin /></ProtectedRoute>} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/admin/admin-users" element={<AdminUsers />} />
         <Route path="/admin/admin-quiz" element={<AdminQuiz />} />
         <Route path="/admin/admin-lessons" element={<AdminLessons />} />
         <Route path="/admin/admin-leaderboard" element={<AdminLeaderboard />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-
-
       </Routes>
       <Footer />
+      <ChatBuddy /> {/* Add the floating ChatBuddy globally */}
     </Router>
   );
 }

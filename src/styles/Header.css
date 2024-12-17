@@ -87,6 +87,8 @@
 
 /* Sign In Button */
 .header-signin-button {
+  background-color: #f8c400;
+  color: #fff;
   background-color: #FFFFFF;
   color: #8c383e;
   border: none;
@@ -95,11 +97,18 @@
   font-weight: bold;
   border-radius: 12px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.header-signin-button:hover {
+  background-color: #610a0c;
+  transform: scale(1.05);
   transition: background-color 0.1s ease;
 }
 
 /* Dropdown Styling */
 .header-dropdown-button {
+  background: linear-gradient(135deg, #000000, #f8c400);
   background: #8c383e;
   color: #fff;
   font-size: 1.2rem;
@@ -121,7 +130,7 @@
   position: absolute;
   top: 100%; /* Aligns below the Account button */
   right: auto; /* Aligns to the right of the button */
-  background: linear-gradient(135deg, #af1111, #4caf50);
+  background: linear-gradient(135deg, #af1111, #f8c400);
   color: #fff;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
