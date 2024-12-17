@@ -1,30 +1,21 @@
 /* Container Styles */
 .memory-game-container {
-  margin-top: 80px;
+  font-family: 'Fredoka One', cursive, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 5rem;
-  color: #ffffff;
-  font-family: 'Arial', sans-serif;
+  color: #ffffff; /* Adjust text color for contrast */
   background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
-  animation: background-slide 10s infinite alternate;
+  animation: none; /* Remove animation if needed */
 }
 
-@keyframes background-slide {
-  0% {
-    background: linear-gradient(to right, #f78fb3, #74b9ff);
-  }
-  100% {
-    background: linear-gradient(to right, #74b9ff, #f78fb3);
-  }
-}
 
 .memory-game-title {
   font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-top: 3rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -42,8 +33,8 @@
 }
 
 .difficulty-buttons button {
-  background: #ffeaa7;
-  color: #6c567b;
+  background: #FFFFFF;
+  color: #781b1b;
   padding: 1rem 2rem;
   border: none;
   border-radius: 20px;
@@ -60,9 +51,10 @@
 }
 
 .reset-button {
-  background: #6dd5ed;
-  color: white;
-  padding: 0.8rem 2rem;
+  background: #781b1b;
+  width: 20%;
+  color: #FFFFFF;
+  padding: 0.8rem;
   border: none;
   border-radius: 15px;
   font-size: 1.2rem;
@@ -72,7 +64,7 @@
 }
 
 .reset-button:hover {
-  background: #2193b0;
+  background: #bb6401;
 }
 
 /* Grid Styles */

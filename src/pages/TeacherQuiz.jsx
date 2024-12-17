@@ -33,6 +33,7 @@ const TeacherQuiz = () => {
   ]);
 
   // State to handle new question input
+  const [showModal, setShowModal] = useState(false);
   const [newQuestion, setNewQuestion] = useState({
     question: "",
     options: ["", "", "", ""],
@@ -43,6 +44,7 @@ const TeacherQuiz = () => {
   const handleAddQuestion = () => {
     setQuestions([...questions, newQuestion]);
     setNewQuestion({ question: "", options: ["", "", "", ""], correctAnswer: "" });
+    setShowModal(false);
   };
 
   // Delete question handler
@@ -53,42 +55,35 @@ const TeacherQuiz = () => {
   return (
     <div className="admin-page-container">
       <Header />
-      <h1 className="text-4xl font-bold text-yellow-300 mb-4">
-        Teacher Quiz Dashboard 📚
-      </h1>
+      <h1 className="teacher-dashboard-title">Teacher Quiz Dashboard</h1>
 
       {/* Table Section */}
-      <div className="w-full max-w-6xl bg-white shadow-lg rounded-lg p-6 text-center text-gray-800">
-        <table className="table-auto w-full border-collapse border border-gray-300">
+      <div className="table-container">
+        <table>
           <thead>
-            <tr className="bg-yellow-400 text-white">
-              <th className="border border-gray-300 px-4 py-2">#</th>
-              <th className="border border-gray-300 px-4 py-2">Question</th>
-              <th className="border border-gray-300 px-4 py-2">Options</th>
-              <th className="border border-gray-300 px-4 py-2">Correct Answer</th>
-              <th className="border border-gray-300 px-4 py-2">Actions</th>
+            <tr>
+              <th>#</th>
+              <th>Question</th>
+              <th>Options</th>
+              <th>Correct Answer</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {questions.map((q, index) => (
-              <tr key={index} className="hover:bg-gray-100">
-                <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-                <td className="border border-gray-300 px-4 py-2">{q.question}</td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <ul className="list-disc list-inside">
-                    {q.options.map((option, optIndex) => (
-                      <li key={optIndex}>{option}</li>
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{q.question}</td>
+                <td>
+                  <ul>
+                    {q.options.map((opt, i) => (
+                      <li key={i}>{opt}</li>
                     ))}
                   </ul>
                 </td>
-                <td className="border border-gray-300 px-4 py-2 text-green-500 font-bold">
-                  {q.correctAnswer}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  <button
-                    onClick={() => handleDeleteQuestion(index)}
-                    className="p-2 bg-red-500 text-white rounded"
-                  >
+                <td className="text-green-500 font-bold">{q.correctAnswer}</td>
+                <td>
+                  <button className="delete-button" onClick={() => handleDeleteQuestion(index)}>
                     Delete
                   </button>
                 </td>
@@ -98,46 +93,63 @@ const TeacherQuiz = () => {
         </table>
       </div>
 
-      {/* Add Question Form */}
-      <div className="mt-6 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg">
-        <h3 className="text-xl font-bold mb-2">Add a New Question</h3>
-        <input
-          type="text"
-          placeholder="Question"
-          value={newQuestion.question}
-          onChange={(e) => setNewQuestion({ ...newQuestion, question: e.target.value })}
-          className="p-2 border rounded mb-2 w-full text-black"
-        />
-        {newQuestion.options.map((option, index) => (
-          <input
-            key={index}
-            type="text"
-            placeholder={`Option ${index + 1}`}
-            value={newQuestion.options[index]}
-            onChange={(e) =>
-              setNewQuestion({
-                ...newQuestion,
-                options: newQuestion.options.map((opt, i) => (i === index ? e.target.value : opt)),
-              })
-            }
-            className="p-2 border rounded mb-2 w-full text-black"
-          />
-        ))}
-        <input
-          type="text"
-          placeholder="Correct Answer"
-          value={newQuestion.correctAnswer}
-          onChange={(e) => setNewQuestion({ ...newQuestion, correctAnswer: e.target.value })}
-          className="p-2 border rounded mb-2 w-full text-black"
-        />
-        <button onClick={handleAddQuestion} className="p-2 bg-blue-500 text-white rounded">
-          Add Question
+      {/* Add Question Button */}
+      <div className="add-question-button-container">
+        <button className="add-question-button" onClick={() => setShowModal(true)}>
+          ➕ Add New Question
         </button>
       </div>
+
+      {/* Modal for Adding Questions */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2 className="modal-title">➕ Add a New Question</h2>
+            <input
+              type="text"
+              placeholder="Enter Question"
+              value={newQuestion.question}
+              onChange={(e) => setNewQuestion({ ...newQuestion, question: e.target.value })}
+              className="modal-input"
+            />
+            {newQuestion.options.map((option, index) => (
+              <input
+                key={index}
+                type="text"
+                placeholder={`Option ${index + 1}`}
+                value={option}
+                onChange={(e) =>
+                  setNewQuestion({
+                    ...newQuestion,
+                    options: newQuestion.options.map((opt, i) =>
+                      i === index ? e.target.value : opt
+                    ),
+                  })
+                }
+                className="modal-input"
+              />
+            ))}
+            <input
+              type="text"
+              placeholder="Correct Answer"
+              value={newQuestion.correctAnswer}
+              onChange={(e) => setNewQuestion({ ...newQuestion, correctAnswer: e.target.value })}
+              className="modal-input"
+            />
+            <div className="modal-buttons">
+              <button className="modal-button add" onClick={handleAddQuestion}>
+                Add Question
+              </button>
+              <button className="modal-button close" onClick={() => setShowModal(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default TeacherQuiz;
-
 

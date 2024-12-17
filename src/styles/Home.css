@@ -6,9 +6,8 @@
   position: relative;
   padding: 2rem;
   overflow: hidden;
-  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF); /* Gradient from top to bottom */
+  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
 }
-
 
 .home-content {
   display: flex;
