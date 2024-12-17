@@ -35,6 +35,7 @@ const Header = () => {
 
     if (!currentUser) {
       return [
+        { label: "Home", path: "/" },
         { label: "About Us", path: "/about-us" },
         { label: "Features", path: "/features" },
         { label: "Contact Us", path: "/contact-us" },
@@ -61,6 +62,7 @@ const Header = () => {
 
     // Default for students
     return [
+      { label: "Home", path: "main-page" },
       { label: "About Us", path: "/about-us" },
       { label: "Features", path: "/features" },
       { label: "Contact Us", path: "/contact-us" },
