@@ -69,7 +69,7 @@ const AdminUsers = () => {
 
   return (
     <div className="admin-users-container">
-      <h1 className="admin-users-title">👥 Users Management</h1>
+      <h1 className="admin-users-title"> Users Management</h1>
 
        {/* Dropdown Role Filter */}
        <div className="dropdown-filter">

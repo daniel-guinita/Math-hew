@@ -60,7 +60,7 @@
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #8c383e;
+  color: #781b1b;
   background: #FFFFFF;
   padding: 0.5rem 1rem;
   border-radius: 12px;
@@ -69,7 +69,7 @@
 
 .header-nav-link:hover {
   transform: background-color 0.3s ease;
-  color:#781b1b; 
+  color:#000000; 
   opacity: 0.90;
   
 }
@@ -86,10 +86,8 @@
 
 /* Sign In Button */
 .header-signin-button {
-  background-color: #f8c400;
-  color: #fff;
   background-color: #FFFFFF;
-  color: #8c383e;
+  color: #781b1b;
   border: none;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
@@ -108,7 +106,7 @@
 /* Dropdown Styling */
 .header-dropdown-button {
   background: #FFFFFF;
-  color: #000000;
+  color: #781b1b;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.5rem 1.5rem;

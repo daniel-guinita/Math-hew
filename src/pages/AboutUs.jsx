@@ -61,7 +61,7 @@ const AboutUs = () => {
       </div>
 
       <div id="team" className="team-section mt-20">
-  <h2 className="team-title animated-title">🎉 Meet the Team 🎉</h2>
+  <h2 className="team-title animated-title">Meet the Team 🎉</h2>
   <div className="grid-layout">
     {teamMembers.map((member) => (
       <div key={member.name} className="member-card">

@@ -1,35 +1,35 @@
 /* Container for the Users Table */
 .admin-users-container {
+  font-family: 'Fredoka One', cursive, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 120px;
   background:#FFFFFF;
-  color: #ffffff;
   min-height: 100vh;
-  font-family: 'Fredoka One', cursive, sans-serif;
 }
 
 /* Page Title */
 .admin-users-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: #000000; 
-  margin-bottom: 20px;
   text-align: center;
+  font-weight: bold;
+  font-size: 2.8rem;
+  margin-bottom: 1ch;
+  color: #781b1b;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
 /* Users Table */
 .admin-users-table {
   width: 90%;
   border-collapse: collapse;
-  border: 3px solid #44475a;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   background-color: #781b1b;
   color: #FFFFFF; 
   border-radius: 8px;
   overflow: hidden; 
+  animation: popIn 0.5s ease;
 }
 
 /* Table Header */
@@ -63,7 +63,7 @@
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -93,22 +93,24 @@
 .dropdown-filter {
   margin-bottom: 20px;
   text-align: center;
+  animation: popIn 0.5s ease;
+  background: 781b1b;
 }
 
 .dropdown-filter label {
   margin-right: 10px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: #000;
 }
 
 .dropdown-filter select {
   padding: 8px 12px;
-  border: 3px solid #44475a;
+  border: 2px solid #44475a;
   border-radius: 4px;
   background-color: #781b1b;
   color: #FFFFFF;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
 }
 

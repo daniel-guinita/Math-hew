@@ -1,5 +1,6 @@
 /* Features Container and Background */
 .features-container {
+  font-family: 'Fredoka One', cursive, sans-serif;
   min-height: 100vh;
   background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
   padding: 4rem 1rem;
@@ -62,7 +63,7 @@
 .features-subtitle {
   font-size: 1.5rem;
   margin-bottom: 3rem;
-  color: #e0f2fe;
+  color: #ffffff;
   line-height: 1.8;
   animation: fadeInUp 1.5s ease-out;
 }
@@ -117,17 +118,17 @@
 
 /* Feature Card Title */
 .feature-card-title {
-  font-size: 1.75rem;
+  font-size: 1.80rem;
   font-weight: bold;
-  color: #781b1b;
+  color: #000000;
   margin-bottom: 0.5rem;
   animation: fadeIn 1.5s ease;
 }
 
 /* Feature Card Description */
 .feature-card-description {
-  font-size: 1.2rem;
-  color: #8c383e;
+  font-size: 1.3rem;
+  color: #781b1b;
   line-height: 1.6;
   animation: fadeInUp 1.5s ease;
 }

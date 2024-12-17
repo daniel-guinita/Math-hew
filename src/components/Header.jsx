@@ -56,7 +56,7 @@ const Header = () => {
         { label: "Manage Quizzes", path: "/teacherAdmin-quiz" },
         { label: "Teacher Dashboard", path: "/TeacherAdminPage" },
         { label: "Lessons & Resources", path: "/lessons-page" },
-        { label: "View Leaderboards", path: "/leaderboard" },
+        { label: "View Leaderboards", path: "/admin/admin-leaderboard" },
       ];
     }
 

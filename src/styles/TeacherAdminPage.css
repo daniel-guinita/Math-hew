@@ -11,6 +11,7 @@
   font-weight: bold;
   color: #832121;
   margin-bottom: 15px;
+  animation: popIn 0.5s ease;
 }
 
 /* Student List Section */

@@ -1,20 +1,22 @@
 /* General Page Layout */
 .admin-page-container {
+  font-family: 'Fredoka One', cursive, sans-serif;
+  background: #FFFFFF;
   margin-top: 90px;
   min-height: 100vh;
   padding: 2rem;
-  background: #FFFFFF;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  font-family: 'Fredoka One', cursive, sans-serif;
 }
 
 .teacher-dashboard-title {
-  font-size: 2.5rem;
-  color: #000000;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #781b1b;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
 /* Table Styling */
@@ -22,6 +24,7 @@
   margin-top: 20px;
   width: 100%;
   max-width: 1000px;
+  animation: popIn 0.5s ease;
 }
 
 table {
@@ -56,6 +59,23 @@ tr:hover {
   cursor: pointer;
 }
 
+/* Edit Button */
+.edit-button {
+  background-color: #ffc107; /* Yellow color */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 5px;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+.edit-button:hover {
+  background-color: #ffca28; /* Lighter yellow on hover */
+}
+
 .delete-button {
   background-color: #781b1b;
   color: #FFFFFF;
@@ -70,11 +90,13 @@ tr:hover {
 .delete-button:hover {
   background-color: #5e1414;
   transform: scale(1.05);
+  
 }
 
 /* Add Question Button */
 .add-question-button-container {
   margin-top: 20px;
+  animation: popIn 0.5s ease;
 }
 
 .add-question-button {

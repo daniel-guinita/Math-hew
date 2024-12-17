@@ -10,18 +10,18 @@ const MainPage = () => {
   return (
     <div className="main-page-container">
       {/* Classroom Image */}
-      <div className="classroom-banner">
+      <div className="mathhew-banner">
         <img
-          src="/images/classroom.jpg"
-          alt="Classroom"
-          className="classroom-image"
+          src="/images/mathhewbg.png"
+          alt="Background"
+          className="mathhewbg-image"
         />
       </div>
 
       {/* Welcome Section */}
       <div className="welcome-section">
         <h1 className="welcome-title">
-          Welcome to Math-hew{currentUser?.username ? `, ${currentUser.username}` : ""}!
+          Welcome {currentUser?.username ? ` ${currentUser.username}` : ""}!
         </h1>
         <p className="welcome-description">
           Explore fun and interactive activities to enhance your math skills!

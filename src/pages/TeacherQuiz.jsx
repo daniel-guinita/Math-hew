@@ -3,7 +3,6 @@ import "../styles/TeacherQuiz.css";
 import Header from "../components/Header";
 
 const TeacherQuiz = () => {
-  // State to manage questions
   const [questions, setQuestions] = useState([
     {
       question: "What is 5 + 3?",
@@ -32,19 +31,34 @@ const TeacherQuiz = () => {
     },
   ]);
 
-  // State to handle new question input
   const [showModal, setShowModal] = useState(false);
-  const [newQuestion, setNewQuestion] = useState({
+  const [isEditing, setIsEditing] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
+  const [currentQuestion, setCurrentQuestion] = useState({
     question: "",
     options: ["", "", "", ""],
     correctAnswer: "",
   });
 
-  // Add question handler
-  const handleAddQuestion = () => {
-    setQuestions([...questions, newQuestion]);
-    setNewQuestion({ question: "", options: ["", "", "", ""], correctAnswer: "" });
-    setShowModal(false);
+  // Add or update question handler
+  const handleSaveQuestion = () => {
+    if (isEditing) {
+      const updatedQuestions = questions.map((q, index) =>
+        index === editIndex ? currentQuestion : q
+      );
+      setQuestions(updatedQuestions);
+    } else {
+      setQuestions([...questions, currentQuestion]);
+    }
+    resetModal();
+  };
+
+  // Edit question handler
+  const handleEditQuestion = (index) => {
+    setIsEditing(true);
+    setEditIndex(index);
+    setCurrentQuestion(questions[index]);
+    setShowModal(true);
   };
 
   // Delete question handler
@@ -52,10 +66,18 @@ const TeacherQuiz = () => {
     setQuestions(questions.filter((_, i) => i !== index));
   };
 
+  // Reset modal state
+  const resetModal = () => {
+    setShowModal(false);
+    setIsEditing(false);
+    setEditIndex(null);
+    setCurrentQuestion({ question: "", options: ["", "", "", ""], correctAnswer: "" });
+  };
+
   return (
     <div className="admin-page-container">
       <Header />
-      <h1 className="teacher-dashboard-title">Teacher Quiz Dashboard</h1>
+      <h1 className="teacher-dashboard-title">Quiz Dashboard</h1>
 
       {/* Table Section */}
       <div className="table-container">
@@ -83,6 +105,9 @@ const TeacherQuiz = () => {
                 </td>
                 <td className="text-green-500 font-bold">{q.correctAnswer}</td>
                 <td>
+                  <button className="edit-button" onClick={() => handleEditQuestion(index)}>
+                    Edit
+                  </button>
                   <button className="delete-button" onClick={() => handleDeleteQuestion(index)}>
                     Delete
                   </button>
@@ -100,28 +125,28 @@ const TeacherQuiz = () => {
         </button>
       </div>
 
-      {/* Modal for Adding Questions */}
+      {/* Modal for Adding/Editing Questions */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2 className="modal-title">➕ Add a New Question</h2>
+            <h2 className="modal-title">{isEditing ? "✏️ Edit Question" : "➕ Add a New Question"}</h2>
             <input
               type="text"
               placeholder="Enter Question"
-              value={newQuestion.question}
-              onChange={(e) => setNewQuestion({ ...newQuestion, question: e.target.value })}
+              value={currentQuestion.question}
+              onChange={(e) => setCurrentQuestion({ ...currentQuestion, question: e.target.value })}
               className="modal-input"
             />
-            {newQuestion.options.map((option, index) => (
+            {currentQuestion.options.map((option, index) => (
               <input
                 key={index}
                 type="text"
                 placeholder={`Option ${index + 1}`}
                 value={option}
                 onChange={(e) =>
-                  setNewQuestion({
-                    ...newQuestion,
-                    options: newQuestion.options.map((opt, i) =>
+                  setCurrentQuestion({
+                    ...currentQuestion,
+                    options: currentQuestion.options.map((opt, i) =>
                       i === index ? e.target.value : opt
                     ),
                   })
@@ -132,15 +157,17 @@ const TeacherQuiz = () => {
             <input
               type="text"
               placeholder="Correct Answer"
-              value={newQuestion.correctAnswer}
-              onChange={(e) => setNewQuestion({ ...newQuestion, correctAnswer: e.target.value })}
+              value={currentQuestion.correctAnswer}
+              onChange={(e) =>
+                setCurrentQuestion({ ...currentQuestion, correctAnswer: e.target.value })
+              }
               className="modal-input"
             />
             <div className="modal-buttons">
-              <button className="modal-button add" onClick={handleAddQuestion}>
-                Add Question
+              <button className="modal-button add" onClick={handleSaveQuestion}>
+                {isEditing ? "Save Changes" : "Add Question"}
               </button>
-              <button className="modal-button close" onClick={() => setShowModal(false)}>
+              <button className="modal-button close" onClick={resetModal}>
                 Close
               </button>
             </div>
@@ -152,4 +179,3 @@ const TeacherQuiz = () => {
 };
 
 export default TeacherQuiz;
-
