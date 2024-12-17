@@ -75,7 +75,7 @@ const EditProfile = () => {
   
   return (
     <div className="edit-profile-container">
-      <h1 className="edit-profile-title">🎨 Edit Your Profile</h1>
+      <h1 className="edit-profile-title">Edit Your Profile</h1>
       <div className="edit-profile-card">
         <div className="profile-image-container">
           <img
@@ -84,7 +84,7 @@ const EditProfile = () => {
             className="profile-image"
           />
           <label htmlFor="profileImage" className="profile-image-label">
-            📸 Change Profile Picture
+          Change Profile Picture
           </label>
           <input
             type="file"

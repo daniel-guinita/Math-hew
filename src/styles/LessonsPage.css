@@ -100,10 +100,37 @@
 }
 
 /* Buttons */
-.back-button,
-.add-button {
+.back-button {
   background-color: #007bff;
-  color: rgb(0, 0, 0);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.edit-button,
+.delete-button {
+  background-color: #51ca39;
+  color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -112,57 +139,14 @@
   transition: background-color 0.3s ease;
 }
 
-.back-button:hover,
-.add-button:hover {
-  background-color: #0056b3;
+.delete-button {
+  background-color: #ff4d4d;
 }
 
-/* Admin Section */
-.admin-section {
-  margin-top: 30px;
-  background: #4e4747;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.input-field {
-  color: #000000;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #000000;
-  border-radius: 5px;
-}
-
-.add-button {
-  width: 100%;
-  background-color: #51ca39;
-}
-
-.add-button:hover {
+.edit-button:hover {
   background-color: #3b28a7;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .lesson-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-
-  .lesson-card {
-    padding: 15px;
-  }
-
-  .lesson-detail-container {
-    padding: 15px;
-  }
-
-  .lesson-detail-title {
-    font-size: 1.5rem;
-  }
-
-  .lesson-detail-description {
-    font-size: 1rem;
-  }
+.delete-button:hover {
+  background-color: #e60000;
 }
