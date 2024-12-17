@@ -6,7 +6,7 @@
   position: relative;
   padding: 2rem;
   overflow: hidden;
-  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
+  background: #8c383e;
 }
 
 .home-content {
@@ -62,17 +62,14 @@
   flex: 1;
   display: flex;
   justify-content: center;
+  margin: 2.5rem;
 }
 
 .home-image img {
   max-width: 350px;
+  scale: 1.5;
   width: 100%;
   transition: transform 0.3s ease;
-  animation: bounce 2s infinite; /* Bouncing mascot animation */
-}
-
-.home-image img:hover {
-  transform: rotate(10deg) scale(1.1);
 }
 
 .decorations {
@@ -85,7 +82,7 @@
   pointer-events: none;
 }
 
-.star {
+/* .star {
   position: absolute;
   font-size: 3rem;
   animation: float 6s ease-in-out infinite;
@@ -107,7 +104,7 @@
   bottom: 20%;
   left: 40%;
   animation-delay: 4s;
-}
+} */
 
 /* Animations */
 @keyframes float {

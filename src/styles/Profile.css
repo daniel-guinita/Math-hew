@@ -5,8 +5,7 @@
     text-align: center;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     color: #fff;
-    background: linear-gradient(135deg, #aa8f0b, #610a0c);
-    background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
+    background:#781b1b;
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
@@ -24,10 +23,10 @@
   
   /* Profile Card */
   .profile-card {
-    background: linear-gradient(135deg, #610a0c, #dcc532);
+    background: #FFFFFF;
     padding: 1.5rem;
     border-radius: 20px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 8px 20px #781b1b;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,13 +46,13 @@
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid #ffcc33;
+    border: 5px solid #781b1b;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   }
   
   /* Profile Info */
   .profile-info {
-    background: #ffebee;
+    background: #FFFFFF;
     width: 100%;
     text-align: left;
     padding: 1rem;
@@ -69,7 +68,7 @@
   
   /* Edit Profile Button */
   .edit-profile-button {
-    background: linear-gradient(135deg, #ffa726, #ff6f00);
+    background: #781b1b;
     color: #fff;
     font-size: 1.2rem;
     font-weight: bold;
@@ -81,7 +80,6 @@
   }
   
   .edit-profile-button:hover {
-    background: linear-gradient(135deg, #ff6f00, #ffa726);
     transform: scale(1.1);
   }
   
