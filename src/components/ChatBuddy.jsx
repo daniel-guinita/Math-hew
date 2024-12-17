@@ -4,7 +4,7 @@ import "../styles/ChatBuddy.css";
 const ChatBuddy = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { type: "bot", text: "👋 Hi there! I'm Cody, your Math Buddy. How can I help you with math today?" },
+    { type: "bot", text: "👋 Hi there! I'm Mathhew, your Math Buddy. How can I help you with math today?" },
     { type: "bot", text: "Here are some topics I can help with:\n✔️ Fractions\n✔️ Multiplication tips\n✔️ Word problems\n✔️ Measurement & Geometry\n✔️ Data & Probability" },
   ]);
   const [currentTopic, setCurrentTopic] = useState(null);

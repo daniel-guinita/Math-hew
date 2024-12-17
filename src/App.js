@@ -29,7 +29,7 @@ import AdminQuiz from "./pages/AdminQuiz";
 import AdminLessons from "./pages/AdminLessons";
 import AdminLeaderboard from "./pages/AdminLeaderboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-import ChatBuddy from "./components/ChatBuddy"; // Import the new component
+import ChatBuddy from "./components/ChatBuddy"; 
 
 function App() {
   const userRole = getUserRole();
@@ -53,12 +53,12 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/main-page" element={<MainPage />} />
-        <Route path="/math-memory-game" element={<MathMemoryGame />} />
-        <Route path="/math-speedy-quiz" element={<MathSpeedyQuiz />} />
+        <Route path="/games/memory-game" element={<MathMemoryGame />} />
+        <Route path="/games/speedy-quiz" element={<MathSpeedyQuiz />} />
         <Route path="/lessons-page" element={<LessonsPage userRole={userRole} />} />
         {/* <Route path="/learning-buddy" element={<LearningBuddy />} /> */}
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/progress-tracking" element={<ProgressTracking />} />
+        <Route path="/dashboard/leaderboard" element={<Leaderboard />} />
+        <Route path="/dashboard/progress-tracking" element={<ProgressTracking />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route
