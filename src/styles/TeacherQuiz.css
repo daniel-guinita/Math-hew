@@ -2,7 +2,7 @@
     margin-top: 90px;
     min-height: 100vh;
     padding: 2rem;
-    background: linear-gradient(135deg, #182848, #4b6cb7);
+    background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -164,13 +164,10 @@ th {
   color: white;
 }
 
-<<<<<<< Updated upstream
 tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-=======
->>>>>>> Stashed changes
 tr:hover {
   background-color: #f1f1f1;
 }

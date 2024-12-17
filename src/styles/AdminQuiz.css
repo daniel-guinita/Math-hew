@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #2a5175, #b94444);
+    background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
     color: black;
     padding: 120px;
     box-sizing: border-box;

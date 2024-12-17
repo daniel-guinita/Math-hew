@@ -2,7 +2,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column; /* Stack navbar and content vertically */
-    background: linear-gradient(135deg, #2a5175, #b94444);
+    background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
     position: relative;
     padding: 2rem;
     overflow: hidden;

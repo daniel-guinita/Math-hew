@@ -29,8 +29,9 @@
 .home-title {
   font-size: 3.5rem;
   font-weight: 900;
-  color: #ffdf16;
-  text-shadow: 2px 2px 4px rgba(14, 185, 228, 0.3);
+  -webkit-text-stroke: 2.5px #FFFFFF; /* Adds a 2px black border */
+  -webkit-text-fill-color: #8c383e; /* Keeps the internal text color */
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
   margin-bottom: 1rem;
 }
 

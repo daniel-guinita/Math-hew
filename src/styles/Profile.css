@@ -6,6 +6,7 @@
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     color: #fff;
     background: linear-gradient(135deg, #aa8f0b, #610a0c);
+    background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);

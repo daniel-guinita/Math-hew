@@ -43,7 +43,7 @@ const AboutUs = () => {
   return (
     <div className="aboutus-container">
       <div className="w-full max-w-6xl text-center relative">
-        <h1 className="aboutus-title animated-title">🌟 About Math-hew 🌟</h1>
+        <h1 className="aboutus-title animated-title">About Math-hew</h1>
         <p className="aboutus-subtext">
           Welcome to Math-hew, an engaging e-learning platform designed
           specifically for 4th-grade students to make learning math fun and

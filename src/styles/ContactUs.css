@@ -1,7 +1,7 @@
 /* Contact Us Page Layout */
 .contact-us-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #4b79a1, #283e51);
+  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,14 +54,13 @@
 .contact-us-title {
   font-size: 2.8rem;
   font-weight: bold;
-  color: #ffcc00;
+  color: #8c383e;
   margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .contact-us-subtitle {
   font-size: 1.25rem;
-  color: #4b5563;
+  color: #781b1b;
   margin-bottom: 2rem;
   line-height: 1.8;
 }
@@ -83,13 +82,13 @@
   justify-content: center; /* Centers the icon and text horizontally */
   gap: 0.75rem; /* Adds spacing between the icon and text */
   font-size: 1.125rem; /* Adjusts font size for better readability */
-  color: #1e293b; /* Text color */
+  color: #781b1b; /* Text color */
   margin-bottom: 1rem; /* Adds spacing between each contact item */
 }
 
 .contact-icon {
   font-size: 1.8rem;
-  color: #ff4500;
+  color: #781b1b;
 }
 
 .contact-text {
@@ -100,7 +99,7 @@
 
 .contact-text:hover {
   text-decoration: underline;
-  color: #ff4500;
+  color: #8c383e;
 }
 
 /* Social Media */
@@ -118,10 +117,6 @@
 .social-icon {
   font-size: 2.5rem;
   transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.social-icon:hover {
-  transform: scale(1.2);
 }
 
 .facebook {
@@ -155,7 +150,7 @@
 .faq-title {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #ffcc00;
+  color: #8c383e;
   margin-bottom: 2rem;
 }
 

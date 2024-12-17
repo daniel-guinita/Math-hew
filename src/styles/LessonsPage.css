@@ -1,7 +1,7 @@
 /* General Styles */
 .lessons-page-container {
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom, #590cb1, #eef2f3);
+  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
   min-height: 100vh;
   padding: 200px;
   display: flex;

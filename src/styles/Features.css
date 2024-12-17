@@ -1,7 +1,7 @@
 /* Features Container and Background */
 .features-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #2193b0, #6dd5ed);
+  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
   padding: 4rem 1rem;
   display: flex;
   justify-content: center;
@@ -53,11 +53,10 @@
   max-width: 1300px;
   font-size: 3.5rem;
   font-weight: bold;
-  color: #b90b0b;
+  -webkit-text-fill-color: #FFFFFF; /* Keeps the internal text color */
   margin-bottom: 1rem;
   margin-left: -4%;
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-  animation: glow 2s infinite alternate;
 }
 
 .features-subtitle {
@@ -102,7 +101,8 @@
   right: -50px;
   width: 150px;
   height: 150px;
-  background: rgba(255, 223, 77, 0.3);
+  background: #8c383e;
+  opacity: 0.5;
   border-radius: 50%;
   z-index: 0;
 }
@@ -119,15 +119,15 @@
 .feature-card-title {
   font-size: 1.75rem;
   font-weight: bold;
-  color: #ff4500;
+  color: #781b1b;
   margin-bottom: 0.5rem;
   animation: fadeIn 1.5s ease;
 }
 
 /* Feature Card Description */
 .feature-card-description {
-  font-size: 1.125rem;
-  color: #4b5563;
+  font-size: 1.2rem;
+  color: #8c383e;
   line-height: 1.6;
   animation: fadeInUp 1.5s ease;
 }
