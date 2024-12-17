@@ -80,7 +80,7 @@ tr:hover {
 .add-question-button {
   background: #781b1b;
   color: #FFFFFF;
-  font-size: 12rem;
+  font-size: 1rem;
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
@@ -164,7 +164,7 @@ tr:hover {
 
 .modal-input:focus {
   border-color: #d1b0b0;
-  box-shadow: 0 0 6px #781b1b;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
 }
 
 .modal-buttons {
@@ -190,11 +190,11 @@ tr:hover {
 }
 
 .modal-button.close {
-  background-color: #781b1b;
+  background-color: #e63946;
 }
 
 .modal-button.close:hover {
-  background-color: #8c383e;
+  background-color: #d62f36;
 }
 
 /* Responsive Design */

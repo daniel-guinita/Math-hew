@@ -25,7 +25,7 @@ import TeacherQuiz from './pages/TeacherQuiz';
 import TeacherLessons from './pages/TeacherLessons';
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
-import AdminQuiz from "./pages/AdminQuiz";
+// import AdminQuiz from "./pages/AdminQuiz";
 import AdminLessons from "./pages/AdminLessons";
 import AdminLeaderboard from "./pages/AdminLeaderboard";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -69,7 +69,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/teacher-quiz" element={<TeacherQuiz />} />
+        <Route path="/teacherAdmin-quiz" element={<TeacherQuiz />} />
         <Route path="/teacher-lessons" element={<TeacherLessons />} />
         <Route
           path="/admin"
@@ -80,7 +80,7 @@ function App() {
           }
         />
         <Route path="/admin/admin-users" element={<AdminUsers />} />
-        <Route path="/admin/admin-quiz" element={<AdminQuiz />} />
+        {/* <Route path="/admin/admin-quiz" element={<AdminQuiz />} /> */}
         <Route path="/admin/admin-lessons" element={<AdminLessons />} />
         <Route path="/admin/admin-leaderboard" element={<AdminLeaderboard />} />
       </Routes>

@@ -4,6 +4,8 @@ import "../styles/AdminUsers.css";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [selectedRole, setSelectedRole] = useState("all"); 
   const [selectedUser, setSelectedUser] = useState(null);
 
   // Fetch all users on component load
@@ -16,8 +18,22 @@ const AdminUsers = () => {
     try {
       const response = await axios.get("http://localhost:3000/users");
       setUsers(response.data);
+      setFilteredUsers(response.data); // Initialize filtered users
     } catch (error) {
       console.error("Error fetching users:", error);
+    }
+  };
+
+  // Dropdown filter handler
+  const handleRoleChange = (event) => {
+    const role = event.target.value;
+    setSelectedRole(role);
+
+    if (role === "all") {
+      setFilteredUsers(users); // Show all users
+    } else {
+      const filtered = users.filter((user) => user.role === role);
+      setFilteredUsers(filtered); // Filter by role
     }
   };
 
@@ -35,7 +51,6 @@ const AdminUsers = () => {
       }
     }
   };
-  
 
   // Function to view user details
   const handleViewDetails = async (id) => {
@@ -56,6 +71,17 @@ const AdminUsers = () => {
     <div className="admin-users-container">
       <h1 className="admin-users-title">👥 Users Management</h1>
 
+       {/* Dropdown Role Filter */}
+       <div className="dropdown-filter">
+        <label htmlFor="roleFilter">Filter by Role: </label>
+        <select id="roleFilter" value={selectedRole} onChange={handleRoleChange}>
+          <option value="all">All</option>
+          <option value="student">Student</option>
+          <option value="admin">Admin</option>
+          <option value="teacher">Teacher</option>
+        </select>
+      </div>
+
       {/* Users Table */}
       <table className="admin-users-table">
         <thead>
@@ -68,7 +94,7 @@ const AdminUsers = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {filteredUsers.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.username}</td>
