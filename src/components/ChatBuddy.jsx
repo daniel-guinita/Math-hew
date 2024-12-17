@@ -34,7 +34,7 @@ const ChatBuddy = () => {
     setCurrentTopic(null);
     setSubTopic(null);
     setMessages([
-      { type: "bot", text: "👋 Hi there! I'm Cody, your Math Buddy. How can I help you today?" },
+      { type: "bot", text: "👋 Hi there! I'm Mathhew, your Math Buddy. How can I help you today?" },
       { type: "bot", text: "Here are some topics I can help with:\n✔️ Fractions\n✔️ Multiplication tips\n✔️ Word problems\n✔️ Measurement & Geometry\n✔️ Data & Probability" },
     ]);
   };

@@ -24,7 +24,7 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <h1 className="profile-title">
-        Welcome, {currentUser.first_name || "User"}! 👨‍🎓
+        Welcome, {currentUser.first_name || "User"}!
       </h1>
       <div className="profile-card">
         <div className="profile-image-section">
