@@ -1,173 +1,212 @@
+/* General Page Layout */
 .admin-page-container {
-    margin-top: 90px;
-    min-height: 100vh;
-    padding: 2rem;
-    background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .admin-page-title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .admin-stats {
-    background: #ffffff10;
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    width: 80%;
-  }
-  
-  .admin-stats h2 {
-    margin-bottom: 1rem;
-  }
-  
-  .tile-management {
-    background: #ffffff10;
-    padding: 1.5rem 2rem;
-    border-radius: 10px;
-    width: 80%;
-  }
-  
-  .tile-management h2 {
-    margin-bottom: 1rem;
-  }
-  
-  .admin-input {
-    padding: 0.5rem;
-    margin-right: 1rem;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    font-size: 1rem;
-  }
-  
-  .admin-button {
-    padding: 0.5rem 1rem;
-    background-color: #ffa500;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 0.5rem;
-  }
-  
-  .admin-button.reset {
-    background-color: #e63946;
-  }
-  
-  .admin-button:hover {
-    opacity: 0.9;
-  }
-  
-  .teacher-dashboard-container {
-    padding: 2rem;
-    background: linear-gradient(135deg, #182848, #4b6cb7);
-    min-height: 100vh;
-  }
-  
-  .teacher-dashboard-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #333;
-  }
-  
-  .student-list {
-    max-width: 800px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .section-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: yellow;
-  }
-  
-  .student-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    background-color: #333;
-  }
-  
-  .student-table th,
-  .student-table td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .student-table th {
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .student-table tr:hover {
-    background-color: #333;
-  }
-  
-  .action-button {
-    padding: 0.5rem 0.75rem;
-    margin: 0 0.25rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-  }
-  
-  .edit-button {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .delete-button {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  .save-button {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  .edit-input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
+  margin-top: 90px;
+  min-height: 100vh;
+  padding: 2rem;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: 'Fredoka One', cursive, sans-serif;
+}
 
-  table {
-  border-collapse: collapse;
+.teacher-dashboard-title {
+  font-size: 2.5rem;
+  color: #000000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Table Styling */
+.table-container {
+  margin-top: 20px;
   width: 100%;
+  max-width: 1000px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  color: #333;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 th, td {
+  padding: 14px;
   text-align: left;
-  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
 }
 
 th {
-  background-color: #f4a261;
-  color: white;
+  background-color: #781b1b;
+  color: #FFFFFF;
+  font-size: 1.2rem;
 }
 
 tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #FFFFFF;
 }
 
 tr:hover {
-  background-color: #f1f1f1;
+  background-color: #f3dcdc;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #781b1b;
+  color: #FFFFFF;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #5e1414;
+  transform: scale(1.05);
+}
+
+/* Add Question Button */
+.add-question-button-container {
+  margin-top: 20px;
+}
+
+.add-question-button {
+  background: #781b1b;
+  color: #FFFFFF;
+  font-size: 12rem;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.add-question-button:hover {
+  background-color: #5e1414;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Content */
+.modal-content {
+  background: #FFFFFF;
+  color: #333;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.4s ease-in-out;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #f5f3f2;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #000000;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.modal-input:focus {
+  border-color: #d1b0b0;
+  box-shadow: 0 0 6px #781b1b;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.modal-button {
+  background-color: #4caf50;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.modal-button.close {
+  background-color: #781b1b;
+}
+
+.modal-button.close:hover {
+  background-color: #8c383e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.9rem;
+  }
+  .add-question-button {
+    font-size: 0.9rem;
+  }
+  .modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
 }

@@ -21,11 +21,10 @@ export default function Leaderboard() {
   return (
     <div className="leaderboard-container">
       <h1 className="leaderboard-title">🏆 Leaderboards 🏆</h1>
-
-      {/* Math Memory Game Leaderboard */}
-      <div className="leaderboard-section">
-        <h2 className="section-title">🎮 Math Memory Game</h2>
-        <div className="table-container">
+      <div className="leaderboard-sections">
+        {/* Math Memory Game */}
+        <div className="leaderboard-section">
+          <h2 className="section-title">🎮 Math Memory Game</h2>
           <table className="leaderboard-table">
             <thead>
               <tr>
@@ -36,7 +35,7 @@ export default function Leaderboard() {
             </thead>
             <tbody>
               {memoryGameData.map((entry, index) => (
-                <tr key={index} className={`row ${index % 2 === 0 ? "even" : "odd"}`}>
+                <tr key={index}>
                   <td>{entry.rank}</td>
                   <td>{entry.name}</td>
                   <td>{entry.score}</td>
@@ -45,12 +44,10 @@ export default function Leaderboard() {
             </tbody>
           </table>
         </div>
-      </div>
 
-      {/* Math Speedy Quiz Leaderboard */}
-      <div className="leaderboard-section">
-        <h2 className="section-title">⚡ Math Speedy Quiz</h2>
-        <div className="table-container">
+        {/* Math Speedy Quiz */}
+        <div className="leaderboard-section">
+          <h2 className="section-title">⚡ Math Speedy Quiz</h2>
           <table className="leaderboard-table">
             <thead>
               <tr>
@@ -61,7 +58,7 @@ export default function Leaderboard() {
             </thead>
             <tbody>
               {speedyQuizData.map((entry, index) => (
-                <tr key={index} className={`row ${index % 2 === 0 ? "even" : "odd"}`}>
+                <tr key={index}>
                   <td>{entry.rank}</td>
                   <td>{entry.name}</td>
                   <td>{entry.score}</td>

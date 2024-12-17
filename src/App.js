@@ -53,12 +53,12 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/main-page" element={<MainPage />} />
-        <Route path="/games/memory-game" element={<MathMemoryGame />} />
-        <Route path="/games/speedy-quiz" element={<MathSpeedyQuiz />} />
+        <Route path="/math-memory-game" element={<MathMemoryGame />} />
+        <Route path="/math-speedy-quiz" element={<MathSpeedyQuiz />} />
         <Route path="/lessons-page" element={<LessonsPage userRole={userRole} />} />
         {/* <Route path="/learning-buddy" element={<LearningBuddy />} /> */}
-        <Route path="/dashboard/leaderboard" element={<Leaderboard />} />
-        <Route path="/dashboard/progress-tracking" element={<ProgressTracking />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/progress-tracking" element={<ProgressTracking />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route

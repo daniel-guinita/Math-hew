@@ -1,24 +1,15 @@
 /* Main Container */
 .quiz-container {
-    font-family: 'Fredoka One', cursive;
+  font-family: 'Fredoka One', cursive, sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    color: #fff;
-    background: linear-gradient(to right, #aa8f0b, #610a0c);
+    color: #ffffff;
+    background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
     padding: 2rem;
     animation: background-slide 10s infinite alternate;
-  }
-  
-  @keyframes background-slide {
-    0% {
-      background: linear-gradient(to right, #aa8f0b, #610a0c);
-    }
-    100% {
-      background: linear-gradient(to right, #aa8f0b, #610a0c);
-    }
   }
   
   /* Title */
@@ -45,7 +36,7 @@
     padding: 15px 30px;
     font-size: 1.5rem;
     color: #fff;
-    background: #ff5722;
+    background: #781b1b;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -120,7 +111,7 @@
   .option {
     padding: 15px;
     font-size: 1.5rem;
-    background: #ffdd57;
+    background: #ffffff;
     color: #333;
     border: none;
     border-radius: 10px;
@@ -174,8 +165,8 @@
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 1.2rem;
-    background: #2196f3;
-    color: #fff;
+    background: #781b1b;
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;

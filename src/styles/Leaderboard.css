@@ -1,113 +1,107 @@
-/* Main Container */
+/* Leaderboard Main Container */
 .leaderboard-container {
-  margin-top: 3%;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  background: linear-gradient(to bottom, #100955, #067a71);
-  padding: 30px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-family: 'Fredoka One', cursive, sans-serif;
+  text-align: center;
+  background: #FFFFFF; /* Consistent background */
+  padding:270px;
+  color: #781b1b;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
-/* Title */
+/* Leaderboard Title */
 .leaderboard-title {
-  font-size: 3rem;
-  color: #e71d0b;
-  text-shadow: 2px 2px #f58904;
-  margin-top: 2%;
-  margin-bottom: 1ch;
-  animation: fadeInDown 1s ease-in-out;
+  font-size: 2.8rem;
+  color: #781b1b;
+  text-shadow: 2px 2px #ffffff;
 }
 
-/* Section */
+/* Leaderboard Sections Container */
+.leaderboard-sections {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Individual Section */
 .leaderboard-section {
-  width: 90%;
-  max-width: 800px;
-  margin-bottom: 30px;
-  animation: slideInUp 1s ease-in-out;
+  background: #ffffff;
+  border-radius: 20px;
+  width: 45%;
+  min-width: 300px;
+  padding: 20px;
+  border: #781b1b 2px solid;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  animation: popIn 0.5s ease;
 }
 
 /* Section Title */
 .section-title {
-  font-size: 2rem;
-  color: #ff6f61;
-  text-shadow: 1px 1px #ffe4c4;
-  text-align: center;
-  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #781b1b !important; /* Ensures it applies */
+  margin-bottom: 10px;
 }
 
-/* Table Container */
-.table-container {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-
-/* Table */
+/* Table Styling */
 .leaderboard-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.leaderboard-table thead {
-  background: #04be9f;
-  color: #fff;
+/* Table Header */
+.leaderboard-table thead th {
+  background: #781b1b;
+  color: #fff !important; /* Forces white text */
   font-size: 1.2rem;
 }
 
 .leaderboard-table th,
 .leaderboard-table td {
+  padding: 10px;
   text-align: center;
-  padding: 15px;
-  border-bottom: 1px solid #f0f0f0;
+  border: 1px solid #ddd;
 }
 
-.leaderboard-table .row.even {
-  background: #8a0b07;
+.leaderboard-table tbody tr:nth-child(even) {
+  background-color: #f7f7f7;
 }
 
-.leaderboard-table .row.odd {
-  background: #064988;
-}
-
-.leaderboard-table tbody .row:hover {
-  background: #ffee58;
-  transform: scale(1.02);
+.leaderboard-table tbody tr:hover {
+  background-color: #ffe8e8;
+  transform: scale(1.01);
   transition: all 0.3s ease-in-out;
 }
 
 /* Animations */
-@keyframes fadeInDown {
+@keyframes popIn {
   from {
+    transform: scale(0.9);
     opacity: 0;
-    transform: translateY(-20px);
   }
   to {
+    transform: scale(1);
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
-@keyframes slideInUp {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(50px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .leaderboard-title {
-    font-size: 2.5rem;
+  .leaderboard-section {
+    width: 100%;
   }
 
-  .section-title {
-    font-size: 1.8rem;
+  .leaderboard-title {
+    font-size: 2.2rem;
   }
 }

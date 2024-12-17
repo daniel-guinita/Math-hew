@@ -1,12 +1,11 @@
 /* Contact Us Page Layout */
 .contact-us-container {
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 9rem 1rem;
-  overflow: hidden;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #781b1b, #8c383e, #ffffff);
+  padding: 3rem 1rem;
 }
 
 /* Floating Decorations */
@@ -37,8 +36,19 @@
   animation-delay: 2s;
 } */
 
+/* Container for Side-by-Side Layout */
+.contact-us-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
 /* Contact Us Card */
-.contact-us-card {
+.contact-us-card,
+.faq-card {
+  flex: 1; /* Each takes equal space */
   width: 100%;
   max-width: 900px;
   background: #ffffff;
@@ -46,7 +56,6 @@
   padding: 2rem 3rem;
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  margin-bottom: 3rem;
   animation: fadeInUp 1.5s ease;
 }
 
@@ -114,9 +123,19 @@
   margin-top: 1rem;
 }
 
+.social-icon:hover {
+  transform: scale(1.2); /* Adds a hover effect */
+  color: #8c383e; /* Darker hover color */
+}
+
 .social-icon {
   font-size: 2.5rem;
+  color: #781b1b; /* Default color for icons */
   transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-media h2{
+  color: #000000;
 }
 
 .facebook {
@@ -135,23 +154,16 @@
   color: #e4405f;
 }
 
-/* FAQ Section */
-.faq-card {
-  width: 100%;
-  max-width: 900px;
-  background: #ffffff;
-  border-radius: 1.5rem;
-  padding: 2rem 3rem;
-  text-align: left;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  animation: fadeInUp 1.5s ease 0.5s;
-}
-
 .faq-title {
   font-size: 2.5rem;
   font-weight: bold;
   color: #8c383e;
   margin-bottom: 2rem;
+  text-align: center;
+}
+
+.faq-card {
+  text-align: left; /* Align FAQ text to the left */
 }
 
 .faq-item {
@@ -161,7 +173,7 @@
 .faq-question {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #1e293b;
+  color: #000000;
   margin-bottom: 0.5rem;
 }
 

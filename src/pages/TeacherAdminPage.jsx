@@ -4,18 +4,15 @@ import HeaderTeacher from "../components/Header";
 
 const TeacherAdminPage = () => {
   const [students, setStudents] = useState([]);
-  const [roleFilter, setRoleFilter] = useState("student"); // Default role filter
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Fetch students based on role filter
+  // Fetch students only
   const fetchStudents = async () => {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch(
-        `http://localhost:3000/users/filter?role=${roleFilter}`
-      );
+      const response = await fetch("http://localhost:3000/users/filter?role=student");
       if (!response.ok) {
         throw new Error("Failed to fetch students");
       }
@@ -30,29 +27,12 @@ const TeacherAdminPage = () => {
 
   useEffect(() => {
     fetchStudents();
-  }, [roleFilter]);
+  }, []); // No dependencies since roleFilter is fixed
 
   return (
     <div className="admin-page-container">
       <HeaderTeacher />
-      <h1 className="page-title">Teacher/Admin Dashboard</h1>
-
-      {/* Filter Section */}
-      <div className="filter-section">
-        <label htmlFor="role" className="filter-label">
-          Filter by Role:
-        </label>
-        <select
-          id="role"
-          value={roleFilter}
-          onChange={(e) => setRoleFilter(e.target.value)}
-          className="filter-select"
-        >
-          <option value="student">Student</option>
-          <option value="admin">Admin</option>
-          <option value="teacher">Teacher</option>
-        </select>
-      </div>
+      <h1 className="page-title">Teacher Dashboard</h1>
 
       {/* Loading & Error State */}
       {loading && <p className="loading-text">Loading...</p>}
