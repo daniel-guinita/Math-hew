@@ -1,6 +1,6 @@
 /* General Styles */
 .lessons-page-container {
-  font-family: 'Fredoka One', cursive, sans-serif;
+  font-family: 'Arial', sans-serif;
   background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
   min-height: 100vh;
   padding: 200px;
@@ -13,10 +13,11 @@
 .page-title {
   text-align: center;
   font-size: 3rem;
-  color: #ffffff;
+  color: #ffffff !important;
   margin-bottom: 50px;
   text-shadow: 2px 2px #333;
 }
+
 
 /* Lesson List Container */
 .lesson-list-container {

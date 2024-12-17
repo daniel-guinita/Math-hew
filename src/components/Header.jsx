@@ -45,7 +45,7 @@ const Header = () => {
     if (role === "admin") {
       return [
         { label: "Manage Users", path: "/admin/admin-users" },
-        { label: "Quiz Management", path: "/admin/admin-quiz" },
+        { label: "Quiz Management", path: "/teacherAdmin-quiz" },
         { label: "Lessons Management", path: "/lessons-page" },
         { label: "Leaderboard", path: "/admin/admin-leaderboard" },
       ];
@@ -53,7 +53,7 @@ const Header = () => {
 
     if (role === "teacher") {
       return [
-        { label: "Manage Quizzes", path: "/teacher-quiz" },
+        { label: "Manage Quizzes", path: "/teacherAdmin-quiz" },
         { label: "Teacher Dashboard", path: "/TeacherAdminPage" },
         { label: "Lessons & Resources", path: "/lessons-page" },
         { label: "View Leaderboards", path: "/leaderboard" },

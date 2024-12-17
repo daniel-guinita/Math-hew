@@ -5,16 +5,17 @@
   justify-content: center;
   align-items: center;
   padding: 120px;
-  background-color: #1e1e2e; /* Dark background for contrast */
-  color: #ffffff; /* White text */
-  min-height: 100vh; /* Full height */
+  background:#FFFFFF;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Fredoka One', cursive, sans-serif;
 }
 
 /* Page Title */
 .admin-users-title {
   font-size: 32px;
   font-weight: bold;
-  color: #ffb86c; /* Soft orange color */
+  color: #000000; 
   margin-bottom: 20px;
   text-align: center;
 }
@@ -23,34 +24,36 @@
 .admin-users-table {
   width: 90%;
   border-collapse: collapse;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  background-color: #282a36; /* Dark table background */
-  color: #f8f8f2; /* Light text */
+  border: 3px solid #44475a;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  background-color: #781b1b;
+  color: #FFFFFF; 
   border-radius: 8px;
-  overflow: hidden; /* Rounded corners */
+  overflow: hidden; 
 }
 
 /* Table Header */
 .admin-users-table th {
-  background-color: #44475a;
+  background-color: #781b1b;
   padding: 12px;
   text-align: left;
   font-weight: bold;
-  color: #50fa7b; /* Green color for header text */
+  color: #FFFFFF; 
 }
 
 /* Table Rows */
 .admin-users-table td {
   padding: 12px;
-  border-bottom: 1px solid #44475a; /* Subtle border */
+  border-bottom: 1px solid #ffffff; 
 }
 
 .admin-users-table tr:nth-child(even) {
-  background-color: #3b3f51; /* Alternating row background */
+  background-color: #781b1b; 
 }
 
 .admin-users-table tr:nth-child(odd) {
-  background-color: #282a36;
+  color: #000000;
+  background-color: #ebebeb;
 }
 
 /* Button Styling */
@@ -67,7 +70,7 @@
 /* View Button */
 .view-button {
   background-color: #6272a4; /* Soft blue */
-  color: white;
+  color: #FFFFFF;
   margin-right: 5px;
 }
 
@@ -79,11 +82,39 @@
 /* Delete Button */
 .delete-button {
   background-color: #ff5555; /* Red color */
-  color: white;
+  color: #FFFFFF;
 }
 
 .delete-button:hover {
   background-color: #ff6e6e; /* Lighter red on hover */
+}
+
+/* Dropdown Filter */
+.dropdown-filter {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dropdown-filter label {
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+.dropdown-filter select {
+  padding: 8px 12px;
+  border: 3px solid #44475a;
+  border-radius: 4px;
+  background-color: #781b1b;
+  color: #FFFFFF;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.dropdown-filter select:focus {
+  outline: none;
+  border-color: #6272a4;
 }
 
 /* Modal Styling for User Details */
