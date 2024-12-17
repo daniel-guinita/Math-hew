@@ -92,7 +92,6 @@ export default function SignIn() {
             </div>
             <form className="signin-form" onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="identifier">Enter your email or School ID:</label>
                 <input
                   type="text"
                   id="identifier"
@@ -102,11 +101,10 @@ export default function SignIn() {
                 />
               </div>
               <div className="form-group relative">
-                <label htmlFor="password">Password:</label>
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="••••••••"
+                  placeholder="Password"
                   onChange={handleChange}
                   className="input-field"
                 />
@@ -124,9 +122,9 @@ export default function SignIn() {
             </form>
             {errorMessage && <div className="error-message">{errorMessage}</div>}
             <p className="register-prompt">
-              Not registered yet?{" "}
+              Not registered yet?&nbsp;
               <Link to="/register" className="register-link">
-                Click here to sign up!
+               {" "}Sign up!
               </Link>
             </p>
           </div>

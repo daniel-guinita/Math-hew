@@ -1,10 +1,14 @@
+body, html {
+  overflow: hidden;
+}
+
 /* Main Container */
 .signin-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
+  background: #FFFFFF;
   padding: 2rem;
 }
 
@@ -13,8 +17,9 @@
   display: flex;
   flex-direction: row;
   background: #FFFFFF;
+  border: #781b1b 3px solid;
   border-radius: 1rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   width: 800px;
   max-width: 100%;
   overflow: hidden;
@@ -58,7 +63,7 @@
   font-size: 2.5rem;
   font-weight: bold;
   text-align: center;
-  color: #8c383e;
+  color: #000000;
 }
 
 .signin-form {
@@ -84,18 +89,19 @@
 
 .password-toggles {
   position: absolute;
-  top: 55%;
-  right: 1.5rem;
+  top: 40%;
+  right: 1rem;
   transform: translateY(-50%);
   font-size: 1rem;
-  color: #8c383e;
+  color: #7a7a7a;
   cursor: pointer;
 }
 
 .signin-button {
-  background: #781b1b;
-  color: #ffffff;
+  background: #FFFFFF;
+  color: #781b1b;
   font-size: 1.2rem;
+  border: 2.5px solid #781b1b;
   font-weight: bold;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
@@ -103,6 +109,7 @@
 
 .signin-button:hover {
   transform: scale(1.045);
+  transition: transform 0.2s ease-in-out;
 }
 
 .error-message {
@@ -113,13 +120,17 @@
 }
 
 .register-prompt {
+  display: flex;
   margin-top: 1rem;
+  justify-content: center;
   font-weight: bold;
   color: #781b1b;
+  align-items: center;
   font-size: 1rem;
 }
 
 .register-link {
+  display: flex;
   color: #0984e3;
   text-decoration: underline;
   cursor: pointer;
