@@ -1,6 +1,6 @@
 /* Features Container and Background */
 .features-container {
-  font-family: 'Fredoka One', cursive, sans-serif;
+  font-family:'Poppins', sans-serif;
   min-height: 100vh;
   background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
   padding: 4rem 1rem;

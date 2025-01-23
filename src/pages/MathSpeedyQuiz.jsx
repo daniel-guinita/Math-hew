@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios"; // Import Axios
 import "../styles/MathSpeedyQuiz.css";
 
 const MathSpeedyQuiz = () => {
@@ -16,13 +17,39 @@ const MathSpeedyQuiz = () => {
   const [showAnswerFeedback, setShowAnswerFeedback] = useState(false);
   const [timerWidth, setTimerWidth] = useState(100);
   const [showGameOver, setShowGameOver] = useState(false);
-  const [showStartScreen, setShowStartScreen] = useState(true); // New state for start screen
+  const [showStartScreen, setShowStartScreen] = useState(true);
 
   const currentQuestion = questions[currentQuestionIndex];
+
+  // Function to handle saving the score to the backend
+  const saveScoreToBackend = async () => {
+    const school_id = "19-2475-136"; // Replace this dynamically if needed
+    const lesson_id = 1; // Replace with the correct lesson_id
+    const scoreData = {
+      school_id,
+      lesson_id,
+      score, // The current score value
+    };
+  
+    // Validate input before sending the request
+    if (!school_id || !lesson_id || score === undefined) {
+      console.error("Missing required fields: school_id, lesson_id, or score");
+      return;
+    }
+  
+    try {
+      const response = await axios.post("http://localhost:3000/scores", scoreData);
+      console.log("Score saved successfully:", response.data);
+    } catch (error) {
+      console.error("Error saving score:", error.response?.data || error.message);
+    }
+  };
+  
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setShowAnswerFeedback(true);
+
     if (option === currentQuestion.correctAnswer) {
       setScore(score + 1);
     }
@@ -30,17 +57,36 @@ const MathSpeedyQuiz = () => {
     setTimeout(() => {
       setShowAnswerFeedback(false);
       setSelectedOption(null);
+
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
         setTimerWidth(100);
       } else {
         setShowGameOver(true);
+        saveScoreToBackend(); // Save the score when the game is over
       }
     }, 1000);
   };
 
+  const fetchScoresBySchoolId = async () => {
+    const school_id = "19-2475-136"; // Replace this with dynamic school_id
+  
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/scores/by-school?school_id=${school_id}`
+      );
+      console.log("Scores fetched:", response.data);
+    } catch (error) {
+      console.error("Error fetching scores:", error);
+    }
+  };
+  
   useEffect(() => {
-    if (showStartScreen || showGameOver) return; // Pause timer when on start screen or game over screen
+    fetchScoresBySchoolId();
+  }, []);
+  
+  useEffect(() => {
+    if (showStartScreen || showGameOver) return;
 
     const timer = setInterval(() => {
       setTimerWidth((prev) => {
@@ -64,10 +110,11 @@ const MathSpeedyQuiz = () => {
     setCurrentQuestionIndex(0);
     setScore(0);
     setTimerWidth(100);
+    setShowStartScreen(true);
   };
 
   const handleStartQuiz = () => {
-    setShowStartScreen(false); // Hide the start screen and begin the quiz
+    setShowStartScreen(false);
   };
 
   return (
@@ -86,7 +133,6 @@ const MathSpeedyQuiz = () => {
         </div>
       ) : !showGameOver ? (
         <>
-          {/* Timer Bar */}
           <div className="timer-bar">
             <div
               style={{ width: `${timerWidth}%` }}
@@ -94,7 +140,6 @@ const MathSpeedyQuiz = () => {
             ></div>
           </div>
 
-          {/* Question Section */}
           <div className="question-box">
             <h2 className="question">{currentQuestion.question}</h2>
             {showAnswerFeedback && (
@@ -112,7 +157,6 @@ const MathSpeedyQuiz = () => {
             )}
           </div>
 
-          {/* Answer Options */}
           <div className="options-grid">
             {currentQuestion.options.map((option) => (
               <button
@@ -143,7 +187,6 @@ const MathSpeedyQuiz = () => {
         </div>
       )}
 
-      {/* Score Display */}
       {!showStartScreen && (
         <div className="score">
           Score: <span>{score}</span> / {questions.length}

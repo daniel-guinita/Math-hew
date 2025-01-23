@@ -1,6 +1,6 @@
 /* Page Container */
 .admin-page-container {
-  font-family: 'Fredoka One', cursive, sans-serif;
+  font-family:'Poppins', sans-serif;
   text-align: center;
   padding: 30px;
 }
@@ -61,16 +61,16 @@
   color: #000000; 
 }
 
-.student-table tr:nth-child(even) {
+/* .student-table tr:nth-child(even) {
   background-color: #ffecec; 
 }
 
 /* Hover Effect - Text only changes color */
 .student-table tr:hover {
   background-color: transparent;
-  color: #ffffff; 
+  color: #000000; 
   cursor: pointer; 
-}
+} */
 
 /* Loading & Error State */
 .loading-text,

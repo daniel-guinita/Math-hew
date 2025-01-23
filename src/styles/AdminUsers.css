@@ -1,6 +1,6 @@
 /* Container for the Users Table */
 .admin-users-container {
-  font-family: 'Fredoka One', cursive, sans-serif;
+  font-family:'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,24 +69,24 @@
 
 /* View Button */
 .view-button {
-  background-color: #6272a4; /* Soft blue */
-  color: #FFFFFF;
+  background-color: #FFFFFF; /* Soft blue */
+  color: #000000;
   margin-right: 5px;
 }
 
 .view-button:hover {
-  background-color: #50fa7b; /* Green on hover */
+  background-color: #ebebeb; /* Green on hover */
   color: #282a36;
 }
 
 /* Delete Button */
 .delete-button {
-  background-color: #ff5555; /* Red color */
+  background-color: #fa2929; /* Red color */
   color: #FFFFFF;
 }
 
 .delete-button:hover {
-  background-color: #ff6e6e; /* Lighter red on hover */
+  background-color: #ff1d1d; /* Lighter red on hover */
 }
 
 /* Dropdown Filter */

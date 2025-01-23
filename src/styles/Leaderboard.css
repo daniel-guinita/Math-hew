@@ -3,8 +3,9 @@
   font-family: 'Fredoka One', cursive, sans-serif;
   text-align: center;
   background: #FFFFFF; /* Consistent background */
-  padding:270px;
+  padding:300px;
   color: #781b1b;
+  min-height: 100vh;
   animation: fadeIn 0.8s ease-in-out;
 }
 

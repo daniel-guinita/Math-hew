@@ -75,28 +75,33 @@ const ChatBuddy = () => {
       {isOpen && (
         <div className="chatbuddy-box">
           {/* Header */}
-        <div className="chatbuddy-header">
+          <div className="chatbuddy-header">
             {/* Logo and Title */}
             <div className="chatbuddy-header-logo">
-                <img
-                src="/images/mathhew.png"  /* Replace with your logo path */
+              <img
+                src="/images/mathhew.png" /* Replace with your logo path */
                 alt="Matthew Logo"
                 className="chatbuddy-logo"
-                />
-                <span className="chatbuddy-title">Mathhew</span>
+              />
+              <span className="chatbuddy-title">Mathhew</span>
             </div>
 
             {/* Close Button */}
             <button className="chatbuddy-close-btn" onClick={toggleChat}>
-                ✖
+              ✖
             </button>
-        </div>
+          </div>
 
           {/* Messages */}
           <div className="chatbuddy-body">
             {messages.map((msg, index) => (
               <div key={index} className={`chatbuddy-message ${msg.type}`}>
-                {msg.text}
+                {msg.text.split("\n").map((line, i) => (
+                  <React.Fragment key={i}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))}
               </div>
             ))}
 
