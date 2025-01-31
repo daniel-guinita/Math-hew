@@ -11,6 +11,12 @@ const LessonsPage = ({ userRole }) => {
   const [selectedLesson, setSelectedLesson] = useState(null);
   const [editLesson, setEditLesson] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [currentRole, setCurrentRole] = useState(userRole); // Local state for role
+
+  // Update local role state when userRole changes
+  useEffect(() => {
+    setCurrentRole(userRole);
+  }, [userRole]);
 
   // Fetch lessons and videos
   useEffect(() => {
@@ -38,7 +44,7 @@ const LessonsPage = ({ userRole }) => {
     };
 
     fetchLessonsAndVideos();
-  }, []);
+  }, [currentRole]);
 
   // Helper to format YouTube URLs
   const formatYouTubeURL = (url) => {
@@ -178,28 +184,40 @@ const LessonsPage = ({ userRole }) => {
       <h1 className="page-title">Lessons & Video Tutorials</h1>
       <div className="lesson-grid">
         {lessons.map((lesson) => (
-          <div key={lesson.id} className="lesson-card" onClick={() => setSelectedLesson(lesson)}>
-            <h3 className="lesson-title">Lesson {lesson.id}: {lesson.title}</h3>
+          <div
+            key={lesson.id}
+            className="lesson-card"
+            onClick={() => setSelectedLesson(lesson)}
+          >
+            <h3 className="lesson-title">
+              Lesson {lesson.id}: {lesson.title}
+            </h3>
           </div>
         ))}
       </div>
-      {userRole !== "student" && (
+      {currentRole === "teacher" && (
         <div className="admin-section">
           <h2>Add New Lesson</h2>
           <input
             type="text"
             placeholder="Lesson Title"
             value={newLesson.title}
-            onChange={(e) => setNewLesson({ ...newLesson, title: e.target.value })}
+            onChange={(e) =>
+              setNewLesson({ ...newLesson, title: e.target.value })
+            }
             className="input-field"
           />
           <textarea
             placeholder="Lesson Description"
             value={newLesson.description}
-            onChange={(e) => setNewLesson({ ...newLesson, description: e.target.value })}
+            onChange={(e) =>
+              setNewLesson({ ...newLesson, description: e.target.value })
+            }
             className="input-field"
           />
-          <button onClick={handleAddLesson} className="add-button">➕ Add Lesson</button>
+          <button onClick={handleAddLesson} className="add-button">
+            ➕ Add Lesson
+          </button>
         </div>
       )}
     </div>
@@ -246,20 +264,24 @@ const LessonsPage = ({ userRole }) => {
         )}
 
         {/* Edit and Add Buttons */}
-        {userRole !== "student" && !editLesson && (
-          <>
+        {currentRole === "teacher" && (
           <div className="button-container">
-            <button className="edit-button-lesson" onClick={() => setEditLesson(selectedLesson)}>
+            <button
+              className="edit-button-lesson"
+              onClick={() => setEditLesson(selectedLesson)}
+            >
               ✏️ Edit Lesson
             </button>
-            <button className="delete-button-lesson" onClick={() => handleDeleteLesson(selectedLesson.id)}>
+            <button
+              className="delete-button-lesson"
+              onClick={() => handleDeleteLesson(selectedLesson.id)}
+            >
               🗑️ Delete Lesson
             </button>
             <button className="add-button" onClick={() => setIsModalOpen(true)}>
               ➕ Add Video
             </button>
           </div>
-          </>
         )}
       </div>
 

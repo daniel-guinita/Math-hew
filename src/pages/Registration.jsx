@@ -18,11 +18,11 @@ export default function Register() {
     if (id === "schoolId") {
       let role = "";
       if (/^\d{2}-\d{4}-\d{3}$/.test(value)) {
-        role = "Student";
+        role = "student";
       } else if (/^\d{4}$/.test(value)) {
-        role = "Teacher";
+        role = "teacher";
       } else if (/^\d{5}$/.test(value)) {
-        role = "Admin";
+        role = "admin";
       }
 
       setFormData({ ...formData, [id]: value.trim(), role });
