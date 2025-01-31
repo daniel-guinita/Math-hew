@@ -1,12 +1,20 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import kaplay from 'kaplay';
 import disclaimer from '../scenes/disclaimer';
 import game from '../scenes/game';
 import gameover from '../scenes/gameover';
 import mainMenu from '../scenes/mainmenu';
+import { useLocation } from 'react-router-dom';
 
 const MainPage = () => {
-  const soundRef = useRef(null); // Ref to store the sound instance
+  const location = useLocation();
+
+  useEffect(() => {
+    // Force a page reload when navigating back to the MainPage
+    if (location.pathname === '/') {
+      window.location.reload();
+    }
+  }, [location.pathname]); // This effect runs when the location changes (user navigates)
 
   useEffect(() => {
     const k = kaplay({
@@ -27,8 +35,6 @@ const MainPage = () => {
 
     // Load all assets
     Promise.all([
-      k.loadFont('mania', 'fonts/mania.ttf'), // Explicitly load the font
-      k.loadSound('city', 'sounds/city.mp3'),
       k.loadSprite('chemical-bg', 'graphics/chemical-bg.png'),
       k.loadSprite('platforms', 'graphics/platforms.png'),
       k.loadSprite('mathhew', 'graphics/mathhew.png', {
@@ -53,36 +59,34 @@ const MainPage = () => {
           run: { from: 0, to: 4, loop: true, speed: 8 },
         },
       }),
+      k.loadFont('mania', 'fonts/mania.ttf'),
       k.loadSound('destroy', 'sounds/Destroy.wav'),
       k.loadSound('hurt', 'sounds/Hurt.wav'),
       k.loadSound('hyper-ring', 'sounds/HyperRing.wav'),
       k.loadSound('jump', 'sounds/Jump.wav'),
       k.loadSound('ring', 'sounds/Ring.wav'),
-    ]).then(() => {
-      console.log('All assets loaded successfully');
+      k.loadSound('city', 'sounds/city.mp3'),
+    ])
+      .then(() => {
+        console.log('All assets loaded successfully');
 
-      // Play the city background music and store the sound instance
-      soundRef.current = k.play('city', { volume: 0.2, loop: true });
+        // Add scenes
+        k.scene('disclaimer', () => disclaimer(k));
+        k.scene('main-menu', () => mainMenu(k));
+        k.scene('game', () => game(k));
+        k.scene('gameover', (citySfx) => gameover(k, citySfx));
 
-      // Add scenes and start the game
-      k.scene('disclaimer', () => disclaimer(k));
-      k.scene('main-menu', () => mainMenu(k));
-      k.scene('game', () => game(k));
-      k.scene('gameover', (citySfx) => gameover(k, citySfx));
+        // Start the game
+        k.go('disclaimer');
+      })
+      .catch((err) => {
+        console.error('Failed to load assets:', err);
+      });
 
-      k.go('disclaimer');
-    }).catch((err) => {
-      console.error('Failed to load assets:', err);
-    });
-
+    // Cleanup function to destroy Kaplay instance and stop sounds when leaving the page
     return () => {
       if (k) {
-        // Stop the city background music
-        if (soundRef.current) {
-          soundRef.current.stop();
-        }
-
-        k.quit(); // Destroy the Kaplay instance
+        k.quit(); // Stop Kaplay instance
 
         // Remove the canvas element from the DOM
         const canvas = document.querySelector('canvas');
@@ -91,12 +95,12 @@ const MainPage = () => {
         }
       }
     };
-  }, []);
+  }, []); // This useEffect will only run once when MainPage is first loaded
 
   return (
     <div>
       <h1>Math Game</h1>
-      <div id="game"></div>
+      <div id="game"></div> {/* The game canvas will be rendered here */}
     </div>
   );
 };
