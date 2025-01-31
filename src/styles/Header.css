@@ -23,6 +23,7 @@
   align-items: center;
   max-width: 1500px;
   margin: 0 auto;
+  font-family: sans-serif;
 }
 
 /* Logo Section */
@@ -74,8 +75,8 @@
 
 .header-nav-link:hover {
   transform: background-color 0.3s ease;
-  color:#000000; 
-  opacity: 0.90;
+  color:#781b1b; 
+  transform: scale(1.05);
   
 }
 
@@ -103,9 +104,7 @@
 }
 
 .header-signin-button:hover {
-  background-color: #610a0c;
   transform: scale(1.05);
-  transition: background-color 0.1s ease;
 }
 
 /* Dropdown Styling */
