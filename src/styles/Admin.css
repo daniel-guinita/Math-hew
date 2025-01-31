@@ -1,0 +1,72 @@
+.admin-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Stack navbar and content vertically */
+    background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
+    position: relative;
+    padding: 2rem;
+    overflow: hidden;
+    margin-top: 50px;
+  }
+
+  .admin-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 5rem;
+  }
+  
+  .admin-content {
+    max-width: 800px;
+    margin: 2rem auto 0; 
+    text-align: center;
+  }
+  
+  .admin-title {
+    text-align: center;
+
+    font-size: 3rem;
+    color: #ffffff; 
+  }
+  
+  .admin-description {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 10px 0 20px;
+    color: #eee; 
+  }
+  
+  .admin-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .action-card {
+    background: rgba(255, 255, 255, 0.2); /* Transparent white for blending with the gradient */
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for visibility */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for better contrast */
+    width: 250px;
+    text-align: left;
+    color: #fff; /* White text for readability */
+  }
+  
+  .admin-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .admin-button:hover {
+    background-color: #0056b3;
+  }

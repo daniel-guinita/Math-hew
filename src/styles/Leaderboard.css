@@ -1,32 +1,108 @@
-.home-container {
-  @apply min-h-screen flex items-center justify-center px-4 py-8 dark:bg-gray-900;
+/* Leaderboard Main Container */
+.leaderboard-container {
+  font-family: 'Fredoka One', cursive, sans-serif;
+  text-align: center;
+  background: #FFFFFF; /* Consistent background */
+  padding:300px;
+  color: #781b1b;
+  min-height: 100vh;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
-.home-content {
-  @apply flex flex-col md:flex-row items-center justify-between w-full max-w-6xl;
+/* Leaderboard Title */
+.leaderboard-title {
+  font-size: 2.8rem;
+  color: #781b1b;
+  text-shadow: 2px 2px #ffffff;
 }
 
-.home-text {
-  @apply md:w-1/2;
+/* Leaderboard Sections Container */
+.leaderboard-sections {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-.home-title {
-  @apply text-5xl font-bold text-gray-800 dark:text-white mb-6;
+/* Individual Section */
+.leaderboard-section {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 45%;
+  min-width: 300px;
+  padding: 20px;
+  border: #781b1b 2px solid;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  animation: popIn 0.5s ease;
 }
 
-.home-description {
-  @apply text-xl text-gray-600 dark:text-gray-300 mb-8;
+/* Section Title */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #781b1b !important; /* Ensures it applies */
+  margin-bottom: 10px;
 }
 
-.learn-button {
-  @apply bg-orange-500 text-white font-bold py-4 px-8 rounded hover:bg-orange-700 transition duration-300 ml-5;
-  font-size: 1.5rem;
+/* Table Styling */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.home-image {
-  @apply md:w-1/2;
+/* Table Header */
+.leaderboard-table thead th {
+  background: #781b1b;
+  color: #fff !important; /* Forces white text */
+  font-size: 1.2rem;
 }
 
-.home-image img {
-  @apply w-full max-w-lg h-auto mx-auto transform transition-transform duration-300 hover:scale-105;
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.leaderboard-table tbody tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.leaderboard-table tbody tr:hover {
+  background-color: #ffe8e8;
+  transform: scale(1.01);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Animations */
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .leaderboard-section {
+    width: 100%;
+  }
+
+  .leaderboard-title {
+    font-size: 2.2rem;
+  }
 }

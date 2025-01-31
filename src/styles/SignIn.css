@@ -1,113 +1,138 @@
-/* SignIn.css */
-:root {
-  /* Light mode variables */
-  --bg-color: #f3f4f6;
-  --card-bg-color: white;
-  --header-bg-color: #6366f1;
-  --text-color: #1a202c;
-  --subtext-color: #4a5568;
-  --icon-color: #9ca3af;
-  --button-bg-gradient: linear-gradient(45deg, #9f7aea, #ed64a6);
-  --button-bg-hover-gradient: linear-gradient(45deg, #7f5bb3, #d14783);
-}
-
-/* Dark mode variables */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #1a202c;
-    --card-bg-color: #2d3748;
-    --header-bg-color: #4a5568;
-    --text-color: #ffffff;
-    --subtext-color: #a0aec0;
-    --icon-color: #a0aec0;
-    --button-bg-gradient: linear-gradient(45deg, #7f5bb3, #d14783);
-    --button-bg-hover-gradient: linear-gradient(45deg, #6c4e99, #b4356b);
-  }
-}
-
-/* Main container */
+/* Main Container */
 .signin-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--bg-color);
+  background: linear-gradient(to bottom, #781b1b, #8c383e, #FFFFFF);
+  padding: 2rem;
 }
 
+/* Card Styling */
 .signin-card {
   display: flex;
-  background-color: var(--card-bg-color);
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  flex-direction: row;
+  background: #FFFFFF;
+  border: #781b1b 3px solid;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  width: 800px;
+  max-width: 100%;
+  animation: fadeInUp 1.5s ease-out;
   overflow: hidden;
 }
 
-/* Horizontal layout for larger screens */
-.signin-card-row {
-  flex-direction: row;
+/* Sign-in Content */
+.signin-content {
+  display: flex;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  .signin-card-row {
-    flex-direction: column;
-  }
+/* Left Side - Image */
+.signin-image {
+  flex: 1;
+  background: #FFFFFF;
+  align-items: center;
 }
 
-/* Left Section */
+.signin-image img {
+  position: relative;
+  width: auto;
+  height: auto;
+  align-items: center;
+  top: 10%;
+  margin: 0 auto;
+  display: flex;
+  object-fit: cover;
+}
+
+/* Right Side - Form */
+.signin-form-container {
+  flex: 1;
+  padding: 2rem;
+}
+
 .signin-header {
-  padding: 2rem;
-  background-color: var(--header-bg-color);
-  color: var(--text-color);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
-.signin-header-dark a {
-  color: var(--text-color);
+.signin-logo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #000000;
 }
 
-/* Subtext */
-.signin-subtext {
-  font-size: 0.875rem;
-  color: var(--subtext-color);
-  line-height: 1.25rem;
-  margin-top: 0.5rem;
-  opacity: 0.8;
-}
-
-/* Right Section (Form) */
 .signin-form {
-  padding: 2rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
 
-.password-toggle {
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #FFFFFF;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #8c383e;
+}
+
+.password-toggles {
   position: absolute;
-  top: 50%;
+  top: 40%;
   right: 1rem;
   transform: translateY(-50%);
-  background: none;
-  border: none;
+  font-size: 1rem;
+  color: #7a7a7a;
   cursor: pointer;
-  color: var(--icon-color);
 }
 
 .signin-button {
-  width: 100%;
-  background: var(--button-bg-gradient);
-  color: white;
-  transition: background 0.3s ease;
+  background: #FFFFFF;
+  color: #781b1b;
+  font-size: 1.2rem;
+  border: 2.5px solid #781b1b;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
 }
 
 .signin-button:hover {
-  background: var(--button-bg-hover-gradient);
+  transform: scale(1.045);
+  transition: transform 0.2s ease-in-out;
 }
 
-.signin-alert {
+.error-message {
   margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.register-prompt {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: center;
+  font-weight: bold;
+  color: #781b1b;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.register-link {
+  display: flex;
+  color: #0984e3;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.register-link:hover {
+  color: #781b1b;
 }

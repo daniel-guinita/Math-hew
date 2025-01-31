@@ -2,7 +2,6 @@ import React from "react";
 import "../styles/AboutUs.css";  // Import the CSS file
 
 const AboutUs = () => {
-  // Placeholder data for team members with personalized descriptions
   const teamMembers = [
     {
       name: "Raven Luke Bengil",
@@ -37,67 +36,51 @@ const AboutUs = () => {
       role: "Full Stack Developer",
       image: "/images/jon.png",
       description:
-        "Jon contributes to the project by managing essential technical tasks, ensuring that all systems and software function smoothly. His attention to detail keep the team’s work efficient and on track toward achieving our objectives.",
+        "Jon contributes to the project by managing essential technical tasks, ensuring that all systems and software function smoothly. His attention to detail keeps the team’s work efficient and on track toward achieving our objectives.",
     },
   ];
 
   return (
-    <div className="aboutus-container flex flex-col items-center px-4 py-8">
-      <div className="w-full max-w-6xl text-center">
-        <h1 className="aboutus-title">
-          About Math-hew
-        </h1>
+    <div className="aboutus-container">
+      <div className="w-full max-w-6xl text-center relative">
+        <h1 className="aboutus-title animated-title">About Math-hew</h1>
         <p className="aboutus-subtext">
           Welcome to Math-hew, an engaging e-learning platform designed
           specifically for 4th-grade students to make learning math fun and
-          interactive. Our goal is to transform the way students approach
-          mathematics, using games, challenges, and guided lessons to build
-          confidence and mastery in key concepts. With Math-hew as a friendly
-          guide, students can explore the world of math at their own pace while
-          climbing leaderboards and tracking progress, making education an
-          adventure rather than a chore. Together, let's make learning math an
-          exciting journey!
+          interactive. With Math-hew as a friendly guide, students can explore
+          the world of math while climbing leaderboards and tracking progress,
+          making education an adventure rather than a chore. Let’s make
+          learning math an exciting journey!
         </p>
+        {/* Bouncing Logo */}
+        <img
+          src="/images/mathhew.png"
+          alt="Math-hew Logo"
+          className="bouncing-logo"
+        />
+      </div>
 
-        <div id="team" className="team-section mt-20">
-          <h2 className="team-title">
-            Our Members
-          </h2>
-
-          {teamMembers.map((member) => (
-            <div
-              key={member.name}
-              className="member-card-container"
-            >
-              {/* Left side with card */}
-              <div className="member-card-left">
-                <div className="member-card">
-                  <img
-                    src={member.image}
-                    alt={`${member.name}`}
-                    className="w-full h-60 object-cover"
-                  />
-                  <div className="member-card-info">
-                    <div className="member-card-name">
-                      {member.name}
-                    </div>
-                    <p className="member-card-role">
-                      {member.role}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right side with personalized description */}
-              <div className="member-card-right">
-                <p className="member-card-description">
-                  {member.description}
-                </p>
-              </div>
-            </div>
-          ))}
+      <div id="team" className="team-section mt-20">
+  <h2 className="team-title animated-title">Meet the Team 🎉</h2>
+  <div className="grid-layout">
+    {teamMembers.map((member) => (
+      <div key={member.name} className="member-card">
+        <img
+          src={member.image}
+          alt={member.name}
+          className="member-card-img"
+        />
+        <div className="member-card-info">
+          <h3 className="member-card-name">{member.name}</h3>
+          <p className="member-card-role">{member.role}</p>
+          <p className="member-card-description">
+            {member.description}
+          </p>
         </div>
       </div>
+    ))}
+  </div>
+</div>
     </div>
   );
 };

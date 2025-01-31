@@ -1,0 +1,205 @@
+/* Container */
+.chatbuddy-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family:'Poppins', sans-serif;
+  }
+  
+  /* Chat Icon */
+  .chatbuddy-icon {
+    background-color: #f7b42c;
+    color: white;
+    font-size: 36px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+  }
+  
+  .chatbuddy-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Chat Box */
+  .chatbuddy-box {
+    background-color: #fff6e6;
+    border: 2px solid #f7b42c;
+    border-radius: 20px;
+    width: 400px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Header */
+.chatbuddy-header {
+    background-color: #f7b42c; /* Adjusted color */
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 20px 20px 0 0;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Logo and Title Container */
+  .chatbuddy-header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the logo and title */
+  }
+  
+  /* Logo */
+  .chatbuddy-logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%; /* Circular logo */
+    background-color: white;
+    padding: 2px;
+  }
+  
+  /* Title */
+  .chatbuddy-title {
+    font-size: 20px;
+    color: white;
+  }
+  
+  /* Close Button Styling */
+.chatbuddy-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    margin-left: 60%; /* Push the button to the far right */
+    transition: transform 0.2s ease;
+  }
+  
+  .chatbuddy-close-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Tooltip for Close Button */
+  .chatbuddy-close-btn::after {
+    content: "Close Chat";
+    position: absolute;
+    bottom: -25px;
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 6px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .chatbuddy-close-btn:hover::after {
+    opacity: 1; /* Show tooltip on hover */
+  }
+  
+  
+  /* Body */
+  .chatbuddy-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    font-size: 18px;
+  }
+  
+  .chatbuddy-message {
+    margin-bottom: 15px;
+  }
+  
+  .chatbuddy-message.bot {
+    text-align: left;
+    color: #030303;
+  }
+  
+  .chatbuddy-message.user {
+    text-align: right;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  /* Footer */
+  .chatbuddy-footer {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #fdf4c5;
+    border-top: 2px solid #f7b42c;
+  }
+  
+  .chatbuddy-footer input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #f7b42c;
+    border-radius: 10px;
+    outline: none;
+  }
+  
+  .chatbuddy-send-btn {
+    background-color: #f7b42c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .chatbuddy-send-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  .chatbuddy-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    color: #000000;
+  }
+  
+  .chatbuddy-option-btn {
+    background-color: #f7b42c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .chatbuddy-option-btn:hover {
+    background-color: #f5891c;
+  }
+  
+  .chatbuddy-reset-btn {
+    background-color: #f04e30;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+

@@ -3,110 +3,86 @@ import {
   FaPhone,
   FaEnvelope,
   FaFacebook,
-  FaTwitter,
   FaLinkedin,
   FaInstagram,
-} from "react-icons/fa";
+  FaXTwitter
+} from "react-icons/fa6";
+import "../styles/ContactUs.css";
 
 const ContactUs = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 via-gray-200 to-orange-100 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 flex flex-col items-center px-4 py-10">
-      <div className="w-full max-w-5xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-10 text-center dark:text-white">
-        <h1 className="text-4xl sm:text-5xl font-bold text-orange-600 dark:text-orange-300 mb-8">
-          Contact Us
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 mb-10">
-          We’re here to support you on every step of your learning journey—reach out to us anytime!
-        </p>
-
-        {/* Contact Information with Icons */}
-        <div className="text-left space-y-8">
-          <div>
-            <h2 className="text-2xl font-bold text-orange-500 dark:text-orange-300 mb-3">
-              Contact Information
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 flex items-center justify-center sm:justify-start">
-              <FaEnvelope className="text-orange-500 dark:text-orange-300 mr-2" />
-              <a
-                href="mailto:mathhew.citu@gmail.com"
-                className="hover:underline"
-              >
-                mathhew.citu@gmail.com
-              </a>
-            </p>
-            <p className="text-lg text-gray-600 dark:text-gray-300 flex items-center justify-center sm:justify-start">
-              <FaPhone className="text-orange-500 dark:text-orange-300 mr-2" />
-              <a href="tel:+1234567890" className="hover:underline">
-                09090909090
-              </a>
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-orange-500 dark:text-orange-300 mb-3">
-              Get In Touch
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-4">
-              View our official social media platforms!
-            </p>
-            <div className="flex justify-center space-x-4">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800"
-              >
-                <FaFacebook />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-300 hover:text-blue-500"
-              >
-                <FaTwitter />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:text-blue-700"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-pink-600 hover:text-pink-800"
-              >
-                <FaInstagram />
-              </a>
-            </div>
-          </div>
+    <div className="contact-us-container">
+  <div className="contact-us-content">
+    {/* Left Section: Contact Us */}
+    <div className="contact-us-card">
+      <h1 className="contact-us-title">Get in Touch with Math-hew!</h1>
+      <p className="contact-us-subtitle">
+        We’re here to support you every step of the way. Reach out or connect
+        with us on social media!
+      </p>
+      <div className="contact-info">
+        <div className="contact-info-item">
+          <FaEnvelope className="contact-icon" />
+          <a href="mailto:mathhew.citu@gmail.com" className="contact-text">
+            mathhew.citu@gmail.com
+          </a>
+        </div>
+        <div className="contact-info-item">
+          <FaPhone className="contact-icon" />
+          <a href="tel:+1234567890" className="contact-text">
+            09090909090
+          </a>
         </div>
       </div>
-
-      {/* FAQ Section */}
-      <div className="w-full max-w-5xl mt-12 bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-10 dark:text-white">
-        <h2 className="text-3xl font-bold text-orange-500 dark:text-orange-300 mb-6">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6 text-left">
-          <p className="text-xl font-semibold">How does Math-hew help students improve their math skills?</p>
-          <p className="text-lg text-gray-300">
-          By using challenges and guided tutorials, Math-hew reinforces key concepts in a fun way, 
-          allowing students to learn at their own pace and gain confidence in their abilities.
-          </p>
-          <p className="text-xl font-semibold">Can parents track student progress in Math-hew?</p>
-          <p className="text-lg text-gray-300">
-          Yes! Math-hew includes a progress tracking feature that provides visual reports on a student’s
-          performance over time. Parents can monitor milestones, identify areas where students may need
-          extra help, and celebrate achievements along the learning journey.
-          </p>
+      <div className="social-media">
+        <h2>Follow Us on Social Media</h2>
+        <div className="social-icons">
+          <a href="https://facebook.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-icon">
+            <FaFacebook />
+          </a>
+          <a href="https://x.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-icon">
+            <FaXTwitter />
+          </a>
+          <a href="https://linkedin.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-icon">
+            <FaLinkedin />
+          </a>
+          <a href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="social-icon">
+            <FaInstagram />
+          </a>
         </div>
       </div>
     </div>
+
+    {/* Right Section: FAQ */}
+    <div className="faq-card">
+      <h2 className="faq-title">Frequently Asked Questions</h2>
+      <div className="faq-item">
+        <h3 className="faq-question">How does Math-hew help students improve their math skills?</h3>
+        <p className="faq-answer">
+          By using challenges and guided tutorials, Math-hew makes learning fun and interactive.
+        </p>
+      </div>
+      <div className="faq-item">
+        <h3 className="faq-question">Can parents track student progress?</h3>
+        <p className="faq-answer">
+          Yes! Math-hew includes progress tracking with visual reports to celebrate achievements.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
   );
 };
 

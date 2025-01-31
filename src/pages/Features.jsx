@@ -1,62 +1,17 @@
 import React from "react";
+import "../styles/Features.css";
 
-const styles = {
-  title: {
-    color: "#ff5733",
-    marginBottom: "0.5rem",
-    fontSize: "1.5rem",
-    fontWeight: "bold",
-  },
-  description: {
-    color: "black",
-    marginBottom: "1rem",
-    fontSize: "1.125rem",
-  },
-  card: {
-    padding: "1.5rem",
-    textAlign: "left",
-    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
-    borderRadius: "1rem",
-    backgroundImage: "linear-gradient(to right, #ffffff, #f9fafb)",
-    transition: "transform 0.3s, box-shadow 0.3s",
-    display: "flex",
-    alignItems: "center",
-    marginBottom: "1.5rem",
-    overflow: "hidden",
-    position: "relative",
-    border: "1px solid #E5E7EB",
-  },
-  cardHover: {
-    transform: "translateY(-10px)",
-    boxShadow: "0 12px 20px rgba(0, 0, 0, 0.2)",
-  },
-  cardBefore: {
-    content: '""',
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: 'url("/path-to-your-pattern-image.png")', 
-    opacity: 0.1,
-    zIndex: 0,
-  },
-  content: {
-    marginLeft: "1rem",
-    zIndex: 1, 
-  },
-};
-
-const FeatureCard = ({ title, description }) => {
+const FeatureCard = ({ title, description, gif }) => {
   return (
-    <div
-      className="hover:transform hover:-translate-y-2 hover:shadow-2xl transition-transform duration-300 relative"
-      style={styles.card}
-    >
-      <div style={styles.cardBefore}></div>
-      <div style={styles.content}>
-        <h5 style={styles.title}>{title}</h5>
-        <p style={styles.description}>{description}</p>
+    <div className="feature-card">
+      <div className="feature-card-content">
+        <h5 className="feature-card-title">{title}</h5>
+        <p className="feature-card-description">{description}</p>
+      </div>
+
+      {/* Hover Window for GIF */}
+      <div className="hover-window">
+        <img src={gif} alt={`${title} animation`} />
       </div>
     </div>
   );
@@ -67,46 +22,49 @@ export default function Features() {
     {
       title: "Lesson Viewing",
       description:
-        "Students can see math problems, topics, sources, etc. where the 4th graders can learn from trusted sources.",
+        "Explore math problems, topics, and trusted sources to help 4th graders master new skills.",
+      gif: "/gifs/example.gif", // Add your GIF here
     },
     {
       title: "Video Tutorials",
       description:
-        "Create short segments/videos with the help of visuals to explain math concepts. This keeps students interested and helps them visualise abstract ideas.",
+        "Watch engaging videos that simplify math concepts and make learning fun and interactive.",
+      gif: "/gifs/example 2.gif", // Add your GIF here
     },
     {
       title: "Leaderboard",
       description:
-        "Students can view how they are doing against their peers and compete for high ranking spots for competitive incentives.",
+        "Compete with friends and classmates for top spots while celebrating your achievements.",
+      gif: "path_to_leaderboard.gif", // Add your GIF here
     },
     {
       title: "Quiz Games",
       description:
-        "Integrate games where students earn points to keep the engagement high. Games such as ‘Math Memory Match’ where students have to flip over cards and match related pairs.",
+        "Play exciting math games like 'Memory Match' to earn points and reinforce your skills.",
+      gif: "path_to_quiz_games.gif", // Add your GIF here
     },
     {
       title: "Learning Buddy",
-      description: "Developed a Learning Buddy feature that offers hints when students struggle with a problem.",
+      description:
+        "Get hints and guidance from your friendly Math-hew Learning Buddy whenever you need help.",
+      gif: "path_to_learning_buddy.gif", // Add your GIF here
     },
     {
       title: "Progress Tracking",
       description:
-        "Implement a dashboard where students can track their performance over time. Provide visual representations (graphs, charts) of their progress in different areas.",
+        "See your progress over time with charts and graphs that show how far you've come!",
+      gif: "path_to_progress_tracking.gif", // Add your GIF here
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-red-50 dark:from-gray-700 dark:to-gray-900 flex flex-col items-center px-4 py-8">
-      <div className="w-full max-w-6xl text-center">
-        <h2 className="mt-6 text-3xl sm:text-5xl font-bold text-gray-800 dark:text-white">
-          Features Tailored for Young Learners
-        </h2>
-        <p className="mt-4 text-gray-600 dark:text-gray-300 text-lg sm:text-xl">
-        Math-hew’s features are crafted to turn learning into an adventure. Explore
-        our interactive lessons, games, and tools that make understanding math easy,
-        fun, and rewarding for every student.
+    <div className="features-container">
+      <div className="features-content">
+        <h2 className="features-title">Explore Math-hew's Amazing Features!</h2>
+        <p className="features-subtitle">
+          Designed to make learning math a fun-filled adventure for every 4th grader.
         </p>
-        <div className="mt-20 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="features-grid">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} />
           ))}

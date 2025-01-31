@@ -1,97 +1,136 @@
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import '../styles/SignIn.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { signInSuccess } from "../redux/user/userSlice";
+import axios from "axios";
+import "../styles/SignIn.css";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password) {
-      setErrorMessage("Please fill all the fields");
+  
+    if (!formData.identifier || !formData.password) {
+      setErrorMessage("Please fill in the required fields.");
       return;
     }
+  
     setLoading(true);
     setErrorMessage("");
-
-    // Simulate successful login without backend
-    setTimeout(() => {
+  
+    const loginData = {
+      email: formData.identifier,
+      password: formData.password,
+    };
+  
+    try {
+      const response = await axios.post(`${API_URL}/auth/login`, loginData);
+      const { access_token, user } = response.data;
+  
+      // Store token and user details in local storage
+      localStorage.setItem("authToken", access_token);
+      localStorage.setItem("role", user.role);
+      localStorage.setItem("user", JSON.stringify(user));
+  
+      // Dispatch user info to Redux
+      dispatch(signInSuccess(user));
+  
+      // Show a success alert
+      alert(`Welcome back, ${user.username}!`);
+  
+      // Redirect to MainPage if the user is authenticated
+      navigate("/main-page");
+  
+      // You could still check for roles, but for now all users go to the main page:
+      if (user.role === "student") {
+        navigate("/main-page");
+      } else if (user.role === "teacher") {
+        navigate("/TeacherAdminPage");
+      } else if (user.role === "admin") {
+        navigate("/admin");
+      }
+    } catch (error) {
+      setErrorMessage(
+        error.response?.data?.message || "Invalid email/School ID or password"
+      );
+    } finally {
       setLoading(false);
-      setErrorMessage("");
-      navigate("/main-page"); // Redirect to the desired page after login
-    }, 1000);
+    }
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+    setShowPassword((prev) => !prev);
   };
 
   return (
     <div className="signin-container">
-      <div className="signin-card signin-card-row">
-        <div className="signin-header">
-          <Link to="/" className="font-bold dark:text-white text-4xl">
-            Math-hew
-          </Link>
-          <p className="signin-subtext mt-5">
-            Sign in with your account credentials!
-          </p>
-        </div>
-        <div className="signin-form">
-          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-            <div>
-              <Label htmlFor="email" value="Your email" />
-              <TextInput
-                type="email"
-                placeholder="name@company.com"
-                id="email"
-                onChange={handleChange}
-              />
+      <div className="signin-card">
+        <div className="signin-content">
+          {/* Left Side - Image */}
+          <div className="signin-image">
+            <img src="/images/mathhew.png" alt="Mathhew" />
+          </div>
+
+          {/* Right Side - Form */}
+          <div className="signin-form-container">
+            <div className="signin-header">
+              <div className="signin-logo">
+                Welcome Back!
+              </div>
+              <p className="signin-subtext">Welcome back, future math genius!</p>
             </div>
-            <div className="flex-1">
-              <div className="relative">
-                <Label htmlFor="password" value="Your password" />
-                <TextInput
+            <form className="signin-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="identifier"
+                  placeholder="Email or School ID"
+                  onChange={handleChange}
+                  className="input-field"
+                />
+              </div>
+              <div className="form-group relative">
+                <input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="**********"
+                  placeholder="Password"
                   onChange={handleChange}
+                  className="input-field"
                 />
-                <button
-                  type="button"
+                <FontAwesomeIcon
+                  icon={showPassword ? faEyeSlash : faEye}
+                  className="password-toggles"
                   onClick={togglePasswordVisibility}
-                  className="password-toggle"
-                >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                />
+              </div>
+              <div className="button-container">
+                <button type="submit" disabled={loading} className="signin-button">
+                  {loading ? "Loading..." : "Start Learning"}
                 </button>
               </div>
-            </div>
-            <Button className="signin-button" type="submit" disabled={loading}>
-              {loading ? (
-                <>
-                  <Spinner size="sm" />
-                  <span className="pl-3">Loading...</span>
-                </>
-              ) : (
-                "Sign In"
-              )}
-            </Button>
-          </form>
-          {errorMessage && (
-            <Alert className="signin-alert" color="failure">
-              {errorMessage}
-            </Alert>
-          )}
+            </form>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+            <p className="register-prompt">
+              Not registered yet?&nbsp;
+              <Link to="/register" className="register-link">
+               {" "}Sign up!
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

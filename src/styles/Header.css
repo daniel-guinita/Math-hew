@@ -1,71 +1,229 @@
-/* Header.css */
-.navbar {
-  border-bottom: 2px solid;
+/* General Header Styling */
+.header {
+  background-color: #781b1b;
+  color: #fff;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  border-bottom: #EBEBEB 5px solid;
+}
+
+.header-transparent {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  max-width: 112rem;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1500px;
+  margin: 0 auto;
+  font-family: sans-serif;
 }
 
-.logo-link {
+/* Logo Section */
+.header-logo {
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
-.logo-img {
+.header-logo-img {
+  width: 50px;
+  height: auto;
   margin-right: 0.5rem;
-  height: 1.5rem;
 }
 
-.logo-text {
-  self-align: center;
-  white-space: nowrap;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: white;
+.header-logo-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
 }
 
-.nav-links {
+/* Navigation Menu */
+.header-menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.header-nav {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
-.nav-link {
-  font-size: 1.125rem;
-  font-weight: 500;
+.header-nav-link {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #781b1b;
+  background: #FFFFFF;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.nav-link-active {
-  color: white;
+.header-nav-link:hover {
+  transform: background-color 0.3s ease;
+  color:#781b1b; 
+  transform: scale(1.05);
+  
 }
 
-.nav-link-inactive {
-  color: #9ca3af; /* gray-400 */
+.active {
+  color: #fff;
 }
 
-.nav-link-hover:hover {
-  color: white;
-}
-
-.user-actions {
+/* Account Section */
+.header-account {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
 
-.signin-button, .register-button {
-  border: 1px solid white;
-  color: white;
+/* Sign In Button */
+.header-signin-button {
+  background-color: #FFFFFF;
+  color: #781b1b;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.signin-button:hover, .register-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+.header-signin-button:hover {
+  transform: scale(1.05);
+}
+
+/* Dropdown Styling */
+.header-dropdown-button {
+  background: #FFFFFF;
+  color: #781b1b;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.header-dropdown-button:hover {
+  transition: ease-in-out 0.3s;
+  transform: scale(1.1);
+}
+
+.header-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* Aligns below the Account button */
+  right: auto; /* Aligns to the right of the button */
+  background: #FFFFFF;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+  min-width: 150px;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.header-dropdown-menu.dropdown-open {
+  display: block; /* Ensures it displays when open */
+}
+
+.header-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #781b1b;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+  text-decoration: none; /* Remove underline for links */
+}
+
+/* Hover and Focus States */
+.header-dropdown-item:hover,
+.header-dropdown-item:focus {
+  background-color: #8c383e; /* Red color for hover state */
+  color: #fff; /* Ensure text stays white */
+  transform: scale(1.05); /* Slight zoom effect for interactivity */
+}
+
+/* Active State */
+.header-dropdown-item:active {
+  background-color: #8b0000; /* Darker red for active state */
+}
+
+/* Rounded Bottom Corners for Last Item */
+.header-dropdown-item:last-child {
+  border-radius: 0 0 8px 8px; /* Rounded corners for the bottom of the dropdown */
+}
+
+/* Logo Animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-menu-toggle {
+    display: block;
+  }
+
+  .header-nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-radius: 8px;
+    gap: 1rem;
+  }
+
+  .header-nav-open {
+    display: flex;
+  }
+
+  .header-nav-link {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+}
+
+.error-message {
+  margin-top: 1rem;
+  text-align: center;
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.success-message {
+  margin-top: 1rem;
+  text-align: center;
+  color: #28a745;
+  font-weight: bold;
 }

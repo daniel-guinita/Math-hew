@@ -1,0 +1,234 @@
+/* General Page Layout */
+.admin-page-container {
+  font-family:'Poppins', sans-serif;
+  background: #FFFFFF;
+  margin-top: 90px;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.teacher-dashboard-title {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #781b1b;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Table Styling */
+.table-container {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1000px;
+  animation: popIn 0.5s ease;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  color: #333;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+th, td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+th {
+  background-color: #781b1b;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+}
+
+tr:nth-child(even) {
+  background-color: #FFFFFF;
+}
+
+tr:hover {
+  background-color: #f3dcdc;
+  cursor: pointer;
+}
+
+/* Edit Button */
+.edit-button {
+  background-color: #ffc107; /* Yellow color */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 5px;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+
+.edit-button:hover {
+  background-color: #ffca28; /* Lighter yellow on hover */
+}
+
+.delete-button {
+  background-color: #781b1b;
+  color: #FFFFFF;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #5e1414;
+  transform: scale(1.05);
+  
+}
+
+/* Add Question Button */
+.add-question-button-container {
+  margin-top: 20px;
+  animation: popIn 0.5s ease;
+}
+
+.add-question-button {
+  background: #781b1b;
+  color: #FFFFFF;
+  font-size: 1rem;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.add-question-button:hover {
+  background-color: #5e1414;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Content */
+.modal-content {
+  background: #FFFFFF;
+  color: #333;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.4s ease-in-out;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #f5f3f2;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #000000;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.modal-input:focus {
+  border-color: #d1b0b0;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.modal-button {
+  background-color: #4caf50;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.modal-button.close {
+  background-color: #e63946;
+}
+
+.modal-button.close:hover {
+  background-color: #d62f36;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.9rem;
+  }
+  .add-question-button {
+    font-size: 0.9rem;
+  }
+  .modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+}

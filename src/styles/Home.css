@@ -1,32 +1,173 @@
-.home-container {
-  @apply min-h-screen flex items-center justify-center px-4 py-8 dark:bg-gray-900;
+/* General Section Styling */
+.section {
+  min-height: 100vh; /* Each section takes up the full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Home Section */
+.home-section {
+  background: #8c383e;
+  color: white;
 }
 
 .home-content {
-  @apply flex flex-col md:flex-row items-center justify-between w-full max-w-6xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem; /* Increased gap between logo and text */
+  max-width: 1200px;
+  width: 100%;
+}
+
+.home-logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Ensure the logo is centered vertically */
+  max-width: 500px; /* Increase the max-width of the logo container */
+}
+
+.home-logo img {
+  max-width: 135%; /* Allow the image to take up the full width of its container */
+  width: 1000px; /* Explicitly set the width */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease;
 }
 
 .home-text {
-  @apply md:w-1/2;
+  flex: 1;
+  text-align: left;
 }
 
 .home-title {
-  @apply text-5xl font-bold text-gray-800 dark:text-white mb-6;
+  font-size: 4rem;
+  font-weight: 900;
+  -webkit-text-stroke: 2.5px #FFFFFF;
+  -webkit-text-fill-color: #8c383e;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1.5rem;
+  white-space: nowrap;
 }
 
 .home-description {
-  @apply text-xl text-gray-600 dark:text-gray-300 mb-8;
+  font-size: 2rem;
+  color: #fffde7;
+  margin-bottom: 2.5rem;
 }
 
 .learn-button {
-  @apply bg-orange-500 text-white font-bold py-4 px-8 rounded hover:bg-orange-700 transition duration-300 ml-5;
+  background: #FFFFFF;
+  color: #781b1b;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  transition: transform 0.3s ease;
+}
+
+.learn-button:hover {
+  transform: scale(1.1);
+}
+
+.features-section {
+  /* Existing styles: */
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #781b1b, #8c383e);
+  padding: 2rem 0; /* Adjust padding if needed */
+
+  /* Fill the section */
+  display: flex;
+  flex-direction: column;  /* Stack content vertically */
+  align-items: center;    /* Center horizontally */
+  justify-content: center; /* Center vertically and fill space */
+
+}
+
+.features-content {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.features-title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.feature {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* About Section */
+.about-section {
+  background: #8c383e;
+  color: white;
+}
+
+.about-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-description {
+  font-size: 1.5rem;
+  max-width: 800px;
+}
+
+/* Contact Section */
+.contact-section {
+  background: #f4f4f4;
+  color: #333;
+}
+
+.contact-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-description {
   font-size: 1.5rem;
 }
 
-.home-image {
-  @apply md:w-1/2;
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.home-image img {
-  @apply w-full max-w-lg h-auto mx-auto transform transition-transform duration-300 hover:scale-105;
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+

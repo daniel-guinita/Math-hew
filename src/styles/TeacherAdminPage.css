@@ -1,0 +1,122 @@
+/* Page Container */
+.admin-page-container {
+  font-family:'Poppins', sans-serif;
+  text-align: center;
+  padding: 30px;
+}
+
+/* Page Title */
+.page-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #832121;
+  margin-bottom: 15px;
+  animation: popIn 0.5s ease;
+}
+
+/* Student List Section */
+.student-list {
+  width: 90%;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: #781b1b 2px solid;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+/* Table Cells */
+.student-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* General Student Table Styling */
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table Header (ID, NAME, ROLE) */
+.student-table th {
+  color: #ffffff; 
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 12px 15px;
+  text-align: center;
+}
+
+/* Table Rows */
+.student-table tr {
+  background-color: #ffffff; 
+  color: #000000; 
+}
+
+/* .student-table tr:nth-child(even) {
+  background-color: #ffecec; 
+}
+
+/* Hover Effect - Text only changes color */
+.student-table tr:hover {
+  background-color: transparent;
+  color: #000000; 
+  cursor: pointer; 
+} */
+
+/* Loading & Error State */
+.loading-text,
+.error-text {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #781b1b;
+  margin: 20px 0;
+}
+
+/* No Data Text */
+.no-data-text {
+  text-align: center;
+  color: #781b1b;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+/* Buttons */
+.action-button {
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+}
+
+/* General Animations */
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.student-list,
+.page-title {
+  animation: popIn 0.5s ease;
+}

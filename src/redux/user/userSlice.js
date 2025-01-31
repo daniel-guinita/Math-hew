@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Load initial state from localStorage
+const savedProfile = localStorage.getItem("userProfile")
+  ? JSON.parse(localStorage.getItem("userProfile"))
+  : null;
+
 const initialState = {
-  currentUser: null,
+  currentUser: savedProfile || null, // Use localStorage data if available
   users: [],
   error: null,
   loading: false,
@@ -19,6 +24,9 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
+
+      // Save signed-in user to localStorage
+      localStorage.setItem("userProfile", JSON.stringify(action.payload));
     },
     signInFailure: (state, action) => {
       state.loading = false;
@@ -32,6 +40,9 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
+    
+      console.log("Saving updated profile to localStorage:", action.payload);
+      localStorage.setItem("userProfile", JSON.stringify(action.payload));
     },
     updateFailure: (state, action) => {
       state.loading = false;
@@ -41,6 +52,9 @@ const userSlice = createSlice({
       state.currentUser = null;
       state.error = null;
       state.loading = false;
+
+      // Remove user data from localStorage
+      localStorage.removeItem("userProfile");
     },
     fetchUsersSuccess: (state, action) => {
       state.users = action.payload;

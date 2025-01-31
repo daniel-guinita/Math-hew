@@ -1,0 +1,366 @@
+/* General Styles */
+.lessons-page-container {
+  font-family:'Poppins', sans-serif;
+  background: #FFFFFF; 
+  color: #FFFFFF;
+  min-height: 100vh;
+  padding: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Page Title */
+.page-title {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #781b1b;
+  animation: popIn 0.5s ease;
+}
+
+/* Lesson List Container */
+.lesson-list-container {
+  width: 100%;
+  max-width: 1200px;
+  animation: popIn 0.5s ease;
+}
+
+/* Lesson Grid */
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Lesson Card */
+.lesson-card {
+  background: #ffe4e1;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lesson-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-title {
+  font-size: 1.2rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+/* Page Layout */
+.lesson-page-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Lesson Detail Container */
+.lesson-detail-container {
+  width: 100%;
+  max-width: 800px;
+  background: #e49292;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-detail-title {
+  font-size: 2rem;
+  color: #590cb1;
+  margin-bottom: 20px;
+}
+
+.lesson-detail-description {
+  font-size: 1.1rem;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+/* Video Section */
+.video-output-section {
+  flex: 1;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-section-title {
+  font-size: 1.5rem;
+  color: #781b1b;
+  margin-bottom: 20px;
+}
+
+.video-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #781b1b;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Video Grid */
+.video-grid-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.video-card {
+  background: #ffffff;
+  border: 2px solid #781b1b;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+}
+
+.video-card iframe {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+}
+
+.back-button{
+  position: relative;
+  width: 2cm;
+  background-color: transparent; /* Background color */
+  color: #ffffff; /* Text color */
+  padding: 10px 20px; /* Button padding */
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #781b1b;
+}
+
+/* Add Video Button */
+/* Common Button Style */
+.button-container button,
+.edit-button-container button {
+  display: block;
+  width: 60%; /* Match width to Add Video button */
+  margin: 10px auto; /* Vertical and horizontal centering with spacing */
+  background-color: #ffffff; /* Background color */
+  color: #000000; /* Text color */
+  border: 2px solid #781b1b; /* Border */
+  padding: 10px 20px; /* Button padding */
+  border-radius: 8px; /* Rounded edges */
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Effects for Buttons */
+.button-container button:hover,
+.edit-button-container button:hover {
+  background-color: #781b1b; /* Dark red background */
+  color: #ffffff; /* White text color */
+}
+
+/* Individual Button Overrides */
+.add-button {
+  display: block;
+  margin: 20px auto;
+  width: 60%;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #781b1b;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #781b1b;
+  color: #ffffff;
+}
+
+
+
+/* Admin Section */
+.admin-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the button horizontally */
+  justify-content: center; 
+  margin-top: 50px;
+  background: #781b1b;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.input-field {
+  color: #000000;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Content */
+.modal-content {
+  background: #FFFFFF;
+  color: #333;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.4s ease-in-out;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #f5f3f2;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #000000;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+.modal-input:focus {
+  border-color: #d1b0b0;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.modal-content button {
+  display: block;
+  margin: 10px auto; /* Centers buttons inside modal */
+  width: 70%; /* Adjust button width */
+  padding: 10px 0; /* Add padding for consistent height */
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.modal-content .save-button {
+  background-color: #781b1b;
+  color: #ffffff;
+}
+
+.modal-content .save-button:hover {
+  background-color: #5a1313;
+}
+
+.modal-content .cancel-button {
+  background-color: #e4e4e4;
+  color: #781b1b;
+  border: 1px solid #781b1b;
+}
+
+.modal-content .cancel-button:hover {
+  background-color: #c5c5c5;
+}
+
+.save-button,
+.cancel-button {
+  margin-right: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .lesson-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .lesson-card {
+    padding: 15px;
+  }
+
+  .lesson-detail-container {
+    padding: 15px;
+  }
+
+  .lesson-detail-title {
+    font-size: 1.5rem;
+  }
+
+  .lesson-detail-description {
+    font-size: 1rem;
+  }
+
+  .video-card iframe {
+    height: 150px;
+  }
+}

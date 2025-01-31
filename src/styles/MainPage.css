@@ -1,0 +1,106 @@
+/* Main Page Container */
+.main-page-container {
+  font-family:'Poppins', sans-serif;
+  text-align: center;
+    background: #FFFFFF;
+    padding: 30px;
+    color: #781b1b;
+  }
+  
+  /* Classroom Banner */
+  .mathhew-banner {
+    margin-bottom: 40px;
+  }
+  
+  .mathhewbg-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Welcome Section */
+  .welcome-section {
+    margin-bottom: 50px;
+  }
+  
+  .welcome-title {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #000000;
+    text-shadow: 2px 2px #ffffff;
+    margin-bottom: 15px;
+  }
+  
+  .welcome-description {
+    font-size: 1.3rem;
+    color: #781b1b;
+  }
+  
+  /* Activities Containers */
+  .top-activities-container,
+  .bottom-activities-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  /* Activity Card */
+  .activity-card {
+    background: #ffffff;
+    border-radius: 20px;
+    width: 220px;
+    padding: 20px;
+    border: #781b1b 2px solid;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color: #333333;
+  }
+  
+  .activity-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Highlight Card */
+  .highlight-card {
+    height: auto;
+    width: auto;
+    border: #781b1b 2px solid;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background: #FFFFFF;
+    color: #781b1b;
+  }
+  
+  /* Activity Titles */
+  .activity-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #030303;
+  }
+  
+  .activity-description {
+    font-size: 1.1rem;
+  }
+  
+  /* Animations */
+  .activity-card {
+    animation: popIn 0.5s ease;
+  }
+  
+  @keyframes popIn {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  

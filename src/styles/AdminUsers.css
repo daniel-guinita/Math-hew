@@ -1,0 +1,162 @@
+/* Container for the Users Table */
+.admin-users-container {
+  font-family:'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 120px;
+  background:#FFFFFF;
+  min-height: 100vh;
+}
+
+/* Page Title */
+.admin-users-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.8rem;
+  margin-bottom: 1ch;
+  color: #781b1b;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Users Table */
+.admin-users-table {
+  width: 90%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background-color: #781b1b;
+  color: #FFFFFF; 
+  border-radius: 8px;
+  overflow: hidden; 
+  animation: popIn 0.5s ease;
+}
+
+/* Table Header */
+.admin-users-table th {
+  background-color: #781b1b;
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+  color: #FFFFFF; 
+}
+
+/* Table Rows */
+.admin-users-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ffffff; 
+}
+
+.admin-users-table tr:nth-child(even) {
+  background-color: #781b1b; 
+}
+
+.admin-users-table tr:nth-child(odd) {
+  color: #000000;
+  background-color: #ebebeb;
+}
+
+/* Button Styling */
+.view-button,
+.delete-button {
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* View Button */
+.view-button {
+  background-color: #FFFFFF; /* Soft blue */
+  color: #000000;
+  margin-right: 5px;
+}
+
+.view-button:hover {
+  background-color: #ebebeb; /* Green on hover */
+  color: #282a36;
+}
+
+/* Delete Button */
+.delete-button {
+  background-color: #fa2929; /* Red color */
+  color: #FFFFFF;
+}
+
+.delete-button:hover {
+  background-color: #ff1d1d; /* Lighter red on hover */
+}
+
+/* Dropdown Filter */
+.dropdown-filter {
+  margin-bottom: 20px;
+  text-align: center;
+  animation: popIn 0.5s ease;
+  background: 781b1b;
+}
+
+.dropdown-filter label {
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+.dropdown-filter select {
+  padding: 8px 12px;
+  border: 2px solid #44475a;
+  border-radius: 4px;
+  background-color: #781b1b;
+  color: #FFFFFF;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dropdown-filter select:focus {
+  outline: none;
+  border-color: #6272a4;
+}
+
+/* Modal Styling for User Details */
+.user-details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #282a36;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  color: #f8f8f2;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.modal-content h2 {
+  color: #ffb86c;
+}
+
+.close-button {
+  margin-top: 15px;
+  background-color: #ff5555;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.close-button:hover {
+  background-color: #ff6e6e;
+}
