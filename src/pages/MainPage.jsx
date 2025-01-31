@@ -1,71 +1,102 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import "../styles/MainPage.css";
+import React, { useEffect, useRef } from 'react';
+import kaplay from 'kaplay';
+import disclaimer from '../scenes/disclaimer';
+import game from '../scenes/game';
+import gameover from '../scenes/gameover';
+import mainMenu from '../scenes/mainmenu';
 
 const MainPage = () => {
-  // Retrieve the current user's information from Redux
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const soundRef = useRef(null); // Ref to store the sound instance
+
+  useEffect(() => {
+    const k = kaplay({
+      width: 1920,
+      height: 1080,
+      letterbox: true,
+      background: [0, 0, 0],
+      global: false,
+      buttons: {
+        jump: {
+          keyboard: ['space'],
+          mouse: 'left',
+        },
+      },
+      touchToMouse: true,
+      debug: false,
+    });
+
+    // Load all assets
+    Promise.all([
+      k.loadFont('mania', 'fonts/mania.ttf'), // Explicitly load the font
+      k.loadSound('city', 'sounds/city.mp3'),
+      k.loadSprite('chemical-bg', 'graphics/chemical-bg.png'),
+      k.loadSprite('platforms', 'graphics/platforms.png'),
+      k.loadSprite('mathhew', 'graphics/mathhew.png', {
+        sliceX: 8,
+        sliceY: 2,
+        anims: {
+          run: { from: 0, to: 7, loop: true, speed: 30 },
+          jump: { from: 8, to: 15, loop: true, speed: 100 },
+        },
+      }),
+      k.loadSprite('ring', 'graphics/ring.png', {
+        sliceX: 16,
+        sliceY: 1,
+        anims: {
+          spin: { from: 0, to: 15, loop: true, speed: 30 },
+        },
+      }),
+      k.loadSprite('motobug', 'graphics/motobug.png', {
+        sliceX: 5,
+        sliceY: 1,
+        anims: {
+          run: { from: 0, to: 4, loop: true, speed: 8 },
+        },
+      }),
+      k.loadSound('destroy', 'sounds/Destroy.wav'),
+      k.loadSound('hurt', 'sounds/Hurt.wav'),
+      k.loadSound('hyper-ring', 'sounds/HyperRing.wav'),
+      k.loadSound('jump', 'sounds/Jump.wav'),
+      k.loadSound('ring', 'sounds/Ring.wav'),
+    ]).then(() => {
+      console.log('All assets loaded successfully');
+
+      // Play the city background music and store the sound instance
+      soundRef.current = k.play('city', { volume: 0.2, loop: true });
+
+      // Add scenes and start the game
+      k.scene('disclaimer', () => disclaimer(k));
+      k.scene('main-menu', () => mainMenu(k));
+      k.scene('game', () => game(k));
+      k.scene('gameover', (citySfx) => gameover(k, citySfx));
+
+      k.go('disclaimer');
+    }).catch((err) => {
+      console.error('Failed to load assets:', err);
+    });
+
+    return () => {
+      if (k) {
+        // Stop the city background music
+        if (soundRef.current) {
+          soundRef.current.stop();
+        }
+
+        k.quit(); // Destroy the Kaplay instance
+
+        // Remove the canvas element from the DOM
+        const canvas = document.querySelector('canvas');
+        if (canvas) {
+          canvas.remove();
+        }
+      }
+    };
+  }, []);
 
   return (
-    <div className="main-page-container">
-      {/* Classroom Image */}
-      <div className="classroom-banner">
-        <img
-          src="/images/classroom.jpg"
-          alt="Classroom"
-          className="classroom-image"
-        />
-      </div>
-
-      {/* Welcome Section */}
-      <div className="welcome-section">
-        <h1 className="welcome-title">
-          Welcome to Math-hew{currentUser?.username ? `, ${currentUser.username}` : ""}!
-        </h1>
-        <p className="welcome-description">
-          Explore fun and interactive activities to enhance your math skills!
-        </p>
-      </div>
-
-      {/* Top Activities */}
-      <div className="top-activities-container">
-        <Link to="/math-memory-game" className="activity-card highlight-card">
-          <h2 className="activity-title">Math Memory Game</h2>
-          <p className="activity-description">Test your memory with fun challenges!</p>
-        </Link>
-
-        <Link to="/math-speedy-quiz" className="activity-card highlight-card">
-          <h2 className="activity-title">Math Speedy Quiz</h2>
-          <p className="activity-description">
-            Solve quick math problems and beat the clock!
-          </p>
-        </Link>
-      </div>
-
-      {/* Bottom Activities */}
-      <div className="bottom-activities-container">
-        <Link to="/lessons-page" className="activity-card">
-          <h2 className="activity-title">Lessons & Tutorials</h2>
-          <p className="activity-description">
-            Learn math concepts with engaging lessons and videos!
-          </p>
-        </Link>
-
-        <Link to="/leaderboard" className="activity-card">
-          <h2 className="activity-title">Leaderboard</h2>
-          <p className="activity-description">
-            Compete with others and climb the leaderboard!
-          </p>
-        </Link>
-
-        <Link to="/progress-tracking" className="activity-card">
-          <h2 className="activity-title">Progress Tracking</h2>
-          <p className="activity-description">
-            Track your learning journey and celebrate your achievements!
-          </p>
-        </Link>
-      </div>
+    <div>
+      <h1>Math Game</h1>
+      <div id="game"></div>
     </div>
   );
 };
