@@ -1,169 +1,173 @@
-.home-container {
-  min-height: 100vh;
+/* General Section Styling */
+.section {
+  min-height: 100vh; /* Each section takes up the full viewport height */
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   padding: 2rem;
-  overflow: hidden;
+  text-align: center;
+}
+
+/* Home Section */
+.home-section {
   background: #8c383e;
+  color: white;
 }
 
 .home-content {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  gap: 2rem;
+  justify-content: center;
+  gap: 6rem; /* Increased gap between logo and text */
   max-width: 1200px;
   width: 100%;
 }
 
+.home-logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Ensure the logo is centered vertically */
+  max-width: 500px; /* Increase the max-width of the logo container */
+}
+
+.home-logo img {
+  max-width: 135%; /* Allow the image to take up the full width of its container */
+  width: 1000px; /* Explicitly set the width */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease;
+}
+
 .home-text {
   flex: 1;
-  animation: fadeInUp 1.5s ease-out; /* Animation for the text section */
+  text-align: left;
 }
 
 .home-title {
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-weight: 900;
-  -webkit-text-stroke: 2.5px #FFFFFF; /* Adds a 2px black border */
-  -webkit-text-fill-color: #8c383e; /* Keeps the internal text color */
+  -webkit-text-stroke: 2.5px #FFFFFF;
+  -webkit-text-fill-color: #8c383e;
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  white-space: nowrap;
 }
 
 .home-description {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #fffde7;
-  margin-bottom: 2rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 1.5s ease-in-out; /* Fade-in animation for the description */
+  margin-bottom: 2.5rem;
 }
 
 .learn-button {
   background: #FFFFFF;
   color: #781b1b;
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: bold;
-  padding: 0.75rem 2rem;
+  padding: 1rem 2.5rem;
   border-radius: 50px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  animation: popIn 2s ease-in-out; /* Button pop-in animation */
+  transition: transform 0.3s ease;
 }
 
 .learn-button:hover {
   transform: scale(1.1);
 }
 
-.home-image {
-  flex: 1;
+.features-section {
+  /* Existing styles: */
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #781b1b, #8c383e);
+  padding: 2rem 0; /* Adjust padding if needed */
+
+  /* Fill the section */
   display: flex;
-  justify-content: center;
-  margin: 2.5rem;
+  flex-direction: column;  /* Stack content vertically */
+  align-items: center;    /* Center horizontally */
+  justify-content: center; /* Center vertically and fill space */
+
 }
 
-.home-image img {
-  max-width: 350px;
-  scale: 1.5;
+.features-content {
+  max-width: 1200px;
   width: 100%;
-  transition: transform 0.3s ease;
 }
 
-.decorations {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-/* .star {
-  position: absolute;
+.features-title {
   font-size: 3rem;
-  animation: float 6s ease-in-out infinite;
+  margin-bottom: 2rem;
 }
 
-.star-1 {
-  top: 10%;
-  left: 20%;
-  animation-delay: 0s;
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 
-.star-2 {
-  top: 50%;
-  right: 10%;
-  animation-delay: 2s;
+.feature {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.star-3 {
-  bottom: 20%;
-  left: 40%;
-  animation-delay: 4s;
-} */
-
-/* Animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+.feature h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.feature p {
+  font-size: 1.2rem;
+  color: #666;
 }
 
+/* About Section */
+.about-section {
+  background: #8c383e;
+  color: white;
+}
+
+.about-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-description {
+  font-size: 1.5rem;
+  max-width: 800px;
+}
+
+/* Contact Section */
+.contact-section {
+  background: #f4f4f4;
+  color: #333;
+}
+
+.contact-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-description {
+  font-size: 1.5rem;
+}
+
+/* Fade-in Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #550303, 0 0 20px #0da0f5;
-  }
-  50% {
-    text-shadow: 0 0 10px #550303, 0 0 20px #550303, 0 0 30px #0da0f5;
-  }
-  100% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #550303, 0 0 20px #0da0f5;
-  }
-}
-
-@keyframes popIn {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes bounce {
-  0%, 100% {
     transform: translateY(0);
   }
-  50% {
-    transform: translateY(-15px);
-  }
 }
+
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+

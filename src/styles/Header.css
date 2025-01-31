@@ -17,7 +17,7 @@
   align-items: center;
   max-width: 1500px;
   margin: 0 auto;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: sans-serif;
 }
 
 /* Logo Section */
@@ -60,7 +60,7 @@
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #8c383e;
+  color: #781b1b;
   background: #FFFFFF;
   padding: 0.5rem 1rem;
   border-radius: 12px;
@@ -70,7 +70,7 @@
 .header-nav-link:hover {
   transform: background-color 0.3s ease;
   color:#781b1b; 
-  opacity: 0.90;
+  transform: scale(1.05);
   
 }
 
@@ -100,9 +100,7 @@
 }
 
 .header-signin-button:hover {
-  background-color: #610a0c;
   transform: scale(1.05);
-  transition: background-color 0.1s ease;
 }
 
 /* Dropdown Styling */

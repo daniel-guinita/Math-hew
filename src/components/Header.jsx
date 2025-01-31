@@ -36,8 +36,8 @@ const Header = () => {
     if (!currentUser) {
       return [
         { label: "Home", path: "/" },
-        { label: "About Us", path: "/about-us" },
         { label: "Features", path: "/features" },
+        { label: "About Us", path: "/about-us" },
         { label: "Contact Us", path: "/contact-us" },
       ];
     }
