@@ -8,6 +8,7 @@ import "../styles/Header.css";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false); // State to track scroll
   const dropdownRef = useRef(null);
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -20,6 +21,21 @@ const Header = () => {
     }
   }, [dispatch]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("role");
@@ -29,15 +45,14 @@ const Header = () => {
     navigate("/sign-in");
   };
 
-  // Determine the menu items based on the user's role
   const getMenuItems = () => {
     const role = localStorage.getItem("role"); // Fetch the role from localStorage
 
     if (!currentUser) {
       return [
         { label: "Home", path: "/" },
-        { label: "About Us", path: "/about-us" },
         { label: "Features", path: "/features" },
+        { label: "About Us", path: "/about-us" },
         { label: "Contact Us", path: "/contact-us" },
       ];
     }
@@ -60,7 +75,6 @@ const Header = () => {
       ];
     }
 
-    // Default for students
     return [
       { label: "Home", path: "main-page" },
       { label: "About Us", path: "/about-us" },
@@ -71,7 +85,6 @@ const Header = () => {
 
   const menuItems = getMenuItems();
 
-  // Redirect unauthenticated users from /main-page to /
   useEffect(() => {
     const role = localStorage.getItem("role");
     if (!currentUser && window.location.pathname === "/main-page") {
@@ -80,15 +93,13 @@ const Header = () => {
   }, [currentUser, navigate]);
 
   return (
-    <header className="header">
+    <header className={`header ${isScrolled ? "header-transparent" : ""}`}>
       <div className="header-container">
-        {/* Logo Section */}
         <Link to="/" className="header-logo">
           <img src="/images/icon.png" alt="Math-hew Logo" className="header-logo-img" />
           <span className="header-logo-text">Math-hew</span>
         </Link>
 
-        {/* Hamburger Menu */}
         <button
           className="header-menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -97,7 +108,6 @@ const Header = () => {
           ☰
         </button>
 
-        {/* Navigation Menu */}
         <nav className={`header-nav ${menuOpen ? "header-nav-open" : ""}`}>
           {menuItems.map((item, index) => (
             <Link
@@ -111,7 +121,6 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Account Section */}
         <div className="header-account">
           {!currentUser ? (
             <button

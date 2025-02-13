@@ -1,4 +1,5 @@
 import React from "react";
+import { useInView } from "react-intersection-observer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import '../styles/Home.css';
@@ -6,6 +7,9 @@ import '../styles/Home.css';
 const Home = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
+
+  // Intersection Observer hook for the home section
+  const [homeRef, homeInView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const handleStartLearningClick = () => {
     if (currentUser) {
@@ -17,37 +21,30 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <div className="home-content">
-        {/* Text Section */}
-        <div className="home-text">
-          <h1 className="home-title">Welcome to Math-hew!</h1>
-          <p className="home-description">
-            Ready to explore the amazing world of 4th Grade Mathematics?
-          </p>
-          <button
-            className={`learn-button ${!currentUser ? "disabled" : ""}`}
-            onClick={handleStartLearningClick}
-          >
-          Start Learning Now!
-          </button>
+      {/* Home Section */}
+      <section ref={homeRef} className={`section home-section ${homeInView}`}>
+        <div className="home-content">
+          <div className="home-logo">
+            <img
+              src="/images/mathhew.png"
+              alt="Math-hew Mascot waving"
+              className="mascot-img"
+            />
+          </div>
+          <div className="home-text">
+            <h1 className="home-title">Welcome to Math-hew!</h1>
+            <p className="home-description">
+              Ready to explore the amazing world of 4th Grade Mathematics?
+            </p>
+            <button
+              className={`learn-button ${!currentUser ? "disabled" : ""}`}
+              onClick={handleStartLearningClick}
+            >
+              Start Learning Now!
+            </button>
+          </div>
         </div>
-
-        {/* Image Section */}
-        <div className="home-image">
-          <img
-            src="/images/mathhew.png" 
-            alt="Math-hew Mascot waving"
-            className="mascot-img"
-          />
-        </div>
-      </div>
-
-      {/* Animated Decorations */}
-      <div className="decorations">
-        <div className="star star-1">⭐</div>
-        <div className="star star-2">✨</div>
-        <div className="star star-3">🌟</div>
-      </div>
+      </section>
     </div>
   );
 };

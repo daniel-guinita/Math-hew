@@ -11,12 +11,19 @@
   border-bottom: #EBEBEB 5px solid;
 }
 
+.header-transparent {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 1500px;
   margin: 0 auto;
+  font-family: sans-serif;
 }
 
 /* Logo Section */
@@ -68,8 +75,8 @@
 
 .header-nav-link:hover {
   transform: background-color 0.3s ease;
-  color:#000000; 
-  opacity: 0.90;
+  color:#781b1b; 
+  transform: scale(1.05);
   
 }
 
@@ -97,9 +104,7 @@
 }
 
 .header-signin-button:hover {
-  background-color: #610a0c;
   transform: scale(1.05);
-  transition: background-color 0.1s ease;
 }
 
 /* Dropdown Styling */

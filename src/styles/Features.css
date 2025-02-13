@@ -8,7 +8,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden */
 }
 
 /* Decorative Floating Elements */
@@ -39,10 +39,16 @@
   animation-delay: 2s;
 }
 
+/* Hover Effect: Stop animations when hovering over the container */
+.features-container:hover::before,
+.features-container:hover::after {
+  animation: none; /* Stop the animation */
+}
+
 /* Features Content */
 .features-content {
-  width: 150%;
   max-width: 1200px;
+  width: 100%; /* Adjusted */
   text-align: center;
   color: #ffffff;
   z-index: 1;
@@ -50,13 +56,10 @@
 
 /* Title and Subtitle */
 .features-title {
-  width: 150%;
-  max-width: 1300px;
   font-size: 3.5rem;
   font-weight: bold;
-  -webkit-text-fill-color: #FFFFFF; /* Keeps the internal text color */
+  -webkit-text-fill-color: #FFFFFF;
   margin-bottom: 1rem;
-  margin-left: -4%;
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -88,24 +91,20 @@
   cursor: pointer;
 }
 
+/* Hover Effect */
 .feature-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
-  animation: bounceHover 1s ease;
+  animation: bounceHover 2s ease;
 }
 
-/* Decorative Circle Inside Card */
-.feature-card::before {
-  content: "";
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 150px;
-  height: 150px;
-  background: #8c383e;
-  opacity: 0.5;
-  border-radius: 50%;
-  z-index: 0;
+@keyframes bounceHover {
+  0%, 100% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 /* Feature Card Content */
@@ -122,7 +121,6 @@
   font-weight: bold;
   color: #000000;
   margin-bottom: 0.5rem;
-  animation: fadeIn 1.5s ease;
 }
 
 /* Feature Card Description */
@@ -130,66 +128,33 @@
   font-size: 1.3rem;
   color: #781b1b;
   line-height: 1.6;
-  animation: fadeInUp 1.5s ease;
 }
 
-/* Keyframe Animations */
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 5px #ffd700, 0 0 15px #ffb700, 0 0 20px #ffa500;
-  }
-  50% {
-    text-shadow: 0 0 20px #ffa500, 0 0 30px #ffd700, 0 0 40px #ffb700;
-  }
-  100% {
-    text-shadow: 0 0 5px #ffd700, 0 0 15px #ffb700, 0 0 20px #ffa500;
-  }
+/* Hover Window (Overlay) */
+.feature-card .hover-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 2;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.feature-card:hover .hover-window {
+  opacity: 1;
+  visibility: visible;
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-@keyframes bounceHover {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .features-title {
-    font-size: 2.5rem;
-  }
-
-  .features-subtitle {
-    font-size: 1.25rem;
-  }
-
-  .feature-card-title {
-    font-size: 1.5rem;
-  }
-
-  .feature-card-description {
-    font-size: 1rem;
-  }
+/* GIF or Animation within the Window */
+.hover-window img {
+  max-width: 99%;
+  border-radius: .5rem;
 }
