@@ -146,6 +146,7 @@
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 2;
+  /*test*/
 }
 
 .feature-card:hover .hover-window {
