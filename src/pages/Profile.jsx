@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { signInSuccess } from "../redux/user/userSlice";
 import { Link } from "react-router-dom";
@@ -7,45 +7,41 @@ import "../styles/Profile.css";
 const Profile = () => {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const [user, setUser] = useState(currentUser || JSON.parse(localStorage.getItem("userProfile")));
 
   useEffect(() => {
-    // Force Redux to rehydrate from localStorage
     const savedUser = localStorage.getItem("userProfile");
-    if (savedUser && !currentUser) {
-      console.log("Rehydrating user from localStorage:", savedUser);
-      dispatch(signInSuccess(JSON.parse(savedUser)));
+    if (savedUser) {
+      const parsedUser = JSON.parse(savedUser);
+      dispatch(signInSuccess(parsedUser)); // Update Redux state
+      setUser(parsedUser); // Update component state
     }
-  }, [dispatch, currentUser]);
+  }, [dispatch]);
+  
 
-  if (!currentUser) {
+  if (!user) {
     return <p>Please log in to view your profile.</p>;
   }
 
   return (
     <div className="profile-container">
-      <h1 className="profile-title">
-        Welcome, {currentUser.first_name || "User"}!
-      </h1>
+      <h1 className="profile-title">Welcome, {user.first_name || "User"}!</h1>
       <div className="profile-card">
         <div className="profile-image-section">
           <img
-            src={currentUser.profileImage || "/images/default-avatar.png"}
+            src={user.profileImage || "/images/default-avatar.png"}
             alt="Profile"
             className="profile-image"
           />
         </div>
-
         <div className="profile-info">
-          <p><strong>First Name:</strong> {currentUser.first_name}</p>
-          <p><strong>Last Name:</strong> {currentUser.last_name}</p>
-          <p><strong>Email:</strong> {currentUser.email}</p>
-          <p><strong>Role:</strong> {currentUser.role}</p>
-          <p><strong>School ID:</strong> {currentUser.school_id}</p>
+          <p><strong>First Name:</strong> {user.first_name}</p>
+          <p><strong>Last Name:</strong> {user.last_name}</p>
+          <p><strong>Email:</strong> {user.email}</p>
+          <p><strong>Role:</strong> {user.role}</p>
+          <p><strong>School ID:</strong> {user.school_id}</p>
         </div>
-
-        <Link to="/edit-profile" className="edit-profile-button">
-          Edit Your Profile
-        </Link>
+        <Link to="/edit-profile" className="edit-profile-button">Edit Your Profile</Link>
       </div>
     </div>
   );

@@ -41,14 +41,14 @@ const EditProfile = () => {
   
     try {
       const updatedData = {
-        first_name: formData.firstName || currentUser.first_name,
-        last_name: formData.lastName || currentUser.last_name,
-        email: formData.email || currentUser.email,
-        profileImage: formData.profileImage || currentUser.profileImage,
+        first_name: formData.firstName,  // Ensure consistency
+        last_name: formData.lastName,    // Ensure consistency
+        email: formData.email,
+        profileImage: formData.profileImage,
         ...(formData.password && { password: formData.password }),
       };
+      
   
-      // Send update to backend
       const response = await axios.patch(
         `${process.env.REACT_APP_API_URL}/users/${currentUser.id}`,
         updatedData,
@@ -59,19 +59,19 @@ const EditProfile = () => {
         }
       );
   
-      // Update Redux and localStorage
       const updatedUser = response.data;
       dispatch(updateSuccess(updatedUser));
       localStorage.setItem("userProfile", JSON.stringify(updatedUser));
+  
       alert("Profile updated successfully!");
       navigate("/profile");
+  
     } catch (error) {
       console.error("Error updating profile:", error);
       dispatch(updateFailure(error.response?.data?.message || "Failed to update profile"));
       alert("Failed to update profile. Please try again later.");
     }
   };
-  
   
   return (
     <div className="edit-profile-container">

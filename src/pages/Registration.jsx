@@ -52,12 +52,13 @@ export default function Register() {
       username: formData.username,
       password: formData.password,
       email: formData.email,
-      role: formData.role, // Assign role dynamically
-      user_type: formData.role, // Set user_type to match role
-      first_name: formData.firstName,
-      last_name: formData.lastName,
+      role: formData.role,
+      user_type: formData.role,
+      first_name: formData.firstName, // Ensure consistency
+      last_name: formData.lastName, // Ensure consistency
       school_id: formData.schoolId,
     };
+    
 
     try {
       await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, userData);

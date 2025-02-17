@@ -15,7 +15,7 @@ const loadFromLocalStorage = () => {
 
 const preloadedState = {
   user: {
-    currentUser: loadFromLocalStorage(),
+    currentUser: loadFromLocalStorage(), // Load from storage
     users: [],
     loading: false,
     error: null,
