@@ -61,13 +61,13 @@ input {
   position: relative;
 }
 
-.password-toggle {
+.password-toggles {
   position: absolute;
-  top: 68%;
+  top: 70%;
   right: 1rem;
   transform: translateY(-50%);
-  font-size: 1.5rem;
-  color: #8c383e;
+  font-size: 1rem;
+  color: #7a7a7a;
   cursor: pointer;
 }
 
@@ -75,6 +75,35 @@ input {
   color: #781b1b;
 }
 
+/* Style the select dropdown */
+select#role {
+  font-size: 1rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-top: 0.5rem;
+  background-color: white;
+  color: #333;
+  appearance: none; /* Removes default arrow */
+}
+
+/* Ensures the dropdown is inside a container that aligns with other fields */
+.form-row select#role {
+  height: 48px; /* Match input field height */
+  display: flex;
+  align-items: center;
+}
+
+/* Optional: Style for dropdown arrow */
+select#role::-ms-expand {
+  display: none; /* Hide default arrow in IE */
+}
+
+/* Custom dropdown icon */
+.form-row {
+  position: relative;
+}
 
 .register-button {
   background: #781b1b;

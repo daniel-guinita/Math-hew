@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Registration.css";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Register() {
   const [formData, setFormData] = useState({});
@@ -13,29 +14,14 @@ export default function Register() {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-
-    // Automatically set role based on schoolId
-    if (id === "schoolId") {
-      let role = "";
-      if (/^\d{2}-\d{4}-\d{3}$/.test(value)) {
-        role = "student";
-      } else if (/^\d{4}$/.test(value)) {
-        role = "teacher";
-      } else if (/^\d{5}$/.test(value)) {
-        role = "admin";
-      }
-
-      setFormData({ ...formData, [id]: value.trim(), role });
-    } else {
-      setFormData({ ...formData, [id]: value.trim() });
-    }
+    setFormData({ ...formData, [id]: value.trim() });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/; // Only emails ending with @cit.edu
-    if (!formData.email || !formData.password || !formData.schoolId) {
+    if (!formData.email || !formData.password || !formData.schoolId || !formData.role) {
       setErrorMessage("Please fill all the fields.");
       return;
     }
@@ -59,7 +45,6 @@ export default function Register() {
       school_id: formData.schoolId,
     };
     
-
     try {
       await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, userData);
       alert("Registration successful!");
@@ -141,13 +126,12 @@ export default function Register() {
               </div>
               <div>
                 <label htmlFor="role">Role</label>
-                <input
-                  type="text"
-                  id="role"
-                  value={formData.role || "Automatically determined by School ID"}
-                  readOnly
-                  disabled
-                />
+                <select id="role" value={formData.role || ""} onChange={handleChange}>
+                  <option value="">Select Role</option>
+                  <option value="student">Student</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="admin">Admin</option>
+                </select>
               </div>
             </div>
 
@@ -161,9 +145,11 @@ export default function Register() {
                   value={formData.password || ""}
                   onChange={handleChange}
                 />
-                <div className="password-toggle" onClick={togglePasswordVisibility}>
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </div>
+                <FontAwesomeIcon
+                  icon={showPassword ? faEyeSlash : faEye}
+                  className="password-toggles"
+                  onClick={togglePasswordVisibility}
+                />
               </div>
             </div>
 
