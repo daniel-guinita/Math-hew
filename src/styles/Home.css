@@ -73,85 +73,144 @@
   transform: scale(1.1);
 }
 
+/* Features Section */
 .features-section {
-  /* Existing styles: */
-  min-height: 100vh;
   background: linear-gradient(to bottom, #781b1b, #8c383e);
-  padding: 2rem 0; /* Adjust padding if needed */
+  color: white;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden; /* Ensure the floating elements don't overflow */
+}
 
-  /* Fill the section */
-  display: flex;
-  flex-direction: column;  /* Stack content vertically */
-  align-items: center;    /* Center horizontally */
-  justify-content: center; /* Center vertically and fill space */
+/* Floating Bubble Animations */
+.features-section::before,
+.features-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+  opacity: 0.5;
+}
 
+.features-section::before {
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 223, 77, 0.3); /* Yellow-ish bubble */
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.features-section::after {
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 99, 71, 0.3); /* Red-ish bubble */
+  bottom: 10%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+/* Hover Effect: Stop animations when hovering over the container */
+.features-section:hover::before,
+.features-section:hover::after {
+  animation: none; /* Stop the animation */
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(-20px);
+  }
+  50% {
+    transform: translateY(20px) translateX(20px);
+  }
+  75% {
+    transform: translateY(-20px) translateX(20px);
+  }
 }
 
 .features-content {
   max-width: 1200px;
   width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .features-title {
   font-size: 3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+  margin-top: 2rem;
 }
 
 .feature {
   background: white;
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  color: #781b1b;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 1; /* Ensure the feature cards are fully visible by default */
+  transform: translateY(0); /* Ensure no initial offset */
 }
 
-.feature h3 {
-  font-size: 1.5rem;
+.feature:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.feature-title {
+  font-size: 1.8rem;
+  font-weight: bold;
   margin-bottom: 1rem;
+  color: #000000;
 }
 
-.feature p {
+.feature-description {
   font-size: 1.2rem;
-  color: #666;
+  color: #781b1b;
+  line-height: 1.6;
 }
 
-/* About Section */
-.about-section {
-  background: #8c383e;
-  color: white;
+/* Hover Window for GIFs */
+.hover-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.about-title {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
+.feature:hover .hover-window {
+  opacity: 1;
+  visibility: visible;
 }
 
-.about-description {
-  font-size: 1.5rem;
-  max-width: 800px;
+.hover-window img {
+  max-width: 100%;
+  border-radius: 0.5rem;
 }
 
-/* Contact Section */
-.contact-section {
-  background: #f4f4f4;
-  color: #333;
-}
-
-.contact-title {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-}
-
-.contact-description {
-  font-size: 1.5rem;
-}
-
-/* Fade-in Animation */
+/* Fade-in Animation (for features only) */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -164,10 +223,9 @@
 }
 
 .fade-in {
-  animation: fadeIn 1s ease-out forwards;
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
 html {
   scroll-behavior: smooth;
 }
-

@@ -7,7 +7,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
-import Features from "./pages/Features";
 import ContactUs from "./pages/ContactUs";
 import SignIn from "./pages/SignIn";
 import MainPage from "./pages/MainPage";
@@ -48,7 +47,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/features" element={<Features />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/register" element={<Registration />} />
