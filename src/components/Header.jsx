@@ -93,10 +93,11 @@ const Header = () => {
   return (
     <header className={`header ${isScrolled ? "header-transparent" : ""}`}>
       <div className="header-container">
-        <Link to="/" className="header-logo">
+        {/* Static Logo - Removed Link */}
+        <div className="header-logo">
           <img src="/images/icon.png" alt="Math-hew Logo" className="header-logo-img" />
           <span className="header-logo-text">Math-hew</span>
-        </Link>
+        </div>
 
         <button
           className="header-menu-toggle"

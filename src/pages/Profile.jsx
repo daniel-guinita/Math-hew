@@ -6,26 +6,33 @@ import "../styles/Profile.css";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.user);
-  const [user, setUser] = useState(currentUser || JSON.parse(localStorage.getItem("userProfile")));
+  const { currentUser  } = useSelector((state) => state.user);
+  const [user, setUser ] = useState(currentUser  || null);
 
   useEffect(() => {
+    // Check localStorage for user data
     const savedUser = localStorage.getItem("userProfile");
     if (savedUser) {
       const parsedUser = JSON.parse(savedUser);
-      dispatch(signInSuccess(parsedUser)); // Update Redux state
-      setUser(parsedUser); // Update component state
+      
+      // Only update Redux if the user is different
+      if (!currentUser || currentUser.id !== parsedUser.id) {
+        dispatch(signInSuccess(parsedUser)); // Update Redux state
+        setUser(parsedUser); // Update component state
+      }
+    } else {
+      // If no user in localStorage, fallback to Redux state
+      setUser(currentUser);
     }
-  }, [dispatch]);
+  }, []); // Remove `currentUser` from dependencies
   
-
   if (!user) {
     return <p>Please log in to view your profile.</p>;
   }
 
   return (
     <div className="profile-container">
-      <h1 className="profile-title">Welcome, {user.first_name || "User"}!</h1>
+      <h1 className="profile-title">Welcome, {user.first_name || "User  "}!</h1>
       <div className="profile-card">
         <div className="profile-image-section">
           <img
