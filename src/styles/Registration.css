@@ -136,15 +136,15 @@ select#role::-ms-expand {
 }
 
 .error-container {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: left;
-  margin-top: 1rem;
-  font-size: 1rem;
+  color: #781b1b; /* Bootstrap Danger Color */
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
   font-weight: bold;
-  text-align: center; /* Ensures text is centered */
+  text-align: center;
+  width: 100%;
 }
+
 
 @media (max-width: 768px) {
   .form-row {

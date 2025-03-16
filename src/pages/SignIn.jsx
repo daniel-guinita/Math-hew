@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -32,26 +33,24 @@ export default function SignIn() {
     setLoading(true);
     setErrorMessage("");
   
-    const loginData = {
-      identifier: formData.identifier, // Handles both Email and School ID
-      password: formData.password,
-    };
+    // Determine whether the identifier is an email or school ID
+    const isEmail = formData.identifier.includes("@");
+    const loginData = isEmail
+      ? { email: formData.identifier, password: formData.password }
+      : { school_id: formData.identifier, password: formData.password };
   
     try {
       const response = await axios.post(`${API_URL}/auth/login`, loginData);
       const { access_token, user } = response.data;
   
-      // Store token and user details
       localStorage.setItem("authToken", access_token);
       localStorage.setItem("role", user.role);
       localStorage.setItem("user", JSON.stringify(user));
   
-      // Dispatch user info to Redux
       dispatch(signInSuccess(user));
   
       alert(`Welcome back, ${user.username}!`);
   
-      // Redirect users based on role
       if (user.role === "student") {
         navigate("/main-page");
       } else if (user.role === "teacher") {
@@ -59,7 +58,7 @@ export default function SignIn() {
       } else if (user.role === "admin") {
         navigate("/admin");
       } else {
-        navigate("/main-page"); // Default page
+        navigate("/main-page");
       }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "Invalid Email/School ID or password.");
@@ -67,6 +66,8 @@ export default function SignIn() {
       setLoading(false);
     }
   };
+  
+  
   
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -146,7 +147,7 @@ export default function SignIn() {
                 <input
                   type="text"
                   id="identifier"
-                  placeholder="Email or School ID"
+                  placeholder="Enter Email or School ID"
                   onChange={handleChange}
                   className="input-field"
                 />

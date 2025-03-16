@@ -13,7 +13,6 @@ import MainPage from "./pages/MainPage";
 import LessonsPage from "./pages/LessonsPage";
 import MathMemoryGame from "./pages/MathMemoryGame";
 import MathSpeedyQuiz from "./pages/MathSpeedyQuiz";
-// import LearningBuddy from "./pages/LearningBuddy";
 import Leaderboard from "./pages/Leaderboard";
 import Registration from "./pages/Registration";
 import ProgressTracking from "./pages/ProgressTracking";
@@ -21,11 +20,8 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import TeacherAdminPage from "./pages/TeacherAdminPage";
 import TeacherQuiz from './pages/TeacherQuiz';
-import TeacherLessons from './pages/TeacherLessons';
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
-// import AdminQuiz from "./pages/AdminQuiz";
-import AdminLessons from "./pages/AdminLessons";
 import AdminLeaderboard from "./pages/AdminLeaderboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ChatBuddy from "./components/ChatBuddy"; 
@@ -54,7 +50,6 @@ function App() {
         <Route path="/math-memory-game" element={<MathMemoryGame />} />
         <Route path="/math-speedy-quiz" element={<MathSpeedyQuiz />} />
         <Route path="/lessons-page" element={<LessonsPage userRole={userRole} />} />
-        {/* <Route path="/learning-buddy" element={<LearningBuddy />} /> */}
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/progress-tracking" element={<ProgressTracking />} />
         <Route path="/profile" element={<Profile />} />
@@ -68,7 +63,6 @@ function App() {
           }
         />
         <Route path="/teacherAdmin-quiz" element={<TeacherQuiz />} />
-        <Route path="/teacher-lessons" element={<TeacherLessons />} />
         <Route
           path="/admin"
           element={
@@ -78,8 +72,6 @@ function App() {
           }
         />
         <Route path="/admin/admin-users" element={<AdminUsers />} />
-        {/* <Route path="/admin/admin-quiz" element={<AdminQuiz />} /> */}
-        <Route path="/admin/admin-lessons" element={<AdminLessons />} />
         <Route path="/admin/admin-leaderboard" element={<AdminLeaderboard />} />
       </Routes>
       <Footer />

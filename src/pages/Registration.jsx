@@ -20,8 +20,10 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/; // Only emails ending with @cit.edu
-    if (!formData.email || !formData.password || !formData.schoolId || !formData.role) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@cit\.edu$/; // Must be an institutional email
+    const passwordRegex = /^(?=.*[0-9]).{8,}$/; // At least 8 characters and 1 number
+
+    if (!formData.email || !formData.password || !formData.schoolId || !formData.username || !formData.role) {
       setErrorMessage("Please fill all the fields.");
       return;
     }
@@ -31,21 +33,38 @@ export default function Register() {
       return;
     }
 
+    if (!passwordRegex.test(formData.password)) {
+      setErrorMessage("Password must be at least 8 characters long and contain at least one number.");
+      return;
+    }
+
     setLoading(true);
     setErrorMessage("");
 
-    const userData = {
-      username: formData.username,
-      password: formData.password,
-      email: formData.email,
-      role: formData.role,
-      user_type: formData.role,
-      first_name: formData.firstName, // Ensure consistency
-      last_name: formData.lastName, // Ensure consistency
-      school_id: formData.schoolId,
-    };
-    
     try {
+      // Check if the username, email, or school ID already exists
+      const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/users/check-existence`, {
+        params: { username: formData.username, email: formData.email, school_id: formData.schoolId },
+      });
+
+      if (data.exists) {
+        setErrorMessage("Username, Email, or School ID is already registered.");
+        setLoading(false);
+        return;
+      }
+
+      // Proceed with registration
+      const userData = {
+        username: formData.username,
+        password: formData.password,
+        email: formData.email,
+        role: formData.role,
+        user_type: formData.role,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        school_id: formData.schoolId,
+      };
+
       await axios.post(`${process.env.REACT_APP_API_URL}/users/register`, userData);
       alert("Registration successful!");
       navigate("/sign-in");
@@ -63,9 +82,7 @@ export default function Register() {
     <div className="register-container">
       <div className="register-card">
         <div className="register-header">
-          <Link to="/" className="register-logo">
-            Math-hew
-          </Link>
+          <Link to="/" className="register-logo">Math-hew</Link>
           <p className="register-subtext">Join the math adventure!</p>
         </div>
         <div className="register-form">
@@ -73,56 +90,26 @@ export default function Register() {
             <div className="form-row">
               <div>
                 <label htmlFor="schoolId">School ID</label>
-                <input
-                  type="text"
-                  placeholder="00-1234-567"
-                  id="schoolId"
-                  value={formData.schoolId || ""}
-                  onChange={handleChange}
-                />
+                <input type="text" placeholder="00-1234-567" id="schoolId" value={formData.schoolId || ""} onChange={handleChange} />
               </div>
               <div>
                 <label htmlFor="firstName">First Name</label>
-                <input
-                  type="text"
-                  placeholder="First name"
-                  id="firstName"
-                  value={formData.firstName || ""}
-                  onChange={handleChange}
-                />
+                <input type="text" placeholder="First name" id="firstName" value={formData.firstName || ""} onChange={handleChange} />
               </div>
               <div>
                 <label htmlFor="lastName">Last Name</label>
-                <input
-                  type="text"
-                  placeholder="Last name"
-                  id="lastName"
-                  value={formData.lastName || ""}
-                  onChange={handleChange}
-                />
+                <input type="text" placeholder="Last name" id="lastName" value={formData.lastName || ""} onChange={handleChange} />
               </div>
             </div>
 
             <div className="form-row">
               <div>
                 <label htmlFor="username">Username</label>
-                <input
-                  type="text"
-                  placeholder="Username!"
-                  id="username"
-                  value={formData.username || ""}
-                  onChange={handleChange}
-                />
+                <input type="text" placeholder="Username" id="username" value={formData.username || ""} onChange={handleChange} />
               </div>
               <div>
                 <label htmlFor="email">Institutional Email</label>
-                <input
-                  type="email"
-                  placeholder="example@cit.edu"
-                  id="email"
-                  value={formData.email || ""}
-                  onChange={handleChange}
-                />
+                <input type="email" placeholder="example@cit.edu" id="email" value={formData.email || ""} onChange={handleChange} />
               </div>
               <div>
                 <label htmlFor="role">Role</label>
@@ -138,18 +125,8 @@ export default function Register() {
             <div className="form-row">
               <div className="password-container">
                 <label htmlFor="password">Password</label>
-                <input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  value={formData.password || ""}
-                  onChange={handleChange}
-                />
-                <FontAwesomeIcon
-                  icon={showPassword ? faEyeSlash : faEye}
-                  className="password-toggles"
-                  onClick={togglePasswordVisibility}
-                />
+                <input id="password" type={showPassword ? "text" : "password"} placeholder="Password" value={formData.password || ""} onChange={handleChange} />
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="password-toggles" onClick={togglePasswordVisibility} />
               </div>
             </div>
 
