@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // Added useLocation
 import { useSelector, useDispatch } from "react-redux";
 import { signoutSuccess, signInSuccess } from "../redux/user/userSlice";
 import "../styles/Header.css";
@@ -8,26 +7,23 @@ import "../styles/Header.css";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); // State to track scroll
+  const [isScrolled, setIsScrolled] = useState(false);
   const dropdownRef = useRef(null);
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation(); // Get the current route
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (userData) {
-      dispatch(signInSuccess(JSON.parse(userData))); // Update Redux store
+      dispatch(signInSuccess(JSON.parse(userData)));
     }
   }, [dispatch]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -45,46 +41,49 @@ const Header = () => {
     navigate("/sign-in");
   };
 
+  // Smooth scroll function
+  const handleScrollTo = (id) => {
+    if (location.pathname === "/") {
+      // If already on Home page, scroll to the specific section
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If not on Home page, navigate first then scroll after a short delay
+      navigate("/");
+      setTimeout(() => {
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 500);
+    }
+  };
+
+  // Scroll to the top when clicking "Home"
+  const handleScrollToTop = () => {
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 500);
+    }
+  };
+
   const getMenuItems = () => {
-    const role = localStorage.getItem("role"); // Fetch the role from localStorage
-
-    if (!currentUser) {
-      return [
-        { label: "Home", path: "/" },
-        { label: "About Us", path: "/about-us" },
-        { label: "Contact Us", path: "/contact-us" },
-      ];
-    }
-
-    if (role === "admin") {
-      return [
-        { label: "Manage Users", path: "/admin/admin-users" },
-        { label: "Quiz Management", path: "/teacherAdmin-quiz" },
-        { label: "Lessons Management", path: "/lessons-page" },
-        { label: "Leaderboard", path: "/admin/admin-leaderboard" },
-      ];
-    }
-
-    if (role === "teacher") {
-      return [
-        { label: "Manage Quizzes", path: "/teacherAdmin-quiz" },
-        { label: "Teacher Dashboard", path: "/TeacherAdminPage" },
-        { label: "Lessons & Resources", path: "/lessons-page" },
-        { label: "View Leaderboards", path: "/admin/admin-leaderboard" },
-      ];
-    }
-
     return [
-      { label: "Home", path: "main-page" },
-      { label: "About Us", path: "/about-us" },
-      { label: "Contact Us", path: "/contact-us" },
+      { label: "Home", action: handleScrollToTop }, // Home now scrolls to top
+      { label: "About Us", action: () => handleScrollTo("about-us") },
+      { label: "Contact Us", action: () => handleScrollTo("contact-us") },
     ];
   };
 
   const menuItems = getMenuItems();
 
   useEffect(() => {
-    const role = localStorage.getItem("role");
     if (!currentUser && window.location.pathname === "/main-page") {
       navigate("/");
     }
@@ -93,7 +92,6 @@ const Header = () => {
   return (
     <header className={`header ${isScrolled ? "header-transparent" : ""}`}>
       <div className="header-container">
-        {/* Static Logo - Removed Link */}
         <div className="header-logo">
           <img src="/images/icon.png" alt="Math-hew Logo" className="header-logo-img" />
           <span className="header-logo-text">Math-hew</span>
@@ -109,23 +107,22 @@ const Header = () => {
 
         <nav className={`header-nav ${menuOpen ? "header-nav-open" : ""}`}>
           {menuItems.map((item, index) => (
-            <Link
+            <span
               key={index}
-              to={item.path}
               className="header-nav-link"
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                setMenuOpen(false);
+                item.action(); // Execute the action
+              }}
             >
               {item.label}
-            </Link>
+            </span>
           ))}
         </nav>
 
         <div className="header-account">
           {!currentUser ? (
-            <button
-              className="header-signin-button"
-              onClick={() => navigate("/sign-in")}
-            >
+            <button className="header-signin-button" onClick={() => navigate("/sign-in")}>
               Sign In
             </button>
           ) : (
@@ -137,16 +134,8 @@ const Header = () => {
               >
                 👤 {currentUser.username || currentUser.email}
               </button>
-              <div
-                className={`header-dropdown-menu ${
-                  dropdownOpen ? "dropdown-open" : ""
-                }`}
-              >
-                <Link
-                  to="/profile"
-                  className="header-dropdown-item"
-                  onClick={() => setDropdownOpen(false)}
-                >
+              <div className={`header-dropdown-menu ${dropdownOpen ? "dropdown-open" : ""}`}>
+                <Link to="/profile" className="header-dropdown-item" onClick={() => setDropdownOpen(false)}>
                   Profile
                 </Link>
                 <button className="header-dropdown-item" onClick={handleLogout}>
