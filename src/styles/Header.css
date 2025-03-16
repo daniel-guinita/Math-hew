@@ -1,8 +1,9 @@
 /* General Header Styling */
 .header {
   background-color: #781b1b;
-  color: #fff;
-  padding: 1rem;
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+  color: #781b1b;
+  padding: 0.5rem 1rem;
   position: fixed;
   top: 0;
   width: 100%;
@@ -12,8 +13,8 @@
 }
 
 .header-transparent {
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background-color: transparent;
+  backdrop-filter: blur(3px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -33,17 +34,18 @@
   text-decoration: none;
 }
 
+/* Adjusted Logo Section */
 .header-logo-img {
-  width: 50px;
+  width: 45px;
   height: auto;
-  margin-right: 0.5rem;
+  margin-right: 10px;
 }
 
 .header-logo-text {
   font-size: 1.8rem;
   font-weight: bold;
   color: #fff;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Navigation Menu */
@@ -56,6 +58,13 @@
   cursor: pointer;
 }
 
+.header-nav-account {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Navigation Menu */
 .header-nav {
   display: flex;
   gap: 2rem;
@@ -64,24 +73,22 @@
 
 .header-nav-link {
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
-  color: #781b1b;
-  background: #FFFFFF;
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
 .header-nav-link:hover {
-  transform: background-color 0.3s ease;
-  color:#781b1b; 
+  background-color: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
-  
 }
 
+/* Active Nav Item */
 .active {
-  color: #fff;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Account Section */
@@ -90,27 +97,37 @@
   align-items: center;
 }
 
-/* Sign In Button */
+/* Adjusted Sign In Button */
 .header-signin-button {
-  background-color: #FFFFFF;
-  color: #781b1b;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
+  color: #fff;
+  font-size: 1.1rem;
   font-weight: bold;
-  border-radius: 12px;
+  background: none;
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .header-signin-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
   transform: scale(1.05);
+}
+
+/* Mobile Menu Toggle */
+.header-menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
 }
 
 /* Dropdown Styling */
 .header-dropdown-button {
-  background: #FFFFFF;
-  color: #781b1b;
+  color: #fff;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.5rem 1.5rem;
@@ -174,16 +191,6 @@
 /* Rounded Bottom Corners for Last Item */
 .header-dropdown-item:last-child {
   border-radius: 0 0 8px 8px; /* Rounded corners for the bottom of the dropdown */
-}
-
-/* Logo Animation */
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 /* Responsive Design */

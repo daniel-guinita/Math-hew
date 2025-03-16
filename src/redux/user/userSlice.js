@@ -24,7 +24,6 @@ const userSlice = createSlice({
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
-
       // Save signed-in user to localStorage
       localStorage.setItem("userProfile", JSON.stringify(action.payload));
     },
@@ -50,7 +49,6 @@ const userSlice = createSlice({
       state.currentUser = null;
       state.error = null;
       state.loading = false;
-
       // Remove user data from localStorage
       localStorage.removeItem("userProfile");
     },

@@ -6,7 +6,7 @@ import axios from "axios";
 import "../styles/EditProfile.css";
 
 const EditProfile = () => {
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser  } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({
     firstName: currentUser?.first_name || "",
     lastName: currentUser?.last_name || "",
@@ -17,38 +17,34 @@ const EditProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Handle text input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle image upload
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setFormData({ ...formData, profileImage: reader.result }); // Store Base64 image in formData
+        setFormData({ ...formData, profileImage: reader.result });
       };
       reader.readAsDataURL(file);
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(updateStart());
-  
+
     try {
       const updatedData = {
-        first_name: formData.firstName,  // Ensure consistency
-        last_name: formData.lastName,    // Ensure consistency
+        first_name: formData.firstName,
+        last_name: formData.lastName,
         email: formData.email,
         profileImage: formData.profileImage,
         ...(formData.password && { password: formData.password }),
       };
-      
-  
+
       const response = await axios.patch(
         `${process.env.REACT_APP_API_URL}/users/${currentUser.id}`,
         updatedData,
@@ -58,21 +54,20 @@ const EditProfile = () => {
           },
         }
       );
-  
-      const updatedUser = response.data;
-      dispatch(updateSuccess(updatedUser));
-      localStorage.setItem("userProfile", JSON.stringify(updatedUser));
-  
+
+      const updatedUser  = response.data;
+      dispatch(updateSuccess(updatedUser ));
+      localStorage.setItem("userProfile", JSON.stringify(updatedUser )); // Save updated user to localStorage
+
       alert("Profile updated successfully!");
       navigate("/profile");
-  
     } catch (error) {
       console.error("Error updating profile:", error);
       dispatch(updateFailure(error.response?.data?.message || "Failed to update profile"));
       alert("Failed to update profile. Please try again later.");
     }
   };
-  
+
   return (
     <div className="edit-profile-container">
       <h1 className="edit-profile-title">Edit Your Profile</h1>
@@ -84,7 +79,7 @@ const EditProfile = () => {
             className="profile-image"
           />
           <label htmlFor="profileImage" className="profile-image-label">
-          Change Profile Picture
+            Change Profile Picture
           </label>
           <input
             type="file"

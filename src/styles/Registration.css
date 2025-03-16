@@ -47,14 +47,25 @@
   flex: 1;
 }
 
-button,
-input {
+button{
   font-size: 1rem;
   padding: 0.8rem;
   border-radius: 8px;
   border: 1px solid #ccc;
   width: 100%;
   margin-top: 0.5rem;
+}
+
+input, select {
+  font-size: 1rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-top: 0.5rem;
+  height: 48px; /* Ensure height matches */
+  display: flex;
+  align-items: center;
 }
 
 .password-container {
@@ -79,10 +90,7 @@ input {
 select#role {
   font-size: 1rem;
   padding: 0.8rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
   width: 100%;
-  margin-top: 0.5rem;
   background-color: white;
   color: #333;
   appearance: none; /* Removes default arrow */
@@ -100,9 +108,17 @@ select#role::-ms-expand {
   display: none; /* Hide default arrow in IE */
 }
 
-/* Custom dropdown icon */
+/* Container to align elements in the row */
 .form-row {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form-row > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .register-button {
