@@ -2,6 +2,8 @@ import React from "react";
 import { useInView } from "react-intersection-observer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import AboutUs from "./AboutUs"; // Import AboutUs component
+import ContactUs from "./ContactUs"; // Import ContactUs component
 import '../styles/Home.css';
 
 const Home = () => {
@@ -25,37 +27,37 @@ const Home = () => {
       title: "Lesson Viewing",
       description:
         "Explore math problems, topics, and trusted sources to help 4th graders master new skills.",
-      gif: "/gifs/example.gif", // Add your GIF here
+      gif: "/gifs/example.gif", 
     },
     {
       title: "Video Tutorials",
       description:
         "Watch engaging videos that simplify math concepts and make learning fun and interactive.",
-      gif: "/gifs/example 2.gif", // Add your GIF here
+      gif: "/gifs/example2.gif",
     },
     {
       title: "Leaderboard",
       description:
         "Compete with friends and classmates for top spots while celebrating your achievements.",
-      gif: "path_to_leaderboard.gif", // Add your GIF here
+      gif: "/gifs/leaderboard.gif",
     },
     {
       title: "Quiz Games",
       description:
         "Play exciting math games like 'Memory Match' to earn points and reinforce your skills.",
-      gif: "path_to_quiz_games.gif", // Add your GIF here
+      gif: "/gifs/quiz_games.gif",
     },
     {
       title: "Learning Buddy",
       description:
         "Get hints and guidance from your friendly Math-hew Learning Buddy whenever you need help.",
-      gif: "path_to_learning_buddy.gif", // Add your GIF here
+      gif: "/gifs/learning_buddy.gif",
     },
     {
       title: "Progress Tracking",
       description:
         "See your progress over time with charts and graphs that show how far you've come!",
-      gif: "path_to_progress_tracking.gif", // Add your GIF here
+      gif: "/gifs/progress_tracking.gif",
     },
   ];
 
@@ -98,11 +100,10 @@ const Home = () => {
               <div
                 key={index}
                 className={`feature ${featuresInView ? "fade-in" : ""}`}
-                style={{ transitionDelay: `${index * 0.2}s` }} // Consistent staggered delay
+                style={{ transitionDelay: `${index * 0.2}s` }} 
               >
                 <h3 className="feature-title">{feature.title}</h3>
                 <p className="feature-description">{feature.description}</p>
-                {/* Hover Window for GIF */}
                 <div className="hover-window">
                   <img src={feature.gif} alt={`${feature.title} animation`} />
                 </div>
@@ -110,6 +111,16 @@ const Home = () => {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* About Us Section */}
+      <section id="about-us" className="section">
+        <AboutUs />
+      </section>
+
+      {/* Contact Us Section */}
+      <section id="contact-us" className="section">
+        <ContactUs />
       </section>
     </div>
   );
