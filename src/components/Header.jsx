@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom"; // Added useLocation
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signoutSuccess, signInSuccess } from "../redux/user/userSlice";
 import "../styles/Header.css";
@@ -7,12 +7,11 @@ import "../styles/Header.css";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const dropdownRef = useRef(null);
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation(); // Get the current route
+  const location = useLocation();
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -20,17 +19,6 @@ const Header = () => {
       dispatch(signInSuccess(JSON.parse(userData)));
     }
   }, [dispatch]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -41,16 +29,13 @@ const Header = () => {
     navigate("/sign-in");
   };
 
-  // Smooth scroll function
   const handleScrollTo = (id) => {
     if (location.pathname === "/") {
-      // If already on Home page, scroll to the specific section
       const section = document.getElementById(id);
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // If not on Home page, navigate first then scroll after a short delay
       navigate("/");
       setTimeout(() => {
         const section = document.getElementById(id);
@@ -61,7 +46,6 @@ const Header = () => {
     }
   };
 
-  // Scroll to the top when clicking "Home"
   const handleScrollToTop = () => {
     if (location.pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -75,7 +59,7 @@ const Header = () => {
 
   const getMenuItems = () => {
     return [
-      { label: "Home", action: handleScrollToTop }, // Home now scrolls to top
+      { label: "Home", action: handleScrollToTop },
       { label: "About Us", action: () => handleScrollTo("about-us") },
       { label: "Contact Us", action: () => handleScrollTo("contact-us") },
     ];
@@ -90,7 +74,7 @@ const Header = () => {
   }, [currentUser, navigate]);
 
   return (
-    <header className={`header ${isScrolled ? "header-transparent" : ""}`}>
+    <header className="header">
       <div className="header-container">
         <div className="header-logo">
           <img src="/images/icon.png" alt="Math-hew Logo" className="header-logo-img" />
@@ -112,7 +96,7 @@ const Header = () => {
               className="header-nav-link"
               onClick={() => {
                 setMenuOpen(false);
-                item.action(); // Execute the action
+                item.action();
               }}
             >
               {item.label}

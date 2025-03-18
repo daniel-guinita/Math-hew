@@ -2,68 +2,68 @@ import React from "react";
 import { useInView } from "react-intersection-observer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import AboutUs from "./AboutUs"; // Import AboutUs component
-import ContactUs from "./ContactUs"; // Import ContactUs component
+import AboutUs from "./AboutUs";
+import ContactUs from "./ContactUs";
 import '../styles/Home.css';
 
 const Home = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
 
-  // Intersection Observer hook for the features section
+  const [homeRef, homeInView] = useInView({ triggerOnce: true, threshold: 0.3 });
   const [featuresRef, featuresInView] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [aboutRef, aboutInView] = useInView({ triggerOnce: true, threshold: 0.3 });
+  const [contactRef, contactInView] = useInView({ triggerOnce: true, threshold: 0.3 });
 
   const handleStartLearningClick = () => {
     if (currentUser) {
-      navigate("/main-page"); // Navigate to the main page for logged-in users
+      navigate("/main-page");
     } else {
-      navigate("/sign-in"); // Redirect to the Sign In page if the user is not logged in
+      navigate("/sign-in");
     }
   };
 
-  // Features data
-  const features = [
-    {
-      title: "Lesson Viewing",
-      description:
-        "Explore math problems, topics, and trusted sources to help 4th graders master new skills.",
-      gif: "/gifs/example.gif", 
-    },
-    {
-      title: "Video Tutorials",
-      description:
-        "Watch engaging videos that simplify math concepts and make learning fun and interactive.",
-      gif: "/gifs/example2.gif",
-    },
-    {
-      title: "Leaderboard",
-      description:
-        "Compete with friends and classmates for top spots while celebrating your achievements.",
-      gif: "/gifs/leaderboard.gif",
-    },
-    {
-      title: "Quiz Games",
-      description:
-        "Play exciting math games like 'Memory Match' to earn points and reinforce your skills.",
-      gif: "/gifs/quiz_games.gif",
-    },
-    {
-      title: "Learning Buddy",
-      description:
-        "Get hints and guidance from your friendly Math-hew Learning Buddy whenever you need help.",
-      gif: "/gifs/learning_buddy.gif",
-    },
-    {
-      title: "Progress Tracking",
-      description:
-        "See your progress over time with charts and graphs that show how far you've come!",
-      gif: "/gifs/progress_tracking.gif",
-    },
-  ];
+  // const features = [
+  //   {
+  //     title: "Lesson Viewing",
+  //     description:
+  //       "Explore math problems, topics, and trusted sources to help 4th graders master new skills.",
+  //     gif: "/gifs/example.gif", 
+  //   },
+  //   {
+  //     title: "Video Tutorials",
+  //     description:
+  //       "Watch engaging videos that simplify math concepts and make learning fun and interactive.",
+  //     gif: "/gifs/example2.gif",
+  //   },
+  //   {
+  //     title: "Leaderboard",
+  //     description:
+  //       "Compete with friends and classmates for top spots while celebrating your achievements.",
+  //     gif: "/gifs/leaderboard.gif",
+  //   },
+  //   {
+  //     title: "Quiz Games",
+  //     description:
+  //       "Play exciting math games like 'Memory Match' to earn points and reinforce your skills.",
+  //     gif: "/gifs/quiz_games.gif",
+  //   },
+  //   {
+  //     title: "Learning Buddy",
+  //     description:
+  //       "Get hints and guidance from your friendly Math-hew Learning Buddy whenever you need help.",
+  //     gif: "/gifs/learning_buddy.gif",
+  //   },
+  //   {
+  //     title: "Progress Tracking",
+  //     description:
+  //       "See your progress over time with charts and graphs that show how far you've come!",
+  //     gif: "/gifs/progress_tracking.gif",
+  //   },
+  // ];
 
   return (
-    <div className="home-container">
-      {/* Home Section */}
+    <div ref={homeRef} className={`home-container ${homeInView ? "fade-in" : ""}`}>
       <section className="section home-section">
         <div className="home-content">
           <div className="home-logo">
@@ -87,9 +87,8 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Features Section */}
-      <section ref={featuresRef} className="section features-section">
+{/* 
+      <section ref={featuresRef} className={`section features-section ${featuresInView ? "fade-in" : ""}`}>
         <div className="features-content">
           <h2 className="features-title">Explore Math-hew's Amazing Features!</h2>
           <p className="home-description">
@@ -111,15 +110,13 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* About Us Section */}
-      <section id="about-us" className="section">
+      <section ref={aboutRef} id="about-us" className={`section ${aboutInView ? "fade-in" : ""}`}>
         <AboutUs />
       </section>
 
-      {/* Contact Us Section */}
-      <section id="contact-us" className="section">
+      <section ref={contactRef} id="contact-us" className={`section ${contactInView ? "fade-in" : ""}`}>
         <ContactUs />
       </section>
     </div>
