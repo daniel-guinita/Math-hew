@@ -1,8 +1,7 @@
 /* General Header Styling */
 .header {
-  background-color: #781b1b;
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
-  color: #781b1b;
+  background-color: #781b1b; /* Retains solid color */
+  color: #fff;
   padding: 0.5rem 1rem;
   position: fixed;
   top: 0;
@@ -12,12 +11,9 @@
   border-bottom: #EBEBEB 5px solid;
 }
 
-.header-transparent {
-  background-color: transparent;
-  backdrop-filter: blur(3px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+/* Removed transparent header styling */
 
+/* Header Container */
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -64,7 +60,6 @@
   align-items: center;
 }
 
-/* Navigation Menu */
 .header-nav {
   display: flex;
   gap: 2rem;
