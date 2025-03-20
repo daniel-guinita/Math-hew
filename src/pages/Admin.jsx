@@ -22,14 +22,6 @@ const Admin = () => {
         </div>
 
         <div className="action-card">
-          <h3>📝 Quiz Management</h3>
-          <p>Create fun math quizzes for students.</p>
-          <Link to="/admin/admin-quiz">
-            <button className="admin-button">Go to Quizzes</button>
-          </Link>
-        </div>
-
-        <div className="action-card">
           <h3>📖 Lessons Management</h3>
           <p>Organize lessons that make math exciting.</p>
           <Link to="/admin/admin-lessons">

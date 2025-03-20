@@ -1,48 +1,33 @@
 /* Leaderboard Main Container */
 .leaderboard-container {
-  font-family: 'Fredoka One', cursive, sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
-  background: #FFFFFF; /* Consistent background */
-  padding:300px;
+  background: #FFFFFF;
+  padding: 60px;
   color: #781b1b;
-  min-height: 100vh;
-  animation: fadeIn 0.8s ease-in-out;
 }
 
 /* Leaderboard Title */
 .leaderboard-title {
+  margin-top: 1.6cm;
+  text-align: center;
   font-size: 2.8rem;
+  font-weight: bold;
   color: #781b1b;
-  text-shadow: 2px 2px #ffffff;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
-/* Leaderboard Sections Container */
-.leaderboard-sections {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-/* Individual Section */
+/* Leaderboard Section */
 .leaderboard-section {
   background: #ffffff;
   border-radius: 20px;
-  width: 45%;
+  width: 60%;
   min-width: 300px;
   padding: 20px;
   border: #781b1b 2px solid;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
   animation: popIn 0.5s ease;
-}
-
-/* Section Title */
-.section-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #781b1b !important; /* Ensures it applies */
-  margin-bottom: 10px;
 }
 
 /* Table Styling */
@@ -51,18 +36,17 @@
   border-collapse: collapse;
 }
 
-/* Table Header */
-.leaderboard-table thead th {
-  background: #781b1b;
-  color: #fff !important; /* Forces white text */
-  font-size: 1.2rem;
-}
-
 .leaderboard-table th,
 .leaderboard-table td {
   padding: 10px;
   text-align: center;
   border: 1px solid #ddd;
+}
+
+.leaderboard-table thead th {
+  background: #781b1b;
+  color: #fff;
+  font-size: 1.2rem;
 }
 
 .leaderboard-table tbody tr:nth-child(even) {
@@ -73,6 +57,35 @@
   background-color: #ffe8e8;
   transform: scale(1.01);
   transition: all 0.3s ease-in-out;
+}
+
+/* Action Buttons (for teachers and admins only) */
+.leaderboard-actions button {
+  margin: 5px;
+  padding: 6px 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
 }
 
 /* Animations */

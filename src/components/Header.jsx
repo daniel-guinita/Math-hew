@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom"; // Added useLocation
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signoutSuccess, signInSuccess } from "../redux/user/userSlice";
+import { getUserRole } from "../utils/auth"; // Import function to get the user role
 import "../styles/Header.css";
 
 const Header = () => {
@@ -12,7 +13,7 @@ const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation(); // Get the current route
+  const location = useLocation();
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -41,16 +42,35 @@ const Header = () => {
     navigate("/sign-in");
   };
 
-  // Smooth scroll function
+  const userRole = getUserRole(); // Get user role dynamically
+
+  // Define Home Path Based on Role
+  const homePath = userRole === "student" ? "/main-page" : "/";
+
+  // Function to scroll to top when clicking "Home"
+  const handleScrollToHome = () => {
+    if (location.pathname === "/") {
+      // If already on home page, scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // Navigate to home page first, then scroll to top after a short delay
+      navigate("/");
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 500);
+    }
+  };
+
+  // Smooth scroll function for About Us & Contact Us
   const handleScrollTo = (id) => {
     if (location.pathname === "/") {
-      // If already on Home page, scroll to the specific section
+      // If already on Home page, scroll to the section
       const section = document.getElementById(id);
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // If not on Home page, navigate first then scroll after a short delay
+      // Navigate to Home first, then scroll after a short delay
       navigate("/");
       setTimeout(() => {
         const section = document.getElementById(id);
@@ -61,33 +81,42 @@ const Header = () => {
     }
   };
 
-  // Scroll to the top when clicking "Home"
-  const handleScrollToTop = () => {
-    if (location.pathname === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      navigate("/");
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 500);
-    }
-  };
-
   const getMenuItems = () => {
-    return [
-      { label: "Home", action: handleScrollToTop }, // Home now scrolls to top
-      { label: "About Us", action: () => handleScrollTo("about-us") },
-      { label: "Contact Us", action: () => handleScrollTo("contact-us") },
-    ];
+    if (userRole === "admin") {
+      return [
+        { label: "Home", action: handleScrollToHome },
+        { label: "User Management", path: "/admin/admin-users" },
+        { label: "Lessons", path: "/lessons-page" },
+        { label: "Leaderboard", path: "/leaderboard" },
+        
+      ];
+    } else if (userRole === "teacher") {
+      return [
+        { label: "Home", action: handleScrollToHome },
+        { label: "Student List", path: "/TeacherAdminPage" },
+        { label: "Recent Scores", path: "/progress-tracking" },
+        { label: "Leaderboard", path: "/leaderboard" },
+        { label: "Lessons", path: "/lessons-page" },
+        
+      ];
+    } else if (userRole === "student") {
+      return [
+        { label: "Home", path: "/main-page" }, // Redirects students to main-page
+        { label: "Leaderboard", path: "/leaderboard" },
+        { label: "About Us", action: () => handleScrollTo("about-us") },
+        { label: "Contact Us", action: () => handleScrollTo("contact-us") },
+      ];
+    } else {
+      // Default for non-logged-in users
+      return [
+        { label: "Home", action: handleScrollToHome }, // Scroll to homepage for non-users
+        { label: "About Us", action: () => handleScrollTo("about-us") },
+        { label: "Contact Us", action: () => handleScrollTo("contact-us") },
+      ];
+    }
   };
 
   const menuItems = getMenuItems();
-
-  useEffect(() => {
-    if (!currentUser && window.location.pathname === "/main-page") {
-      navigate("/");
-    }
-  }, [currentUser, navigate]);
 
   return (
     <header className={`header ${isScrolled ? "header-transparent" : ""}`}>
@@ -106,18 +135,24 @@ const Header = () => {
         </button>
 
         <nav className={`header-nav ${menuOpen ? "header-nav-open" : ""}`}>
-          {menuItems.map((item, index) => (
-            <span
-              key={index}
-              className="header-nav-link"
-              onClick={() => {
-                setMenuOpen(false);
-                item.action(); // Execute the action
-              }}
-            >
-              {item.label}
-            </span>
-          ))}
+          {menuItems.map((item, index) =>
+            item.path ? (
+              <Link key={index} to={item.path} className="header-nav-link" onClick={() => setMenuOpen(false)}>
+                {item.label}
+              </Link>
+            ) : (
+              <span
+                key={index}
+                className="header-nav-link"
+                onClick={() => {
+                  setMenuOpen(false);
+                  item.action(); // Scroll to section or home
+                }}
+              >
+                {item.label}
+              </span>
+            )
+          )}
         </nav>
 
         <div className="header-account">
