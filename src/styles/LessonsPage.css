@@ -28,6 +28,7 @@
 
 /* Lesson Grid */
 .lesson-grid {
+  color:#ffffff;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
@@ -35,7 +36,7 @@
 
 /* Lesson Card */
 .lesson-card {
-  background: #ffe4e1;
+  background-color: #e49292;
   border-radius: 8px;
   padding: 20px;
   text-align: center;
@@ -43,6 +44,14 @@
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.lesson-dropdown{
+  background-color: #7a0f0f;
+  height: 10ch;
+  
+}
+
+
 
 .lesson-card:hover {
   transform: translateY(-10px);

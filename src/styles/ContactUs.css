@@ -1,4 +1,4 @@
-/* Contact Us Page Layout */
+/* Contact Us Page Layout
 .contact-us-container {
   font-family:'Poppins', sans-serif;
   display: flex;
@@ -9,7 +9,6 @@
   padding: 3rem 1rem;
 }
 
-/* Floating Decorations */
 .contact-us-container::before,
 .contact-us-container::after {
   content: "";
@@ -35,9 +34,9 @@
   bottom: 15%;
   right: 10%;
   animation-delay: 2s;
-} */
+} 
 
-/* Container for Side-by-Side Layout */
+
 .contact-us-content {
   display: flex;
   justify-content: space-between;
@@ -46,7 +45,7 @@
   max-width: 1200px;
 }
 
-/* Contact Us Card */
+
 .contact-us-card,
 .faq-card {
   flex: 1;
@@ -60,7 +59,7 @@
   animation: fadeInUp 1.5s ease;
 }
 
-/* Titles and Subtitles */
+
 .contact-us-title {
   font-size: 2.8rem;
   font-weight: bold;
@@ -75,7 +74,7 @@
   line-height: 1.8;
 }
 
-/* Contact Information */
+
 .contact-info {
   margin-bottom: 2.5rem;
 }
@@ -89,11 +88,11 @@
 .contact-info-item {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centers the icon and text horizontally */
-  gap: 0.75rem; /* Adds spacing between the icon and text */
-  font-size: 1.125rem; /* Adjusts font size for better readability */
-  color: #781b1b; /* Text color */
-  margin-bottom: 1rem; /* Adds spacing between each contact item */
+  justify-content: center; 
+  gap: 0.75rem; 
+  font-size: 1.125rem; 
+  color: #781b1b; 
+  margin-bottom: 1rem; 
 }
 
 .contact-icon {
@@ -112,7 +111,7 @@
   color: #8c383e;
 }
 
-/* Social Media */
+
 .social-media {
   margin-top: 2rem;
   
@@ -126,13 +125,13 @@
 }
 
 .social-icon:hover {
-  transform: scale(1.2); /* Adds a hover effect */
-  color: #8c383e; /* Darker hover color */
+  transform: scale(1.2); 
+  color: #8c383e; 
 }
 
 .social-icon {
   font-size: 2.5rem;
-  color: #781b1b; /* Default color for icons */
+  color: #781b1b; 
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -165,7 +164,7 @@
 }
 
 .faq-card {
-  text-align: left; /* Align FAQ text to the left */
+  text-align: left; 
 }
 
 .faq-item {
@@ -185,7 +184,7 @@
   line-height: 1.6;
 }
 
-/* Animations */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -206,7 +205,7 @@
   }
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 768px) {
   .contact-us-title {
     font-size: 2.2rem;
@@ -215,4 +214,4 @@
   .faq-title {
     font-size: 2rem;
   }
-}
+} */

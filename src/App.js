@@ -19,7 +19,6 @@ import ProgressTracking from "./pages/ProgressTracking";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import TeacherAdminPage from "./pages/TeacherAdminPage";
-import TeacherQuiz from './pages/TeacherQuiz';
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
 import AdminLeaderboard from "./pages/AdminLeaderboard";
@@ -62,7 +61,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/teacherAdmin-quiz" element={<TeacherQuiz />} />
         <Route
           path="/admin"
           element={
