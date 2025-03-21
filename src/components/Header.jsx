@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signoutSuccess, signInSuccess } from "../redux/user/userSlice";
+import { useInView } from "react-intersection-observer";
 import "../styles/Header.css";
 
 const Header = () => {
@@ -12,6 +13,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  
+  const [headerRef, headerInView] = useInView({ triggerOnce: true, threshold: 0.5 });
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -74,7 +77,7 @@ const Header = () => {
   }, [currentUser, navigate]);
 
   return (
-    <header className="header">
+    <header ref={headerRef} className={`header ${headerInView ? "fade-in" : ""}`}>
       <div className="header-container">
         <div className="header-logo">
           <img src="/images/icon.png" alt="Math-hew Logo" className="header-logo-img" />
