@@ -1,0 +1,77 @@
+.recent-scores-container {
+    padding: 350px;
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+    color: #781b1b;
+    text-align: center;
+  }
+  
+  .recent-scores-title {
+    margin-top: -180px;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .score-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+  }
+  
+  .recent-scores-section {
+    background: #fff;
+    border: 2px solid #781b1b;
+    border-radius: 15px;
+    padding: 20px;
+    width: 45%;
+    min-width: 300px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .recent-scores-section h2 {
+    color: #781b1b;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  
+  .recent-scores-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .recent-scores-table th,
+  .recent-scores-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .recent-scores-table th {
+    background-color: #781b1b;
+    color: white;
+  }
+  
+  .recent-scores-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .no-scores {
+    padding: 15px;
+    text-align: center;
+    font-style: italic;
+    color: #999;
+  }
+  
+  @media (max-width: 768px) {
+    .score-columns {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .recent-scores-section {
+      width: 90%;
+    }
+  }
+  

@@ -24,7 +24,7 @@ const Admin = () => {
         <div className="action-card">
           <h3>📖 Lessons Management</h3>
           <p>Organize lessons that make math exciting.</p>
-          <Link to="/admin/admin-lessons">
+          <Link to="/lessons-page">
             <button className="admin-button">Go to Lessons</button>
           </Link>
         </div>
@@ -32,7 +32,7 @@ const Admin = () => {
         <div className="action-card">
           <h3>🏆 Leaderboard</h3>
           <p>Track student performance and top scores.</p>
-          <Link to="/admin/admin-leaderboard">
+          <Link to="/leaderboard">
             <button className="admin-button">View Leaderboard</button>
           </Link>
         </div>

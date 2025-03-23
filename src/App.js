@@ -21,9 +21,10 @@ import EditProfile from "./pages/EditProfile";
 import TeacherAdminPage from "./pages/TeacherAdminPage";
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
-import AdminLeaderboard from "./pages/AdminLeaderboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ChatBuddy from "./components/ChatBuddy"; 
+import RecentScore from "./pages/RecentScore";
+
 
 function App() {
   const userRole = getUserRole();
@@ -60,6 +61,8 @@ function App() {
         <Route path="/progress-tracking" element={<ProgressTracking />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/recent-scores" element={<RecentScore />} />
+
         <Route
           path="/TeacherAdminPage"
           element={
@@ -77,7 +80,6 @@ function App() {
           }
         />
         <Route path="/admin/admin-users" element={<AdminUsers />} />
-        <Route path="/admin/admin-leaderboard" element={<AdminLeaderboard />} />
       </Routes>
       <Footer />
       <ChatBuddy />
