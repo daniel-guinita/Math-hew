@@ -5,7 +5,7 @@ import {
   FaFacebook,
   FaLinkedin,
   FaInstagram,
-  FaXTwitter
+  FaXTwitter,
 } from "react-icons/fa6";
 import "../styles/ContactUs.css";
 
@@ -37,16 +37,36 @@ const ContactUs = () => {
           <div className="social-media">
             <h2>Follow Us on Social Media</h2>
             <div className="social-icons">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon facebook">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon facebook"
+              >
                 <FaFacebook />
               </a>
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="social-icon twitter">
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon twitter"
+              >
                 <FaXTwitter />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon linkedin">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon linkedin"
+              >
                 <FaLinkedin />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon instagram">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon instagram"
+              >
                 <FaInstagram />
               </a>
             </div>
@@ -57,15 +77,21 @@ const ContactUs = () => {
         <div className="faq-card">
           <h2 className="faq-title">Frequently Asked Questions</h2>
           <div className="faq-item">
-            <h3 className="faq-question">How does Math-hew help students improve their math skills?</h3>
+            <h3 className="faq-question">
+              How does Math-hew help students improve their math skills?
+            </h3>
             <p className="faq-answer">
-              By using challenges and guided tutorials, Math-hew makes learning fun and interactive.
+              By using challenges and guided tutorials, Math-hew makes learning
+              fun and interactive.
             </p>
           </div>
           <div className="faq-item">
-            <h3 className="faq-question">Can parents track student progress?</h3>
+            <h3 className="faq-question">
+              Can parents track student progress?
+            </h3>
             <p className="faq-answer">
-              Yes! Math-hew includes progress tracking with visual reports to celebrate achievements.
+              Yes! Math-hew includes progress tracking with visual reports to
+              celebrate achievements.
             </p>
           </div>
         </div>
