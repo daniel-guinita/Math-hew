@@ -71,31 +71,44 @@ const LessonsPage = ({ userRole }) => {
   const handleViewLesson = async (lesson) => {
     try {
       const school_id = JSON.parse(localStorage.getItem("userProfile"))?.school_id;
-      const res = await fetch(`${API_URL}/lessons/${lesson.id}`);
-      const fullLesson = await res.json();
+      
+      // Fetch full lesson data
+      const lessonRes = await fetch(`${API_URL}/lessons/${lesson.id}`);
+      const fullLesson = await lessonRes.json();
       setSelectedLesson(fullLesson);
 
+      // Fetch score record for current student
       const scoreRes = await fetch(`${API_URL}/scores/${lesson.id}/${school_id}`);
       const scoreData = await scoreRes.json();
+      setStudentAnswers(scoreData?.answers || {});
       setAttemptCount(scoreData?.attempts || 0);
 
-      if (scoreData && (scoreData.attempts >= 3 || scoreData.score === fullLesson.questions.length)) {
-        setLessonCompleted(true);
-      } else {
-        setLessonCompleted(false);
-      }
+      // Determine if lesson is completed
+      const completed = scoreData?.attempts >= 3 || scoreData?.score === fullLesson.questions.length;
+      setLessonCompleted(completed);
 
       if (scoreData?.answers) {
-        setStudentAnswers(scoreData.answers);
-        if (scoreData.attempts >= 3 || scoreData.score === fullLesson.questions.length) {
-          setLessonCompleted(true);
-        }
+        const feedback = {};
+        fullLesson.questions.forEach((q) => {
+          const selected = scoreData.answers[q.id];
+          if (
+            selected?.trim().toLowerCase() === q.correctAnswer?.trim().toLowerCase()
+          ) {
+            feedback[q.id] = "✅ Correct!";
+          } else {
+            feedback[q.id] = "❌ Incorrect";
+          }
+        });
+        setAnswerFeedback(feedback);
+      } else {
+        setAnswerFeedback({});
       }
-    } catch (error) {
-      console.error("Failed to load lesson or score:", error);
+  
+    } catch (err) {
+      console.error("Error viewing lesson:", err);
     }
   };
-
+  
   const handleAddKeypoint = async () => {
     if (!newKeypoint.trim()) return;
     try {

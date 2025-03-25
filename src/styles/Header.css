@@ -11,8 +11,6 @@
   border-bottom: #EBEBEB 5px solid;
 }
 
-/* Removed transparent header styling */
-
 /* Header Container */
 .header-container {
   display: flex;
@@ -121,6 +119,56 @@
 }
 
 /* Dropdown Styling */
+.dropdown-parent {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  min-width: 150px;
+  padding: 0.5rem 0;
+  display: none;
+  text-align: center;
+}
+
+.dropdown-parent.open .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown items */
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000000;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect (match Profile/Sign Out style) */
+.dropdown-item:hover {
+  background-color: #8c383e;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Rounded bottom for last item */
+.dropdown-item:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
 .header-dropdown-button {
   color: #fff;
   font-size: 1.2rem;
