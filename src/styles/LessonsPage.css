@@ -147,8 +147,8 @@ body {
 /* Button Styles */
 .view-button {
   display: inline-block;
-  margin-top: 1.5rem;
-  padding: 0.6rem 1.2rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
   background-color: var(--primary-color);
   color: var(--white);
   border: none;
@@ -161,7 +161,6 @@ body {
 
 .view-button:hover {
   background-color: var(--secondary-color);
-  transform: translateX(5px);
 }
 
 /* Admin Section */
