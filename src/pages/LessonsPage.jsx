@@ -92,15 +92,22 @@ const LessonsPage = ({ userRole }) => {
         setAttemptCount(scoreData.attempts);
         if (scoreData.attempts >= 3 || scoreData.score === fullLesson.questions.length) {
           setLessonCompleted(true);
+        } else {
+          setLessonCompleted(false);
         }
-      }
-  
+      } else {
+        // No answers yet
+        setStudentAnswers({});
+        setAnswerFeedback({});
+        setLessonCompleted(false);
+      } 
       setSelectedLesson(fullLesson);
   
     } catch (error) {
       console.error("Failed to load lesson or score:", error);
     }
   };
+  
   
   const handleAddKeypoint = async () => {
     if (!newKeypoint.trim()) return;
@@ -160,8 +167,6 @@ const LessonsPage = ({ userRole }) => {
         correctAnswer: editedQuestion.correctAnswer,
       };
       
-      
-
       const response = await fetch(`${API_URL}/lessons/${selectedLesson.id}/questions/${id}`, {
         method: "PUT",
         headers: {
