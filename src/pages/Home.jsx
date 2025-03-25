@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div className="home-container">
       {/* Home Section */}
-      <section ref={homeRef} className={`section home-section ${homeInView ? "fade-in" : ""}`}>
+      <section id="home" ref={homeRef} className={`section home-section ${homeInView ? "fade-in" : ""}`}>
         <div className="home-content">
           <div className="home-logo">
             <img
@@ -50,12 +50,12 @@ const Home = () => {
       </section>
 
       {/* About Us Section */}
-      <section ref={aboutRef} className={`section about-section ${aboutInView ? "fade-in" : ""}`}>
+      <section id="about-us" ref={aboutRef} className={`section about-section ${aboutInView ? "fade-in" : ""}`}>
         <AboutUs />
       </section>
 
       {/* Contact Us Section */}
-      <section ref={contactRef} className={`section contact-section ${contactInView ? "fade-in" : ""}`}>
+      <section id="contact-us" ref={contactRef} className={`section contact-section ${contactInView ? "fade-in" : ""}`}>
         <ContactUs />
       </section>
     </div>
