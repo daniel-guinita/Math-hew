@@ -7,13 +7,12 @@ import "../styles/Header.css";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const [dropdownOpen, setDropdownOpen] = useState(null);
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  
+  const dropdownRef = useRef(null);
   const [headerRef, headerInView] = useInView({ triggerOnce: true, threshold: 0.5 });
 
   useEffect(() => {
@@ -28,23 +27,19 @@ const Header = () => {
     localStorage.removeItem("role");
     localStorage.removeItem("user");
     dispatch(signoutSuccess());
-    setDropdownOpen(false);
+    setDropdownOpen(null);
     navigate("/sign-in");
   };
 
   const handleScrollTo = (id) => {
     if (location.pathname === "/") {
       const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
+      if (section) section.scrollIntoView({ behavior: "smooth" });
     } else {
       navigate("/");
       setTimeout(() => {
         const section = document.getElementById(id);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
+        if (section) section.scrollIntoView({ behavior: "smooth" });
       }, 500);
     }
   };
@@ -54,27 +49,15 @@ const Header = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       navigate("/");
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 500);
+      setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 500);
     }
   };
 
-  const getMenuItems = () => {
-    return [
-      { label: "Home", action: handleScrollToTop },
-      { label: "About Us", action: () => handleScrollTo("about-us") },
-      { label: "Contact Us", action: () => handleScrollTo("contact-us") },
-    ];
+  const isMobile = window.innerWidth <= 768;
+
+  const toggleDropdown = (type) => {
+    setDropdownOpen((prev) => (prev === type ? null : type));
   };
-
-  const menuItems = getMenuItems();
-
-  useEffect(() => {
-    if (!currentUser && window.location.pathname === "/main-page") {
-      navigate("/");
-    }
-  }, [currentUser, navigate]);
 
   return (
     <header ref={headerRef} className={`header ${headerInView ? "fade-in" : ""}`}>
@@ -92,21 +75,73 @@ const Header = () => {
           ☰
         </button>
 
+        {/* Navigation */}
         <nav className={`header-nav ${menuOpen ? "header-nav-open" : ""}`}>
-          {menuItems.map((item, index) => (
-            <span
-              key={index}
-              className="header-nav-link"
-              onClick={() => {
-                setMenuOpen(false);
-                item.action();
-              }}
+          {/* Home: dropdown for student/teacher, plain links for guest */}
+          {(currentUser?.role === "student" || currentUser?.role === "teacher") ? (
+            <div
+              className={`header-nav-link dropdown-parent ${dropdownOpen === "home" ? "open" : ""}`}
+              onMouseEnter={() => !isMobile && setDropdownOpen("home")}
+              onMouseLeave={() => !isMobile && setDropdownOpen(null)}
+              onClick={() => toggleDropdown("home")}
             >
-              {item.label}
-            </span>
-          ))}
+              <span>Home ▾</span>
+              <div className="dropdown-menu">
+                <span className="dropdown-item" onClick={handleScrollToTop}>Home</span>
+                <span className="dropdown-item" onClick={() => handleScrollTo("about-us")}>About Us</span>
+                <span className="dropdown-item" onClick={() => handleScrollTo("contact-us")}>Contact Us</span>
+              </div>
+            </div>
+          ) : (
+            <>
+              <span className="header-nav-link" onClick={handleScrollToTop}>Home</span>
+              <span className="header-nav-link" onClick={() => handleScrollTo("about-us")}>About Us</span>
+              <span className="header-nav-link" onClick={() => handleScrollTo("contact-us")}>Contact Us</span>
+            </>
+          )}
+
+          {/* Teacher only */}
+          {currentUser?.role === "teacher" && (
+            <Link to="/teacher-admin" className="header-nav-link">Dashboard</Link>
+          )}
+
+          {/* Recent Scores dropdown */}
+          {(currentUser?.role === "student" || currentUser?.role === "teacher") && (
+            <div
+              className={`header-nav-link dropdown-parent ${dropdownOpen === "recent" ? "open" : ""}`}
+              onMouseEnter={() => !isMobile && setDropdownOpen("recent")}
+              onMouseLeave={() => !isMobile && setDropdownOpen(null)}
+              onClick={() => toggleDropdown("recent")}
+            >
+              <span>Recent Scores ▾</span>
+              <div className="dropdown-menu">
+                <Link to="/recent-scores" className="dropdown-item">Recent Scores</Link>
+                <Link to="/leaderboard" className="dropdown-item">Leaderboard</Link>
+              </div>
+            </div>
+          )}
+
+          {/* Admin only */}
+          {currentUser?.role === "admin" && (
+            <>
+              <Link to="/admin" className="header-nav-link">Dashboard</Link>
+              <Link to="/lessons-page" className="header-nav-link">Lessons</Link>
+              <Link to="/leaderboard" className="header-nav-link">Leaderboard</Link>
+            </>
+          )}
+
+          {/* Student and Teacher */}
+          {(currentUser?.role === "student" || currentUser?.role === "teacher") && (
+            <Link to="/lessons-page" className="header-nav-link">Lessons</Link>
+          )}
+
+          {/* Student only */}
+          {currentUser?.role === "student" && (
+            <Link to="/game" className="header-nav-link">Game</Link>
+          )}
         </nav>
 
+        {/* Account Menu */}
         <div className="header-account">
           {!currentUser ? (
             <button className="header-signin-button" onClick={() => navigate("/sign-in")}>
@@ -116,13 +151,13 @@ const Header = () => {
             <div className="header-actions" ref={dropdownRef}>
               <button
                 className="header-dropdown-button"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onClick={() => toggleDropdown("account")}
                 aria-label="Toggle Account Menu"
               >
                 👤 {currentUser.username || currentUser.email}
               </button>
-              <div className={`header-dropdown-menu ${dropdownOpen ? "dropdown-open" : ""}`}>
-                <Link to="/profile" className="header-dropdown-item" onClick={() => setDropdownOpen(false)}>
+              <div className={`header-dropdown-menu ${dropdownOpen === "account" ? "dropdown-open" : ""}`}>
+                <Link to="/profile" className="header-dropdown-item" onClick={() => setDropdownOpen(null)}>
                   Profile
                 </Link>
                 <button className="header-dropdown-item" onClick={handleLogout}>

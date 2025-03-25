@@ -48,7 +48,7 @@
 
 /* Table Header (ID, NAME, ROLE) */
 .student-table th {
-  color: #ffffff; 
+  color: #000000; 
   font-weight: bold;
   text-transform: uppercase;
   padding: 12px 15px;

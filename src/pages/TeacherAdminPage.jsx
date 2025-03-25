@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../styles/TeacherAdminPage.css";
-import HeaderTeacher from "../components/Header";
 
 const TeacherAdminPage = () => {
   const [students, setStudents] = useState([]);
@@ -31,7 +30,6 @@ const TeacherAdminPage = () => {
 
   return (
     <div className="admin-page-container">
-      <HeaderTeacher />
       <h1 className="page-title">Teacher Dashboard</h1>
 
       {/* Loading & Error State */}
