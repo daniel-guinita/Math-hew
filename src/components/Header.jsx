@@ -102,7 +102,7 @@ const Header = () => {
 
           {/* Teacher only */}
           {currentUser?.role === "teacher" && (
-            <Link to="/teacher-admin" className="header-nav-link">Dashboard</Link>
+            <Link to="/main-page" className="header-nav-link">Dashboard</Link>
           )}
 
           {/* Recent Scores dropdown */}

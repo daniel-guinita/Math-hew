@@ -92,6 +92,11 @@ body {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .lesson-card:hover {
@@ -107,7 +112,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1rem;
 }
 
 .math-icon {
@@ -122,10 +127,21 @@ body {
 }
 
 .lesson-summary {
-  margin-top: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--white);
+  padding: 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  text-align: center;
+  font-size: 0.9rem;
   color: var(--text-color);
-  font-size: 0.95rem;
-  line-height: 1.6;
+}
+
+.lesson-card:hover .lesson-summary {
+  transform: translateY(0);
 }
 
 /* Button Styles */
