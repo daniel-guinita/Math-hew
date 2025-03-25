@@ -10,7 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: #fff;
   color: #000;
 }
 
@@ -19,7 +19,7 @@ html {
 }
 
 .dark {
-  background-color: #fff;
+  background-color: #8c383e;
   color: #000;
 }
 

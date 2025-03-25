@@ -12,6 +12,7 @@
   --info: #2196f3;
 }
 
+/* Base Styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -25,14 +26,13 @@ body {
   background-color: var(--light-accent);
 }
 
-/* Lessons Page Container */
+/* Layout Components */
 .lessons-page {
   min-height: 100vh;
   padding: 2rem;
   background-color: var(--light-accent);
 }
 
-/* Lesson List Page */
 .lesson-list-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -40,6 +40,7 @@ body {
   animation: fadeIn 0.5s ease;
 }
 
+/* Header Styles */
 .page-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -80,7 +81,7 @@ body {
   margin-bottom: 3rem;
 }
 
-/* Lesson Card */
+/* Card Styles */
 .lesson-card {
   background-color: var(--white);
   border-radius: 12px;
@@ -127,7 +128,7 @@ body {
   line-height: 1.6;
 }
 
-/* View Button */
+/* Button Styles */
 .view-button {
   display: inline-block;
   margin-top: 1.5rem;
@@ -163,6 +164,7 @@ body {
   text-align: center;
 }
 
+/* Form Styles */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -240,30 +242,20 @@ body {
 }
 
 .modal-header {
-  padding: 20px;
+  padding: 1rem;
   border-bottom: 1px solid #eee;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .modal-title {
   font-size: 1.8rem;
   color: var(--primary-color);
   margin: 0;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #666;
-  transition: color 0.3s;
-}
-
-.modal-close:hover {
-  color: var(--primary-color);
+  text-align: center;
+  padding: 0 3rem;
 }
 
 .modal-body {
@@ -409,7 +401,7 @@ body {
   padding: 6px 12px;
   border: none;
   border-radius: 4px;
-  font-size: 0.9rem;
+  font-size: .9rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -545,14 +537,58 @@ body {
   transition: width 0.3s ease;
 }
 
+/* Back Button Styles */
+.back-button-wrapper {
+  margin: 1rem 0 1.5rem 0rem;
+}
+
+.back-button, .modal-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  color: var(--primary-color);
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  white-space: nowrap;
+  max-width: fit-content;
+}
+
+.modal-back {
+  position: absolute;
+  left: 1rem;
+  padding: 0.6rem 0.9rem;
+  margin-right: 0;
+}
+
+.back-button:hover, .modal-back:hover {
+  color: var(--secondary-color);
+  transform: translateX(-4px);
+  background-color: rgba(140, 56, 62, 0.1);
+}
+
+.back-icon {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover .back-icon {
+  transform: translateX(-2px);
+}
+
+.back-text {
+  padding-top: 1px;
+}
+
 /* Animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes modalFadeIn {
@@ -576,13 +612,14 @@ body {
     width: 95%;
     max-height: 85vh;
   }
-  
+
   .lesson-sections {
     grid-template-columns: 1fr;
   }
-  
+
   .modal-title {
     font-size: 1.5rem;
+    padding: 0 2.5rem;
   }
 
   .page-title {
@@ -592,43 +629,13 @@ body {
   .page-subtitle {
     font-size: 1rem;
   }
-}
 
-/* Back Button Wrapper */
-.back-button-wrapper {
-  margin: 1rem 0 1.5rem 1rem; /* Top Right Bottom Left */
-}
+  .modal-header {
+    padding: 0.75rem;
+  }
 
-/* Back Button */
-.back-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: none;
-  color: var(--primary-color);
-  border: none;
-  padding: 12px 18px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1.05rem;
-}
-
-.back-button:hover {
-  color: var(--secondary-color);
-  transform: translateX(-4px);
-}
-
-.back-icon {
-  font-size: 1.1rem;
-  transition: transform 0.3s ease;
-}
-
-.back-button:hover .back-icon {
-  transform: translateX(-2px);
-}
-
-.back-text {
-  padding-top: 1px; /* Minor vertical alignment tweak */
+  .modal-back {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
 }
