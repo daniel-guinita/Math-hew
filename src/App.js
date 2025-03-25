@@ -37,6 +37,13 @@ function App() {
     }
   }, [dispatch]);
 
+  // Force scroll to top on page load
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 5); // Delays execution to ensure it runs after page load
+  }, []);
+
   return (
     <Router>
       <Header />
@@ -75,7 +82,7 @@ function App() {
         <Route path="/admin/admin-users" element={<AdminUsers />} />
       </Routes>
       <Footer />
-      <ChatBuddy /> {/* Add the floating ChatBuddy globally */}
+      <ChatBuddy />
     </Router>
   );
 }

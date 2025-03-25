@@ -1,156 +1,130 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer utilities {
-  @keyframes fade-in-up {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 1s ease-out;
-  }
-}
-
 /* AboutUs Container and Background */
 .aboutus-container {
-  @apply min-h-screen bg-gradient-to-b from-[#781b1b] to-[#8c383e] to-[#FFFFFF] relative text-gray-100 p-12 flex flex-col items-center justify-start mt-8 overflow-hidden;
-  
+  min-height: 100vh;
+  background: #8c383e;
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Title and Subtext */
 .aboutus-title {
-  @apply text-4xl font-bold text-[#FFFFFF] mb-8 mt-8 text-center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .aboutus-subtext {
-  @apply text-xl text-white leading-8 text-center max-w-4xl mx-auto mb-12 bg-white/10 p-6 rounded-lg animate-fade-in-up;
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  color: white;
+  position: relative; /* Added for logo positioning */
 }
 
-/* Team Section */
-.team-section {
-  @apply w-full mt-20;
-}
-
-.team-title {
-  @apply text-3xl font-bold text-[#FFFFFF] text-center;
-}
-
-/* Grid Layout for Team Members */
-.team-section .grid-layout {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mt-10; /* Grid setup */
-}
-
-/* Member Card */
-.member-card {
-  @apply bg-[#8c383e] rounded-xl shadow-lg overflow-hidden text-center transition-transform duration-300 ease-in-out;
-  width: 100%; /* Ensure full width in grid */
-  height: auto;
-}
-
-.member-card:hover {
-  @apply -translate-y-2 shadow-2xl;
-}
-
-.member-card-img {
-  @apply w-full object-cover transition-transform duration-300; /* Ensure it covers the width */
-  height: 250px; /* Fixed height to make all images uniform */
-}
-
-.member-card-img:hover {
-  @apply scale-105;
-}
-
-/* Member Info */
-.member-card-info {
-  @apply p-6; /* Used original padding */
-}
-
-.member-card-name {
-  @apply text-xl font-bold text-white mb-2; /* Adjusted font size */
-}
-
-.member-card-role {
-  @apply text-lg text-white font-bold mb-4; /* Adjusted font size */
-}
-
-.member-card-description {
-  @apply text-base leading-relaxed text-white;
-}
-
-/* Bouncing Math-hew Logo */
+/* Bouncing Logo */
 .bouncing-logo {
-  @apply absolute right-[-40px] top-[210px] w-[200px] animate-bounce transition-all;
+  max-width: 150px; /* Adjust this value as needed */
+  height: auto;
+  position: absolute;
+  bottom: -50px; /* Move closer to the text box */
+  right: 90px; /* Move closer to the text box */
+  animation: bounce 2s infinite;
 }
 
-/* Responsive Adjustments for Logo */
-@media (max-width: 1024px) {
-  .bouncing-logo {
-    @apply w-[100px];
-  }
-}
-
-@media (max-width: 768px) {
-  .bouncing-logo {
-    @apply w-[80px];
-  }
-}
-
-@media (max-width: 480px) {
-  .bouncing-logo {
-    @apply w-[60px];
-  }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .aboutus-title {
-    @apply text-3xl;
-  }
-
-  .aboutus-subtext {
-    @apply text-lg;
-  }
-
-  .team-title {
-    @apply text-2xl;
-  }
-}
-
-/* Animations */
 @keyframes bounce {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-15px);
+    transform: translateY(-20px);
   }
 }
 
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Team Section */
+.team-section {
+  margin-top: 2rem;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    text-shadow: 0 0 5px #0caad1, 0 0 15px #ce0000, 0 0 20px #0caad1;
-  }
-  50% {
-    text-shadow: 0 0 10px #a32727, 0 0 20px #851414, 0 0 30px #5a0606;
-  }
+.team-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.member-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.member-card-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.member-card-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: #781b1b;
+}
+
+.member-card-role {
+  font-size: 1.2rem;
+  color: #8c383e;
+  font-weight: bold;
+}
+
+.member-card-description {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .aboutus-title {
+    font-size: 2.5rem;
+  }
+
+  .aboutus-subtext {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .bouncing-logo {
+    max-width: 100px; /* Smaller logo for mobile */
+    bottom: -30px; /* Adjusted for mobile */
+    right: -30px; /* Adjusted for mobile */
+  }
+
+  .team-title {
+    font-size: 2rem;
+  }
+}

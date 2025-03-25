@@ -10,8 +10,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  background-color: #1a202c;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #000;
 }
 
 html {
@@ -19,8 +19,8 @@ html {
 }
 
 .dark {
-  background-color: #1a202c;
-  color: #ffffff;
+  background-color: #fff;
+  color: #000;
 }
 
 .ql-editor {

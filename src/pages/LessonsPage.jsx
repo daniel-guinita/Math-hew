@@ -1,18 +1,19 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/LessonsPage.css";
+import { FaArrowLeft, FaPlus, FaCheck, FaTimes, FaEdit, FaTrash, FaYoutube } from 'react-icons/fa';
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
 const LessonsPage = ({ userRole }) => {
+  const navigate = useNavigate();
   const [lessons, setLessons] = useState([]);
   const [newLesson, setNewLesson] = useState({ title: "", description: "", video_url: "" });
   const [selectedLesson, setSelectedLesson] = useState(null);
   const [currentRole, setCurrentRole] = useState(userRole);
   const [expandedLesson, setExpandedLesson] = useState(null);
   const [newKeypoint, setNewKeypoint] = useState("");
-  const [newQuestion, setNewQuestion] = useState({ question: "", choices: ["", "", ""], correctAnswer: "", });
+  const [newQuestion, setNewQuestion] = useState({ question: "", choices: ["", "", ""], correctAnswer: "" });
   const [studentAnswers, setStudentAnswers] = useState({});
   const [editingQuestionId, setEditingQuestionId] = useState(null);
   const [editedQuestion, setEditedQuestion] = useState({ question: "", choices: ["", "", ""], correctAnswer: "" });
@@ -74,13 +75,10 @@ const LessonsPage = ({ userRole }) => {
       const fullLesson = await res.json();
       setSelectedLesson(fullLesson);
 
-      // Fetch score + attempt from backend
       const scoreRes = await fetch(`${API_URL}/scores/${lesson.id}/${school_id}`);
       const scoreData = await scoreRes.json();
-      setSelectedLesson(fullLesson);
       setAttemptCount(scoreData?.attempts || 0);
-  
-      // Lock answering if completed
+
       if (scoreData && (scoreData.attempts >= 3 || scoreData.score === fullLesson.questions.length)) {
         setLessonCompleted(true);
       } else {
@@ -89,7 +87,6 @@ const LessonsPage = ({ userRole }) => {
 
       if (scoreData?.answers) {
         setStudentAnswers(scoreData.answers);
-        setAttemptCount(scoreData.attempts);
         if (scoreData.attempts >= 3 || scoreData.score === fullLesson.questions.length) {
           setLessonCompleted(true);
         } else {
@@ -143,8 +140,7 @@ const LessonsPage = ({ userRole }) => {
       console.error('Edit failed:', err);
     }
   };
-  
-  
+
   const handleDeleteKeypoint = async (id) => {
     try {
       await fetch(`${API_URL}/lessons/${selectedLesson.id}/keypoints/${id}`, {
@@ -163,22 +159,17 @@ const LessonsPage = ({ userRole }) => {
     try {
       const payload = {
         question: editedQuestion.question,
-        choices: editedQuestion.choices, // now sending as array
+        choices: editedQuestion.choices,
         correctAnswer: editedQuestion.correctAnswer,
       };
       
       const response = await fetch(`${API_URL}/lessons/${selectedLesson.id}/questions/${id}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to update question");
-      }
-
+      if (!response.ok) throw new Error("Failed to update question");
       const updatedQuestion = await response.json();
       setSelectedLesson((prev) => ({
         ...prev,
@@ -198,13 +189,8 @@ const LessonsPage = ({ userRole }) => {
       const res = await fetch(`${API_URL}/lessons/${selectedLesson.id}/questions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          question,
-          choices,
-          correctAnswer
-        }),
+        body: JSON.stringify({ question, choices, correctAnswer }),
       });
-  
       const added = await res.json();
       setSelectedLesson((prev) => ({
         ...prev,
@@ -240,10 +226,9 @@ const LessonsPage = ({ userRole }) => {
     try {
       const school_id = JSON.parse(localStorage.getItem("userProfile"))?.school_id;
       const answers = studentAnswers;
-  
       const feedback = {};
       let score = 0;
-  
+
       selectedLesson.questions.forEach((q) => {
         const selected = answers[q.id];
         if (selected && selected.trim().toLowerCase() === q.correctAnswer?.trim().toLowerCase()) {
@@ -253,14 +238,12 @@ const LessonsPage = ({ userRole }) => {
           feedback[q.id] = "❌ Incorrect";
         }
       });
-  
+
       setAnswerFeedback(feedback);
       setAttemptCount((prev) => prev + 1);
-  
-      // If all correct OR 3 attempts reached → Submit and disable
+
       if (score === selectedLesson.questions.length || attemptCount + 1 >= 3) {
         setLessonCompleted(true);
-  
         await fetch(`${API_URL}/lessons/${selectedLesson.id}/submit`, {
           method: "POST",
           headers: {
@@ -268,18 +251,13 @@ const LessonsPage = ({ userRole }) => {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`,
           },
           body: JSON.stringify({
-          answers: studentAnswers,
-          school_id: JSON.parse(localStorage.getItem("userProfile"))?.school_id,
+            answers: studentAnswers,
+            school_id,
           }),
         });
-  
-        alert(
-          `Lesson completed! You scored ${score}/${selectedLesson.questions.length}${
-            attemptCount + 1 >= 3 && score < selectedLesson.questions.length
-              ? " (3 attempts used)"
-              : ""
-          }`
-        );
+        alert(`Lesson completed! You scored ${score}/${selectedLesson.questions.length}${
+          attemptCount + 1 >= 3 && score < selectedLesson.questions.length ? " (3 attempts used)" : ""
+        }`);
       } else {
         alert(`Attempt ${attemptCount + 1}: You got ${score} correct. Try again.`);
       }
@@ -287,313 +265,378 @@ const LessonsPage = ({ userRole }) => {
       console.error("Failed to submit answers:", error);
     }
   };
-  
+
   const renderLessonList = () => (
     <div className="lesson-list-container">
-      <h1 className="page-title">Math Lessons</h1>
+      <div className="back-button-wrapper">
+        <button className="back-button" onClick={() => navigate('/main-page')}>
+          <FaArrowLeft className="back-icon" />
+          <span className="back-text">Back to Dashboard</span>
+        </button>
+      </div>
+      
+      <div className="page-header">
+        <h1 className="page-title">Math Lessons</h1>
+        <p className="page-subtitle">Explore interactive math lessons designed for 4th graders</p>
+      </div>
+      
       <div className="lesson-grid">
         {lessons.map((lesson) => (
           <div key={lesson.id} className="lesson-card" onClick={() => toggleLessonExpand(lesson.id)}>
+            <div className="card-icon">
+              <span className="math-icon">🧮</span>
+            </div>
             <h3>{lesson.title}</h3>
             {expandedLesson === lesson.id && (
               <div className="lesson-summary">
                 <p>{lesson.description}</p>
-                <button className="view-button" onClick={(e) => { e.stopPropagation(); handleViewLesson(lesson); }}>
-                  View Lesson
+                <button 
+                  className="view-button" 
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    handleViewLesson(lesson); 
+                  }}
+                >
+                  Start Learning →
                 </button>
               </div>
             )}
           </div>
         ))}
       </div>
+
       {(currentRole === "teacher" || currentRole === "admin") && (
         <div className="admin-section">
-          <input type="text" placeholder="Lesson Title" value={newLesson.title} onChange={(e) => setNewLesson({ ...newLesson, title: e.target.value })} className="input-field" />
-          <textarea placeholder="Lesson Description" value={newLesson.description} onChange={(e) => setNewLesson({ ...newLesson, description: e.target.value })} className="input-field" />
-          <input type="text" placeholder="Video URL (optional)" value={newLesson.video_url} onChange={(e) => setNewLesson({ ...newLesson, video_url: e.target.value })} className="input-field" />
-          <button onClick={handleAddLesson} className="add-button">Add Lesson</button>
+          <h3 className="admin-title">Create New Lesson</h3>
+          <div className="form-group">
+            <input 
+              type="text" 
+              placeholder="Lesson Title" 
+              value={newLesson.title} 
+              onChange={(e) => setNewLesson({ ...newLesson, title: e.target.value })} 
+              className="input-field" 
+            />
+            <textarea 
+              placeholder="Lesson Description" 
+              value={newLesson.description} 
+              onChange={(e) => setNewLesson({ ...newLesson, description: e.target.value })} 
+              className="input-field textarea-field" 
+            />
+            <input 
+              type="text" 
+              placeholder="Video URL (optional)" 
+              value={newLesson.video_url} 
+              onChange={(e) => setNewLesson({ ...newLesson, video_url: e.target.value })} 
+              className="input-field" 
+            />
+            <button onClick={handleAddLesson} className="add-button">
+              <span className="button-icon">+</span> Create Lesson
+            </button>
+          </div>
         </div>
       )}
     </div>
   );
 
   const renderLessonDetail = () => {
+    if (!selectedLesson) return null;
+    
     const isTeacherOrAdmin = currentRole === "teacher" || currentRole === "admin";
     const isStudent = currentRole === "student";
 
     return (
-      <div className="lesson-detail-container">
-        <button className="back-button" onClick={() => setSelectedLesson(null)}>← Back</button>
-        <h2 className="lesson-detail-title">{selectedLesson.title}</h2>
-        <p className="lesson-detail-summary">{selectedLesson.description}</p>
-
-        {selectedLesson.video_url && (
-          <div className="lesson-video">
-            <iframe
-              src={selectedLesson.video_url.replace("watch?v=", "embed/")}
-              title="Lesson Video"
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
+      <div className="modal-overlay">
+        <div className="modal-container">
+          <div className="modal-header">
+            <button 
+              className="modal-back"
+              onClick={() => setSelectedLesson(null)}
+            >
+              <FaArrowLeft /> Back to Lessons
+            </button>
+            <h2 className="modal-title">{selectedLesson.title}</h2>
+            <button className="modal-close" onClick={() => setSelectedLesson(null)}>
+              <FaTimes />
+            </button>
           </div>
-        )}
-
-        <div className="lesson-content">
-          <div className="keypoints-section">
-            <h3>Key Points</h3>
-            <ul>
-              {(selectedLesson.keypoints || []).map((point, index) => (
-                <li key={point.id || index} className="input-field">
-                {editingKeypointId === point.id ? (
-                <>
-                  <input
-                    type="text"
-                    value={editedKeypoint}
-                    onChange={(e) => setEditedKeypoint(e.target.value)}
-                    className="input-field"
-                  />
-                  <div className="btn-inline">
-                    <button
-                      className="small-btn"
-                      onClick={() => {
-                        handleEditKeypoint(point.id, editedKeypoint);
-                        setEditingKeypointId(null);
-                      }}
-                    >
-                      Save
-                    </button>
-                    <button
-                      className="small-btn"
-                      onClick={() => setEditingKeypointId(null)}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  {point.content}
+          
+          <div className="modal-body">
+            <div className="lesson-content-container">
+              <p className="lesson-description">{selectedLesson.description}</p>
+              
+              {selectedLesson.video_url && (
+                <div className="lesson-video-container">
+                  <iframe
+                    className="lesson-video"
+                    src={selectedLesson.video_url.replace("watch?v=", "embed/")}
+                    title="Lesson Video"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
+              
+              <div className="lesson-sections">
+                <div className="keypoints-section">
+                  <h3 className="section-title">
+                    <span>📝</span> Key Points
+                  </h3>
+                  <ul className="keypoints-list">
+                    {selectedLesson.keypoints?.map((point) => (
+                      <li key={point.id} className="keypoint-item">
+                        {editingKeypointId === point.id ? (
+                          <div className="edit-form">
+                            <input
+                              type="text"
+                              value={editedKeypoint}
+                              onChange={(e) => setEditedKeypoint(e.target.value)}
+                              className="edit-input"
+                            />
+                            <div className="edit-buttons">
+                              <button
+                                className="save-btn"
+                                onClick={() => {
+                                  handleEditKeypoint(point.id, editedKeypoint);
+                                  setEditingKeypointId(null);
+                                }}
+                              >
+                                <FaCheck /> Save
+                              </button>
+                              <button
+                                className="cancel-btn"
+                                onClick={() => setEditingKeypointId(null)}
+                              >
+                                <FaTimes /> Cancel
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="keypoint-content">
+                            <div className="keypoint-text">{point.content}</div>
+                            {isTeacherOrAdmin && (
+                              <div className="keypoint-actions">
+                                <button
+                                  className="edit-btn"
+                                  onClick={() => {
+                                    setEditingKeypointId(point.id);
+                                    setEditedKeypoint(point.content);
+                                  }}
+                                >
+                                  <FaEdit /> Edit
+                                </button>
+                                <button 
+                                  className="delete-btn" 
+                                  onClick={() => handleDeleteKeypoint(point.id)}
+                                >
+                                  <FaTrash /> Delete
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                  
                   {isTeacherOrAdmin && (
-                    <div className="btn-inline">
-                      <button
-                        className="small-btn"
-                        onClick={() => {
-                          setEditingKeypointId(point.id);
-                          setEditedKeypoint(point.content);
-                        }}
-                      >
-                        Edit
+                    <div className="add-keypoint-form">
+                      <input
+                        type="text"
+                        placeholder="Add new key point..."
+                        className="form-input"
+                        value={newKeypoint}
+                        onChange={(e) => setNewKeypoint(e.target.value)}
+                      />
+                      <button className="submit-btn" onClick={handleAddKeypoint}>
+                        <FaPlus /> Add Key Point
                       </button>
-                      <button className="small-btn" onClick={() => handleDeleteKeypoint(point.id)}>Delete</button>
                     </div>
                   )}
-                </>
-              )}
-                </li>
-              ))}
-            </ul>
-          </div>
+                </div>
+                
+                <div className="questions-section">
+                  <h3 className="section-title">
+                    <span>❓</span> Questions
+                  </h3>
+                  <ul className="questions-list">
+                    {selectedLesson.questions?.map((q) => (
+                      <li key={q.id} className="question-item">
+                        {editingQuestionId === q.id ? (
+                          <div className="edit-question-form">
+                            <input
+                              type="text"
+                              className="question-input"
+                              value={editedQuestion.question}
+                              onChange={(e) =>
+                                setEditedQuestion({ ...editedQuestion, question: e.target.value })
+                              }
+                              placeholder="Question"
+                            />
+                            {editedQuestion.choices.map((choice, i) => (
+                              <input
+                                key={i}
+                                type="text"
+                                className="choice-input"
+                                value={choice}
+                                onChange={(e) => {
+                                  const updated = [...editedQuestion.choices];
+                                  updated[i] = e.target.value;
+                                  setEditedQuestion({ ...editedQuestion, choices: updated });
+                                }}
+                                placeholder={`Option ${i+1}`}
+                              />
+                            ))}
+                            <input
+                              type="text"
+                              className="correct-answer-input"
+                              value={editedQuestion.correctAnswer}
+                              onChange={(e) =>
+                                setEditedQuestion({ ...editedQuestion, correctAnswer: e.target.value })
+                              }
+                              placeholder="Correct Answer"
+                            />
+                            <div className="edit-buttons">
+                              <button
+                                className="save-btn"
+                                onClick={() => handleEditQuestion(q.id)}
+                              >
+                                <FaCheck /> Save
+                              </button>
+                              <button
+                                className="cancel-btn"
+                                onClick={() => setEditingQuestionId(null)}
+                              >
+                                <FaTimes /> Cancel
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="question-content">
+                            <div className="question-text">{q.question}</div>
+                            <ul className="choices-list">
+                              {q.choices?.map((choice, i) => (
+                                <li key={i} className="choice-item">
+                                  {isStudent ? (
+                                    <label className="choice-label">
+                                      <input
+                                        type="radio"
+                                        name={`question-${q.id}`}
+                                        value={choice}
+                                        checked={studentAnswers[q.id] === choice}
+                                        onChange={() => handleAnswerChange(q.id, choice)}
+                                        disabled={lessonCompleted}
+                                        className="choice-radio"
+                                      />
+                                      <span className="choice-text">{choice}</span>
+                                    </label>
+                                  ) : (
+                                    <span className="choice-text">{choice}</span>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
 
-          <div className="questions-section">
-          <h3>Quick Questions</h3>
-          <ul>
-            {(selectedLesson.questions || []).map((q, index) => (
-              <li key={q.id || index} className="input-field">
-                {editingQuestionId === q.id ? (
-                  <>
-                    <input
-                      type="text"
-                      className="input-field"
-                      value={editedQuestion.question}
-                      onChange={(e) =>
-                        setEditedQuestion({ ...editedQuestion, question: e.target.value })
-                      }
+                            {isStudent && answerFeedback[q.id] && (
+                              <div className={`feedback ${answerFeedback[q.id].includes("Correct") ? "correct" : "incorrect"}`}>
+                                {answerFeedback[q.id]}
+                              </div>
+                            )}
 
-                    />
-                    {editedQuestion.choices.map((choice, i) => (
-                      <input
-                        key={i}
-                        type="text"
-                        className="input-field"
-                        value={choice}
-                        onChange={(e) => {
-                          const updated = [...editedQuestion.choices];
-                          updated[i] = e.target.value;
-                          setEditedQuestion({ ...editedQuestion, choices: updated });
-                        }}
-                      />
+                            {isTeacherOrAdmin && (
+                              <div className="question-actions">
+                                <button
+                                  className="edit-btn"
+                                  onClick={() => {
+                                    setEditingQuestionId(q.id);
+                                    setEditedQuestion({
+                                      question: q.question || "",
+                                      choices: Array.isArray(q.choices)
+                                        ? q.choices
+                                        : typeof q.choices === "string"
+                                        ? q.choices.split(",")
+                                        : ["", "", ""],
+                                      correctAnswer: q.correctAnswer || "",
+                                    });
+                                  }}
+                                >
+                                  <FaEdit /> Edit
+                                </button>
+                                <button
+                                  className="delete-btn"
+                                  onClick={() => handleDeleteQuestion(q.id)}
+                                >
+                                  <FaTrash /> Delete
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </li>
                     ))}
-                    
-                      <label className="correct-answer-label">Correct Answer:</label>
+                  </ul>
+                  
+                  {isTeacherOrAdmin && (
+                    <div className="add-question-form">
+                      <h4>Add New Question</h4>
                       <input
                         type="text"
-                        className="input-field"
-                        value={editedQuestion.correctAnswer}
+                        placeholder="Question"
+                        className="form-input"
+                        value={newQuestion.question}
                         onChange={(e) =>
-                          setEditedQuestion({ ...editedQuestion, correctAnswer: e.target.value })
+                          setNewQuestion({ ...newQuestion, question: e.target.value })
                         }
                       />
-
-                    <div className="btn-inline">
-                      <button
-                        className="small-btn"
-                        onClick={() => handleEditQuestion(q.id)}
-                      >
-                        Save
-                      </button>
-                      <button
-                        className="small-btn"
-                        onClick={() => setEditingQuestionId(null)}
-                      >
-                        Cancel
+                      {newQuestion.choices.map((choice, i) => (
+                        <input
+                          key={i}
+                          type="text"
+                          placeholder={`Option ${i + 1}`}
+                          className="form-input"
+                          value={choice}
+                          onChange={(e) => {
+                            const updated = [...newQuestion.choices];
+                            updated[i] = e.target.value;
+                            setNewQuestion({ ...newQuestion, choices: updated });
+                          }}
+                        />
+                      ))}
+                      <input
+                        type="text"
+                        placeholder="Correct Answer"
+                        className="form-input"
+                        value={newQuestion.correctAnswer}
+                        onChange={(e) =>
+                          setNewQuestion({ ...newQuestion, correctAnswer: e.target.value })
+                        }
+                      />
+                      <button className="submit-btn" onClick={handleAddQuestion}>
+                        <FaPlus /> Add Question
                       </button>
                     </div>
-                  </>
-                ) : (
-                  <>
-                    <strong>{q.question}</strong>
-                    <ul>
-                      {(q.choices || []).map((choice, i) => (
-                        <li key={i}>
-                          {isStudent ? (
-                            <label>
-                            <input
-                                type="radio"
-                                name={`question-${q.id}`}
-                                value={choice}
-                                checked={studentAnswers[q.id] === choice}
-                                onChange={() => handleAnswerChange(q.id, choice)}
-                                disabled={lessonCompleted}
-                              />
-                              {" "}{choice}
-                            </label>
-                          ) : (
-                            <span>{choice}</span>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* ✅ Moved here — now q is in scope */}
-                    {isStudent && answerFeedback[q.id] && (
-                      <div
-                        style={{
-                          marginTop: "5px",
-                          color: answerFeedback[q.id].includes("Correct") ? "green" : "red",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {answerFeedback[q.id]}
-                      </div>
-                    )}
-
-                    {isTeacherOrAdmin && (
-                      <div className="btn-inline">
-                        <button
-                          className="small-btn"
-                          onClick={() => {
-                            setEditingQuestionId(q.id);
-                            setEditedQuestion({
-                              question: q.question || "",
-                              choices: Array.isArray(q.choices)
-                                ? q.choices
-                                : typeof q.choices === "string"
-                                ? q.choices.split(",")
-                                : ["", "", ""],
-                              correctAnswer: q.correctAnswer || "",
-                            });
-                          }}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="small-btn"
-                          onClick={() => handleDeleteQuestion(q.id)}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    )}
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-        {isTeacherOrAdmin && (
-          <div className="form-separate-wrapper">
-            <div className="form-half-wrapper">
-              <div className="admin-section">
-                <h3>Add Key Point</h3>
-                <input
-                  type="text"
-                  placeholder="Add keypoint..."
-                  className="input-field"
-                  value={newKeypoint}
-                  onChange={(e) => setNewKeypoint(e.target.value)}
-                />
-                <button className="add-button" onClick={handleAddKeypoint}> Add Key Point</button>
+                  )}
+                </div>
               </div>
             </div>
-            <div className="form-half-wrapper">
-            <div className="admin-section">
-              <h3>Add Question</h3>
-              <input
-                type="text"
-                placeholder="Question"
-                className="input-field"
-                value={newQuestion.question}
-                onChange={(e) =>
-                  setNewQuestion({ ...newQuestion, question: e.target.value })
-                }
-              />
-              {newQuestion.choices.map((choice, i) => (
-                <input
-                  key={i}
-                  type="text"
-                  placeholder={`Choice ${i + 1}`}
-                  className="input-field"
-                  value={choice}
-                  onChange={(e) => {
-                    const updated = [...newQuestion.choices];
-                    updated[i] = e.target.value;
-                    setNewQuestion({ ...newQuestion, choices: updated });
-                  }}
-                />
-              ))}
-              <input
-                type="text"
-                placeholder="Correct Answer"
-                className="input-field"
-                value={newQuestion.correctAnswer}
-                onChange={(e) =>
-                  setNewQuestion({ ...newQuestion, correctAnswer: e.target.value })
-                }
-              />
-              <button className="add-button" onClick={handleAddQuestion}>Add Question</button>
-            </div>
-            </div>
-          </div>
-        )}
-        {isStudent && !lessonCompleted && (
-          <button className="add-button" onClick={handleSubmitAnswers}>
-            ✅ Submit Answers ({attemptCount}/3)
-          </button>
-        )}
 
-        {isStudent && lessonCompleted && (
-          <p style={{ color: "red", fontWeight: "bold", marginTop: "10px" }}>
-            You have completed this lesson.
-          </p>
-        )}
+            {isStudent && !lessonCompleted && (
+              <button className="submit-answers-btn" onClick={handleSubmitAnswers}>
+                <FaCheck /> Submit Answers ({attemptCount}/3 attempts)
+              </button>
+            )}
+
+            {isStudent && lessonCompleted && (
+              <div className="completion-message">
+                🎉 You've completed this lesson! Great job!
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     );
   };
 
   return (
-    <div className="lessons-page-container">
+    <div className="lessons-page">
       {selectedLesson ? renderLessonDetail() : renderLessonList()}
     </div>
   );

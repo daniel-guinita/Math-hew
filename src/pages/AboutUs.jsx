@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/AboutUs.css";  // Import the CSS file
+import "../styles/AboutUs.css"; // Import the CSS file
 
 const AboutUs = () => {
   const teamMembers = [
@@ -43,7 +43,7 @@ const AboutUs = () => {
   return (
     <div className="aboutus-container">
       <div className="w-full max-w-6xl text-center relative">
-        <h1 className="aboutus-title animated-title">About Math-hew</h1>
+        <h1 className="aboutus-title">About Math-hew</h1>
         <p className="aboutus-subtext">
           Welcome to Math-hew, an engaging e-learning platform designed
           specifically for 4th-grade students to make learning math fun and
@@ -61,26 +61,26 @@ const AboutUs = () => {
       </div>
 
       <div id="team" className="team-section mt-20">
-  <h2 className="team-title animated-title">Meet the Team 🎉</h2>
-  <div className="grid-layout">
-    {teamMembers.map((member) => (
-      <div key={member.name} className="member-card">
-        <img
-          src={member.image}
-          alt={member.name}
-          className="member-card-img"
-        />
-        <div className="member-card-info">
-          <h3 className="member-card-name">{member.name}</h3>
-          <p className="member-card-role">{member.role}</p>
-          <p className="member-card-description">
-            {member.description}
-          </p>
+        <h2 className="team-title">Meet the Team 🎉</h2>
+        <div className="grid-layout">
+          {teamMembers.map((member, index) => (
+            <div key={index} className="member-card">
+              <img
+                src={member.image}
+                alt={member.name}
+                className="member-card-img"
+              />
+              <div className="member-card-info">
+                <h3 className="member-card-name">{member.name}</h3>
+                <p className="member-card-role">{member.role}</p>
+                <p className="member-card-description">
+                  {member.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    ))}
-  </div>
-</div>
     </div>
   );
 };

@@ -1,12 +1,27 @@
-/* Contact Us Page Layout
+:root {
+  --primary-color: #781b1b;
+  --secondary-color: #8c383e;
+  --accent-color: #ffffff;
+  --text-color: #1e293b;
+  --facebook-color: #4267b2;
+  --twitter-color: #000000;
+  --linkedin-color: #0077b5;
+  --instagram-color: #e4405f;
+  --hover-scale: scale(1.2);
+  --transition-duration: 0.3s;
+}
+
+/* Contact Us Page Layout */
 .contact-us-container {
-  font-family:'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #781b1b, #8c383e, #ffffff);
+  background: #8c383e;
   padding: 3rem 1rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .contact-us-container::before,
@@ -18,7 +33,7 @@
   opacity: 0.3;
 }
 
-/* .contact-us-container::before {
+.contact-us-container::before {
   width: 250px;
   height: 250px;
   background: rgba(255, 223, 77, 0.5);
@@ -34,8 +49,7 @@
   bottom: 15%;
   right: 10%;
   animation-delay: 2s;
-} 
-
+}
 
 .contact-us-content {
   display: flex;
@@ -45,76 +59,90 @@
   max-width: 1200px;
 }
 
-
 .contact-us-card,
 .faq-card {
   flex: 1;
   width: 100%;
   max-width: 900px;
-  background: #ffffff;
+  background: var(--accent-color);
   border-radius: 1.5rem;
   padding: 2rem 3rem;
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   animation: fadeInUp 1.5s ease;
+  transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+  position: relative;
+  overflow: hidden;
 }
 
+.contact-us-card:hover,
+.faq-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
 
 .contact-us-title {
   font-size: 2.8rem;
   font-weight: bold;
-  color: #781b1b;
+  color: var(--primary-color);
   margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .contact-us-subtitle {
   font-size: 1.25rem;
-  color: #000000;
+  color: var(--text-color);
   margin-bottom: 2rem;
   line-height: 1.8;
+  animation: fadeIn 1.5s ease-in-out;
 }
-
 
 .contact-info {
   margin-bottom: 2.5rem;
 }
 
-.contact-info-title {
-  font-size: 1.8rem;
-  color: #1e293b;
-  margin-bottom: 1rem;
-}
-
 .contact-info-item {
   display: flex;
   align-items: center;
-  justify-content: center; 
-  gap: 0.75rem; 
-  font-size: 1.125rem; 
-  color: #781b1b; 
-  margin-bottom: 1rem; 
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1.125rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  animation: fadeIn 2s ease-in-out;
 }
 
 .contact-icon {
   font-size: 1.8rem;
-  color: #781b1b;
+  color: var(--primary-color);
+  transition: transform var(--transition-duration) ease, color var(--transition-duration) ease;
+}
+
+.contact-icon:hover {
+  transform: var(--hover-scale);
+  color: var(--secondary-color);
 }
 
 .contact-text {
   font-size: 1.125rem;
-  color: #1e293b;
+  color: var(--text-color);
   text-decoration: none;
+  transition: color var(--transition-duration) ease;
 }
 
 .contact-text:hover {
   text-decoration: underline;
-  color: #8c383e;
+  color: var(--secondary-color);
 }
-
 
 .social-media {
   margin-top: 2rem;
-  
+}
+
+.social-media h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
 }
 
 .social-icons {
@@ -124,66 +152,90 @@
   margin-top: 1rem;
 }
 
-.social-icon:hover {
-  transform: scale(1.2); 
-  color: #8c383e; 
-}
-
 .social-icon {
   font-size: 2.5rem;
-  color: #781b1b; 
-  transition: transform 0.3s ease, color 0.3s ease;
+  color: var(--primary-color);
+  transition: transform var(--transition-duration) ease, color var(--transition-duration) ease;
 }
 
-.social-media h2{
-  color: #000000;
+.social-icon:hover {
+  transform: var(--hover-scale);
 }
 
-.facebook {
-  color: #4267b2;
+.social-icon.facebook {
+  color: var(--facebook-color);
 }
 
-.twitter {
-  color: #1da1f2;
+.social-icon.facebook:hover {
+  color: #365899; /* Darker shade for hover */
 }
 
-.linkedin {
-  color: #0077b5;
+.social-icon.twitter {
+  color: var(--twitter-color);
 }
 
-.instagram {
-  color: #e4405f;
+.social-icon.twitter:hover {
+  color: #1da1f2; /* Twitter blue for hover */
+}
+
+.social-icon.linkedin {
+  color: var(--linkedin-color);
+}
+
+.social-icon.linkedin:hover {
+  color: #005582; /* Darker shade for hover */
+}
+
+.social-icon.instagram {
+  color: var(--instagram-color);
+}
+
+.social-icon.instagram:hover {
+  color: #c13584; /* Darker shade for hover */
 }
 
 .faq-title {
   font-size: 2.8rem;
   font-weight: bold;
-  color: #781b1b;
+  color: var(--primary-color);
   margin-bottom: 2rem;
   text-align: center;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .faq-card {
-  text-align: left; 
+  text-align: left;
 }
 
 .faq-item {
   margin-bottom: 1.5rem;
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 .faq-question {
-  font-size: 1.25rem;  
+  font-size: 1.25rem;
   font-weight: bold;
-  color: #781b1b;
+  color: var(--primary-color);
   margin-bottom: 0.5rem;
 }
 
 .faq-answer {
   font-size: 1.1rem;
-  color: #000000;
+  color: var(--text-color);
   line-height: 1.6;
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 @keyframes fadeInUp {
   from {
@@ -205,13 +257,10 @@
   }
 }
 
-
+/* Responsive Design */
 @media (max-width: 768px) {
-  .contact-us-title {
+  .contact-us-title,
+  .faq-title {
     font-size: 2.2rem;
   }
-
-  .faq-title {
-    font-size: 2rem;
-  }
-} */
+}

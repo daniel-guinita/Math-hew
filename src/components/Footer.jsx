@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "../styles/Footer.css"; // Ensure this import stays so the custom styles are applied.
+import "../styles/Footer.css"; // Keep styles applied
 
 export default function FooterComponent() {
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -8,14 +8,11 @@ export default function FooterComponent() {
 
   const handleProtectedLinkClick = (path) => {
     if (currentUser) {
-      navigate(path); // Navigate if logged in
+      navigate(path);
     } else {
       alert("Please log in to access this feature!");
     }
   };
-
-  const randomFact = "Did you know? A honeybee’s hive is built using hexagons because they’re the most efficient shape!";
-  const randomJoke = "Why was the math book sad? It had too many problems!";
 
   return (
     <footer className="footer-container">
@@ -33,7 +30,7 @@ export default function FooterComponent() {
           <p className="footer-slogan">Learning Math is Fun with Math-hew!</p>
         </div>
 
-        {/* Links */}
+        {/* Quick Links */}
         <div className="footer-links-section">
           <h3 className="footer-title">Quick Links</h3>
           <ul className="footer-links">
@@ -63,19 +60,12 @@ export default function FooterComponent() {
             </li>
           </ul>
         </div>
-
-        {/* Fun Section */}
-        <div className="footer-fun-section">
-          <h3 className="footer-title">Fun with Math</h3>
-          <p className="footer-fact">{randomFact}</p>
-          <p className="footer-joke">{randomJoke}</p>
-        </div>
       </div>
 
       {/* Bottom Section */}
       <div className="footer-bottom">
         <p className="footer-cta">
-          Ready to explore more?{' '}
+          Ready to explore more?{" "}
           <span
             className="footer-link-highlight"
             onClick={() => handleProtectedLinkClick("/games")}
@@ -83,7 +73,9 @@ export default function FooterComponent() {
             Play a Game Now!
           </span>
         </p>
-        <p className="footer-copyright">© {new Date().getFullYear()} Math-hew. All rights reserved.</p>
+        <p className="footer-copyright">
+          © {new Date().getFullYear()} Math-hew. All rights reserved.
+        </p>
       </div>
     </footer>
   );
