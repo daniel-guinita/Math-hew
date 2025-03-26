@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/LessonsPage.css";
-import { FaArrowLeft, FaPlus, FaCheck, FaTimes, FaEdit, FaTrash, FaYoutube } from 'react-icons/fa';
+import { FaArrowLeft, FaPlus, FaCheck, FaTimes, FaEdit, FaTrash } from 'react-icons/fa';
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
@@ -11,7 +11,6 @@ const LessonsPage = ({ userRole }) => {
   const [newLesson, setNewLesson] = useState({ title: "", description: "", video_url: "" });
   const [selectedLesson, setSelectedLesson] = useState(null);
   const [currentRole, setCurrentRole] = useState(userRole);
-  const [expandedLesson, setExpandedLesson] = useState(null);
   const [newKeypoint, setNewKeypoint] = useState("");
   const [newQuestion, setNewQuestion] = useState({ question: "", choices: ["", "", ""], correctAnswer: "" });
   const [studentAnswers, setStudentAnswers] = useState({});
@@ -22,6 +21,7 @@ const LessonsPage = ({ userRole }) => {
   const [answerFeedback, setAnswerFeedback] = useState({});
   const [attemptCount, setAttemptCount] = useState(0);
   const [lessonCompleted, setLessonCompleted] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   useEffect(() => {
     setCurrentRole(userRole);
@@ -64,26 +64,19 @@ const LessonsPage = ({ userRole }) => {
     }
   };
 
-  const toggleLessonExpand = (lessonId) => {
-    setExpandedLesson(expandedLesson === lessonId ? null : lessonId);
-  };
-
   const handleViewLesson = async (lesson) => {
     try {
       const school_id = JSON.parse(localStorage.getItem("userProfile"))?.school_id;
       
-      // Fetch full lesson data
       const lessonRes = await fetch(`${API_URL}/lessons/${lesson.id}`);
       const fullLesson = await lessonRes.json();
       setSelectedLesson(fullLesson);
 
-      // Fetch score record for current student
       const scoreRes = await fetch(`${API_URL}/scores/${lesson.id}/${school_id}`);
       const scoreData = await scoreRes.json();
       setStudentAnswers(scoreData?.answers || {});
       setAttemptCount(scoreData?.attempts || 0);
 
-      // Determine if lesson is completed
       const completed = scoreData?.attempts >= 3 || scoreData?.score === fullLesson.questions.length;
       setLessonCompleted(completed);
 
@@ -91,9 +84,7 @@ const LessonsPage = ({ userRole }) => {
         const feedback = {};
         fullLesson.questions.forEach((q) => {
           const selected = scoreData.answers[q.id];
-          if (
-            selected?.trim().toLowerCase() === q.correctAnswer?.trim().toLowerCase()
-          ) {
+          if (selected?.trim().toLowerCase() === q.correctAnswer?.trim().toLowerCase()) {
             feedback[q.id] = "✅ Correct!";
           } else {
             feedback[q.id] = "❌ Incorrect";
@@ -103,12 +94,11 @@ const LessonsPage = ({ userRole }) => {
       } else {
         setAnswerFeedback({});
       }
-  
     } catch (err) {
       console.error("Error viewing lesson:", err);
     }
   };
-  
+
   const handleAddKeypoint = async () => {
     if (!newKeypoint.trim()) return;
     try {
@@ -285,23 +275,20 @@ const LessonsPage = ({ userRole }) => {
       
       <div className="lesson-grid">
         {lessons.map((lesson) => (
-          <div key={lesson.id} className="lesson-card" onClick={() => toggleLessonExpand(lesson.id)}>
+          <div 
+            key={lesson.id} 
+            className="lesson-card" 
+            onClick={() => handleViewLesson(lesson)}
+            onMouseEnter={() => setHoveredCard(lesson.id)}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
             <div className="card-icon">
               <span className="math-icon">🧮</span>
             </div>
             <h3>{lesson.title}</h3>
-            {expandedLesson === lesson.id && (
+            {hoveredCard === lesson.id && (
               <div className="lesson-summary">
                 <p>{lesson.description}</p>
-                <button 
-                  className="view-button" 
-                  onClick={(e) => { 
-                    e.stopPropagation(); 
-                    handleViewLesson(lesson); 
-                  }}
-                >
-                  Start Learning →
-                </button>
               </div>
             )}
           </div>
@@ -333,7 +320,7 @@ const LessonsPage = ({ userRole }) => {
               className="input-field" 
             />
             <button onClick={handleAddLesson} className="add-button">
-              <span className="button-icon">+</span> Create Lesson
+              <FaPlus className="button-icon" /> Create Lesson
             </button>
           </div>
         </div>
@@ -356,9 +343,8 @@ const LessonsPage = ({ userRole }) => {
               onClick={() => setSelectedLesson(null)}
             >
               <FaArrowLeft /> Back to Lessons
-             </button>
+            </button>
             <h2 className="modal-title">{selectedLesson.title}</h2>
-            {/* Removed the redundant 'X' button */}
           </div>
           
           <div className="modal-body">
