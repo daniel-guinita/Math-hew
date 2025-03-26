@@ -7,6 +7,14 @@
   justify-content: center;
   padding: 2rem;
   text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.8s cubic-bezier(0.25, 1, 0.5, 1), transform 1.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Home Section */
@@ -15,6 +23,7 @@
   color: white;
 }
 
+/* Home Content */
 .home-content {
   display: flex;
   align-items: center;
@@ -84,20 +93,4 @@
 .contact-section {
   background: #8c383e;
   color: white;
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
 }

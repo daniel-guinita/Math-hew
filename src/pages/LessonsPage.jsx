@@ -356,11 +356,9 @@ const LessonsPage = ({ userRole }) => {
               onClick={() => setSelectedLesson(null)}
             >
               <FaArrowLeft /> Back to Lessons
-            </button>
+             </button>
             <h2 className="modal-title">{selectedLesson.title}</h2>
-            <button className="modal-close" onClick={() => setSelectedLesson(null)}>
-              <FaTimes />
-            </button>
+            {/* Removed the redundant 'X' button */}
           </div>
           
           <div className="modal-body">
