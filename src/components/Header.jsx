@@ -130,10 +130,10 @@ const Header = () => {
             </>
           )}
 
-          {/* Student and Teacher */}
+          {/* Student and Teacher
           {(currentUser?.role === "student" || currentUser?.role === "teacher") && (
             <Link to="/lessons-page" className="header-nav-link">Lessons</Link>
-          )}
+          )} */}
 
           {/* Student only */}
           {currentUser?.role === "student" && (
