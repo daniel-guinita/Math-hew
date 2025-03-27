@@ -13,13 +13,13 @@ export default function RecentScores() {
     const fetchScores = async () => {
       try {
         if (userRole === "student") {
-          const res = await axios.get(`http://localhost:3000/scores/by-student/${schoolId}`);
+          const res = await axios.get(`${process.env.REACT_APP_API_URL}/scores/by-student/${schoolId}`);
           setLessonScores(res.data || []);
           // TODO: add endpoint for game scores
           setGameScores([]); // placeholder
         } else {
-          const resLesson = await axios.get("http://localhost:3000/scores/all-lessons");
-          const resGames = await axios.get("http://localhost:3000/scores/all-games");
+          const resLesson = await axios.get(`${process.env.REACT_APP_API_URL}/scores/all-lessons`);
+const resGames = await axios.get(`${process.env.REACT_APP_API_URL}/scores/all-games`);
           setLessonScores(resLesson.data || []);
           setGameScores(resGames.data || []);
         }

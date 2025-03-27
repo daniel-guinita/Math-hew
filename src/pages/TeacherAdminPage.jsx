@@ -11,7 +11,7 @@ const TeacherAdminPage = () => {
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("http://localhost:3000/users/filter?role=student");
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/filter?role=student`);
       if (!response.ok) {
         throw new Error("Failed to fetch students");
       }

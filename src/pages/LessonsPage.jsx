@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/LessonsPage.css";
 import { FaArrowLeft, FaPlus, FaCheck, FaTimes, FaEdit, FaTrash } from 'react-icons/fa';
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
+const API_URL = process.env.REACT_APP_API_URL ?? "https://mathhew-backend-deploy.vercel.app";
 
 const LessonsPage = ({ userRole }) => {
   const navigate = useNavigate();
