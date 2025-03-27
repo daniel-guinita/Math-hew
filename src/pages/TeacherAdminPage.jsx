@@ -32,11 +32,10 @@ const TeacherAdminPage = () => {
     <div className="admin-page-container">
       <h1 className="page-title">Teacher Dashboard</h1>
 
-      {/* Loading & Error State */}
+      
       {loading && <p className="loading-text">Loading...</p>}
       {error && <p className="error-text">Error: {error}</p>}
 
-      {/* Student List Table */}
       <div className="student-list">
         <h2 className="section-title">Student List</h2>
         <table className="student-table">
