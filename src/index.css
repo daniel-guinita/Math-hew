@@ -11,12 +11,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
   background-color: #fff;
-  color: #000;
+  color: #fff;
 }
 
-html {
+/* html {
   color-scheme: dark;
-}
+} */
 
 .dark {
   background-color: #8c383e;

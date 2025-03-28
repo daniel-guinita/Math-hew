@@ -16,7 +16,7 @@ export default function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
+  const API_URL = process.env.REACT_APP_API_URL || "https://mathhew-backend-deploy.vercel.app";
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -66,60 +66,6 @@ export default function SignIn() {
       setLoading(false);
     }
   };
-  
-  
-  
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  
-  //   if (!formData.identifier || !formData.password) {
-  //     setErrorMessage("Please fill in the required fields.");
-  //     return;
-  //   }
-  
-  //   setLoading(true);
-  //   setErrorMessage("");
-  
-  //   const loginData = {
-  //     // email: formData.identifier,
-  //     identifier: formData.identifier, // Email or ID No.
-  //     password: formData.password,
-  //   };
-  
-  //   try {
-  //     const response = await axios.post(`${API_URL}/auth/login`, loginData);
-  //     const { access_token, user } = response.data;
-  
-  //     // Store token and user details in local storage
-  //     localStorage.setItem("authToken", access_token);
-  //     localStorage.setItem("role", user.role);
-  //     localStorage.setItem("user", JSON.stringify(user));
-  
-  //     // Dispatch user info to Redux
-  //     dispatch(signInSuccess(user));
-  
-  //     // Show a success alert
-  //     alert(`Welcome back, ${user.username}!`);
-  
-  //     // Redirect to MainPage if the user is authenticated
-  //     navigate("/main-page");
-  
-  //     // You could still check for roles, but for now all users go to the main page:
-  //     if (user.role === "student") {
-  //       navigate("/main-page");
-  //     } else if (user.role === "teacher") {
-  //       navigate("/TeacherAdminPage");
-  //     } else if (user.role === "admin") {
-  //       navigate("/admin");
-  //     }
-  //   } catch (error) {
-  //     setErrorMessage(
-  //       error.response?.data?.message || "Invalid email/School ID or password"
-  //     );
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);

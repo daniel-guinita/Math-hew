@@ -1,4 +1,46 @@
-/* General Section Styling */
+/* Crosshair Styles */
+.crosshair {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: '';
+  position: absolute;
+  background: white;
+  transition: all 0.1s ease;
+}
+
+/* Vertical line */
+.crosshair::before {
+  width: 2px;
+  height: 20px;
+  left: 9px;
+  top: 0;
+}
+
+/* Horizontal line */
+.crosshair::after {
+  width: 20px;
+  height: 2px;
+  left: 0;
+  top: 9px;
+}
+
+/* Click effect */
+.crosshair--clicked::before,
+.crosshair--clicked::after {
+  background: #ff9f43;
+  transform: scale(0.8);
+}
+
+/* Base Section Styles */
 .section {
   min-height: 100vh;
   width: 100%;
@@ -7,9 +49,12 @@
   justify-content: center;
   padding: 2rem;
   text-align: center;
+  background-color: #8c383e;
+  color: white;
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 1.8s cubic-bezier(0.25, 1, 0.5, 1), transform 1.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+  position: relative;
 }
 
 .section.fade-in {
@@ -18,12 +63,6 @@
 }
 
 /* Home Section */
-.home-section {
-  background: #8c383e;
-  color: white;
-}
-
-/* Home Content */
 .home-content {
   display: flex;
   align-items: center;
@@ -45,7 +84,12 @@
   max-width: 135%;
   width: 1000px;
   height: auto;
-  transition: transform 0.3s ease;
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }
 
 .home-text {
@@ -60,7 +104,6 @@
   -webkit-text-fill-color: #8c383e;
   text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
   margin-bottom: 1.5rem;
-  white-space: nowrap;
 }
 
 .home-description {
@@ -83,14 +126,60 @@
   transform: scale(1.1);
 }
 
-/* About Us Section */
-.about-section {
-  background: #8c383e;
-  color: white;
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .home-content {
+    gap: 3rem;
+  }
+  
+  .home-title {
+    font-size: 3rem;
+  }
+  
+  .home-description {
+    font-size: 1.5rem;
+  }
 }
 
-/* Contact Us Section */
-.contact-section {
-  background: #8c383e;
-  color: white;
+@media (max-width: 768px) {
+  .home-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .home-title {
+    font-size: 2.5rem;
+  }
+  
+  .home-description {
+    font-size: 1.2rem;
+  }
+  
+  .learn-button {
+    font-size: 1.5rem;
+    padding: 0.8rem 2rem;
+  }
+
+  .crosshair {
+    width: 15px;
+    height: 15px;
+  }
+  .crosshair::before {
+    height: 15px;
+    left: 7px;
+  }
+  .crosshair::after {
+    width: 15px;
+    top: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 1rem;
+  }
+  
+  .home-title {
+    font-size: 2rem;
+  }
 }

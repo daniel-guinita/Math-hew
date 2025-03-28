@@ -10,7 +10,7 @@ export default function Leaderboard() {
   // Fetch Math Speedy Quiz scores from backend
   const fetchMathSpeedyScores = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/scores/math-speedy-scores");
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/scores/math-speedy-scores`);
       const scores = response.data;
 
       const rankedScores = scores.map((entry, index) => ({

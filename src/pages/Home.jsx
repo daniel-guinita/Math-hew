@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,10 +9,31 @@ import "../styles/Home.css";
 const Home = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [clicked, setClicked] = useState(false);
 
   const [homeRef, homeInView] = useInView({ triggerOnce: true, threshold: 0.3 });
   const [aboutRef, aboutInView] = useInView({ triggerOnce: true, threshold: 0.3 });
   const [contactRef, contactInView] = useInView({ triggerOnce: true, threshold: 0.3 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleMouseDown = () => setClicked(true);
+    const handleMouseUp = () => setClicked(false);
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
 
   const handleStartLearningClick = () => {
     if (currentUser) {
@@ -24,6 +45,15 @@ const Home = () => {
 
   return (
     <div className="home-container">
+      {/* Crosshair Cursor */}
+      <div
+        className={`crosshair ${clicked ? "crosshair--clicked" : ""}`}
+        style={{ 
+          left: `${position.x}px`, 
+          top: `${position.y}px`
+        }}
+      />
+
       {/* Home Section */}
       <section id="home" ref={homeRef} className={`section home-section ${homeInView ? "fade-in" : ""}`}>
         <div className="home-content">

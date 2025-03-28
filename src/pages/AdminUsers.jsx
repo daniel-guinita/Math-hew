@@ -16,7 +16,7 @@ const AdminUsers = () => {
   // Function to fetch users from backend
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/users");
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users`);
       setUsers(response.data);
       setFilteredUsers(response.data); // Initialize filtered users
     } catch (error) {
@@ -41,7 +41,7 @@ const AdminUsers = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
-        const response = await axios.delete(`http://localhost:3000/users/${id}`);
+        const response = await axios.delete(`${process.env.REACT_APP_API_URL}/users/${id}`);
         console.log(response.data); // Log response for debugging
         fetchUsers(); // Refresh user list
         alert("User deleted successfully!");
@@ -55,7 +55,7 @@ const AdminUsers = () => {
   // Function to view user details
   const handleViewDetails = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3000/users/${id}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/${id}`);
       setSelectedUser(response.data);
     } catch (error) {
       console.error("Error fetching user details:", error);

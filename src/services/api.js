@@ -1,6 +1,6 @@
 // api.js
 
-const BASE_URL = 'http://localhost:3000'; // Your backend URL
+const BASE_URL = 'mathhew-backend-deploy.vercel.app'; // Your backend URL
 
 export const registerUser = async (userData) => {
   try {
