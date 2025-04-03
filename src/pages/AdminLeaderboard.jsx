@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/AdminTeacherLeaderboard.css"; // Import the CSS file
+import "../styles/AdminTeacherLeaderboard.css"; 
 
 export default function AdminLeaderboard() {
   const [memoryGameData] = useState([
